@@ -1,3 +1,146 @@
 <html>
-  <h1>Hello World</h1>
+  <head>
+    <style>
+      dt {font-weight:bold; width:500px;}
+      dd {width:460px;}
+      .assignment {background-color:ffbbbb;}
+      .lecture {background-color:ffffbb;}
+      .test {background-color:#bbbbbb;}
+      .lab {background-color:#bbffbb;}
+      .homework {background-color:#bbbbff;}
+    </style>
+    <script>
+    </script>
+  </head>
+  <body>
+    <h1>Course Content</h1>
+    <dl>
+      <dt class="assignment">Assignment 1 - Get Access to all systems; create 'Hello World' page</dt>
+      <dd>Gain access to all the class systems following the detailed instructions on Cavnas. Use another set of detailed instructions to create a 'hello world' page demonstrating your access is complete.</dd>
+      <dt class="lecture">Lecture 1 - HTML/CSS/JS introduction, standard format, conventions</dt>
+      <dd>Learn about the Hyper Text Markup Langauge, Cascading Style Sheets, and JavaScript, how they are written, what is expected, and why it is important.</dd>
+      <dt class="lab">Lab 1 - Experimenting with style</dt>
+      <dd>Apply the lessons from lecture #1 by creating a small web page and applying styles the various elements using tag, class, name, and ID.</dd>
+      <dt class="homework">Homework 1 - Personal biography page</dt>
+      <dd>From your home page add a link at the bottom for "About Me" and redirect the user to a new page with your full biography. Use your CSS and HTML skills to make the page look appealing. Include the following:
+        <ul>
+          <li>Name</li>
+          <li>Picture</li>
+          <li>Greeting</li>
+          <li>School affiliation</li>
+          <li>Intended career</li>
+          <li>Personal goals</li>
+        </ul>
+      </dd>
+      <dt class="assignment">Assignment 2 - Active style change</dt>
+      <dd>Create a web page with at least three paragraphs of text from a favorite book or poem. Create at least two buttons and sets of CSS instructions based on competing class definitions for the <code>body</code> tag. When a button is pressed, change the class of body to match the corresponding CSS instructions. You should be able to use the buttons to automatically alter the style of the page. You might read <a href="https://stackoverflow.com/questions/2582551/how-to-apply-css-to-html-body-element">these examples</a>.<br>
+      <code>
+        body.nox {color:white; background-color:black;}<br>
+        body.lumos {color:black; background-color:white;}<br>s
+        &lt;button onclick="document.body.className='nox'"&gt;Nox&lt;/button&gt;;
+      </code>
+      </dd>
+      <dt class="lecture">Lecture 2 - Fields, Functions, and Events</dt>
+      <dd>Learn about the building blocks of code: fields that hold data, functions that change things, and events from the user.</dd>
+      <dt class="lab">Lab 2 - Father-son "catch" game</dt>
+      <dd>
+        Create two buttons labeled "Father throws" and "Son throws".<br>
+        Create two &lt;p&gt; tags with ids "Father" and "Son". Put the text "Ball" in one of them.<br>
+        When a button is pushed, it should check for the "ball" in the right tag and then move the "ball" to the other tag. Now you can click the buttons back and forth to play "catch".
+      </dd>
+      <dt class="homework">Homework 2 - Developer tools and code walkthrough</dt><dd></dd>
+      <dt class="assignment">Assignment 3 - Multiple catch games</dt>
+      <dd>
+        In Lab #2 you created a catch game with just two players. Now you should create at least 5 players.<br>
+        Put &lt;p&gt; tags and buttons in random places on the screen. Use the absolute position attribute in CSS.
+        When a player throws the ball, he picks a random player as the target.<br>
+        See if you have the ball. Find another player. Throw to him.<br>
+        The ball should move randomly around the screen.
+      </dd>
+      <dt class="lecture">Lecture 3 - GUI Geometry</dt>
+      <dd>Computer screens are like cartesian planes you use in Algebra. The axis are a little different. Learn to work with the GUI geometry and prove that you can use math you already know to work with objects on the screen.</dd>
+      <dt class="lab">Lab 3 - Using the canvas tag; boundary checking</dt>
+      <dd>
+        Create a page with a &lt;canvas&gt; tag.<br>
+        Paint an object on the screen and have it bounce around the screen.<br>
+        Use a time function to wait 250 milliseconds between steps.<br>
+        For every step, check for a boundary and if the object "hits" a boundary, make it bounce off.
+      </dd>
+      <dt class="homework">Homework 3 - Locate items on GUI</dt>
+      <dd>
+        Create a simple game where the computer asks you to click on the right place.<br>
+        Create a canvas tag and slect a random x and y coordinate on the screen.<br>
+        Ask the user to click on that place. Capture the x and y of the mouse event location.<br>
+        Score the user based on how close the click was to the intended target. Maybe show where the right location was.
+      </dd>
+      <dt class="assignment">Assignment 4 - Tic-Tac-Toe</dt>
+      <dd>
+        Use a table to create a tic-tac-toe board. Put buttons in each &lt;td&gt; tag.<br>
+        When a button is pushed, change it to X.<br>
+        Use whatever algorithm you want to place the O.<br>
+        Check for a win after every character is placed.<br>
+        Announce the win to the user.<br>
+        Add a reset button to restore the board to the starting position.
+      </dd>
+      <dt class="lecture">Lecture 4 - Introduction to objects</dt>
+      <dd>There are several different programming paradigms, but objects are one of the most convenient ways to bundle related fields and functions. Learn to create and use functions with JavaScript.</dd>
+      <dt class="lab">Lab 4 - Wack-a-mole</dt>
+      <dd>
+        Create a Mole object with an x,y location.<br>
+        Show the mole on the screen in a random place.<br>
+        When the user clicks on the mole, kill the mole and create another one in a new random place.<br>
+        Count the number of mole hits and add a new mole every five hits.<br>
+        Add a reset button to start over with one mole.
+      </dd>
+      <dt class="homework">Homework 4 - Create a clock</dt>
+      <dd>
+        Put three labels on the screen for hours, minutes, and seconds.<br>
+        Create a 500 ms time event.<br>
+        When the time event happens, work out the current hour, minute, and second. Update the labels.<br>
+      </dd>
+      <dt class="assignment">Assignment 5 - Heartbeat and motion</dt>
+      <dd>
+        Go back to Lab #3 and Lab #4. We want to create bunch of moving objects that are monitored by a single clock function.<br>
+        Create a clock function that updates every 250 milliseconds.<br>
+        Define an object that will bounce around the screen. It doesn't have to be a ball.<br>
+        Create an array of objects.<br>
+        When the clock "ticks" make each object in the array move.<br>
+        You might create a button to add objects to the array. Or 10. Or 100.
+      </dd>
+      <dt class="test">Test #1</dt><dd>The first test will cover the topics discussed in lecture and have a practical programming component as well.</dd>
+      <dt class="homework">Homework 5 - Inheritance</dt>
+      <dd>Create a constructor for a new type Plant.</dd>
+      <dt class="assignment">Assignment 6 - Inheritance vs Composition</dt><dd></dd>
+      <dt class="lecture">Lecture 6 - Digital data</dt><dd></dd>
+      <dt class="lab">Lab 6 - GoldField: Mover inheritance tree</dt><dd></dd>
+      <dt class="homework">Homework 6 - GoldField: Looking at locations</dt><dd></dd>
+      <dt class="assignment">Assignment 7 - GoldField: Buttons and mouse events</dt><dd></dd>
+      <dt class="lecture">Lecture 7 - Computer Architecture</dt><dd></dd>
+      <dt class="lab">Lab 7 - GoldField: Mover Control</dt><dd></dd>
+      <dt class="homework">Homework 7 - GoldField: Search for Mover</dt><dd></dd>
+      <dt class="assignment">Assignment 8 - GoldField: Collision checking</dt><dd></dd>
+      <dt class="lecture">Lecture 8 - GoldField: Computer Stack</dt><dd></dd>
+      <dt class="lab">Lab 8 - GoldField: Reacting to Movers</dt><dd></dd>
+      <dt class="homework">Homework 8 - GoldField: Look-plan algorithms</dt><dd></dd>
+      <dt class="assignment">Assignment 9 - GoldField: Mover chase scenes</dt><dd></dd>
+      <dt class="test">Test #2</dt><dd></dd>
+      <dt class="homework">Homework 9 - Digital representation of data</dt><dd></dd>
+      <dt class="assignment">Assignment 10 - Theory of computation; computer scaling</dt><dd></dd>
+      <dt class="lecture">Lecture 10 - Theory of computation; computer scaling</dt><dd></dd>
+      <dt class="homework">Homework 10 - Computer Specification</dt><dd></dd>
+      <dt class="assignment">Assignment 11 - Personal security audit</dt><dd></dd>
+      <dt class="lecture">Lecture 11 - Security</dt><dd></dd>
+      <dt class="homework">Homework 11 - Personal security imporovement</dt><dd></dd>
+      <dt class="assignment">Assignment 12 - AI Questions</dt><dd></dd>
+      <dt class="lecture">Lecture 12 - AI and Software Engineering</dt><dd></dd>
+      <dt class="homework">Homework 12 - Software Engineering Processes</dt><dd></dd>
+      <dt class="assignment">Assignment 13 - Algorithm Examples</dt><dd></dd>
+      <dt class="lecture">Lecture 13 - Algorithm Efficiency</dt><dd></dd>
+      <dt class="homework">Homework 13 - Sorting Algorithm Efficiency</dt><dd></dd>
+      <dt class="assignment">Assignment 14 - Language of Choice: Hello World</dt><dd></dd>
+      <dt class="lecture">Lecture 14 - Languages</dt><dd></dd>
+      <dt class="homework">Homework 14 - Semester Review Questions</dt><dd></dd>
+      <dt class="test">Test #3</dt><dd></dd>
+    </dl>
+  </body>
 </html>
