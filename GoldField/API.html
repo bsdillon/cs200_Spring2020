@@ -1,0 +1,162 @@
+
+<html>
+  <head>
+  </head>
+  <body>
+    <h1>Disclaimer</h1>
+    <p>I won't claim that my API is 100% bug-free, but I will hold myself responsible for fixing any bugs you find. Please email me concerning any bugs you find. Include the error message and line number where the error occurred. If possible tell me what you were doing which caused the bug. I need to know how to reproduce it in order to fix it. Thanks.</p>
+
+    <h1>Link</h1>
+    <p>You can link your page directly to the script at <a href="goldfield.js">goldfield.js</a></p>
+
+    <h1>Non-game Example</h1>
+    <p>This <a href="example.html">example page</a> shows many of the features of the API so that you can become familiar with them.</p>
+
+    <h1>GoldField Object</h1>
+    <p>
+      The GoldField sets up the playing field and tracks all the movers. It is capable of randomly adding as many as you like, but will reject too many Movers.
+    </p>
+   
+    <h2>Constructor</h2>
+    <dl>
+      <dt>GoldField(tag, block_size, block_width, block_height)</dt><dd>Generated a GoldField object which can be used to create and control the rest of the program. The calling function can supply any DOM tag as the basis for the game. Gold field will resize it into a block_width-by-block_height field of squares which are block_size-by-block_size. This makes the initial size of the game completely customizable.</dd>
+    </dl>
+   
+    <h2>Event Functions</h2>
+    <dl>
+      <dt>SetClickListener(func)</dt><dd>This method connects the onclick event for GoldField to the given function. This is the approved method for getting mouse events from the API.</dd>
+      <dt>SetKeyListener(func)</dt><dd>This method connects the onkeyup event for GoldField to the given function. This is the approved method for getting key events from the API.</dd>
+    </dl>
+
+    <h2>Membership Functions</h2>
+    <dl>
+      <dt>Reset()</dt><dd>Clears all movers from the board and returns it to the original state.</dd>
+      <dt>RandomFill(percent)</dt><dd>Adds random Obstacles to a percentage of the board. 0 &lt; percent &le; .25</dd>
+      <dt>GetMover(id)</dt><dd>Finds and returns the Mover with the given ID value. Returns null if the Mover is not found.</dd>
+      <dt>AddHero()</dt><dd>Adds the Hero to a random location on the board. Only one Hero can be added. Returns a reference to the Hero.</dd>
+      <dt>AddMonster()</dt><dd>Adds a Monster to a random location on the board. Returns a reference to the Monster.</dd>
+      <dt>AddGold()</dt><dd>Adds a bar of Gold to a random location on the board. Returns a reference to the Gold.</dd>
+      <dt>AddTower()</dt><dd>Adds the Tower to a random location on the board. Only one Tower can be added. Returns a reference to the Tower.</dd>
+      <dt>AddObstacle()</dt><dd>Adds a random Obstacle to a random location on the board. Returns a reference to the obstacle.</dd>
+      <dt>CreateMoverTag()</dt><dd>Adds a new Mover tag to the GoldField and returns the id of the Mover.</dd>
+      <dt>AddGenericMover(obj)</dt><dd>Adds the new user-defined Mover to the GoldField's controls. <b>NOT DOING THIS CRITICAL STEP WILL RESULT IN A TAG ON THE SCREEN WHICH DOES NOT RESPOND TO CRITICAL FUNCTIONS (e.g. Reset).</b></dd>
+      <dt>DeleteMover(id)</dt><dd>Silently removes the Mover from the board. This operation removes the tag quietly rather than having it die dramatically and loudly.</dd>
+    </dl>
+
+    <h2>Location Functions</h2>
+    <dl>
+      <dt>GetDimensions()</dt><dd>Returns an ordered pair with the size of the board [width,height].</dd>
+      <dt>LookAt(x,y)</dt><dd>Returns a pair of values describing the contents of the indicated cell: [id,description]. The position must be within the bounds of the field.</dd>
+    </dl>
+
+    <h2>Sound Functions</h2>
+    <dl>
+      <dt>AddSound(url, name)</dt><dd>Add any sound to the game by supplying the URL to the sound file and a string description for the sound. Ex. gf.AddSound(someNewSound.wav, "NewSound")</dd>
+      <dt>ChangeSound(url, name)</dt><dd>Change the sound file used for any existing sound.</dd>
+      <dt>PlaySound(name)</dt><dd>Directly play any sound.</dd>
+      <dt>GetSound(name)</dt><dd>Returns the sound object with the given name.</dd>
+      <dt>GetSoundList()</dt><dd>Returns a list of all the sounds defined in the game.</dd>
+      <dt>SetMute(muted)</dt><dd>The sounds of the game can be muted. Set true to turn them off and false to turn them on.</dd>
+      <dt>Win()</dt><dd>Plays the victory fanfare.</dd>
+      <dt>Lose()</dt><dd>Plays the Hero's funeral march.</dd>
+    </dl>
+
+    <h1>Mover Objects</h1>
+    <p>
+      Each mover has a unique ID number and a description of the mover. They are initially located randomly, but you can move them around if you want.
+    </p>
+    <dl>
+      <dt>myID</dt><dd>Unique identifier</dd>
+      <dt>Description</dt><dd>String describing the type of Mover.</dd>
+      <dt>imageURL</dt><dd>The image normally displayed by the mover.</dd>
+      <dt>destroyURL</dt><dd>The image you want to be displayed when it is destroyed.</dd>
+      <dt>destroyAudio</dt><dd>The sound you want to play when the tag is removed. The "none" sound is an option.</dd>
+      <dt>destroyTime</dt><dd>How long you want the tag to be in destroy mode before it is removed.</dd>
+      <dt>InitTag</dt><dd>Finds the basic mover tag and initiates it using the type-specific details.</dd>
+      <dt>GetPosition()</dt><dd>Returns an ordered pair [x,y] of the mover's current position.</dd>
+      <dt>Destroy()</dt><dd>Causes the mover to die dramatically and loudly. This is part of the game and not a silent reset. Be aware that there is a delay in the destruction of these objects (for graphic visualization) and that you cannot add new versions of some figures (e.g., the Hero) until the old one is completely destroyed.</dd>
+      <dt>SetPosition(x,y)</dt><dd>Accepts a new location for the mover and returns true if successful. Certain restrictions apply:
+        <ul>
+          <li>The position must be within the bounds of the GoldField</li>
+          <li>The position must be empty. While a Monster and Hero can kill each other, they can't occupy the same space.</li>
+        </ul>
+      </dd>
+    </dl>
+
+    <h1>Specific Mover Types</h1>
+    <dl>
+      <dt>Hero <img src="hero.png" width="25"></dt>
+      <dd>This is the main character who will be controlled by the user. Presumably we want to keep him alive. The API assumes we only have one of him.</dd>
+      <dt>Tower <img src="tower.png" width="25"></dt>
+      <dd>The tower is optional, but there can only be one of them. Presuably the tower is some sort of goal, but it could be used for almost any purpose.</dd>
+      <dt>Monster <img src="monster.png" width="25"></dt>
+      <dd>Monsters are presumably the bad guys. The certainly make mean noises when they blow up.</dd>
+      <dt>Gold <img src="gold.png" width="25"></dt>
+      <dd>Gold could be used to keep score or reward the player. Maybe this is how you end the game.</dd>
+      <dt>Obstacles</dt>
+      <dd>Obstacles can be added randomly to the terrain as a percentage of the total field (less than 25%) or added one at a time. There are three varieties.<dl>
+        <dt>Rock <img src="boulder.png" width="25"></dt>
+        <dd>Rocks just block the player from getting through. I guess you could destroy them, but why would you?</dd>
+        <dt>Water <img src="water.png" width="25"></dt>
+        <dd>Water hazards also block the player. You might be able to attack over these. Could they be destroyed?</dd>
+        <dt>Plant <img src="plant.jpg" width="25"></dt>
+        <dd>Plans also block the player. Might they be destroyed to get gold? Maybe to clear the way.</dd>
+      </dl></dd>
+    <dl>
+
+    <h1>Adding to the API</h1>
+    <p>
+      The API can be added to pretty easily. Basically you are adding a new method to the GoldField object (yay! for prototypes) and creating a new type which extends the Mover prototype. The code below is a template which you could use to create anything you want in the GoldField game.
+    </p>
+
+<pre>
+//create a new sound you might want
+goldField.AddSound("soundURL","soundName");
+
+//this method is added to GoldField so it can add the new type
+GoldField.prototype.AddUserDefinedType = function()
+{
+   var id = this.CreateMoverTag();
+   var udt = new UserDefinedType(id);
+   this.AddGenericMover(udt);
+   return udt;
+}
+
+//this is the constructor for the new type
+var UserDefinedType = function(id)
+{
+   this.Description = "UserDefinedType";
+   this.imageURL = "imageURL";//this needs to be an actual image url in your code or on the web
+   this.destroyURL = "destroyURL";//this needs to be an actual image url in your code or on the web
+   this.destroyAudio = "soundName";//sets the name of the sound file
+   this.destroyTime = 1000;//set the time you want for any animation or sound before the tag is destroyed.
+   this.InitTag(id);
+}
+
+UserDefinedType.prototype = Object.create(Mover.prototype);//makes that type a mover
+UserDefinedType.prototype.constructor = UserDefinedType;//sets the constructor for that type
+</pre>
+
+    <h1>Acknowledgements</h1>
+    <p>The images and sounds which are used in this API have been taken directly from the web. My thanks to those who provided their intellectual property online for the free use in an academic setting.<br>
+      <ol>
+        <li>http://soundbible.com/</li>
+        <li>http://www.zedge.net/</li>
+        <li>Mike Koenig</li>
+        <li>http://texturelib.com/</li>
+        <li>http://inkwellideas.com/</li>
+        <li>http://photobucket.com</li>
+        <li>Unka Dug</li>
+        <li>http://the-king-of-towers.wikia.com/</li>
+        <li>http://ztreasureisle.wikia.com/</li>
+        <li>http://farmville.wikia.com/</li>
+        <li>http://thepioneertrail.wikia.com/</li>
+        <li>http://www.clipartbest.com/</li>
+      </ol>
+    </p>
+
+    <p>
+      I also gratefully acknowledge mrdotb who assisted me with a critical bug which affected several locations in the code. See the discussion on <a href="http://stackoverflow.com/questions/38809948/javascript-cant-handle-events-for-multiple-instances">stackoverflow</a>.
+    </p>
+  </body>
+</html>

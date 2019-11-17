@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <script src="environment.js"></script>
+    <script src="PropertyModel.js"></script>
+    <script src="actionModels.js"></script>
+    <script src="SensorModel.js"></script>
+    <script src="VisualModel.js"></script>
+    <script src="mover.js"></script>
+    <script src="agent.js"></script>
+    <script src="rock.js"></script>
+    <script>
+      var numAgents=100;
+
+      function loadPage()
+      {
+        var Env = new Environment(document.getElementById("canvas"),900,300);
+        for(let i=0;i<numAgents;i++)
+        {
+          new Agent(i, Env);
+        }
+        new Rock(999,Env);
+      }
+    </script>
+    <style>
+      html, body { margin: 0; padding: 0; background-color:white; color:black;}
+    </style>
+  </head>
+  <body onload="loadPage()" onmousemove="mouseUpdate(event)" onmouseenter="mouseUpdate(event)" onmouseleave="stopMouseTracking()">
+    <canvas id="canvas"></canvas><br>
+    <input type="checkbox" checked onchange="indicatorSwitch()">Indicators</input>
+  </body>
+</html>

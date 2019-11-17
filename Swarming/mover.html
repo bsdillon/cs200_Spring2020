@@ -1,0 +1,260 @@
+<html>
+<head>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+var trackMouse=false;
+var mouseX=0;
+var mouseY=0;
+function mouseUpdate(evnt)
+{
+  trackMouse=true;
+  mouseX=evnt.clientX;
+  mouseY=evnt.clientY;
+}
+
+function stopMouseTracking()
+{
+  trackMouse=false;
+}
+
+//these variables define the parameters of the mover set
+var num_Movers = 100;
+var allMovers = new Array();
+var allIDs = new Array();
+var Max_Agil = 5;
+var Max_Speed = 15;
+var Max_Percept = 50;
+var Min_Percept = 10;
+var Min_Speed = 10;
+var Max_Size = 10;
+var Min_Size = 5;
+var DistMax = 50;
+var DistMin = 50;
+
+//--------------Mover Definition--------------//
+function Mover()
+{
+  this.PosX = Math.floor(width*Math.random());
+  this.PosY = Math.floor(height*Math.random());
+  this.VelX = 0;
+  this.VelY = 0;
+  this.Size = Math.floor(Math.random()*Max_Size+Min_Size);
+  this.maxAgil = Math.floor(Math.random()*Max_Agil+1);
+  this.maxVel = Math.floor(Math.random()*Max_Speed+Min_Speed);
+  this.percept = Math.floor(Math.random()*Max_Percept+Min_Percept);
+  this.idealDist = Math.floor(Math.random()*DistMax+DistMin);
+  this.Color = "rgba("+getRGB()+","+getRGB()+","+getRGB()+",1)";
+  this.RefreshRate = 250;
+  this.ID = Math.floor(Math.random()*10000);
+  while(this.ID in allIDs)
+  {
+    this.ID = Math.floor(Math.random()*10000);
+  }
+  allMovers.push(this);
+
+  setInterval(this.Step,this.RefreshRate, this);
+}
+
+Mover.prototype.Step = function(m){
+  m.Move();
+  m.Draw()
+}
+
+Mover.prototype.Move = function() {
+  var tensions = new Array();
+  tensions[0]=0;
+  tensions[1]=0;
+
+  if(trackMouse)
+  {
+    var dx = mouseX-this.PosX;
+    if(Math.abs(dx)>width/2)
+    {
+      dx = this.PosX-mouseX;
+    }
+
+    var dy = mouseY-this.PosY;
+    if(Math.abs(dy)>height/2)
+    {
+      dy = this.PosY-mouseY;
+    }
+
+    var dist = Math.sqrt((dx*dx)+(dy*dy));
+
+    if(dist>this.idealDist*.90)
+    {
+      //move away
+      tensions[0]=dx;
+      tensions[1]=dy;
+    }
+    else if(dist>this.idealDist*1.1)
+    {
+      //move closer
+      tensions[0]=-dx;
+      tensions[1]=-dy;
+    }
+  }
+
+  if(tensions[0]==tensions[1] && tensions[0]==0)//no tension from other sources
+  {
+  for(let i=0;i<allMovers.length;i++)
+  {
+    var other=allMovers[i];
+    if(other.ID!=this.ID)
+    {
+      //is this mover too close to me?
+      var dx = other.PosX-this.PosX;
+      if(Math.abs(dx)>width/2)
+      {
+        dx = this.PosX-other.Pos;
+      }
+
+      var dy = other.PosY-this.PosY;
+      if(Math.abs(dy)>height/2)
+      {
+        dy = this.PosY-other.PosY;
+      }
+
+      var dist = Math.sqrt((dx*dx)+(dy*dy));
+      if(dist<this.percept)
+      {
+      if(dist<this.idealDist)
+      {
+        //move away
+        tensions[0]=dx;
+        tensions[1]=dy;
+      }
+      else if(dist<this.idealDist)
+      {
+        //move away
+        tensions[0]=-dx;
+        tensions[1]=-dy;
+      }
+      }
+    }
+  }
+  }
+
+  if(tensions[0]==tensions[1] && tensions[0]==0)//no tension from other sources
+  {
+      tensions[0]=Math.floor((2*this.maxAgil+1)*Math.random()-this.maxAgil);
+      tensions[1]=Math.floor((2*this.maxAgil+1)*Math.random()-this.maxAgil);
+  }
+
+   this.Accelerate(tensions[0],tensions[1]);
+}
+
+Mover.prototype.Accelerate = function(ddx, ddy) {
+  var acc = Math.sqrt((ddx*ddx)+(ddy*ddy));
+  if(acc>this.maxAgil)
+  {
+    ddx = ddx * this.maxAgil/acc;
+    ddy = ddy * this.maxAgil/acc;
+  }
+
+  this.VelX += ddx;
+  if(Math.abs(this.VelX)>this.maxVel)
+  {
+    this.VelX=this.VelX>0? this.maxVel:-this.maxVel;
+  }
+
+  this.VelY += ddy;
+  if(Math.abs(this.VelY)>this.maxVel)
+  {
+    this.VelY=this.VelY>0? this.maxVel:-this.maxVel;
+  }
+
+  this.PosX += this.VelX;
+  this.PosY += this.VelY;
+
+  if (this.PosX < 0)
+  {
+    this.PosX = width+this.PosX;
+  }
+  else if (this.PosX > width)
+  {
+    this.PosX = this.PosX-width;
+  }
+
+  if (this.PosY < 0)
+  {
+    this.PosY = height+this.PosY;
+  }
+  else if (this.PosY > height)
+  {
+    this.PosY = this.PosY-height;
+  }
+}
+
+
+Mover.prototype.Draw = function (){
+    //draw the actual point
+  ctx.fillStyle = this.Color;
+  var realX = this.PosX-(this.Size/2);
+  var realY = this.PosY-(this.Size/2);
+  ctx.fillRect(realX, realY, this.Size, this.Size);
+
+  if(indicatorsOn)
+  {
+  ctx.beginPath();
+  ctx.strokeStyle = this.Color;
+  ctx.ellipse(this.PosX, this.PosY, this.percept, this.percept, 0, 0, 2*Math.PI);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(this.PosX,this.PosY);
+  var mag = 3;
+  ctx.lineTo(this.PosX+(mag*this.VelX), this.PosY+(mag*this.VelY));
+  ctx.stroke();
+  }
+}
+
+//these variables give us a handle to work with the canvas
+var canvas;
+var ctx;
+var width;
+var height;
+var indicatorsOn=true;
+
+function loadPage()
+{
+//these variables give us a handle to work with the canvas
+  canvas = document.getElementById("canvas");
+  ctx = canvas.getContext("2d");
+  width = canvas.width = 900;
+  height = canvas.height = 450;
+
+  //creates the movers (a.k.a. particles using the d3 library)
+  //d3.range(num_Movers).map( function(i) {new Mover()});
+  for(let i=0;i<num_Movers;i++)
+  {
+    new Mover();
+  }
+
+  setInterval(RedrawBackground, 200)
+}
+
+function RedrawBackground() {
+  ctx.fillStyle = "rgba(0,0,0,.25)";
+  ctx.fillRect(0,0,width,height);
+
+}
+
+function indicators()
+{
+  indicatorsOn=!indicatorsOn;
+}
+
+function getRGB()
+{
+  return Math.floor(Math.random()*256);
+}
+</script> 
+<style>
+html, body { margin: 0; padding: 0; background-color:black; color:white;}
+</style>
+</head>
+<body onload="loadPage()" onmousemove="mouseUpdate(event)" onmouseenter="mouseUpdate(event)" onmouseleave="stopMouseTracking()">
+  <canvas id="canvas"></canvas><br>
+  <input type="checkbox" checked onchange="indicators()">Indicators</input>
+</body>
+</html>
