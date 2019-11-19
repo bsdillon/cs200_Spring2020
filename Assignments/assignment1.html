@@ -1,0 +1,111 @@
+<html>
+  <head>
+    <style>
+      dt {font-weight:bold; width:500px;}
+      dd {width:460px;}
+      img {border:1px solid black;}
+      .short {width:420px;}
+      .red {color:red; font-weight:bold;}
+      .assignment {background-color:ffbbbb;}
+      .lecture {background-color:ffffbb;}
+      .test {background-color:#bbbbbb;}
+      .lab {background-color:#bbffbb;}
+      .homework {background-color:#bbbbff;}
+    </style>
+    <script>
+    </script>
+  </head>
+  <body>
+    <h1 class="assignment">Assignment #1 - Get system access</h1>
+    <dl>
+      <dt>Purpose</dt>
+      <dd>Allow students to gain access to all systems for the classwork:<br>
+        <ul>
+          <li>GitHub</li>
+          <li>Educational package</li>
+          <li>Personal web page</li>
+        </ul>
+      </dt>
+      <dt>Instructions</dt>
+      <dd>
+        These instructions should be followed by each student <span class="red">IMMEDIATELY</span> after joining the class. 
+        <ol>
+          <li>Go to <a href="github.com">GitHub.com</a> and signup for an account.<br>
+            <ul>
+              <li>You will be asked to pick a username. Note that this name will appear in your website. Pick something that you would want to email to a future employer who might judge you base on the web address alone.</li>
+              <li><span class="red">IF YOU WANT TO HAVE PERMANENT ACCESS TO YOUR GITHUB ACCOUNT</span> use your permanent email</li>
+              <li><span class="red">IF YOU ARE ONLY TAKING THIS COURSE AS AN ELECTIVE</span> use your Rappahannock.edu email</li>
+              <li>You may consider keeping the repository permanently as a place to post web pages, resumes, etc.</li>
+            </ul>
+          </li>
+          <li>Go to your email and confirm your GitHub account.</li>
+          <li>Apply for GitHub's <a href="https://education.github.com/">Student Benefits</a>. The Student Developer Pack offers you a number of <a href="https://education.github.com/pack">useful tools and tutorials</a> that may be useful during the class.<br>
+            <ul>
+              <li>Supply your Rappahannock.edu email.</li>
+              <li>Give them a picture of your student ID.</li>
+              <li>Get this done <span class="red">ASAP</span> as it may take up to 9 days to get your account.<br>
+                <img src="./imgs/9daywarning.png"><br>
+              </li>
+            </ul>
+          </li>
+          <li>Create a project for your coursework. There are multiple ways to do this.<br>
+            <img class="short" src="./imgs/createproject.png"><br>
+            <ul>
+              <li>Give the project a reasonable name. This too will appear in the sight name so pick it carefully.</li>
+              <li>Make the repository public so I can read your code submissions. I will not be able to change your code, but I will read it.</li>
+              <li>Check the box to create a readme file.</li>
+              <li>Create the repository by clicking the green button.</li>
+            </ul>
+            <img class="short" src="./imgs/projectsettings.png"><br>
+          </li>
+          <li>From your repository page, click on the settings icon. Scroll down to GitHub Pages and update the Source to point to your master branch. This will allow you to create a web page that can be seen by anyone on the web.<br>
+            <img class="short" src="./imgs/setuppages.png"><br>
+          </li>
+          <li>From your new project repository, you can download the desktop application that will let your push/pull code from the repository. Install the application. <span class="red">If your computer is 32-bit you will get an error message during install.</span> I recommend downloading <a href="https://www.gitkraken.com/download">GitKraken</a> which will work with GitHub.<br>
+            <img class="short" src="./imgs/getdesktop.png"><br>
+            <img src="./imgs/installdesktop.png"><br>
+          </li>
+          <li>There are several actions that you will need to master with your git application and the GitHub repository. <span class="red">You will be responsible for knowing how to do this with your computer.</span> If you have any problems, you can contact me and we will work through the process. You might also work with your peers as they are trying to understand the same processes.<br>
+            <img class="short" src="./imgs/repositorysystem.png"><br>
+            <ul>
+              <li>Clone a repository. Your desktop app will link into GitHub and offer to “clone” a repository. This means a folder will be created on your computer and all the code in the online repository will be copied to that location. Test if you can clone your remote (online) repository to your computer.</li>
+              <li>Pull the repository. You can use “pull” operations to update the repository folder in your computer. Anything added by a partner or by yourself from another computer will be automatically downloaded to that folder. A pull will make sure your folder is up to date. Test if you can pull from the repository. I suggest you edit the readme file online and then pull the change down.
+                <img class="short" src="./imgs/editfile.png"><br>
+              </li>
+              <li>Add to the repository. If you create a new file in the folder you have the option to add it to the local repository. Adding the file to the local copy of the repository does NOT mean it will appear online. Test if you can create a file to the folder on your computer and then add it to the local repository.</li>
+              <li>Commit to the repository. Commit is an action that makes a change part of the repository. If you change a line in a file, it exists as a change, but doesn’t show up in the local repository until you commit. Test if you can commit the new file to the local repository.</li>
+              <li>Push to the remote repository. After you are satisfied with what you have created locally, you can push it to the remote repository. Once you have done this, the change is visible to everyone else and may be pulled to another local repository. Test if you can push the new file to the remote repository.</li>
+            </ul>
+          </li>
+          <li>You can define the structure of your website by adding folders to the repository. This can be done locally or online.<br>
+            <ul>
+              <li>To do it locally, create the folder, put a file in that folder, add, commit, and push that file. The folder will be created automatically. This is the standard HTML index file that you will need to create.</li>
+              <li>To do it online, click the button to create a file. Write the name of the folder followed by a /. The screen will automatically be changed to show the folder in the file name. You must add a new file to create the folder in the repository.
+                <img class="short" src="./imgs/createfile.png"><br>
+                <img class="short" src="./imgs/createfolder.png"><br>
+              </li>
+              <li>The default file should be index.html. While you can add real content to this page, you should <span class="red">ALWAYS</span> put this file in each folder. Failing to do so will let a hacker read all the content in your folder <a href="https://www.lifewire.com/index-html-page-3466505">article</a>. If you add a folder, make sure you put an index.html file in place. Create one in the main folder as well.<br>
+                <img src="./imgs/standardindex.png"><br>
+              </li>
+            </ul>
+          </li>
+          <li>The GitHub page you have created will be named in this way. Navigate to the page in your browser. This confirms that your page is online.
+            <img class="short" src="./imgs/urlformat.png"><br>
+          </li>
+          <li>Now that you can access the system, create a 'hello world' page. This is the traditional first code created by all developers. Test to make sure the buttons work and resolve any bugs.<br>
+            <code>
+             &lt;html&gt;<br>
+             &nbsp;&lt;head&gt;<br>
+             &nbsp;&lt;/head&gt;<br>
+             &nbsp;&lt;body&gt;<br>
+             &nbsp;&nbsp;&lt;p&gt;Hello world!&lt;/p&gt;<br>
+             &nbsp;&lt;/body&gt;<br>
+             &lt;/html&gt;
+            </code>
+          </li>
+          <li>Submit the link to the page in Canvas.</li>
+        </ol>
+      </dd>
+    </dl>
+  </body>
+</html>

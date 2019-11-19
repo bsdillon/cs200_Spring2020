@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <style>
+      dt {font-weight:bold; width:500px;}
+      dd {width:460px;}
+      .assignment {background-color:ffbbbb;}
+      .lecture {background-color:ffffbb;}
+      .test {background-color:#bbbbbb;}
+      .lab {background-color:#bbffbb;}
+      .homework {background-color:#bbbbff;}
+    </style>
+    <script>
+    </script>
+  </head>
+  <body>
+    <h1 class="assignment">Assignment #7 - GoldField: Buttons and mouse events</h1>
+    <dl>
+      <dt>Purpose</dt>
+      <dd>Use the GoldField API to connect keyboard and mouse events.</dd>
+      <dt>Instructions</dt>
+      <dd>
+        <ol>
+          <li>Create a function for keyboard events and another one for mouse events.</li>
+          <li>Create the GoldField and use SetClickListener and SetKeyListener to connect the two functions.</li>
+          <li>In the key function, check if the event number (i.e. <code>event[0]</code>) matches one of these numbers. Create the indicated Mover when that key is pressed.<br>
+            <ul>
+              <li>97 (a)  Monster</li>
+              <li>115 (s) Gold</li>
+              <li>100 (d) Tower</li>
+              <li>102 (f) Water</li>
+            </u>
+          </li>
+          <li>In the mouse function, check if there is an object at that location (i.e. <code>goldField.GetMover(contents[0]);</code>) and call it's Destroy method.</li>
+          <li>Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs. You should be able to create an object with a key press and delete it with a mouse click.</li>
+          <li>Submit the link to the page in Canvas.</li>
+        </ol>
+      </dd>
+    </dl>
+  </body>
+</html>

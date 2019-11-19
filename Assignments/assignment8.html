@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <style>
+      dt {font-weight:bold; width:500px;}
+      dd {width:460px;}
+      .assignment {background-color:ffbbbb;}
+      .lecture {background-color:ffffbb;}
+      .test {background-color:#bbbbbb;}
+      .lab {background-color:#bbffbb;}
+      .homework {background-color:#bbbbff;}
+    </style>
+    <script>
+    </script>
+  </head>
+  <body>
+    <h1 class="assignment">Assignment #8 - GoldField: Collision checking</h1>
+    <dl>
+      <dt>Purpose</dt>
+      <dd>Implement game logic that allows Movers to interact.</dd>
+      <dt>Instructions</dt>
+      <dd>
+        <ol>
+          <li>Create GoldField and add a hero with a mix of several gold and monsters.</li>
+          <li>Implement keyboard movement so you can control the hero.</li>
+          <li>Put &lt;p&gt; tags for coins and lives on the page.</li>
+          <li>Create a function that will take care of destroying the hero, count the lives lost, write them to the page, and create a new Hero randomly.</li>
+          <li>Create a function that will take care of destroying the coin, count the coins found, and write them to the page</li>
+          <li>When the hero moves, look at the new space first.<br>
+            <ul>
+              <li>If the space is empty, move the hero into the space.</li>
+              <li>If the space has a monster, destroy the monster and call the function to destroy the hero.</li>
+              <li>If the space has a coin, call the function to destroy the coin, then move the hero into the space.</li>
+            </ul>
+          </li>
+          <li>Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs. You should have a little mini-game where the hero collects coins and dies if he hits a monster.</li>
+          <li>Submit the link to the page in Canvas.</li>
+        </ol>
+      </dd>
+    </dl>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <style>
+      dt {font-weight:bold; width:500px;}
+      dd {width:460px;}
+      .assignment {background-color:ffbbbb;}
+      .lecture {background-color:ffffbb;}
+      .test {background-color:#bbbbbb;}
+      .lab {background-color:#bbffbb;}
+      .homework {background-color:#bbbbff;}
+    </style>
+    <script>
+    </script>
+  </head>
+  <body>
+    <h1 class="assignment">Assignment #3 - Multiple catch games</h1>
+    <dl>
+      <dt>Purpose</dt>
+      <dd>Extend the work from lab 2 using parameters to change the behavior with a single method.</dd>
+      <dt>Instructions</dt>
+      <dd>
+        <ol>
+          <li>Put at least five of &lt;p&gt; tags and buttons in random places on the screen using the techniques from lab #2.</li>
+          <li>Create a throw function with a parameter <code>sender</code>.</li>
+          <li>Each tag should have a unique id with a number i.e. <code>id="tag1"</code>.</li>
+          <li>Each button should have an onclick event that calls the throw function with the corresponding number as a parameter e.g.<code> onclick="throw(1)"</code>.</li>
+          <li>Write the throw function similar to that used in lab 2. Instead of directly calling a known tag, you can select a random tag.<br>
+            <ul>
+              <li>You will need to use the random function to <a href="https://www.w3schools.com/js/js_random.asp">generate a number in the range</a> of your buttons/labels.</li>
+              <li>You should check if the random number is the same as the sender. We don't want to throw back to ourselves.</li>
+              <li>If the numbers match, throw again.</li>
+              <li>If the numbers don't match, throw to the new tag using the random number.<br>
+                <code>
+                  var catcher = document.getElementById("tag"+number);
+                </code>
+              </li>
+            </ul>
+          </li>
+          <li>Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs. The ball should move randomly around the screen.</li>
+          <li>Submit the link to the page in Canvas.</li>
+        </ol>
+         
+        <br>
+      </dd>
+    </dl>
+  </body>
+</html>

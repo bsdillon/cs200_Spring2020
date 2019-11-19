@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <style>
+      dt {font-weight:bold; width:500px;}
+      dd {width:460px;}
+      .assignment {background-color:ffbbbb;}
+      .lecture {background-color:ffffbb;}
+      .test {background-color:#bbbbbb;}
+      .lab {background-color:#bbffbb;}
+      .homework {background-color:#bbbbff;}
+      .nox {color:white; background-color:black;}<br>
+      .lumos {color:black; background-color:white;}<br>
+    </style>
+    <script>
+    </script>
+  </head>
+  <body>
+    <h1 class="assignment">Assignment #2 - Active style change</h1>
+    <dl>
+      <dt>Purpose</dt>
+      <dd>Allow students to define several style guidelines in CSS and switch between these guidelines using a simple button.</dd>
+      <dt>Instructions</dt>
+      <dd>
+        <ol>
+          <li>Create a web page with at least three paragraphs of text from a favorite book or poem.</li>
+          <li>Create at least sets of CSS instructions based on competing class definitions for the <code>body</code> tag. You may use the examples below to investigate, but you will not receive credit unless you create your own CSS instructions.<br>
+            <code>
+              body.nox {color:white; background-color:black;}<br>
+              body.lumos {color:black; background-color:white;}<br>
+            </code>
+          </li>
+          <li>Create buttons corresponding to each of the CSS instructions. This code says that when someone clicks on the button, it will change the className to 'nox'.<br>
+            <code>
+              <nobr>&lt;button onclick="document.body.className='nox'"&gt;Nox&lt;/button&gt;</nobr>
+            </code>
+          </li>
+          <li>You might read <a href="https://stackoverflow.com/questions/2582551/how-to-apply-css-to-html-body-element">these examples</a>.</li>
+          <li>Put all these elements in a page. Test to make sure the buttons work and resolve any bugs. When you push a button, the style of the page should change as with the buttons below.<br>
+            <button onclick="document.body.className='nox'">Nox</button>
+            <button onclick="document.body.className='lumos'">Lumos</button>
+          </li>
+          <li>Submit the link to the page in Canvas.</li>
+        </ol>
+      </dd>
+    </dl>
+  </body>
+</html>

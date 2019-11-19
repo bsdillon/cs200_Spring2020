@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <style>
+      dt {font-weight:bold; width:500px;}
+      dd {width:460px;}
+      .assignment {background-color:ffbbbb;}
+      .lecture {background-color:ffffbb;}
+      .test {background-color:#bbbbbb;}
+      .lab {background-color:#bbffbb;}
+      .homework {background-color:#bbbbff;}
+    </style>
+    <script>
+    </script>
+  </head>
+  <body>
+    <h1 class="assignment">Assignment #6 - Inheritance vs Composition</h1>
+    <dl>
+      <dt>Purpose</dt>
+      <dd>Determine the difference between and advantages of inheritance and composition.</dd>
+      <dt>Instructions</dt>
+      <dd>
+        <ol>
+          <li>Define an object for "Car". The car object must have members for color, speed, and name. Make the name "Car"</li>
+          <li>Create a function that will write text out to the screen. When you create a new car, have it print its name and color as in <code>I am a green Car and I go 10 mph.</code></li>
+          <li>Use inheritance to create Car child types. Let each type define its own name and speed.</li>
+          <li>Test the effect of creating several child type instances. It should print out something like this:<br>
+            <code>
+              I am a green Car and I go 10 mph.<br>
+              I am a red Mustang and I go 100 mph.<br>
+              I am a blue T-Bird and I go 50 mph.<br>
+              I am a silver Lamborghini and I go 200 mph.<br>
+            </code>
+          </li>
+          <li>Create a new object for "Animal". This animal object must have members for color and fact. Make name a parameter. Make the animal print out using the same function BUT let it call <code>print</code> functions for each of the color and fact members.<br>
+            <code>
+              animal.color.print();
+              animal.fact.print();
+            </code>
+          </li>
+          <li>Create an object Red that prints "red". Create a fact Flier that prints "I can fly".</li>
+          <li>Create an instance of the Animal giving it the parameters "Bird", a Red object, and a Flier object. It should print out<br>
+            <code>
+              I am a red Bird and I can fly.
+            </code>
+          </li>
+          <li>Up until now, you have created two very different sets of objects, one using inherited behavior and one using composed behavior. Now we will see why some people believe composition is always better.</li>
+          <li>Create an instance of each of your cars. Create an instance of the Bird. Print out a line saying "These are the original types".</li>
+          <li>Use your family of car objects that print the following. Count how many lines of code it takes.<br>
+            <code>
+              I am a blue sedan and I go 20 mph<br>
+              I am a blue sedan and I go 30 mph<br>
+              I am a red sedan and I go 20 mph<br>
+              I am a gold minivan and I go 20 mph<br>
+              I am a blue minivan and I go 20 mph<br>
+              I am a red minivan and I go 20 mph<br>
+              I am a gold minivan and I go 30 mph
+            </code>
+          </li>
+          <li>Use your Animal object to print the following. You may need to create new objects like Red and Flyer. Count how many lines of code it takes.<br>
+            <code>
+              I am a blue snake and I slither<br>
+              I am a blue snake and I fly<br>
+              I am a red snake and I slither<br>
+              I am a green parrot and I fly<br>
+              I am a blue parrot and I fly<br>
+              I am a red parrot and I fly<br>
+              I am a green parrot and slither
+            </code>
+          </li>
+          <li>Print out each group of objects followed by the number of lines you added.</li>
+          <li>Add at least one paragraph explaining the results. Which method takes more work? Why?</li>
+          <li>Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs.</li>
+          <li>Submit the link to the page in Canvas.</li>
+        </ol>
+      </dd>
+    </dl>
+  </body>
+</html>
