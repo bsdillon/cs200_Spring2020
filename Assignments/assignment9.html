@@ -16,9 +16,23 @@
     <h1 class="assignment">Assignment #9 - GoldField: Mover chase scenes</h1>
     <dl>
       <dt>Purpose</dt>
-      <dd></dd>
+      <dd>Simulate intelligent "following" behavior in the GoldField API</dd>
       <dt>Instructions</dt>
       <dd>
+        <ol>
+          <li>Create GoldField and add a Hero and a Monster.</li>
+          <li>Add controls so you can move the Hero.</li>
+          <li>Add a heartbeat to the program. When the clock ticks every second, the Monster will move.<br>
+            <ul>
+              <li>Calculate the distance x and y between the monster and the Hero. These values have direction so -x is to the left and +x is to the right.</li>
+              <li>Decide which direction you need to move to get closer to the Hero. How you do this will affect the behavior of the Monster.</li>
+              <li>Move the Monster one step in the rigth direction.</li>
+            </ul>
+          </li>
+          <li>Add a block of gold. When the clock ticks, it should also move AWAY from the human. Use a similar method to that used with the monster. Remember to check for collisions as the gold WILL run into walls.</li>
+          <li>Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs. You should have a minigame where the user can chase the gold while the monster chases the human.</li>
+          <li>Submit the link to the page in Canvas.</li>
+        </ol>
       </dd>
     </dl>
   </body>

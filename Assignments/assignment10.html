@@ -3,6 +3,7 @@
     <style>
       dt {font-weight:bold; width:500px;}
       dd {width:460px;}
+      img {width:420px;}
       .assignment {background-color:ffbbbb;}
       .lecture {background-color:ffffbb;}
       .test {background-color:#bbbbbb;}
@@ -13,12 +14,38 @@
     </script>
   </head>
   <body>
-    <h1 class="assignment">Assignment #10 - Theory of computation: computer scaling</h1>
+    <h1 class="assignment">Assignment #10 - Theory of computation</h1>
     <dl>
       <dt>Purpose</dt>
-      <dd></dd>
+      <dd>Create animation that demonstrates the computation method.</dd>
       <dt>Instructions</dt>
       <dd>
+        This assignment will recreate visually the operation of a CPU. The CPU diagram below shows the registers on the left and the instructions on the right. You will want to recreated this on your page.<br>
+        <img src="./imgs/CPU.png"><br>
+        The code itself is shown here. You will need to recreate this in the instructions on the right.
+        <img src="./imgs/assembler.png">
+        <ol>
+          <li>Create a table with labeled spaces for five "registers". Put the same register labels A-D and PC as shown. Leave the value spaces as zero.</li>
+          <li>Create a new table for the memory. Leave the memory line numbers in cells on the left as shown. Copy the instructions shown above into cells on the right.</li>
+          <li>Create functions for each instruction in the set. For instance, instruction 1 <code>Load <b>9</b> to register A</code> might be written this way. Note that you would need certain ids on the cells.<br>
+            <code>
+              function Instr1()<br>
+              {<br>
+              &nbsp;&nbsp;document.getElementById("regA").innerHTML=document.getElementById("Mem9").innerHTML;<br>
+              }
+            </code>
+          </li>
+          <li>Instead of a number, put an &lt;input&gt; text into Memory slot 9. This will allow you to get</li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li>Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs.</li>
+          <li>Submit the link to the page in Canvas.</li>
+        </ol>
       </dd>
     </dl>
   </body>
