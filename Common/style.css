@@ -1,0 +1,10 @@
+dt {font-weight:bold; width:500px;}
+dd {width:460px;}
+img {border:1px solid black;}
+.short {width:420px;}
+.red {color:red; font-weight:bold;}
+.assignment {background-color:ffbbbb;}
+.lecture {background-color:ffffbb;}
+.test {background-color:#bbbbbb;}
+.lab {background-color:#bbffbb;}
+.homework {background-color:#bbbbff;}
