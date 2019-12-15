@@ -3,50 +3,74 @@
     <link rel="stylesheet" type="text/css" href="../Common/style.css">
   </head>
   <body>
+    <p>
     <h1 class="homework">Homework 5 - Inheritance</h1>
     <ol>
       <li>Create a constructor for the Plant type. In this constructor you also create an instance field that describes the type.<br>
-        <code>
-          function Plant()
-          {
-              this.Name="Plant";
-          }
-        </code>
+<code><pre>
+function Plant()
+{
+  this.Name="Plant";
+}
+</pre></code>
       </li>
-      <li>We will add a method to the Plant prototype. This is a behavior that all plants have in common.<br>
-        <code>
-          Plant.prototype.grow = function ()
-          {
-            document.getElementById("output").innerHTML="The "+this.Name+" grows.<br>";
-          }
-        </code>
+      <li>We will add two methods to the Plant prototype. These are behaviors that all Plants have in common.<br>
+<code><pre>
+Plant.prototype.grow = function ()
+{
+  document.getElementById("output").innerHTML+="The "+this.Name+" grows.&lt;br&gt;";
+}
+
+Plant.prototype.Describe = function ()
+{
+  document.getElementById("output").innerHTML+="I am a "+this.Name+".&lt;br&gt;";
+}
+</pre></code>
       </li>
       <li>Create an output field on your page.</li>
-      <li>Add code to your page to create a Plant and make it bloom. You should see "The Plant grows." in the output.<br>
-        <code>
-          var p = new Plant();
-          p.grow();
-        </code>
+      <li>Create a button and a click event function. Add this code to create a Plant and make it bloom. You should see "The Plant grows." in the output.<br>
+<code><pre>
+var p = new Plant();
+p.grow();
+</pre></code>
       </li>
       <li>Create a constructor for a new type of plant. We'll call this a Flower.<br>
-        <code>
-          function Flower()
-          {
-            Plant.call(this);
-            this.Name="Flower";
-          }
-        </code>
+<code><pre>
+function Flower()
+{
+  Plant.call(this);
+  this.Name="Flower";
+}
+</pre></code>
+      </li>
+      <li>We also need to add two lines that complete the link between Plant and Flower. These lines say "The Flower prototype starts from the Plant prototype" and "The Flower prototype uses the constructor Flower".
+<code><pre>
+Flower.prototype = Plant.prototype;
+Flower.prototype.constructor = Flower;
+</pre></code>
       </li>
       <li>
-        Because we call the constructor for the Plant inside the Flower constructor, the Flower is a kind of plant. We can draw a diagram that shows the relationship. It is read "Flower is a kind of Plant".<br>
-        <img src="flowerinherits.png">
+        Flower is now a child of Plant. Plant is the parent type. We can draw a diagram that shows the relationship. It is read "Flower is a kind of Plant". We call this relationship inheritance<br>
+        <img src="./imgs/flowerinherits.png">
       </li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
+      <li>Note that the diagram shows us that Plant knows how to "grow". Because of inheritance, the Flower should know how to grow, too. Test the inheritance of Flower by adding the following code to you button click event function. The output should be "The Flower grows."<br>
+<code><pre>
+var f = new Flower();
+f.grow();
+</pre></code>
+      </li>
+      <li>Not only can you inherit functions from a parent type, but you change them. We will create a new Describe function in Flower that will change its behavior. Add code to the button click function to test Describe for Plant and Flower.<br>
+<code><pre>
+Flower.prototype.Describe = function ()
+{
+  document.getElementById("output").innerHTML+="I am a beautiful"+this.Name+".&lt;br&gt;";
+}
+</pre></code>
+      </li>
+      <li>Create a set of vehicles following the diagram below. You want to define "go" so that writes some thing like "I go vrooom!" for each vehicle. Define "sound" to say things like "blub blub". Be creative. Use buttons to test each function.<br><img src="./imgs/carinherits.png"></li>
       <li>Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs. You should be ableto play the game by yourself to test your GUI location skills.</li>
       <li>Submit the link to the page in Canvas.</li>
     </ol>
+    </p>
   </body>
 </html>
