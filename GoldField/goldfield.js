@@ -46,7 +46,7 @@ function GoldField(tag, block_size, block_width, block_height)
    this.tag.style.backgroundRepeat="repeat";
 
    var audioNames = ["coin", "monster", "hero", "win", "lose"];
-   var audioURL = ["http://allmybs.org/API/coinSound.wav","http://allmybs.org/API/monsterSound.wav","http://allmybs.org/API/heroSound.wav","http://allmybs.org/API/winSound.wav","http://allmybs.org/API/loseSound.mp3"];
+   var audioURL = ["https://bsdillon.github.io/cs200_Spring2020/GoldField/coinSound.wav","https://bsdillon.github.io/cs200_Spring2020/GoldField/monsterSound.wav","https://bsdillon.github.io/cs200_Spring2020/GoldField/heroSound.wav","https://bsdillon.github.io/cs200_Spring2020/GoldField/winSound.wav","https://bsdillon.github.io/cs200_Spring2020/GoldField/loseSound.mp3"];
 
    for(var i = 0;i<audioNames.length;i++)
    {
@@ -523,8 +523,8 @@ Mover.prototype.DestroyBehavior = function()
 var Monster = function(id)
 {
    this.Description = "Monster";
-   this.imageURL = "monster.png";
-   this.destroyURL = "explode.gif_c200";
+   this.imageURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/monster.png";
+   this.destroyURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/explode.gif_c200";
    this.destroyAudio = "monster";
    this.destroyTime = 1000;
    this.InitTag(id);
@@ -538,8 +538,8 @@ Monster.prototype.constructor = Monster;
 var Hero = function(id)
 {
    this.Description = "Hero";
-   this.imageURL = "hero.png";
-   this.destroyURL = "tombe.png";
+   this.imageURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/hero.png";
+   this.destroyURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/tombe.png";
    this.destroyAudio = "hero";
    this.destroyTime = 1000;
    this.InitTag(id);
@@ -560,8 +560,8 @@ Hero.prototype.DestroyBehavior = function()
 var Gold = function(id)
 {
    this.Description = "Gold";
-   this.imageURL = "gold.png";
-   this.destroyURL = "money.gif";
+   this.imageURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/gold.png";
+   this.destroyURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/money.gif";
    this.destroyAudio = "coin";
    this.destroyTime = 1000;
    this.InitTag(id);
@@ -579,20 +579,20 @@ var Obstacle = function(id)
    if(choice<.33)
    {
      this.Description = "Rock";
-     this.imageURL = "boulder.png";
+     this.imageURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/boulder.png";
    }
    else if(choice<.66)
    {
      this.Description = "Water";
-     this.imageURL = "water.png";
+     this.imageURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/water.png";
    }
    else
    {
      this.Description = "Plant";
-     this.imageURL = "plant.jpg";
+     this.imageURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/plant.jpg";
    }
 
-   this.destroyURL = "Empty.png";
+   this.destroyURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/Empty.png";
    this.destroyAudio = "none";
    this.destroyTime = 10;
    this.InitTag(id);
@@ -606,8 +606,8 @@ Obstacle.prototype.constructor = Obstacle;
 var Tower = function(id)
 {
    this.Description = "Tower";
-   this.imageURL = "tower.png";
-   this.destroyURL = "Empty.png";
+   this.imageURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/tower.png";
+   this.destroyURL = "https://bsdillon.github.io/cs200_Spring2020/GoldField/Empty.png";
    this.destroyAudio = "none";
    this.destroyTime = 10;
    this.InitTag(id);
