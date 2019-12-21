@@ -2,7 +2,9 @@ dt {font-weight:bold; width:500px;}
 dd {width:460px;}
 h1 {width:460px;}
 p {width:460px;}
+ol {width:460px;}
 img {border:1px solid black; width:420px;}
+code {background-color:#ddddff; font-style:italic;}
 .short {width:420px;}
 .red {color:red; font-weight:bold;}
 .assignment {background-color:ffbbbb;}

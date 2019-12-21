@@ -5,22 +5,57 @@
   <body>
     <h1 class="homework">Homework 6 - GoldField: Looking at locations</h1>
     <p>
-      This is the first homework that will use the goldfield API. It was created expressly for the purpose of teaching programming by simplifying certain actions and allowing a student to get more done while working only with the most basic parts of the code. In this homework assignment you will work with the LookAt function.
+      This is the first homework that will use the <a href="../GoldField/index.html">goldfield API</a>. If you have any questions, you can read more about the API at that link. It was created expressly for the purpose of teaching programming by simplifying certain actions and allowing a student to get more done while working only with the most basic parts of the code. In this homework assignment you will work with the LookAt function.
     </p>
     <ol>
       <li>
+        Create a web page. Put on a <code>p</code> or <code>div</code> tag with an <code>id</code>. In the head add a link to the goldfield API. This link will add all the code from the goldfield API just as if you had written it into your webpage.<br>
+<code><pre>
+&lt;script src="https://bsdillon.github.io/cs200_Spring2020/GoldField/goldfield.js"&gt;&lt;/script&gt;
+</pre></code>
       </li>
       <li>
+        Test the goldfield API. In your page's script, create a new GoldField. Give it the tag you created in the last step as the location for the GoldField. You should see a little green field with nothing on it. Experiment with the size of the parameters for the field to create one that is very wide, but not very tall.<br>
+<code><pre>
+var field = new GoldField(document.getElementById("<span class="red">YOUR TAG ID HERE</span>"),<span class="red">BLOCK SIZE</span>,<span class="red">BLOCKS WIDE</span>,<span class="red">BLOCKS HIGH</span>);
+</pre></code>
       </li>
       <li>
+        Next we will experiment with adding Movers to the field. Add code to put on one of the built in Mover types. Each one has its own Add<em class="red">MOVER</em> method. For instance, there is an <code>AddTower()</code> function that puts a tower in a random spot on the screen. Use the field variable to adding one each of these types to GoldField created in the previous step:<br>
+      <ul>
+        <li>Hero</li>
+        <li>Tower</li>
+        <li>Monster</li>
+        <li>Gold</li>
+        <li>Rock</li>
+        <li>Water</li>
+        <li>Tree</li>
+      </ul>
       </li>
+        You can also add obstacles randomly to the scene. Add one obstacle randomly using <code>AddObstacle()</code>.
       <li>
       </li>
+        Although a Mover is put on the screen randomly. You can put it wherever you want. When you created the Hero, you probably didn't save the hero into a variable. Change that code to create a variable just like the one we did for field. Then use that variable to <code>SetPosition</code>. Put the hero on the screen first and put him at (0,0).
       <li>
+        Finally you can add a large group of obstacles randomly to fill the field. Try <code>RandomFill</code>. Try filling to 26%. What happens? Pick a percent that makes the field look reasonably full to you.
       </li>
       <li>
+        Add a <code>p</code> tag with the <code>id</code> "output" to your page. Create a pair of nested <code>for</code> loops that will loop over the the whole field. Use the field's <code>LookAt</code> function to "see" each block of the field. If there is anything there. Print it into the output. You should get a list of all the Movers on the screen.<br>
+<code><pre>
+for(let x=0;x&lt;<span class="red">BLOCKS WIDE</span>;x++)
+{
+  for(let y=0;y&lt;<span class="red">BLOCKS HIGH</span>;y++)
+  {
+    //do your looking and printing here
+  }
+}
+</pre></code>
       </li>
       <li>
+Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs. You should be ableto play the game by yourself to test your GUI location skills.
+      </li>
+      <li>
+        Submit the link to the page in Canvas.
       </li>
     </ol>
   </body>
