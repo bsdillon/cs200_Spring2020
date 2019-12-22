@@ -1,36 +1,66 @@
-      <dt class="homework">Homework 1 - Personal biography page</dt>
-      <dd>From your home page add a link at the bottom for "About Me" and redirect the user to a new page with your full biography. Use your CSS and HTML skills to make the page look appealing. Include the following:
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../Common/style.css">
+  </head>
+  <body>
+    <h1 class="homework">Homework 8 - GoldField: Look-plan algorithms</h1>
+    <p>
+      This is the first homework that will use the <a href="../GoldField/index.html">goldfield API</a>. If you have any questions, you can read more about the API at that link. This homework will create a very stupid AI--something like the ghosts in Pac-Man.
+    </p>
+    <ol>
+      <li>
+        Start with your homework 7. You will need the same steps in your response to this homework, so make a new copy.
+      </li>
+      <li>
+        When the field is created, save the Monster and Hero to variables.
+      </li>
+      <li>
+        Set up a heartbeat and when the beat occurs, call a move function.
+      </li>
+      <li>
+        In the move function,<br>
+        <ol>
+          <li>
+            Figure out the &Delta;x and &Delta;y from the Monster to the Human.
+          </li>
+          <li>
+            Pick the best direction to move to get closer. For example, you might always go left/right first and then up/down.
+          </li>
+          <li>
+            Figure out the new x,y location where you want to move.
+          </li>
+          <li>
+            <code>LookAt</code> that location. If it is empty, <code>SetPosition</code> for that spot.
+          </li>
+        </ol>
+      </li>
+      <li>
+        See what happens when the field is empty of obstacles. What if it is very full? Is this a bad thing in a game? Is this a thing a human player would do?
+      </li>
+      <li>
+        There are lots of ways to get around getting trapped. Read about some of the options at one of these places. You are not <em>required</em> to do any of these. If you tried, which one would you use? Write a paragraph for your answer.<br> 
         <ul>
-          <li>Name</li>
-          <li>Picture</li>
-          <li>Greeting</li>
-          <li>School affiliation</li>
-          <li>Intended career</li>
-          <li>Personal goals</li>
+          <li>[<a href="https://en.wikipedia.org/wiki/Pathfinding">1</a>]</li>
+          <li>[<a href="https://www.youtube.com/watch?v=GazC3A4OQTE">2</a>]</li>
+          <li>[<a href="https://www.youtube.com/watch?v=HJCx_j1dfnE">3</a>]</li>
+          <li>[<a href="https://www.youtube.com/watch?v=cSxnOm5aceA">4</a>]</li>
+          <li>[<a href="https://www.youtube.com/watch?v=cSxnOm5aceA">5</a>]</li>
+          <li>[<a href="https://www.youtube.com/watch?v=eSOJ3ARN5FM">6</a>]</li>
         </ul>
-      </dd>
-      <dt class="homework">Homework 2 - Developer tools and code walkthrough</dt><dd></dd>
-      <dt class="homework">Homework 3 - Locate items on GUI</dt>
-      <dd>
-        Create a simple game where the computer asks you to click on the right place.<br>
-        Create a canvas tag and slect a random x and y coordinate on the screen.<br>
-        Ask the user to click on that place. Capture the x and y of the mouse event location.<br>
-        Score the user based on how close the click was to the intended target. Maybe show where the right location was.
-      </dd>
-      <dt class="homework">Homework 4 - Create a clock</dt>
-      <dd>
-        Put three labels on the screen for hours, minutes, and seconds.<br>
-        Create a 500 ms time event.<br>
-        When the time event happens, work out the current hour, minute, and second. Update the labels.<br>
-      </dd>
-      <dt class="homework">Homework 5 - Inheritance</dt>
-      <dd>Create a constructor for a new type Plant.</dd>
-      <dt class="homework">Homework 6 - GoldField: Looking at locations</dt><dd></dd>
-      <dt class="homework">Homework 7 - GoldField: Search for Mover</dt><dd></dd>
-      <dt class="homework">Homework 8 - GoldField: Look-plan algorithms</dt><dd></dd>
-      <dt class="homework">Homework 9 - Digital representation of data</dt><dd></dd>
-      <dt class="homework">Homework 10 - Computer Specification</dt><dd></dd>
-      <dt class="homework">Homework 11 - Personal security imporovement</dt><dd></dd>
-      <dt class="homework">Homework 12 - Software Engineering Processes</dt><dd></dd>
-      <dt class="homework">Homework 13 - Sorting Algorithm Efficiency</dt><dd></dd>
-      <dt class="homework">Homework 14 - Semester Review Questions</dt><dd></dd>
+      </li>
+      <li>
+        Compare this with the results of an AI. Consider that this topic is important for your phone's GPS and also for self-driving cars. One works well, the other not...yet. What do you think about a computer's ability to make this kind of decision? Write a paragraph for your answer.<br>
+        <ul>
+          <li>[<a href="https://www.youtube.com/watch?v=Aut32pR5PQA">7</a>]</li>
+          <li>[<a href="https://www.youtube.com/watch?v=5hFvoXV9gII">8</a>]</li>
+        </ul>
+      </li>
+      <li>
+        Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs. You should be able to repeatedly watch the Monster move toward the Hero.
+      </li>
+      <li>
+        Submit the link to the page in Canvas.
+      </li>
+    </ol>
+  </body>
+</html>

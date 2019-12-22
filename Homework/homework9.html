@@ -1,36 +1,79 @@
-      <dt class="homework">Homework 1 - Personal biography page</dt>
-      <dd>From your home page add a link at the bottom for "About Me" and redirect the user to a new page with your full biography. Use your CSS and HTML skills to make the page look appealing. Include the following:
-        <ul>
-          <li>Name</li>
-          <li>Picture</li>
-          <li>Greeting</li>
-          <li>School affiliation</li>
-          <li>Intended career</li>
-          <li>Personal goals</li>
-        </ul>
-      </dd>
-      <dt class="homework">Homework 2 - Developer tools and code walkthrough</dt><dd></dd>
-      <dt class="homework">Homework 3 - Locate items on GUI</dt>
-      <dd>
-        Create a simple game where the computer asks you to click on the right place.<br>
-        Create a canvas tag and slect a random x and y coordinate on the screen.<br>
-        Ask the user to click on that place. Capture the x and y of the mouse event location.<br>
-        Score the user based on how close the click was to the intended target. Maybe show where the right location was.
-      </dd>
-      <dt class="homework">Homework 4 - Create a clock</dt>
-      <dd>
-        Put three labels on the screen for hours, minutes, and seconds.<br>
-        Create a 500 ms time event.<br>
-        When the time event happens, work out the current hour, minute, and second. Update the labels.<br>
-      </dd>
-      <dt class="homework">Homework 5 - Inheritance</dt>
-      <dd>Create a constructor for a new type Plant.</dd>
-      <dt class="homework">Homework 6 - GoldField: Looking at locations</dt><dd></dd>
-      <dt class="homework">Homework 7 - GoldField: Search for Mover</dt><dd></dd>
-      <dt class="homework">Homework 8 - GoldField: Look-plan algorithms</dt><dd></dd>
-      <dt class="homework">Homework 9 - Digital representation of data</dt><dd></dd>
-      <dt class="homework">Homework 10 - Computer Specification</dt><dd></dd>
-      <dt class="homework">Homework 11 - Personal security imporovement</dt><dd></dd>
-      <dt class="homework">Homework 12 - Software Engineering Processes</dt><dd></dd>
-      <dt class="homework">Homework 13 - Sorting Algorithm Efficiency</dt><dd></dd>
-      <dt class="homework">Homework 14 - Semester Review Questions</dt><dd></dd>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../Common/style.css">
+    <script>
+      var flag = false;
+
+      function switchImgs()
+      {
+        flag = ! flag;
+        if(flag)
+        {
+          changer1.src="./imgs/binarydecimal2.png";
+          changer2.src="./imgs/binaryhex2.png";
+          changer3.src="./imgs/binaryoctal2.png";
+        }
+        else
+        {
+          changer1.src="./imgs/binarydecimal.png";
+          changer2.src="./imgs/binaryhex.png";
+          changer3.src="./imgs/binaryoctal.png";
+        }
+      }
+    </script>    
+  </head>
+  <body onload="setInterval(function(){ switchImgs(); }, 2000);">
+    <h1 class="homework">Homework 9 - Digital representation of data</h1>
+    <p>
+      This homework will be  used to learn about digital representation of numbers. Computers are not like humans. They don't use the same number system we do. By the end of this homework you wil understand why and you will have ample opportunity to pracice converting between binary, decimal, octal, and hexadecimal.
+    </p>
+<img src="./imgs/digitalConversion.png">
+    <p>
+      There are ways to convert directly from any base to any other, but you don't need to learn them. If you ever need to move from base 29 to base 7, you can use them. In the computer world, we only need to handle three kinds of conversions. Once you learn how to go back and forth between the three bases, you are good to go.
+    </p>
+    <ol>
+      <li>
+        Let's start with a <a href="https://www.youtube.com/watch?v=Xpk67YzOn5w">video</a> to learn a little bit (see what I did there?) about why we have binary. Watch the video to get a quick introduction.
+      </li>
+      <li>
+        Converting between binary and decimal is pretty simple. It starts with knowing the binary numbers. Just like the place values for decimal numbers, binary numbers have place values. They start on the right with a 1 and double as you move to the left.<br>
+        <img src="./imgs/binarydecimal.png" id="changer1"><br>
+        If you are converting from binary to decimal, put in the digits. Erase the zeros; keep the ones. Add the numbers.<br><br>
+        If you are converting from decimal to binary, subtract each of the numbers from biggest to smallest. If one of the numbers is too big (like you can't subtract 27-32 because it would be negative), just skip it. Then put ones into the places where you subtracted.
+      </li>
+      <li>
+        Converting between binary and hexidecimal is the easiest. If you can do decimal-binary conversions, you can do this, too. Every 4 bits (called a "nibble") converts into a hex digit. Just convert the 8-4-2-1 values like you did with binary-to-decimal. The one hiccup is that there are sixteen digits. We only use ten, so people have chosen A, B, C, D, E, and F to represent the digit values 10 through 15.<br>
+        <img src="./imgs/binaryhex.png" id="changer2"><br>
+        If you are converting from binary to hex, put in the digits. Convert each nibble. Look up the hex digit for that value.<br><br>
+        If you are converting from hex to binary, look up the digit value and then convert each nibble.
+      </li>
+      <li>
+        Converting between binary and octal is also pretty simple. For historical reasons, programmers needed 3 bit numbers. These are values 0 through 7, so we don't need any new digits. We just don't use all the ones we do know. Convert each 4-2-1 value one at a time. DON'T BE CONFUSED. There are only 8 bits, not 9, but the last two bits still work the same way.<br>
+        <img src="./imgs/binaryoctal.png" id="changer3"><br>
+        If you are converting from binary to octal, put in the digits. Convert each 3-bit sequence.<br><br>
+        If you are converting from octal to binary, convert each 3-bit sequence.
+      </li>
+      <li>
+        If you need to convert between two of the bases not discussed above, you need to go through binary. Hex to binary to decimal. Decimal to binary to octal. Octal to binary to hex. Just go through binary. That's it. Just three conversions.
+      </li>
+      <li>
+        If you still don't get it there are lots of ways to practice. Every computer has a built in calculator with a programming option. You can type in a number in any of these bases and it will show you all the other bases, too. Apart from that you can find MANY videos on the internet (like <a href="https://www.youtube.com/watch?v=L2zsmYaI5ww">this one</a>). Tons. You are welcome to use any technique you want, but you will need to convert from any base to any other base in the exam.
+      </li>
+      <li>
+        Work out the conversions below and submit your METHOD along with the answers to Canvas.<br>
+        108<sub>10</sub> &rarr; ???<sub>8</sub><br>
+        215<sub>10</sub> &rarr; ???<sub>2</sub><br>
+        93<sub>10</sub> &rarr; ???<sub>16</sub><br>
+        A7<sub>16</sub> &rarr; ???<sub>8</sub><br>
+        78<sub>16</sub> &rarr; ???<sub>2</sub><br>
+        2F<sub>16</sub> &rarr; ???<sub>10</sub><br>
+        114<sub>8</sub> &rarr; ???<sub>10</sub><br>
+        143<sub>8</sub> &rarr; ???<sub>16</sub><br>
+        341<sub>8</sub> &rarr; ???<sub>2</sub><br>
+        1011 0011<sub>2</sub> &rarr; ???<sub>8</sub><br>
+        0010 1010<sub>2</sub> &rarr; ???<sub>16</sub><br>
+        0100 1101<sub>2</sub> &rarr; ???<sub>10</sub><br>
+      </li>
+    </ol>
+  </body>
+</html>

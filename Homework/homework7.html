@@ -1,36 +1,34 @@
-      <dt class="homework">Homework 1 - Personal biography page</dt>
-      <dd>From your home page add a link at the bottom for "About Me" and redirect the user to a new page with your full biography. Use your CSS and HTML skills to make the page look appealing. Include the following:
-        <ul>
-          <li>Name</li>
-          <li>Picture</li>
-          <li>Greeting</li>
-          <li>School affiliation</li>
-          <li>Intended career</li>
-          <li>Personal goals</li>
-        </ul>
-      </dd>
-      <dt class="homework">Homework 2 - Developer tools and code walkthrough</dt><dd></dd>
-      <dt class="homework">Homework 3 - Locate items on GUI</dt>
-      <dd>
-        Create a simple game where the computer asks you to click on the right place.<br>
-        Create a canvas tag and slect a random x and y coordinate on the screen.<br>
-        Ask the user to click on that place. Capture the x and y of the mouse event location.<br>
-        Score the user based on how close the click was to the intended target. Maybe show where the right location was.
-      </dd>
-      <dt class="homework">Homework 4 - Create a clock</dt>
-      <dd>
-        Put three labels on the screen for hours, minutes, and seconds.<br>
-        Create a 500 ms time event.<br>
-        When the time event happens, work out the current hour, minute, and second. Update the labels.<br>
-      </dd>
-      <dt class="homework">Homework 5 - Inheritance</dt>
-      <dd>Create a constructor for a new type Plant.</dd>
-      <dt class="homework">Homework 6 - GoldField: Looking at locations</dt><dd></dd>
-      <dt class="homework">Homework 7 - GoldField: Search for Mover</dt><dd></dd>
-      <dt class="homework">Homework 8 - GoldField: Look-plan algorithms</dt><dd></dd>
-      <dt class="homework">Homework 9 - Digital representation of data</dt><dd></dd>
-      <dt class="homework">Homework 10 - Computer Specification</dt><dd></dd>
-      <dt class="homework">Homework 11 - Personal security imporovement</dt><dd></dd>
-      <dt class="homework">Homework 12 - Software Engineering Processes</dt><dd></dd>
-      <dt class="homework">Homework 13 - Sorting Algorithm Efficiency</dt><dd></dd>
-      <dt class="homework">Homework 14 - Semester Review Questions</dt><dd></dd>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../Common/style.css">
+  </head>
+  <body>
+    <h1 class="homework">Homework 7 - GoldField: Search for Mover</h1>
+    <p>
+      This is the first homework that will use the <a href="../GoldField/index.html">goldfield API</a>. If you have any questions, you can read more about the API at that link.
+    </p>
+    <ol>
+      <li>
+        Create a web page and put a tag on the page for GoldField to use. Create the GoldField in code and fill it with a random number of obstacles.
+      </li>
+      <li>
+        Place the hero and one monster on the field. These should be placed at random.
+      </li>
+      <li>
+        Use a pair of for loops to <code>LookAt</code> each block in the field. When you find the hero record the position. When you find the monster, record the position.
+      </li>
+      <li>
+        As soon as you have found both of them figure out the &Delta;x and &Delta;y between them. Create an output tag and write out something like this:<br>
+        <code><pre>The Monster is 4 right and 3 up from the Hero.</pre></code>
+      </li>
+      <li>
+        Create a reset button that clears the field and does it all again.
+      </li>
+      <li>
+Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs. You should be able to check your code again and again to see if it gives you the right answer.</li>
+      <li>
+        Submit the link to the page in Canvas.
+      </li>
+    </ol>
+  </body>
+</html>
