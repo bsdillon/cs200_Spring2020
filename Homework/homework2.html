@@ -5,7 +5,101 @@
   <body>
     <h1 class="homework">Homework 2 - Developer tools and code walkthrough</h1>
     <p>
-      Open up the developer tools for your browser. 
+      This homework will work with an <a href="auxiliary.txt">auxiliary file</a> that you will learn from.
+Follow the link and save that text as an HTML file. Run it in a browser and you should see a long table of values.
+      <ol>
+        <li>
+          Open up the developer tools for your browser. For Chrome it is CTRL+Shift+I. For other browsers it should be easy enough to look it up online. This is part of what we refer to as the developer environment. In most programming languages today you can get one tool that does all these things AND allows you to edit code. This is known as an <em>integrated</em> development environment or IDE.<br>
+          <img src="./imgs/devtools.png">
+        </li>
+        <li>
+          In this image you can see all the parts of the developer tools as they appear in Chrome. Even if your browser is different the same parts should exist. Find them all.<br>
+          <img src="./imgs/console.png"><br>
+          <ol>
+            <li>The file panel. Some pages refer to multiple files and you can select whichever one you want to look at in the tools.</li>
+            <li>Sources. Most often you will want to look at the source code associated with a file. There are other tabs, but this is the most important.</li>
+            <li>Console. For Javascript you can write some things to the console and that is one way of debugging your program. I prefer to write to the screen, but for some projects there is no screeen. The console always exists.</li>
+            <li>Watch. These are variables you want to see. Hit the + on the right. Add variables x, y, z, and i to your watch list just like it shows here.</li>
+            <li>Call stack. When your code has multiple function calls it helps to see where you are in that long list of function calls. The call stack shows that. Ever heard of a "stack overflow"? This is where that happesn.</li>
+            <li>This is a breakpoint. You can add one by clicking on the number of that line or click on it again to remove it. This is where the program will stop and let you look around.</li>
+            <li>Breakpoints. A good IDE gives you a list of all breakpoints, just in case you get lost.</li>
+          </ol>
+        </li>
+        <li>
+          Add a breakpoint on the lines where it says AddRow. Refresh the page and the program will stop at the first breakpoint on line 14. You can walk through the program using these buttons.<br>
+<img src="./imgs/walkbuttons.png"><br>
+          <ol>
+            <li>
+              Next BreakPoint. This will start the code running again until it reaches the next break point (or to the end if there are no other break points). So if you are on line a it will stop again at line c.
+            </li>
+            <li>
+              Step over. The next line might lead to something you don't want to follow, so we can jump it. Again, if you are on line b it will skip the <code>doThis</code> function and go to line c.
+            </li>
+            <li>
+              Step into. The next line may be a function that we want to follow. If you are on line b this will take you to line d.
+            </li>
+            <li>
+              Step forward. This will go to the next line following whatever function is called or not. Just pushing this button from line a will take to to b, d, e, and then c in that order.
+            </li>
+            <li>
+              Step out. Maybe you are in a function and want to get out without going trough every line. This goes right out of the function. If you are on line d it will skip back to c.
+            </li>
+          </ol>
+        <li>
+          Use Step forward to walk through the whole program one time. At each break point, read the watch variables and predict what text will be added to the page.
+        </li>
+        <li>
+          Examine the if-else statement on line 21. You can read more about them at <a href="https://www.w3schools.com/js/js_if_else.asp">w3schools</a>. Run through the program again and predict whether label 3a or 3b will follow label 2.
+        </li>
+        <li>
+          Examine the for loop on line 16. Again, you can read more about them at <a href="https://www.w3schools.com/js/js_loop_for.asp">w3schools</a>. Learn how the three statements work. Run through the program again and predict how the program will run each time it gets to line 16.
+        </li>
+        <li>
+          Examine the while loop on line 34. Read about them at <a href="https://www.w3schools.com/js/js_loop_while.asp">w3schools</a>. Run the program through again and predict how the program will run each time it gets to line 34.
+        </li>
+        <li>
+          Now that you are familiar with the use of developer tools, you can use them in all your future projects. When you test your programs you can put a break point at important places and step through spaces that you want to check.
+        </li>
+        <li>
+          Use your experience with if, for, and while loops to predict the values of a, b, c, d, and i for this code sample. Create a new web page. Write a <a href="https://www.w3schools.com/html/html_tables.asp">table</a> that records these values every time the program hits the lines in red.<br>
+<code><pre>
+    var a = 2;
+    var b = 10;
+    var c = 5;
+    var d = 0;
+<span class="red">0</span>
+1   while(a>0)
+2   {
+<span class="red">3</span>     
+4     if(b>c)
+5     {
+<span class="red">6</span>
+7       for(let i=0;i&lt;b-c;i++)
+8       {
+9         d+=i;
+<span class="red">10</span>
+11      }
+<span class="red">12</span>
+13     }
+14    else
+15    {
+16        d*=2;
+<span class="red">17</span>
+18    }
+19    b/=2;
+20    a--;
+<span class="red">21</span>
+22  }
+<span class="red">23</span>
+</pre></code>
+        </li>
+        <li>
+Put all these elements in a page. Test to make sure the buttons work as expected and resolve any bugs.
+        </li>
+        <li>
+Submit the link to the page in Canvas.
+        </li>
+      </ol>
     </p>
   </body>
 </html>

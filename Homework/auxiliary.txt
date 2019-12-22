@@ -1,0 +1,64 @@
+<html>
+  <head>
+  <style>
+    table {border:solid black 1px;}
+    th {border:solid black 1px; width:50; text-align:center;}
+    td {border:solid black 1px; text-align:center;}
+  </style>
+  <script>
+    function run()
+    {
+      var x = 1;
+      var y = 10;
+      var z = 0;
+      addRow(0,x,y,z,"--");
+
+      for(let i=0;i<y;i++)
+      {
+        addRow(1,x,y,z,i);
+        x = x*2;
+        addRow(2,x,y,z,i);
+        if(x<100)
+        {
+          z+=1;
+        addRow("3a",x,y,z,i);
+        }
+        else
+        {
+          z-=1;
+        addRow("3b",x,y,z,i);
+        }
+      }
+      addRow(4,x,y,z,"--");
+
+      while(x>1)
+      {
+        addRow(5,x,y,z,"--");
+        x /= 2;
+      }
+      addRow(6,x,y,z,"--");
+    }
+
+    function addRow(l,x,y,z,i)
+    {
+      var row = output.insertRow(-1);
+      var cell = row.insertCell(-1);
+      cell.innerHTML=""+l;
+      cell = row.insertCell(-1);
+      cell.innerHTML=""+x;
+      cell = row.insertCell(-1);
+      cell.innerHTML=""+y;
+      cell = row.insertCell(-1);
+      cell.innerHTML=""+z;
+      cell = row.insertCell(-1);
+      cell.innerHTML=""+i;
+    }
+  </script>
+  </head>
+  <body onload="run()">
+    <h1>Program values</h1>
+    <table id="output">
+      <tr><th>Label</th><th>X</th><th>Y</th><th>Z</th><th>I</th></tr>
+    </table>
+  </body>
+</html>
