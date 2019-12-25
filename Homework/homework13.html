@@ -1,36 +1,80 @@
-      <dt class="homework">Homework 1 - Personal biography page</dt>
-      <dd>From your home page add a link at the bottom for "About Me" and redirect the user to a new page with your full biography. Use your CSS and HTML skills to make the page look appealing. Include the following:
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../Common/style.css">
+  </head>
+  <body onload="setInterval(function(){ switchImgs(); }, 2000);">
+    <h1 class="homework">Homework 13 - Sorting Algorithm Efficiency</h1>
+    <ol>
+      <li>
+        Read <a href="https://what-if.xkcd.com/31/">this web comic</a>. Do/answer the following:<br>
         <ul>
-          <li>Name</li>
-          <li>Picture</li>
-          <li>Greeting</li>
-          <li>School affiliation</li>
-          <li>Intended career</li>
-          <li>Personal goals</li>
+          <li>
+            Why is shipping data drives/disks/etc faster than sending by internet? Does it matter?
+          </li>
+          <li>
+            Suppose that the bandwidth of the network was expanded (through some super-secret future technology) to be five times greater than the milk jug. Could the number of milk jugs be increased? What does this say about the story?
+          </li>
+          <li>
+            The real issue here is the efficiency of the data exchange. Why is the efficiency of resource usage so important?
+          </li>
         </ul>
-      </dd>
-      <dt class="homework">Homework 2 - Developer tools and code walkthrough</dt><dd></dd>
-      <dt class="homework">Homework 3 - Locate items on GUI</dt>
-      <dd>
-        Create a simple game where the computer asks you to click on the right place.<br>
-        Create a canvas tag and slect a random x and y coordinate on the screen.<br>
-        Ask the user to click on that place. Capture the x and y of the mouse event location.<br>
-        Score the user based on how close the click was to the intended target. Maybe show where the right location was.
-      </dd>
-      <dt class="homework">Homework 4 - Create a clock</dt>
-      <dd>
-        Put three labels on the screen for hours, minutes, and seconds.<br>
-        Create a 500 ms time event.<br>
-        When the time event happens, work out the current hour, minute, and second. Update the labels.<br>
-      </dd>
-      <dt class="homework">Homework 5 - Inheritance</dt>
-      <dd>Create a constructor for a new type Plant.</dd>
-      <dt class="homework">Homework 6 - GoldField: Looking at locations</dt><dd></dd>
-      <dt class="homework">Homework 7 - GoldField: Search for Mover</dt><dd></dd>
-      <dt class="homework">Homework 8 - GoldField: Look-plan algorithms</dt><dd></dd>
-      <dt class="homework">Homework 9 - Digital representation of data</dt><dd></dd>
-      <dt class="homework">Homework 10 - Computer Specification</dt><dd></dd>
-      <dt class="homework">Homework 11 - Personal security imporovement</dt><dd></dd>
-      <dt class="homework">Homework 12 - Software Engineering Processes</dt><dd></dd>
-      <dt class="homework">Homework 13 - Sorting Algorithm Efficiency</dt><dd></dd>
-      <dt class="homework">Homework 14 - Semester Review Questions</dt><dd></dd>
+      </li>
+      <li>
+        Watch the first two minutes of <a href="https://www.youtube.com/watch?v=v4cd1O4zkGw">this video</a>. The speaker talks about the same bandwidth issue discussed in XKCD. She explains that in Big O notation “constant beats linear if data is sufficiently big”. Let’s prove that. Do/answer the following:<br>
+        <ul>
+          <li>
+            Suppose that you have a network speed that allows you to transfer 1 Megabyte (10^6) per second. How long will it take to transfer 1 TeraByte (10^12) of data? If the pigeon takes 24 hours to transfer a 1 TeraByte hard drive, who wins? Calculate the Bytes/minute for each method and compare.
+          </li>
+          <li>
+            Let’s suppose the network speed increases to 1 Gigabyte (10^9) per second. Recalculate the Bytes/minute. Who wins now?
+          </li>
+          <li>
+            Finally if you want to transfer a petabyte (10^15) in the same system (one hard drive by pigeon or by network), who wins now? Recalculate the Bytes/min.
+          </li>
+          <li>
+            What does this tell you about the race between the network and the pigeon? If the pigeon is losing, what can you do to change the answer?
+          </li>
+        </ul>
+      </li>
+      <li>
+        You are mowing each of the lawns below. Your mower is one square long and wide. You are inefficient if you have to pass over a square that you already mowed. Draw your most efficient path. Count the number of revisited squares for each lawn.<br>
+        <img src="./imgs/lawns.png">
+      </li>
+      <li>
+        Watch <a href="https://www.youtube.com/watch?v=MyeV2_tGqvw">this video</a>. Do/answer the following:<br>
+        <ul>
+          <li>
+            Pause at 1:00. Why is Selection growing larger than Merge sort? Maybe you can watch a race between them like <a href="https://www.youtube.com/watch?v=QKLz-6Ru2As">this one</a>.
+          </li>
+          <li>
+            Pause at 1:48 Quick sort is famously a very efficient sorting algorithm. The “race” shows it is faster than Bogo sort, but the second race gives Bogo an unfair advantage. If Quick sort is that much faster, will it beat Bogo? What if the race is really short (just 50 yards)? Under what conditions is Quick sort more likely to win?
+          </li>
+          <li>
+            Pause at 4:10 Why is the train so much slower? What makes the difference?
+          </li>
+          <li>
+            Pause at 5:40 Why is Mario so much slower than Harry Potter? What makes the difference?
+          </li>
+          <li>
+            Pause at 7:00 Why do we typically talk about the worst case?
+          </li>
+        </ul>
+      </li>
+      <li>
+        Suppose that you are looking for the one silver coin dated 1964 in a bag of n coins. Bob is looking through another identical bag. You open your bag and look at every single coin, finding the one 1964 coin last in the bag. Bob opens his bag, but he finds the coins the first time he dips his hand into the bag. Bob says you were doing it the slow way. Is he right? Why?
+      </li>
+      <li>
+        You are looking through a bag of 1000 coins. Bob is looking through a bag of 10 coins. You both find the coin last in the bag. He argues that you are much slower than him. Is he right? Why?
+      </li>
+      <li>
+        Every day you and Bob do the same job on hundreds of bags. Sometimes you find the coin pretty early, sometimes not. On average you find the coin when you are half way through the bag. In Big O that would be O(½n). Bob argues that it’s really just O(n) because we don’t care about the ½ coefficient. Is he right? Why?
+      </li>
+      <li>
+        One day you go through the whole bag and don’t find a single coin with the right date. It ends up not being there. Your search was O(n) when your average is O(½n). Are you slower? Why?
+      </li>
+      <li>
+        Put all your answers on a single web page and submit the link through canvas.
+      </li>
+    </ol>
+  </body>
+</html>
