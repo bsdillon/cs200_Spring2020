@@ -14,16 +14,17 @@
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
  
-        var wallMaterial = makeMaterial("greyWall.png");
-        var background = makeMaterial("tree.png");
+        var grey = makeMaterial("greyWall.png");
+        var blue = makeMaterial("blueWall.jpg");
+        var trees = makeMaterial("tree.png");
 
         //depth,height,width
         var cubegeometry = new THREE.CubeGeometry(0,3.8,7);
-        var cube = new THREE.Mesh(cubegeometry, wallMaterial);
+        var cube = new THREE.Mesh(cubegeometry, blue);
         cube.position.set(-3, .75, -2.25);
         scene.add(cube);
         
-        makeCylinder(0,0,0,1000,100, background);
+        makeCylinder(0,0,0,10,10, trees);
 
         var render = function () {
             requestAnimationFrame(render);
