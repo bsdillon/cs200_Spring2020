@@ -15,6 +15,7 @@
         document.body.appendChild(renderer.domElement);
  
         var wallMaterial = makeMaterial("greyWall.png");
+        var background = makeMaterial("trees.png");
 
         //depth,height,width
         var cubegeometry = new THREE.CubeGeometry(0,3.8,7);
@@ -22,6 +23,8 @@
         cube.position.set(-3, .75, -2.25);
         scene.add(cube);
         
+        makeCylinder(0,0,0,1000,100, background);
+
         var render = function () {
             requestAnimationFrame(render);
             renderer.render(scene, camera);
@@ -34,6 +37,15 @@
       {
         var texture = new THREE.ImageUtils.loadTexture(fileName); 
         return new THREE.MeshBasicMaterial({ map:texture, side:THREE.DoubleSide}); 
+      }
+
+      function makeCylinder(x, y, z, r, h, texture)
+      {
+        //top radius, bottom radius, height, num segments around [1-inf] default 8
+        var cylindergeometry = new THREE.CylinderGeometry(r, r, h, 20, false);
+        var cylinder = new THREE.Mesh(cylindergeometry, texture);
+        cylinder.position.set(x,z,y);
+        scene.add(cylinder);
       }
     </script>
   </head>
