@@ -25,7 +25,7 @@
 
       function makeMaterial(fileName)
       {
-        var texture = new THREE.ImageUtils.loadTexture(downloadedImg); 
+        var texture = new THREE.ImageUtils.loadTexture(fileName); 
         return new THREE.MeshBasicMaterial({ map:texture, side:THREE.DoubleSide}); 
       }
     </script>
