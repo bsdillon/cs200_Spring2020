@@ -1,0 +1,403 @@
+<html>
+  <head>
+    <style>
+      canvas { width: 100%; height: 100% }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r71/three.js"></script>
+    <script>
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 2000);
+      var renderer = new THREE.WebGLRenderer();
+      var textures = new Object();
+
+      function load()
+      {
+        camera.position.y-=5;
+        camera.position.z=50;
+        renderer.setSize(window.innerWidth*.66, window.innerHeight*.66);
+        document.body.appendChild(renderer.domElement);
+        document.addEventListener("keydown", key, false);
+
+        textures["grey"] = makeMaterial("greyWall.png",false);
+        textures["ext"] = makeMaterial("greyWall2.jpg",false);
+        textures["doors"] = makeMaterial("doors.jpg",false);
+        textures["floor"] = makeMaterial("floor2.png",false,true);
+        textures["floorH"] = makeMaterial("floor2.png",true,false);
+        textures["top"] = makeMaterial("top.png",false);
+        textures["topH"] = makeMaterial("top2.png",false);
+        textures["blue"] = makeMaterial("blueWall.jpg",false);
+        textures["trees"] = makeMaterial("tree.png",true,false);
+        textures["grass"] = makeMaterial("grass.jpg",true,true);
+        textures["foundation"] = makeMaterial("concrete.jpg",true);
+        textures["metal"] = makeMaterial("metal.jpg",false);
+        textures["window"] = makeMaterial("window.png",false);
+        textures["int"] = makeMaterial("plaster.jpg",false,false);
+        textures["shingles"] = makeMaterial("shingles.jpg",true,true);
+
+        createBackground();
+
+        var level = -10;
+        var height = 8.5;
+        var length = 40;
+        var width = 8;
+
+        var farLeft = -20;
+        var farRight = 20;
+        var front = 20;
+        var back = -20;
+
+        //8ft w x 8.5ft h x 40ft l
+        drawPanel(farLeft,level,back-width,farRight,level+.25,front,"foundation");
+        level += .35;
+        var margin=.1;
+
+        //left wall
+        drawPanel(farLeft,level,back,farLeft,level+height,front,"ext");
+        for(let i=0;i<5;i++)
+        {//interior of same
+          drawPanel(farLeft+margin,level,back+(i*width),farLeft+margin,level+height,back+((i+1)*width),"int");
+        }
+
+        //interior partitions
+        drawPanel(farLeft+width,level,back,farLeft+width+(margin*2),level+height,back+width,"int");
+        drawPanel(farLeft+width,level,back+(3*width/2),farLeft+width+(margin*2),level+height,back+width,"int");
+        drawPanel(farLeft+width,level,front-width,farLeft+width+(margin*2),level+height,front-(2*width),"int");
+        drawPanel(farLeft+width,level,front-(5*width/2),farLeft+width+(margin*2),level+height,front-(2*width),"int");
+
+        //remnant of back wall and side of other box
+        drawPanel(farLeft+width,level,back,farLeft+(3*width/2),level+height,back+(margin*2),"int");
+        drawPanel(farLeft+width,level,front-width,farLeft+(3*width/2),level+height,front-width+(margin*2),"int");
+
+        //front wall
+        drawPanel(farLeft,level,front,farLeft+width,level+height,front,"doors");
+        drawPanel(farLeft,level,front-margin,farLeft+width,level+height,front-margin,"int");
+
+        //top of box
+        drawPanel(farLeft,level+height,front,farLeft+width,level+height,back,"top");
+
+        //right wall
+        drawPanel(farRight,level,back,farRight,level+height,front,"ext");
+        for(let i=0;i<5;i++)
+        {//interior of same
+          drawPanel(farRight-margin,level,back+(i*width),farRight-margin,level+height,back+((i+1)*width),"int");
+        }
+
+        //interior partitions
+        drawPanel(farRight-width,level,back,farRight-width+(margin*2),level+height,back+width,"int");
+        drawPanel(farRight-width,level,back+(3*width/2),farRight-width+(margin*2),level+height,back+width,"int");
+        drawPanel(farRight-width,level,front-width,farRight-width+(margin*2),level+height,front-(2*width),"int");
+        drawPanel(farRight-width,level,front-(5*width/2),farRight-width+(margin*2),level+height,front-(2*width),"int");
+
+        //remains of back wall
+        drawPanel(farRight-width,level,back,farRight-(3*width/2),level+height,back+(margin*2),"int");
+        drawPanel(farRight-width,level,front-width,farRight-(3*width/2),level+height,front-width+(margin*2),"int");
+
+        //front wall
+        drawPanel(farRight,level,front,farRight-width,level+height,front,"doors");
+        drawPanel(farRight,level,front-margin,farRight-width,level+height,front-margin,"int");
+
+        //top of box
+        drawPanel(farRight,level+height,back,farRight-width,level+height,front,"top");
+
+        //back panel
+        drawPanel(farLeft,level,back-width,farRight,level+height,back-width,"ext");
+        for(let i=0;i<5;i++)
+        {//interior of the same
+          drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width+margin,"int");
+
+          //wood along main floor
+          drawPanel(farLeft+(i*width),level,front,farLeft+((i+1)*width),level,back,"floor");
+        }
+
+        //floor
+        drawPanel(farLeft,level,back-width,farRight,level,back,"floorH");
+
+        //sealed left and right doors
+        drawPanel(farLeft,level,back-width,farLeft,level+height,back,"doors");
+        drawPanel(farRight,level,back-width,farRight,level+height,back,"doors");
+        drawPanel(farLeft+margin,level,back-width,farLeft+margin,level+height,back,"int");
+        drawPanel(farRight-margin,level,back-width,farRight-margin,level+height,back,"int");
+
+        //top of box
+        drawPanel(farLeft,level+height,back-width,farRight,level+height,back,"topH");
+
+        //bottom of box in the front
+        drawPanel(farLeft,level+height,front-width,farRight,level+height,front,"topH");
+
+        //front doors
+        var windowSize = (length-(2*width))/3;
+        var windowMargin = .1;
+        drawWindow(farLeft+width,level,front-windowMargin,farLeft+width+windowSize,level+height,front+windowMargin);
+        drawWindow(farRight-width,level,front-windowMargin,farRight-width-windowSize,level+height,front+windowMargin);
+
+        //next floor
+        level += height;
+
+        //back top panel
+        drawPanel(farLeft,level,back-width,farRight,level+height,back-width,"ext");
+        for(let i=0;i<5;i++)
+        {//interior of the same
+          drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width+margin,"int");
+        }
+
+        //floor
+        drawPanel(farLeft,level+margin,back-width,farRight,level+margin,back,"floorH");
+
+        //sealed left/right doors
+        drawPanel(farLeft,level,back-width,farLeft,level+height,back,"doors");
+        drawPanel(farRight,level,back-width,farRight,level+height,back,"doors");
+        drawPanel(farLeft+margin,level,back-width,farLeft+margin,level+height,back,"int");
+        drawPanel(farRight-margin,level,back-width,farRight-margin,level+height,back,"int");
+
+        //top of panel
+        drawPanel(farLeft,level+height,back-width,farRight,level+height,back,"topH");
+
+        //front top panel
+        drawPanel(farLeft,level,front,farRight,level+height,front,"ext");
+        for(let i=0;i<5;i++)
+        {//interior of the same
+          drawPanel(farLeft+(i*width),level,front-margin,farLeft+((i+1)*width),level+height,front-margin,"int");
+        }
+
+        //floor
+        drawPanel(farLeft,level+margin,front-width,farRight,level+margin,front,"floorH");
+
+        //sealed left/right doors
+        drawPanel(farLeft,level,front-width,farLeft,level+height,front,"doors");
+        drawPanel(farRight,level,front-width,farRight,level+height,front,"doors");
+        drawPanel(farLeft+margin,level,front-width,farLeft+margin,level+height,front,"int");
+        drawPanel(farRight-margin,level,front-width,farRight-margin,level+height,front,"int");
+
+        //box top
+        drawPanel(farLeft,level+height,front-width,farRight,level+height,front,"topH");
+
+        //windows on both sides
+        for(let i=0;i<4;i++)
+        {
+          drawWindow(farLeft-windowMargin,level,front-width-(i*windowSize), farLeft+windowMargin,level+height,front-width-((i+1)*windowSize));
+          drawWindow(farRight-windowMargin,level,front-width-(i*windowSize), farRight+windowMargin,level+height,front-width-((i+1)*windowSize));
+        }      
+
+        //floors on walkways
+        drawPanel(farLeft,level+margin,back,farLeft+width,level+margin,front,"floor");
+        drawPanel(farRight,level+margin,back,farRight-width,level+margin,front,"floor");
+
+        //roof
+        var v1 = new THREE.Vector3(farRight,level+height,back);
+        var v2 = new THREE.Vector3(farRight,level+height,front);
+        var v3 = new THREE.Vector3((farRight+farLeft)/2,level+(3*height/2),front-(3*width/2));
+        var v4 = new THREE.Vector3((farRight+farLeft)/2,level+(3*height/2),back+(3*width/2));
+
+        var geom = new THREE.Geometry(); 
+        geom.vertices.push(v1);
+        geom.vertices.push(v2);
+        geom.vertices.push(v3);
+        geom.vertices.push(v4);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faces.push( new THREE.Face3( 3, 0, 2 ) );
+        var object = new THREE.Mesh( geom, textures["grass"] );
+        scene.add(object);
+
+        var v3 = new THREE.Vector3((farRight+farLeft)/2,level+(3*height/2),front-(3*width/2));
+        var v4 = new THREE.Vector3((farRight+farLeft)/2,level+(3*height/2),back+(3*width/2));
+        var v5 = new THREE.Vector3(farLeft,level+height,back);
+        var v6 = new THREE.Vector3(farLeft,level+height,front);
+        geom = new THREE.Geometry(); 
+        geom.vertices.push(v3);
+        geom.vertices.push(v4);
+        geom.vertices.push(v5);
+        geom.vertices.push(v6);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faces.push( new THREE.Face3( 3, 0, 2 ) );
+        object = new THREE.Mesh( geom, textures["shingles"] );
+        scene.add(object);
+
+        var v1 = new THREE.Vector3(farRight,level+height,back);
+        var v4 = new THREE.Vector3((farRight+farLeft)/2,level+(3*height/2),back+(3*width/2));
+        var v5 = new THREE.Vector3(farLeft,level+height,back);
+        geom = new THREE.Geometry(); 
+        geom.vertices.push(v1);
+        geom.vertices.push(v4);
+        geom.vertices.push(v5);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        object = new THREE.Mesh( geom, textures["shingles"] );
+        scene.add(object);
+
+        var v2 = new THREE.Vector3(farRight,level+height,front);
+        var v3 = new THREE.Vector3((farRight+farLeft)/2,level+(3*height/2),front-(3*width/2));
+        var v6 = new THREE.Vector3(farLeft,level+height,front);
+        geom = new THREE.Geometry(); 
+        geom.vertices.push(v3);
+        geom.vertices.push(v2);
+        geom.vertices.push(v6);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        object = new THREE.Mesh( geom, textures["shingles"] );
+        scene.add(object);
+
+        var render = function () {
+            requestAnimationFrame(render);
+            renderer.render(scene, camera);
+            };
+
+        render();
+      }
+
+      function drawPanel(x,y,z,x2,y2,z2,str)
+      {
+        var cubegeometry = new THREE.BoxGeometry(Math.abs(x-x2),Math.abs(y-y2),Math.abs(z-z2));
+        var cube = new THREE.Mesh(cubegeometry, textures[str]);
+        cube.position.set((x+x2)/2,(y+y2)/2,(z+z2)/2);
+        scene.add(cube);
+      }
+
+      function drawWindow(x,y,z,x2,y2,z2)
+      {
+        //top bar
+        var cubegeometry = new THREE.BoxGeometry(Math.abs(x-x2)+.1,.1,Math.abs(z-z2)+.1);
+        var cube = new THREE.Mesh(cubegeometry, textures["metal"]);
+        cube.position.set((x+x2)/2,y,(z+z2)/2);
+        scene.add(cube);
+
+        //bottom bar
+        cubegeometry = new THREE.BoxGeometry(Math.abs(x-x2)+.1,.1,Math.abs(z-z2)+.1);
+        cube = new THREE.Mesh(cubegeometry, textures["metal"]);
+        cube.position.set((x+x2)/2,y2,(z+z2)/2);
+        scene.add(cube);
+
+        //side1
+        cubegeometry = new THREE.BoxGeometry(.1, Math.abs(y-y2)+.1,.1);
+        cube = new THREE.Mesh(cubegeometry, textures["metal"]);
+        cube.position.set(x,(y+y2)/2,z);
+        scene.add(cube);
+
+        //side2
+        cubegeometry = new THREE.BoxGeometry(.1, Math.abs(y-y2)+.1,.1);
+        cube = new THREE.Mesh(cubegeometry, textures["metal"]);
+        cube.position.set(x2,(y+y2)/2,z2);
+        scene.add(cube);
+
+        var texture = new THREE.ImageUtils.loadTexture("window.png");
+        var material = new THREE.MeshPhongMaterial({ map:texture, transparent : true, depthWrite: false});
+
+        //window
+        cubegeometry = new THREE.BoxGeometry(Math.abs(x-x2),Math.abs(y-y2),Math.abs(z-z2));
+        cube = new THREE.Mesh(cubegeometry, material);
+        cube.position.set((x+x2)/2,(y+y2)/2,(z+z2)/2);
+        scene.add(cube);
+      }
+
+      function createBox(x,y,z,dx,dy,dz,yaw,str)
+      {
+        //depth,height,width
+        var cubegeometry;
+        if(yaw==0)
+        {
+          cubegeometry = new THREE.BoxGeometry(dx,dy,dz);
+        }
+        else
+        {
+          cubegeometry = new THREE.BoxGeometry(dz,dy,dx);
+        }
+
+        var cube = new THREE.Mesh(cubegeometry, textures[str]);
+        cube.position.set(x, y, z);
+        scene.add(cube);
+      }
+
+      function makeMaterial(fileName, repeatX, repeatY)
+      {
+        var texture = new THREE.ImageUtils.loadTexture(fileName);
+        if(repeatX)
+        {
+          texture.wrapS = THREE.RepeatWrapping;
+          texture.repeat.x=4;
+        }
+
+        if(repeatY)
+        {
+          texture.wrapT = THREE.RepeatWrapping;
+          texture.repeat.y=4;
+        }
+        return new THREE.MeshBasicMaterial({ map:texture, side:THREE.DoubleSide});
+      }
+
+      var compass = 0;
+      function key(event)
+      {
+        var dx = Math.sin(compass);
+        var dz = Math.cos(compass);
+        var dx2 = Math.sin(compass+(3.14/2));
+        var dz2 = Math.cos(compass+(3.14/2));
+
+        if(event.keyCode==37)//left
+        {
+          camera.position.z-=dz2;
+          camera.position.x-=dx2;
+        }
+        else if(event.keyCode==39)//right
+        {
+          camera.position.z+=dz2;
+          camera.position.x+=dx2;
+        }
+        else if(event.keyCode==38)//forward
+        {
+          camera.position.z-=dz;
+          camera.position.x-=dx;
+        }
+        else if(event.keyCode==40)//backward
+        {
+          camera.position.z+=dz;
+          camera.position.x+=dx;
+        }
+        else if(event.keyCode==65)//yaw left
+        {//pitch up,yaw left,roll right
+          camera.rotation.y+=3*3.14/180;
+          compass+=3*3.14/180;
+        }
+        else if(event.keyCode==68)//yaw right
+        {
+          camera.rotation.y-=3*3.14/180;
+          compass-=3*3.14/180;
+        }
+        else if(event.keyCode==83)//move down
+        {
+          camera.position.y-=1;
+        }
+        else if(event.keyCode==87)//move up
+        {
+          camera.position.y+=1;
+        }
+      }
+
+      function createBackground()
+      {
+        var cubegeometry = new THREE.BoxGeometry(0,100,400);
+        var cube = new THREE.Mesh(cubegeometry, textures["trees"]);
+        cube.position.set(-200, 0, 0);
+        scene.add(cube);
+
+        cubegeometry = new THREE.BoxGeometry(0,100,400);
+        cube = new THREE.Mesh(cubegeometry, textures["trees"]);
+        cube.position.set(200, 0, 0);
+        scene.add(cube);
+
+        cubegeometry = new THREE.BoxGeometry(400,100,0);
+        cube = new THREE.Mesh(cubegeometry, textures["trees"]);
+        cube.position.set(0, 0, 200);
+        scene.add(cube);
+
+        cubegeometry = new THREE.BoxGeometry(400,100,0);
+        cube = new THREE.Mesh(cubegeometry, textures["trees"]);
+        cube.position.set(0, 0, -200);
+        scene.add(cube);
+
+        cubegeometry = new THREE.BoxGeometry(400,0,400);
+        cube = new THREE.Mesh(cubegeometry, textures["grass"]);
+        cube.position.set(0, -10, 0);
+        scene.add(cube);
+      }
+    </script>
+  </head>
+  <body onload="load()">
+  </body>
+</html>
