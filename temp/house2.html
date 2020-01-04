@@ -138,6 +138,10 @@
         for(let i=0;i<5;i++)
         {//interior of the same
           drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width+margin,"int");
+          if(i>0&&i<4)
+          {
+            drawPanel(farLeft+(i*width),level,back+margin,farLeft+((i+1)*width),level+height,back,"int");
+          }
         }
 
         //floor
@@ -155,8 +159,12 @@
         //front top panel
         drawPanel(farLeft,level,front,farRight,level+height,front,"ext");
         for(let i=0;i<5;i++)
-        {//interior of the same
+        {//interior of the same and front wall
           drawPanel(farLeft+(i*width),level,front-margin,farLeft+((i+1)*width),level+height,front-margin,"int");
+          if(i>0&&i<4)
+          {
+            drawPanel(farLeft+(i*width),level,front-width-margin,farLeft+((i+1)*width),level+height,front-width-margin,"int");
+          }
         }
 
         //floor
@@ -174,13 +182,25 @@
         //windows on both sides
         for(let i=0;i<4;i++)
         {
-          drawWindow(farLeft-windowMargin,level,front-width-(i*windowSize), farLeft+windowMargin,level+height,front-width-((i+1)*windowSize));
-          drawWindow(farRight-windowMargin,level,front-width-(i*windowSize), farRight+windowMargin,level+height,front-width-((i+1)*windowSize));
-        }      
+          drawWindow(farLeft,level,front-width-(i*windowSize), farLeft+windowMargin,level+height,front-width-((i+1)*windowSize));
+          drawWindow(farLeft+width,level,front-width-(i*windowSize), farLeft+width+windowMargin,level+4,front-width-((i+1)*windowSize));
+          if(i<3)
+          {
+            drawWindow(farRight-width,level,front-width-(i*windowSize), farRight-width+windowMargin,level+4,front-width-((i+1)*windowSize));
+          }
+          drawWindow(farRight,level,front-width-(i*windowSize), farRight+windowMargin,level+height,front-width-((i+1)*windowSize));
+        }
+        drawWindow(farRight-width,level,back+(windowSize/2), farRight-width+windowMargin,level+4,back+width+windowSize);
 
         //floors on walkways
         drawPanel(farLeft,level+margin,back,farLeft+width,level+margin,front,"floor");
         drawPanel(farRight,level+margin,back,farRight-width,level+margin,front,"floor");
+
+        //wall against stairs
+        drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-height,back+(3*windowSize/2),"int");
+        drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-2,back,"int");
+        drawWindow(farRight-width-4,level,back+windowSize/2,farRight-width-4,level+4,back+(3*windowSize/2));
+        drawWindow(farRight-width-4,level,back+windowSize/2,farRight-width-4,level+4,back,"int");
 
         //roof
         var v1 = new THREE.Vector3(farRight,level+height,back);
@@ -193,9 +213,15 @@
         geom.vertices.push(v2);
         geom.vertices.push(v3);
         geom.vertices.push(v4);
-        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
-        geom.faces.push( new THREE.Face3( 3, 0, 2 ) );
-        var object = new THREE.Mesh( geom, textures["grass"] );
+        geom.faces.push( new THREE.Face3( 0, 1, 2));
+        geom.faces.push( new THREE.Face3( 3, 0, 2));
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(1, 0),
+                                    new THREE.Vector2(.7, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(.3, 1),
+                                    new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(1, 1)]);
+        var object = new THREE.Mesh( geom, textures["shingles"] );
         scene.add(object);
 
         var v3 = new THREE.Vector3((farRight+farLeft)/2,level+(3*height/2),front-(3*width/2));
@@ -209,6 +235,12 @@
         geom.vertices.push(v6);
         geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
         geom.faces.push( new THREE.Face3( 3, 0, 2 ) );
+        geom.faceVertexUvs[0].push([new THREE.Vector2(.3, 1),
+                                    new THREE.Vector2(.7, 1),
+                                    new THREE.Vector2(1, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(.3, 1),
+                                    new THREE.Vector2(1, 0)]);
         object = new THREE.Mesh( geom, textures["shingles"] );
         scene.add(object);
 
@@ -220,6 +252,9 @@
         geom.vertices.push(v4);
         geom.vertices.push(v5);
         geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(.5, 1),
+                                    new THREE.Vector2(1, 0)]);
         object = new THREE.Mesh( geom, textures["shingles"] );
         scene.add(object);
 
@@ -227,12 +262,51 @@
         var v3 = new THREE.Vector3((farRight+farLeft)/2,level+(3*height/2),front-(3*width/2));
         var v6 = new THREE.Vector3(farLeft,level+height,front);
         geom = new THREE.Geometry(); 
-        geom.vertices.push(v3);
         geom.vertices.push(v2);
+        geom.vertices.push(v3);
         geom.vertices.push(v6);
         geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(.5, 1),
+                                    new THREE.Vector2(1, 0)]);
         object = new THREE.Mesh( geom, textures["shingles"] );
         scene.add(object);
+
+        var v1 = new THREE.Vector3(farRight-width,level,back);
+        var v2 = new THREE.Vector3(farRight-width-4,level,back);
+        var v3 = new THREE.Vector3(farRight-width,level,back+windowSize/2);
+        var v4 = new THREE.Vector3(farRight-width-4,level,back+windowSize/2);
+        var v5 = new THREE.Vector3(farRight-width,level-height,back+(3*windowSize/2));
+        var v6 = new THREE.Vector3(farRight-width-4,level-height,back+(3*windowSize/2));
+
+        var geom = new THREE.Geometry(); 
+        geom.vertices.push(v1);
+        geom.vertices.push(v2);
+        geom.vertices.push(v3);
+        geom.vertices.push(v4);
+        geom.vertices.push(v5);
+        geom.vertices.push(v6);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faces.push( new THREE.Face3( 1, 2, 3 ) );
+        geom.faces.push( new THREE.Face3( 2, 3, 4 ) );
+        geom.faces.push( new THREE.Face3( 3, 4, 5 ) );
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(.3, 0),
+                                    new THREE.Vector2(0, .2)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(.3, 0),
+                                    new THREE.Vector2(0, .2),
+                                    new THREE.Vector2(.3, .2)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, .2),
+                                    new THREE.Vector2(.3, .2),
+                                    new THREE.Vector2(0, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(.3, .2),
+                                    new THREE.Vector2(0, 1),
+                                    new THREE.Vector2(.3, 1)]);
+        var object = new THREE.Mesh( geom, textures["floor"] );
+        scene.add(object);
+
+        scene.add(makeStove(-4,-10,back-width));
+        scene.add(makeFridge(-8,-10,back-width));
 
         var render = function () {
             requestAnimationFrame(render);
@@ -240,6 +314,115 @@
             };
 
         render();
+      }
+
+      function makeStove(x,y,z)
+      {
+        texture = makeMaterial("stove.png",false,false);
+        var top = 3.5;
+        var v1 = new THREE.Vector3(x,y+top,z);
+        var v2 = new THREE.Vector3(x+3,y+top,z);
+        var v3 = new THREE.Vector3(x,y+top,z+3);
+        var v4 = new THREE.Vector3(x+3,y+top,z+3);
+        var v7 = new THREE.Vector3(x,y,z);
+        var v8 = new THREE.Vector3(x+3,y,z);
+        var v5 = new THREE.Vector3(x,y,z+3);
+        var v6 = new THREE.Vector3(x+3,y,z+3);
+
+        var geom = new THREE.Geometry(); 
+        geom.vertices.push(v1);
+        geom.vertices.push(v2);
+        geom.vertices.push(v3);
+        geom.vertices.push(v4);
+        geom.vertices.push(v5);
+        geom.vertices.push(v6);
+        geom.vertices.push(v7);
+        geom.vertices.push(v8);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faces.push( new THREE.Face3( 1, 2, 3 ) );
+        geom.faces.push( new THREE.Face3( 2, 3, 4 ) );
+        geom.faces.push( new THREE.Face3( 3, 4, 5 ) );
+        geom.faces.push( new THREE.Face3( 2, 4, 6 ) );
+        geom.faces.push( new THREE.Face3( 2, 6, 0 ) );
+        geom.faces.push( new THREE.Face3( 3, 5, 7 ) );
+        geom.faces.push( new THREE.Face3( 3, 7, 1 ) );
+        geom.faceVertexUvs[0].push([new THREE.Vector2(1/3.0, 1),
+                                    new THREE.Vector2(2/3.0, 1),
+                                    new THREE.Vector2(1/3.0, .5)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(2/3.0, 1),
+                                    new THREE.Vector2(1/3.0, .5),
+                                    new THREE.Vector2(2/3.0, .5)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(1/3.0, .5),
+                                    new THREE.Vector2(2/3.0, .5),
+                                    new THREE.Vector2(1/3.0, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(2/3.0, .5),
+                                    new THREE.Vector2(1/3.0, 0),
+                                    new THREE.Vector2(2/3.0, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(1/3.0, .5),
+                                    new THREE.Vector2(1/3.0, 0),
+                                    new THREE.Vector2(0, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(1/3.0, .5),
+                                    new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(0, .5)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(2/3.0, .5),
+                                    new THREE.Vector2(2/3.0, 0),
+                                    new THREE.Vector2(1, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(2/3.0, .5),
+                                    new THREE.Vector2(1, 0),
+                                    new THREE.Vector2(1, .5)]);
+        var object = new THREE.Mesh( geom, texture );
+        return object;
+      }
+
+      function makeFridge(x,y,z)
+      {
+        texture = makeMaterial("fridge.png",false,false);
+        var v0 = new THREE.Vector3(x,y+6,z);
+        var v1 = new THREE.Vector3(x,y,z);
+        var v2 = new THREE.Vector3(x,y+6,z+3);
+        var v3 = new THREE.Vector3(x,y,z+3);
+        var v4 = new THREE.Vector3(x+4,y+6,z+3);
+        var v5 = new THREE.Vector3(x+4,y,z+3);
+        var v6 = new THREE.Vector3(x+4,y+6,z);
+        var v7 = new THREE.Vector3(x+4,y,z);
+
+        var geom = new THREE.Geometry(); 
+        geom.vertices.push(v0);
+        geom.vertices.push(v1);
+        geom.vertices.push(v2);
+        geom.vertices.push(v3);
+        geom.vertices.push(v4);
+        geom.vertices.push(v5);
+        geom.vertices.push(v6);
+        geom.vertices.push(v7);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faces.push( new THREE.Face3( 1, 2, 3 ) );
+        geom.faces.push( new THREE.Face3( 2, 3, 4 ) );
+        geom.faces.push( new THREE.Face3( 3, 4, 5 ) );
+        geom.faces.push( new THREE.Face3( 4, 5, 6 ) );
+        geom.faces.push( new THREE.Face3( 5, 6, 7 ) );
+        var corner = 197/800.0;
+        var corner2 = 601/800.0;
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 1),
+                                    new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(corner, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(corner, 1),
+                                    new THREE.Vector2(corner, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner, 1),
+                                    new THREE.Vector2(corner, 0),
+                                    new THREE.Vector2(corner2, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner, 0),
+                                    new THREE.Vector2(corner2, 1),
+                                    new THREE.Vector2(corner2, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner2, 1),
+                                    new THREE.Vector2(corner2, 0),
+                                    new THREE.Vector2(1, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner2, 0),
+                                    new THREE.Vector2(1, 1),
+                                    new THREE.Vector2(1, 0)]);
+        var object = new THREE.Mesh( geom, texture );
+        return object;
       }
 
       function drawPanel(x,y,z,x2,y2,z2,str)
