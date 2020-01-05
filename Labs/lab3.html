@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../Common/style.css">
+    <script>
+    </script>
+  </head>
+  <body>
+    <h1 class="lab">Lab 3 - Using the canvas tag</h1>
+    <p>
+      Create a page with a <code>canvas</code> tag. Create an <code>onLoad</code>
+      event for the body. Let that event call a function where you save the <code>context</code>
+      for that <code>canvas</code>. You can look up more information 
+      <a href="https://www.w3schools.com/tags/ref_canvas.asp">here</a>.
+    </p>
+    <p>
+      Paint an object on the canvas at an (x,y) defined by two variables. Use a time 
+      function to wait 250 milliseconds between calls to the <code>draw</code> function.
+      Every time the function is called, move the x and y and then redraw. If you always
+      move by the same amount (we might think of this as the x and y <code>velocity</code>)
+      the object will steadily move across the screen and eventually out of view.
+    </p>
+    <p>
+      Add a logic check to the <code>draw</code> function. After moving, check if the 
+      <code>x</code> or <code>y</code> have exceeded a boundary. If the ball is at position 1
+      and it moves to position 2 outside of boundary you can "bounce" off to position 3 and 
+      reverse the x velocity. You need to check for each of these conditions. Remember, that
+      computer graphics are in the inverted first quadrant.<br>
+      <img src="./imgs/boundary.png"><br>
+      <ul>
+        <li>
+          <code>x&lt;0</code>
+        </li>
+        <li>
+          <code>x&gt;max_width</code>
+        </li>
+        <li>
+          <code>y&lt;0</code>
+        </li>
+        <li>
+          <code>y&gt;max_height</code>
+        </li>
+      </ul>
+    </p>
+    <p>
+      Put all this into a single web page. Submit a link to the lab via canvas.
+    </p>  </body>
+</html>
