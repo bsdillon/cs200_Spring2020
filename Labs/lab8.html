@@ -5,34 +5,37 @@
     </script>
   </head>
   <body>
+    <h1 class="lab">Lab 8 - GoldField: Reacting to Movers</h1>
+    <p>
+      This lab will build upon previous work to complete interactions between
+      movers. You should feel free to reuse any of your own code or anyone
+      elses.
+    </p>
+    <p>
+      Create a GoldField and put a Mover on it. Add a bunch of other Movers
+      to interact with. This could be gold, monsters, or anything else. Add
+      moving controls for your main mover.
+    </p>
+    <p>
+      Try to move into one of the other movers. You will notice that, while
+      that move is not allowed, you aren't really interacting with the Mover.
+      GoldField is just preventing you from doing something it considers to
+      be wrong.
+    </p>
+    <p>
+      Use the LookAt function to "look before you leap". Look into a space,
+      see if it is empty. If there is another Mover, call it's Destroy function
+      before moving into that spot. This is a pretty simple interaction, but
+      it counts. You might also consider that a Monster can kill you. Try out
+      whatever you want.
+    </p>
+    <p>
+      Add a counter of some sort to the page and keep track of something. It 
+      could be number of gold, nubmer of deaths, number of steps, etc. This
+      is your output from the code so you can see what is happening.
+    </p>
+    <p>
+      Put all of this into one web page and submit it through canvas.
+    </p>
   </body>
 </html>
-
-    <dl>
-      <dt class="lab">Lab 1 - Experimenting with style</dt>
-      <dd>Apply the lessons from lecture #1 by creating a small web page and applying styles the various elements using tag, class, name, and ID.</dd>
-      <dt class="lab">Lab 2 - Father-son "catch" game</dt>
-      <dd>
-        Create two buttons labeled "Father throws" and "Son throws".<br>
-        Create two &lt;p&gt; tags with ids "Father" and "Son". Put the text "Ball" in one of them.<br>
-        When a button is pushed, it should check for the "ball" in the right tag and then move the "ball" to the other tag. Now you can click the buttons back and forth to play "catch".
-      </dd>
-      <dt class="lab">Lab 3 - Using the canvas tag; boundary checking</dt>
-      <dd>
-        Create a page with a &lt;canvas&gt; tag.<br>
-        Paint an object on the screen and have it bounce around the screen.<br>
-        Use a time function to wait 250 milliseconds between steps.<br>
-        For every step, check for a boundary and if the object "hits" a boundary, make it bounce off.
-      </dd>
-      <dt class="lab">Lab 4 - Wack-a-mole</dt>
-      <dd>
-        Create a Mole object with an x,y location.<br>
-        Show the mole on the screen in a random place.<br>
-        When the user clicks on the mole, kill the mole and create another one in a new random place.<br>
-        Count the number of mole hits and add a new mole every five hits.<br>
-        Add a reset button to start over with one mole.
-      </dd>
-      <dt class="lab">Lab 6 - GoldField: Mover inheritance tree</dt><dd></dd>
-      <dt class="lab">Lab 7 - GoldField: Mover Control</dt><dd></dd>
-      <dt class="lab">Lab 8 - GoldField: Reacting to Movers</dt><dd></dd>
-    </dl>

@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <style>
+      .road {background-color:black; width:500px; height:100%}
+    </style>
+    <script>
+      function load()
+      {
+        canvas = document.getElementById("road");
+        ctx = canvas.getContext("2d");
+        width = canvas.width = 300;
+        height = canvas.height = window.innerHeight*.9;
+
+        speed = 35;
+        timeModulo=0;
+        lineLength = 150;
+        policeX = laneStart+laneWidth;
+        policeY = height-carLength;
+
+        target = new Image();
+        target.src = 'carTarget.png';
+
+        truck = new Image();
+        truck.src = "truck.png";
+
+        vehicles = new Array();
+        police = new Police();
+        setInterval(Step, 100)
+      }
+
+      function Step()
+      {
+        ctx.fillStyle = "rgba(0,0,0,1)";
+        ctx.fillRect(0,0,width,height);
+        drawLane(laneStart,timeModulo);
+        drawLane(laneStart+laneWidth,timeModulo);
+        drawLane(laneStart+(2*laneWidth),timeModulo);
+        drawPolice(timeModulo);
+        timeModulo=(timeModulo+speed)%lineLength;       
+      }
+
+      function drawLane(x,modulo)
+      {
+        ctx.fillStyle = "rgba(255,255,0,1)";
+        var y = -lineLength + modulo;
+        var x2 = x + laneWidth;
+        while(y<height)
+        {
+          ctx.fillRect(x, y, 3, lineLength/2);
+          ctx.fillRect(x2, y, 3, lineLength/2);
+          y+=lineLength;
+        }
+      }
+
+      function key(event)
+      {
+        if(event.keyCode==37)//left
+        {
+          camera.position.z-=dz2;
+          camera.position.x-=dx2;
+        }
+        else if(event.keyCode==39)//right
+        {
+          camera.position.z+=dz2;
+          camera.position.x+=dx2;
+        }
+      }
+    </script>
+  </head>
+  <body onload="load()" onkeypress="key()">
+    <canvas id="road"></canvas>
+  </body>
+</html>

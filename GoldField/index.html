@@ -1,4 +1,3 @@
-
 <html>
   <head>
   </head>
@@ -22,13 +21,13 @@
       <dt>GoldField(tag, block_size, block_width, block_height)</dt><dd>Generated a GoldField object which can be used to create and control the rest of the program. The calling function can supply any DOM tag as the basis for the game. Gold field will resize it into a block_width-by-block_height field of squares which are block_size-by-block_size. This makes the initial size of the game completely customizable.</dd>
     </dl>
    
-    <h2>Event Functions</h2>
+    <h2><a id="Events"></a>Event Functions</h2>
     <dl>
       <dt>SetClickListener(func)</dt><dd>This method connects the onclick event for GoldField to the given function. This is the approved method for getting mouse events from the API.</dd>
       <dt>SetKeyListener(func)</dt><dd>This method connects the onkeyup event for GoldField to the given function. This is the approved method for getting key events from the API.</dd>
     </dl>
 
-    <h2>Membership Functions</h2>
+    <h2><a id="MemberFunctions"></a>Membership Functions</h2>
     <dl>
       <dt>Reset()</dt><dd>Clears all movers from the board and returns it to the original state.</dd>
       <dt>RandomFill(percent)</dt><dd>Adds random Obstacles to a percentage of the board. 0 &lt; percent &le; .25</dd>
@@ -61,7 +60,7 @@
       <dt>Lose()</dt><dd>Plays the Hero's funeral march.</dd>
     </dl>
 
-    <h1>Mover Objects</h1>
+    <h1><a id="Movers"></a>Mover Objects</h1>
     <p>
       Each mover has a unique ID number and a description of the mover. They are initially located randomly, but you can move them around if you want.
     </p>
@@ -83,7 +82,7 @@
       </dd>
     </dl>
 
-    <h1>Specific Mover Types</h1>
+    <h1><a id="MoverTypes"></a>Specific Mover Types</h1>
     <dl>
       <dt>Hero <img src="hero.png" width="25"></dt>
       <dd>This is the main character who will be controlled by the user. Presumably we want to keep him alive. The API assumes we only have one of him.</dd>

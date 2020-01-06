@@ -5,34 +5,35 @@
     </script>
   </head>
   <body>
+    <h1 class="lab">Lab 7 - GoldField: Mover Control</h1>
+    <p>
+      This lab will establish events for both keyboard and mouse for 
+      GoldField and tie them to Movers. Use the <a href="../GoldField/index.html#Events">event functions</a>
+      to affect the scene.
+    </p>
+    <p>
+      Start by creating a GoldField and putting two movers on the screen.
+      You will need to save them to variables so you can get them again.
+      Create a click and key function. Use SetClickListener and SetKeyListener
+      to connect the events to those functions.
+    </p>
+    <p>
+      In the click and key listener functions, write to the screen whatever
+      information you have in the event. This will help you to understand
+      what is happening.
+    </p>
+    <p>
+      Create at least two "hot key" functions. This means if you press "P" 
+      something happens. Hot keys are used to create shortcuts for simple
+      functions.
+    </p>
+    <p>
+      Set up the key listener to move one of the Movers. Use the mouse
+      function to move the other. See what happens when you move one of
+      them off screen. Is there a way to solve that problem?
+    </p>
+    <p>
+      Put all of this on one web page and submit via canvas.
+    </p>
   </body>
 </html>
-
-    <dl>
-      <dt class="lab">Lab 1 - Experimenting with style</dt>
-      <dd>Apply the lessons from lecture #1 by creating a small web page and applying styles the various elements using tag, class, name, and ID.</dd>
-      <dt class="lab">Lab 2 - Father-son "catch" game</dt>
-      <dd>
-        Create two buttons labeled "Father throws" and "Son throws".<br>
-        Create two &lt;p&gt; tags with ids "Father" and "Son". Put the text "Ball" in one of them.<br>
-        When a button is pushed, it should check for the "ball" in the right tag and then move the "ball" to the other tag. Now you can click the buttons back and forth to play "catch".
-      </dd>
-      <dt class="lab">Lab 3 - Using the canvas tag; boundary checking</dt>
-      <dd>
-        Create a page with a &lt;canvas&gt; tag.<br>
-        Paint an object on the screen and have it bounce around the screen.<br>
-        Use a time function to wait 250 milliseconds between steps.<br>
-        For every step, check for a boundary and if the object "hits" a boundary, make it bounce off.
-      </dd>
-      <dt class="lab">Lab 4 - Wack-a-mole</dt>
-      <dd>
-        Create a Mole object with an x,y location.<br>
-        Show the mole on the screen in a random place.<br>
-        When the user clicks on the mole, kill the mole and create another one in a new random place.<br>
-        Count the number of mole hits and add a new mole every five hits.<br>
-        Add a reset button to start over with one mole.
-      </dd>
-      <dt class="lab">Lab 6 - GoldField: Mover inheritance tree</dt><dd></dd>
-      <dt class="lab">Lab 7 - GoldField: Mover Control</dt><dd></dd>
-      <dt class="lab">Lab 8 - GoldField: Reacting to Movers</dt><dd></dd>
-    </dl>
