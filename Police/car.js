@@ -19,7 +19,7 @@ p1.src = 'police1.png';
 p2 = new Image();
 p2.src = 'police2.png';
 
-function Car(int lane)
+function Car(lane)
 {
   this.img = cars[Math.floor(Math.random()*cars.length)];
   this.x=lane;
