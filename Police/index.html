@@ -3,6 +3,7 @@
     <style>
       .road {background-color:black; width:500px; height:100%}
     </style>
+    <script src="./car.js"></script>
     <script>
       function load()
       {
@@ -35,10 +36,10 @@
         drawLane(laneStart,timeModulo);
         drawLane(laneStart+laneWidth,timeModulo);
         drawLane(laneStart+(2*laneWidth),timeModulo);
-        drawPolice(timeModulo);
+        police.draw(timeModulo);
         timeModulo=(timeModulo+speed)%lineLength;       
       }
-
+      
       function drawLane(x,modulo)
       {
         ctx.fillStyle = "rgba(255,255,0,1)";

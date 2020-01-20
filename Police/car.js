@@ -19,7 +19,7 @@ p1.src = 'police1.png';
 p2 = new Image();
 p2.src = 'police2.png';
 
-function Car(int lane)
+function Car(lane)
 {
   this.img = cars[Math.floor(Math.random()*cars.length)];
   this.x=lane;
@@ -27,12 +27,12 @@ function Car(int lane)
   this.yVel=Math.floor(Math.random()*20+5);
 }
 
-Car.prototype.draw(color,lane,modulo)
+Car.prototype.draw(modulo)
 {
   ctx.drawImage(cars[this.img],this.x+margin,this.y,carWidth,carLength);
 }
 
-Car.prototype.move(color,lane,modulo)
+Car.prototype.move()
 {
   this.y+=this.yVel;
 }
@@ -58,7 +58,7 @@ Police.prototype.draw(modulo)
   }
 }
 
-Car.prototype.move(color,lane,modulo)
+Car.prototype.move()
 {
   this.x+=this.xVel;
 }
