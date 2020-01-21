@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <style>
+      div {background-color:white; width:200px; height:200px;}
+    </style>
+    <script>
+      function recolor(val)
+      {
+        //the value is text, so I have to make it a number
+        //and then I get a hexidecimal value as text
+        var hex = parseInt(val).toString(16);
+
+        if(hex.length == 1)
+        {
+          hex = "0"+hex;//this needs to be two digits so we add a zero digit
+        }
+
+        //find the panel using its unique ID
+        var panel = document.getElementById("changer");
+
+        //change the style and color of the panel
+        panel.style.backgroundColor="#"+hex+hex+hex;
+      }
+    </script>
+  </head>
+  <body>
+    <div id="changer">
+      <p>Can you read this?</p>
+    </div>
+    <input type="range" min="0" max="255" value="255" onchange="recolor(this.value)"></input>
+  </body>
+</html>
