@@ -57,13 +57,11 @@
       {
         if(event.keyCode==37)//left
         {
-          camera.position.z-=dz2;
-          camera.position.x-=dx2;
+          police.xVel-=1;
         }
         else if(event.keyCode==39)//right
         {
-          camera.position.z+=dz2;
-          camera.position.x+=dx2;
+          police.xVel+=1;
         }
       }
     </script>
