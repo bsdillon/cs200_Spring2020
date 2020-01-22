@@ -27,12 +27,12 @@ function Car(lane)
   this.yVel=Math.floor(Math.random()*20+5);
 }
 
-Car.prototype.draw(modulo)
+Car.prototype.draw = function(modulo)
 {
   ctx.drawImage(cars[this.img],this.x+margin,this.y,carWidth,carLength);
 }
 
-Car.prototype.move()
+Car.prototype.move = function()
 {
   this.y+=this.yVel;
 }
@@ -43,7 +43,7 @@ function Police()
   this.xVel=0;
 }
 
-Police.prototype.draw(modulo)
+Police.prototype.draw = function(modulo)
 {
   if(modulo%2==0)
   {
@@ -55,7 +55,7 @@ Police.prototype.draw(modulo)
   }
 }
 
-Car.prototype.move()
+Police.prototype.move = function()
 {
   this.x+=this.xVel;
 }
