@@ -43,9 +43,6 @@ function Police()
   this.xVel=0;
 }
 
-Police.prototype = Car.prototype;
-Police.prototype.constructor = Police;
-
 Police.prototype.draw(modulo)
 {
   if(modulo%2==0)
