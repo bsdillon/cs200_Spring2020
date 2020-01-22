@@ -58,15 +58,17 @@
         if(event.keyCode==37)//left
         {
           police.xVel-=1;
-        }
+          police.move();
+      }
         else if(event.keyCode==39)//right
         {
           police.xVel+=1;
+          police.move();
         }
       }
     </script>
   </head>
-  <body onload="load()" onkeypress="key()">
-    <canvas id="road"></canvas>
+  <body onload="load()">
+    <canvas id="road" onkeypress="key()"></canvas>
   </body>
 </html>
