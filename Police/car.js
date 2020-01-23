@@ -43,8 +43,8 @@ Car.prototype.draw = function()
     {
       vehicles.splice(index, 1);
     }
+    addCar();
   }
-  addCar();
 }
 
 Car.prototype.move = function()
