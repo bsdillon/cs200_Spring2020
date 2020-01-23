@@ -18,6 +18,12 @@ p1 = new Image();
 p1.src = 'police1.png';
 p2 = new Image();
 p2.src = 'police2.png';
+vehicles = new Array();
+
+function addCar()
+{
+  vehicles.push(new Car(laneStart+(Math.floor(Math.random()*3)*laneWidth)));
+}
 
 function Car(lane)
 {
@@ -27,9 +33,18 @@ function Car(lane)
   this.yVel=Math.floor(Math.random()*20+5);
 }
 
-Car.prototype.draw = function(modulo)
+Car.prototype.draw = function()
 {
-  ctx.drawImage(cars[this.img],this.x+margin,this.y,carWidth,carLength);
+  ctx.drawImage(this.img,this.x+margin,this.y,carWidth,carLength);
+  if(this.y>height)
+  {
+    var index = vehicles.indexOf(this);
+    if (index > -1)
+    {
+      vehicles.splice(index, 1);
+    }
+  }
+  addCar();
 }
 
 Car.prototype.move = function()
@@ -37,9 +52,11 @@ Car.prototype.move = function()
   this.y+=this.yVel;
 }
 
-function Police()
+function Police(lane)
 {
-  Car.call(this);
+  this.x=lane;
+  this.y=0;
+  this.yVel=Math.floor(Math.random()*20+5);
   this.xVel=0;
 }
 
@@ -47,15 +64,26 @@ Police.prototype.draw = function(modulo)
 {
   if(modulo%2==0)
   {
-    ctx.drawImage(p1,policeX+margin,policeY,carWidth,carLength);
+    ctx.drawImage(p1,this.x+margin,policeY,carWidth,carLength);
   }
   else
   {
-    ctx.drawImage(p2,policeX+margin,policeY,carWidth,carLength);
+    ctx.drawImage(p2,this.x+margin,policeY,carWidth,carLength);
   }
 }
 
 Police.prototype.move = function()
 {
   this.x+=this.xVel;
+  if(this.x<laneStart)
+  {
+    this.x = laneStart;
+    this.xVel = 0;
+  }
+
+  if(this.x>laneStart+(2*laneWidth))
+  {
+    this.x = laneStart+(2*laneWidth);
+    this.xVel = 0;
+  }
 }

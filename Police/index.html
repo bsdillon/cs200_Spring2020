@@ -1,4 +1,5 @@
 <html>
+
   <head>
     <style>
       .road {background-color:black; width:500px; height:100%}
@@ -7,6 +8,7 @@
     <script>
       function load()
       {
+        document.addEventListener("keydown", key, false);
         canvas = document.getElementById("road");
         ctx = canvas.getContext("2d");
         width = canvas.width = 300;
@@ -24,9 +26,10 @@
         truck = new Image();
         truck.src = "truck.png";
 
-        vehicles = new Array();
-        police = new Police();
+        police = new Police(laneStart+laneWidth);
         setInterval(Step, 100)
+
+        addCar();
       }
 
       function Step()
@@ -36,10 +39,16 @@
         drawLane(laneStart,timeModulo);
         drawLane(laneStart+laneWidth,timeModulo);
         drawLane(laneStart+(2*laneWidth),timeModulo);
+        police.move();
         police.draw(timeModulo);
-        timeModulo=(timeModulo+speed)%lineLength;       
+        timeModulo=(timeModulo+speed)%lineLength;
+        for(let i=0;i<vehicles.length;i++)
+        {
+          vehicles[i].move();
+          vehicles[i].draw();
+        }
       }
-      
+     
       function drawLane(x,modulo)
       {
         ctx.fillStyle = "rgba(255,255,0,1)";
@@ -58,17 +67,15 @@
         if(event.keyCode==37)//left
         {
           police.xVel-=1;
-          police.move();
-      }
+        }
         else if(event.keyCode==39)//right
         {
           police.xVel+=1;
-          police.move();
         }
       }
     </script>
   </head>
   <body onload="load()">
-    <canvas id="road" onkeydown="key()"></canvas>
+    <canvas id="road"></canvas>
   </body>
 </html>
