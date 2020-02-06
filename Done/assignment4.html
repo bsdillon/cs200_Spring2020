@@ -1,7 +1,68 @@
 <html>
   <head>
+    <script>
+      var buttonScript = "<button onclick='press(this)'>?</button>";
+      var count = 0;
+
+      function reset()
+      {
+        for(let i=0;i<9;i++)
+        {
+          document.getElementById(""+i).innerHTML=buttonScript;
+        }
+        count=0;
+      }
+
+      function press(button)
+      {
+        var parent = button.parentElement;
+        parent.innerHTML="X";
+        count++;
+        if(!checkWin()&&count<9)
+        {
+          var nextO = Math.floor(Math.random()*9);
+          while(document.getElementById(""+nextO).innerHTML.length==1)
+          {
+            nextO = Math.floor(Math.random()*9);
+          }
+          document.getElementById(""+nextO).innerHTML="O";
+          count++;
+          checkWin();
+        }
+      }
+
+      function checkWin()
+      {
+        var wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+
+        for(let i=0;i<wins.length;i++)
+        {
+          var token = document.getElementById(""+wins[i][0]).innerHTML;
+          if(token.length==1)
+          {
+            var token2 = document.getElementById(""+wins[i][1]).innerHTML;
+            var token3 = document.getElementById(""+wins[i][2]).innerHTML;
+            if(token===token2&&token2===token3)
+            {
+              alert(token+" wins!");
+              return true;
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      button {width:50; height:50;}
+      td {width:50; height:50; text-align:center;}
+      img {width:20; height:20;}
+    </style>
   </head>
   <body>
-    Not ready yet. Come back soon. :)
+    <button onclick="reset()"><img src="https://www.pngitem.com/pimgs/m/307-3071160_refresh-icon-png-transparent-png.png"></button>
+    <table>
+      <tr><td id="0"><button onclick="press(this)">?</button></td><td id="1"><button onclick="press(this)">?</button></td><td id="2"><button onclick="press(this)">?</button></td></tr>
+      <tr><td id="3"><button onclick="press(this)">?</button></td><td id="4"><button onclick="press(this)">?</button></td><td id="5"><button onclick="press(this)">?</button></td></tr>
+      <tr><td id="6"><button onclick="press(this)">?</button></td><td id="7"><button onclick="press(this)">?</button></td><td id="8"><button onclick="press(this)">?</button></td></tr>
+    </table>
   </body>
 </html>
