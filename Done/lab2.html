@@ -9,15 +9,17 @@
         var tmp = document.getElementById(from).src;
         document.getElementById(from).src = document.getElementById(to).src;
         document.getElementById(to).src = tmp;
+        document.getElementById("label"+from).innerHTML = "";
+        document.getElementById("label"+to).innerHTML = "- Ball";
       }
     </script>
   </head>
   <body>
-    <p><h1>Father</h1>
+    <p><h1>Father <span id="labelfather"></span></h1>
     <button onclick="throwFromTo('father','son')">Throw to son</button><br>
     <img id="father" src='https://lh3.googleusercontent.com/CT1M2pKlUhGx4w5UHqarn6oSU_sa7L7XRW2-hQrfNi9oou6W81PbJnWi-9PbEfC_3g' /></p>
     <p><img  id="son" src='https://www.freeiconspng.com/uploads/soccer-ball-balls-icon-12.png' /><br>
     <button onclick="throwFromTo('son','father')">Throw to father</button>
-    <h1>Son</h1></p>
+    <h1>Son <span id="labelson">Ball</span></h1></p>
   </body>
 </html>
