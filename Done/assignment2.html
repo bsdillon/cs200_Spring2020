@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <script>
+      var next="black";
+      
+      function switchTo(classN)
+      {
+        var tmp = body.classes;
+        body.class=next;
+        next=tmp;
+      }
+    </script>
+    <style>
+      .dark {color:black;}
+      .light {color:white;}
+      .white {background-color:white;}
+      .black {background-color:black;}
+    </style>
+  </head>
+  <body class="white">
+    <p class="dark">
+      You are my sunshine<br>
+      My only sunshine!<br>
+      You make me happy<br>
+      When skies are gray!
+    </p>
+    <button onclick="switchTo(next)">Bipolar</button>
+    <p class="light">
+      Hello darkness my old friend<br>
+      I've come to talk with you again.
+    </p>
+  </body>
+</html>
