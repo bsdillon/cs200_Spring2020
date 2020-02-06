@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <style>
+      img {width=200px; height:200px;}
+    </style>
+    <script>
+      function throwTo(from, to)
+      {
+        var tmp = document.getElementById(from).src;
+        document.getElementById(from).src = document.getElementById(to).src;
+        document.getElementById(to).src = tmp;
+      }
+    </script>
+  </head>
+  <body>
+    <p><h1>Father</h1>
+    <button onclick="throwFromTo('father','son')"></button>
+    <img id="father" src='https://lh3.googleusercontent.com/CT1M2pKlUhGx4w5UHqarn6oSU_sa7L7XRW2-hQrfNi9oou6W81PbJnWi-9PbEfC_3g' /></p>
+    <p><img  id="son" src='https://www.freeiconspng.com/uploads/soccer-ball-balls-icon-12.png' />
+    <button onclick="throwFromTo('son','father')"></button>
+    <h1>Son</h1></p>
+  </body>
+</html>
