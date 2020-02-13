@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script>
+function Dog(name)
+{
+  this.petName=name;
+}
+
+Dog.prototype.StartBark = function() {
+   var me = this;
+   var call = function() { me.bark(); }
+   this.barker = setInterval(call, 1000);
+}
+
+Dog.prototype.bark = function () {
+  alert(this.petName+" says bark!");
+}
+
+Dog.prototype.StopBark = function() {
+   clearInterval(this.barker);
+}
+
+var dog = new Dog("Fido");
+dog.StartBark();
+var stop = function (){dog.StopBark()};
+setTimeout(stop,5000);
+    </script>
+  </head>
+</html>
