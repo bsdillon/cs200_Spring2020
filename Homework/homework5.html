@@ -45,7 +45,7 @@ function Flower()
       </li>
       <li>We also need to add two lines that complete the link between Plant and Flower. These lines say "The Flower prototype starts from the Plant prototype" and "The Flower prototype uses the constructor Flower".
 <code><pre>
-Flower.prototype = Plant.prototype;
+Flower.prototype = Object.create(Plant.prototype);
 Flower.prototype.constructor = Flower;
 </pre></code>
       </li>
