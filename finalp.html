@@ -1,0 +1,163 @@
+<html>
+  <head>
+  <style>
+    table, td {text-align:center; border:1px solid black;}
+    .red {color:red;}
+  </style>
+  <script>
+    var rng;
+
+    function RNG(s)
+    {
+      this.m = 0X80000000;
+      this.a = 1103515245;
+      this.c = 12345;
+
+      this.seed = s ? s : Math.floor(Math.random() * (this.m-1));
+    }
+
+    RNG.prototype.nextInt = function()
+    {
+      this.seed = (this.a * this.seed + this.c) % (this.m-1);
+      return this.seed;
+    }
+
+    RNG.prototype.nextFloat = function()
+    {
+      return this.nextInt() / (this.m - 1);
+    }
+
+    function Random()
+    {
+       return rng.nextFloat();
+    }
+
+    var showAnswers = false;
+    function newExam()
+    {
+      var num = Math.floor(Math.random()*10000+5000);
+      examID.value=num;
+      loadExam(false);
+    }
+
+    function loadExam(shouldAnswer)
+    {
+      showAnswers=shouldAnswer;
+      var x = examID.value;
+      x=parseInt(x);
+      if(isNaN(x))
+      {
+        alert("Value "+examID.value+" is NOT an integer");
+        newExam();
+        return;
+      }
+      x=x%15000;
+      rng = new RNG(x);
+      examID.value=x;
+      createExam();
+    }
+
+    function decToBinary(dec)
+    {
+      var bin = "";
+      var tmp = dec;
+      var p = 1;
+      while(tmp>0)
+      {
+        if(tmp%2==1)
+        {
+          bin="1"+bin;
+        }
+        else
+        {
+          bin="0"+bin;
+        }
+
+        p*=2;
+        tmp=Math.floor(tmp/2);
+      }
+
+      while(bin.length<8)
+      {
+        bin="0"+bin;
+      }
+
+      bin = bin.slice(0,4)+" "+bin.slice(4,8);
+      return bin;
+    }
+
+    function createExam()
+    {
+      lines = [];
+      var index=0;
+      var r = Math.floor(Random()*4);
+      var map= ["binary","octal","decimal","hexadecimal"];
+      var s="Describe the advantages of encoding a number as "+map[r];
+      lines[index++]=s+".<br>";
+
+      var dec = Math.floor(Random()*128+120);
+      var bin = decToBinary(dec);
+      var hMap =['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+      var hex=hMap[Math.floor(dec/16)]+hMap[dec%16];
+      var oct=''+(Math.floor(dec/64))+(Math.floor(dec/8)%8)+(dec%8);
+    
+      r = Math.floor(Random()*4);
+      s="<table><tr><th colspan='4'>Convert the number into the other bases</th></tr><tr><th>Base-10</th><th>Base-2</th><th>Base 8</th><th>Base 16</th></tr>";
+      if(showAnswers)
+      {
+        s+="<tr class='red'>";
+      }
+      else
+      {
+        s+="<tr>";
+      }
+      s+="<td>";
+      if(r==0||showAnswers){s+=dec;}
+      s+="</td><td>";
+      if(r==1||showAnswers){s+=bin;}
+      s+="</td><td>";
+      if(r==2||showAnswers){s+=oct;}
+      s+="</td><td>";
+      if(r==3||showAnswers){s+=hex;}
+      s+="</td></tr></table>";
+      lines[index++]=s+"<br>";
+
+      s="Create a truth table for ";
+      r=Math.floor(Random()*3);
+      if(r==0)
+      {
+        s+="!A &and; (C &or; B)";
+      }
+      else if(r==1)
+      {
+        s+="(A &or; !A) or B";
+      }
+      else if(r==2)
+      {
+        s+="(!A &and; B) &or; !C";
+      }
+      lines[index++]=s+".<br>";
+
+      var final="<ol>";
+      while(lines.length>0)
+      {
+        index=lines.length-1;
+        //index=Math.floor(Random()*lines.length);
+        tmp=lines[index];
+        lines.splice(index,1);
+        final+="<li>"+tmp+"</li>";
+      }
+      final+="</ol>";
+      output.innerHTML=final;
+    }
+  </script>
+  </head>
+  <body>
+    <button onclick="newExam()">Randomize</button><br>
+    <p><b>Exam ID: </b><input type="text" id="examID"></input>
+    <button onClick="loadExam(false)">Load</button>
+    <button onClick="loadExam(true)">Answer</button></p>
+    <p id="output"></p>
+  </body>
+</html>
+
