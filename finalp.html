@@ -92,8 +92,21 @@
       var index=0;
       var r = Math.floor(Random()*4);
       var map= ["binary","octal","decimal","hexadecimal"];
-      var s="Describe the advantages of encoding a number as "+map[r];
-      lines[index++]=s+".<br>";
+      var s="Describe the advantages of encoding a number as "+map[r]+". When is it typically used?<br>";
+      if(showAnswers)
+      {
+        s+="<p class='red'>";
+      }
+      else
+      {
+        s+="<p>";
+      }
+      if(r==0&&showAnswers){s+="Binary has only two values: on and off. Computers can understand electricity on/off. All computer memory really is binary.";}
+      if(r==1&&showAnswers){s+="Octal is no longer used as often. It is mostly found in security programs and aircraft transponder codes.";}
+      if(r==2&&showAnswers){s+="Decimal has ten values like our hands. Humans are taught to work with decimal early on and are most comfortable with decimal.";}
+      if(r==3&&showAnswers){s+="Hexadecimal needs new digits A to F, but it compresses large numbers into few digits and aligns perfectly with bytes.";}
+
+      lines[index++]=s+"</p>";
 
       var dec = Math.floor(Random()*128+120);
       var bin = decToBinary(dec);
@@ -126,17 +139,69 @@
       r=Math.floor(Random()*3);
       if(r==0)
       {
-        s+="!A &and; (C &or; B)";
+        s+="!A &and; (C &or; B).<br>";
       }
       else if(r==1)
       {
-        s+="(A &or; !A) or B";
+        s+="(A &or; !A) &or; B.<br>";
       }
       else if(r==2)
       {
-        s+="(!A &and; B) &or; !C";
+        s+="(!A &and; B) &or; !C.<br>";
       }
-      lines[index++]=s+".<br>";
+
+      if(showAnswers)
+      {
+        s+="<p class='red'>";
+      }
+      else
+      {
+        s+="<p>";
+      }
+
+      if(r==0&&showAnswers)
+      {
+        s+="Remember that the values for A, B, and C represent all the number 0 to 7<br>";
+        s+="<table class='red'>"
+        s+="<tr><th>#val</th><th>A</th><th>B</th><th>C</th><th>C&or;B</th><th>A&and;(C&or;B)</th></tr>";
+        s+="<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
+        s+="<tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>";
+        s+="<tr><td>2</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td></tr>";
+        s+="<tr><td>3</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td></tr>";
+        s+="<tr><td>4</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
+        s+="<tr><td>5</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>";
+        s+="<tr><td>6</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>";
+        s+="<tr><td>7</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>";
+        s+="</table>"
+      }
+      else if(r==1&&showAnswers)
+      {
+        s+="Remember that the values for A and B represent all the number 0 to 3<br>";
+        s+="<table class='red'>"
+        s+="<tr><th>#val</th><th>A</th><th>B</th><th>!A</th><th>A&or;!A</th><th>(A&or;!A)&or;B</th></tr>";
+        s+="<tr><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>";
+        s+="<tr><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>";
+        s+="<tr><td>2</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>";
+        s+="<tr><td>3</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>";
+        s+="</table>"
+      }
+      else if(r==2&&showAnswers)
+      {
+        s+="Remember that the values for A, B, and C represent all the number 0 to 7<br>";
+        s+="<table class='red'>"
+        s+="<tr><th>#val</th><th>A</th><th>B</th><th>C</th><th>!A</th><th>!C</th><th>!A&and;B</th><th>(!A&and;B)&or;!C</th></tr>";
+        s+="<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>";
+        s+="<tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>";
+        s+="<tr><td>2</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>";
+        s+="<tr><td>3</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>1</td></tr>";
+        s+="<tr><td>4</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>";
+        s+="<tr><td>5</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
+        s+="<tr><td>6</td><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td></tr>";
+        s+="<tr><td>7</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>";
+        s+="</table>"
+      }
+
+      lines[index++]=s+"</p>";
 
       var final="<ol>";
       while(lines.length>0)
