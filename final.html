@@ -1,0 +1,329 @@
+<html>
+  <head>
+  <style>
+    table, td {text-align:center; border:1px solid black;}
+    .red {color:red;}
+  </style>
+  <script>
+    var rng;
+
+    function RNG(s)
+    {
+      this.m = 0X80000000;
+      this.a = 1103515245;
+      this.c = 12345;
+
+      this.seed = s ? s : Math.floor(Math.random() * (this.m-1));
+    }
+
+    RNG.prototype.nextInt = function()
+    {
+      this.seed = (this.a * this.seed + this.c) % (this.m-1);
+      return this.seed;
+    }
+
+    RNG.prototype.nextFloat = function()
+    {
+      return this.nextInt() / (this.m - 1);
+    }
+
+    function Random()
+    {
+       return rng.nextFloat();
+    }
+
+    var showAnswers = false;
+    function newExam()
+    {
+      var num = Math.floor(Math.random()*10000+5000);
+      examID.value=num;
+      loadExam(false);
+    }
+
+    function loadExam(shouldAnswer)
+    {
+      showAnswers=shouldAnswer;
+      var x = examID.value;
+      x=parseInt(x);
+      if(isNaN(x))
+      {
+        alert("Value "+examID.value+" is NOT an integer");
+        newExam();
+        return;
+      }
+      x=x%15000;
+      rng = new RNG(x);
+      examID.value=x;
+      createExam();
+    }
+
+    function decToBinary(dec)
+    {
+      var bin = "";
+      var tmp = dec;
+      var p = 1;
+      while(tmp>0)
+      {
+        if(tmp%2==1)
+        {
+          bin="1"+bin;
+        }
+        else
+        {
+          bin="0"+bin;
+        }
+
+        p*=2;
+        tmp=Math.floor(tmp/2);
+      }
+
+      while(bin.length<8)
+      {
+        bin="0"+bin;
+      }
+
+      bin = bin.slice(0,4)+" "+bin.slice(4,8);
+      return bin;
+    }
+
+    function createExam()
+    {
+      lines = [];
+      var index=0;
+      var r = Math.floor(Random()*4);
+      var map= ["binary","octal","decimal","hexadecimal"];
+      var s="Describe the advantages of encoding a number as "+map[r];
+      lines[index++]=s+".<br>";
+
+      var dec = Math.floor(Random()*128+120);
+      var bin = decToBinary(dec);
+      var hMap =['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+      var hex=hMap[Math.floor(dec/16)]+hMap[dec%16];
+      var oct=''+(Math.floor(dec/64))+(Math.floor(dec/8)%8)+(dec%8);
+    
+      r = Math.floor(Random()*4);
+      s="<table><tr><th colspan='4'>Convert the number into the other bases</th></tr><tr><th>Base-10</th><th>Base-2</th><th>Base 8</th><th>Base 16</th></tr>";
+      if(showAnswers)
+      {
+        s+="<tr class='red'>";
+      }
+      else
+      {
+        s+="<tr>";
+      }
+      s+="<td>";
+      if(r==0||showAnswers){s+=dec;}
+      s+="</td><td>";
+      if(r==1||showAnswers){s+=bin;}
+      s+="</td><td>";
+      if(r==2||showAnswers){s+=oct;}
+      s+="</td><td>";
+      if(r==3||showAnswers){s+=hex;}
+      s+="</td></tr></table>";
+      lines[index++]=s+"<br>";
+
+      s="Create a truth table for ";
+      r=Math.floor(Random()*3);
+      if(r==0)
+      {
+        s+="!A &and; (C &or; B)";
+      }
+      else if(r==1)
+      {
+        s+="(A &or; !A) or B";
+      }
+      else if(r==2)
+      {
+        s+="(!A &and; B) &or; !C";
+      }
+      lines[index++]=s+".<br>";
+
+      s="Define these two terms as they apply to computer architecture: ";
+      tmp = ["Input","Output","Processor","Memory"];
+      for(let i=0;i<2;i++)
+      {
+        let x = Math.floor(Random()*tmp.length);
+        s+=tmp[x]+" ";
+        if(i==0){s+="and ";}
+        tmp.splice(x,1);
+      }
+      lines[index++]=s+".<br>";
+
+      s="What is the purpose of a 'NIC' card?";
+      if(Random()<.5)
+      {
+        s="What is the purpose of a 'Graphics' card?";
+      }
+      lines[index++]=s+".<br>";
+
+      dec=Math.floor(Random()*10+5);
+      dec2=Math.floor(Random()*3+2);
+      tmp = dec2;
+      ans = dec;
+      while(tmp>0)
+      {
+        ans+=tmp--;
+      }
+      s="Draw a table with registers A, B, and PC as rows. In each column from left show changes in the register values for each of the 6 instructions.<table>";
+      s+="<tr><th>Memory#</th><th>Instruction</th></tr>";
+      s+="<tr><td>0</td><td>Load <b><em>7</em></b> to A</td></tr>";
+      s+="<tr><td>1</td><td>Load <b><em>8</em></b> to B</td></tr>";
+      s+="<tr><td>2</td><td>A+B->A</td></tr>";
+      s+="<tr><td>3</td><td>B-1->B</td></tr>";
+      s+="<tr><td>4</td><td>if B=0 Jmp 6</td></tr>";
+      s+="<tr><td>5</td><td>Jmp 2</td></tr>";
+      s+="<tr><td>6</td><td>Write A to <b><em>9</em></b></td></tr>";
+      s+="<tr><td>7</td><td>"+dec+"</td></tr>";
+      s+="<tr><td>8</td><td>"+dec2+"</td></tr>";
+      s+="<tr><td>9</td><td>";
+      if(showAnswers)
+      {
+        s+="<span class='red'>"+ans+"</span>";
+      }
+      s+="</td></tr>";
+      s+="</table>";
+      lines[index++]=s+".<br>";
+
+      r = Math.floor(Random()*3);
+      tmp = ["operating system","virtual machine","container"];
+      s="Define the term "+tmp[r];      
+      lines[index++]=s+".<br>";
+
+      r = Math.floor(Random()*3);
+      s="Explain the way that the "+tmp[r]+" provides a layer of abstraction";
+      lines[index++]=s+".<br>";
+
+      tmp = ["desktop","web","mobile"];
+      r = Math.floor(Random()*3);
+      s="Explain one advantage and one disadvantage of "+tmp[r]+" development.";
+      lines[index++]=s+".<br>";
+
+      tmp = ["memory","networking","processors"];
+      r = Math.floor(Random()*3);
+      s="What is Moore's law? Explain using an example related to "+tmp[r];
+      lines[index++]=s+".<br>";
+
+      s="Suppose that in five years every financial transaction, every contract, every check you sign might require a digital signature from a RF ID chip embeded in your wrist. Give two examples of how your identity and privacy may be affected by this technology";
+      lines[index++]=s+".<br>";
+
+      s="Give two reasons why style standards and coding conventions exist";
+      lines[index++]=s+".<br>";
+
+      s="Name three things you can do to secure your personal information, bank account, or hand-held device";
+      lines[index++]=s+".<br>";
+
+      s="For each password below, indicate if the password is secure or not and why.<br><ul>";
+      tmp =["password","ThisIsMyStupidPassword","7h1$1$My$7up!dP@$$w0rd","BirthdayJan1@2004","J3llyB3llyB3@n$","C@n7R3@d!7","Lynn","book!@#$%","abc123!","Qwerty!2"];
+      for(let i=0;i<3;i++)
+      {
+        x=Math.floor(Random()*tmp.length);
+        s+="<li>"+tmp[x]+"</li>";
+        tmp.splice(x,1);
+      }
+      s+="</ul>";
+      lines[index++]=s;
+
+      tmp = ["requirements analysis","design","implementation","testing", "maintenance"];
+      r = Math.floor(Random()*5);
+      s="Describe the "+tmp[r]+" step of software development";
+      lines[index++]=s+".<br>";
+
+      tmp = ["waterfall","spiral","agile"];
+      r = Math.floor(Random()*3);
+      s="Name an advantage and a disadvantage of the "+tmp[r]+" programming paradigm";
+      lines[index++]=s+".<br>";
+
+      dec="Developer";
+      dec2="System Administrator";
+      if(Random()<.5){tmp=dec;dec=dec2;dec2=tmp;}
+      s="How does the work of the "+dec+" affect the work of the "+dec2+"? How does DevOps resolve this issue?";
+      lines[index++]=s+"<br>";
+
+      s="Does this behavior demonstrate intelligence? Why?";
+      r = Math.floor(Random()*5);
+      if(r==0)
+      {
+        s="Lava oozes out of a volcano and runs down hill because it knows that in the ocean young lavas become grown up rocks. The new born lava recognizes and follows the slope of the volcano to find its goal. "+s;
+      }
+      else if(r==1)
+      {
+        s="Birds at my work keep trying to build a nest on top of a street lamp. Every year they drop more sticks onto cars. The whole nest is in danger of falling off and killing the baby. Obviously, this is a bad nesting site. "+s;
+      }
+      else if(r==2)
+      {
+        s="Crabs sense bait inside a crab pot. They climb all over until they find a way in. They can't get to the bait and now they can't get out. This happens hundreds of times a day with various animals. They always fall for the same trap. "+s;
+      }
+      else if(r==3)
+      {
+        s="People know that smoking is dangerous. We all know people who smoke. Some of them have been trying to quit for years, but they still can't. Even when they are dying of cancer or suffering from emphysema, they often keep smoking. "+s;
+      }
+      else
+      {
+        s="Research has shown that people gambling at a roulette wheel will lose every dollar. They lose some and then keep betting because they are certain their luck will turn around. In spite of statistics that shows they will lose, they keep playing. "+s;
+      }
+      lines[index++]=s+"<br>";
+
+      r = Math.floor(Random()*3);
+      if(r==0)
+      {
+        s="I looked up some 80's rock songs on YouTube. The next day it suggested a list of 50 songs which I would probably like. This was great. All songs from the same era.";
+      }
+      else if(r==1)
+      {
+        s="Sometimes I write an email and forget to attach a document. Now Outlook reminds me that I meant to attach something. Twice it has saved me from having to resend the document. I have no idea how it knows, but it does.";
+      }
+      else
+      {
+        s="My car can tell me when I'm about to back over something, when I am too close to another car, when I am drifting out of my lane, and when my air pressure is getting low. Now the thing can even parallel park better than me.";
+      }
+      s+" Does this pass the Turing test? Why?"
+      lines[index++]=s+"<br>";
+
+      tmp = ["a cell phone working with a human","a car on a trip across country","a web 'bot' searching the web"];
+      r = Math.floor(Random()*3);
+      s="Consider "+tmp[r]+" as an Artificial Lifeform. What are its 'senses'? What does it 'remember'? How does it 'act' or 'communicate'?";
+      lines[index++]=s+"<br>";
+
+      tmp = ["wash clothes","plant a garden","make instant soup","fry an egg"];
+      r = Math.floor(Random()*4);
+      s="Describe the algorithm you use to "+tmp[r];
+      lines[index++]=s+".<br>";
+
+      tmp = ["memory","speed","power"];
+      r = Math.floor(Random()*3);
+      s="Explain the importance of algorithmic efficiency in terms of "+tmp[r];
+      lines[index++]=s+".<br>";
+
+      tmp = ["average","sum","maximum","minimum"];
+      r = Math.floor(Random()*4);
+      s="Write an algorithm to compute the "+tmp[r]+" of a set of numbers";
+      lines[index++]=s+".<br>";
+
+      tmp = ["procedural","functional","object-oriented","logical"];
+      r = Math.floor(Random()*4);
+      s="Describe the features of a "+tmp[r]+" programming language";
+      lines[index++]=s+".<br>";
+
+      var final="<ol>";
+      while(lines.length>0)
+      {
+        index=lines.length-1;
+        //index=Math.floor(Random()*lines.length);
+        tmp=lines[index];
+        lines.splice(index,1);
+        final+="<li>"+tmp+"</li>";
+      }
+      final+="</ol>";
+      output.innerHTML=final;
+    }
+  </script>
+  </head>
+  <body>
+    <button onclick="newExam()">Randomize</button><br>
+    <p><b>Exam ID: </b><input type="text" id="examID"></input>
+    <button onClick="loadExam(false)">Load</button>
+    <button onClick="loadExam(true)">Answer</button></p>
+    <p id="output"></p>
+  </body>
+</html>
+

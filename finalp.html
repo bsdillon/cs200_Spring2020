@@ -203,6 +203,54 @@
 
       lines[index++]=s+"</p>";
 
+
+      s="Define these two terms as they apply to computer architecture: ";
+      tmp = ["Input","Output","Processor","Memory"];
+      tmp2 = ["Input devices allow the user to tell the computer information","Output devices allow the computer to tell the user information","The processor does all the thinking in the computer: math and logic","Memory holds all data and the program itself"]
+      var answer = "";
+      for(let i=0;i<2;i++)
+      {
+        let x = Math.floor(Random()*tmp.length);
+        s+=tmp[x]+" ";
+        answer+=tmp2[x]+"<br>";
+        if(i==0){s+="and ";}
+        tmp.splice(x,1);
+      }
+
+      if(showAnswers)
+      {
+        s+="<p class='red'>"+answer;
+      }
+      else
+      {
+        s+="<p>";
+      }
+
+      s+="</p>"
+
+      lines[index++]=s+".<br>";
+
+      s="What is the purpose of a 'NIC' card?<br>";
+      answer = "The NIC (network interface card) allows the computer to connect to another over the internet."
+      if(Random()<.5)
+      {
+        s="What is the purpose of a 'Graphics' card?<br>";
+        answer="The graphics card allows the computer to put information on the screen, especially doing math that is specific to graphics.";
+      }
+
+      if(showAnswers)
+      {
+        s+="<p class='red'>"+answer;
+      }
+      else
+      {
+        s+="<p>";
+      }
+
+      s+="</p>"
+      lines[index++]=s;
+
+
       var final="<ol>";
       while(lines.length>0)
       {
