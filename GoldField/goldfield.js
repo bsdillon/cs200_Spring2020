@@ -41,7 +41,7 @@ function GoldField(tag, block_size, block_width, block_height)
    this.Hero = null;
    this.Tower = null;
 
-   this.tag.style.backgroundImage="url('grass.jfif')";
+   this.tag.style.backgroundImage="url('https://bsdillon.github.io/cs200_Spring2020/GoldField/grass.jfif')";
    this.tag.style.backgroundSize="250px 150px";
    this.tag.style.backgroundRepeat="repeat";
 
