@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <script>
+      function start()
+      {
+        var a = 2;
+        var b = 10;
+        var c = 5;
+        var d = 0;
+        out(0,a,b,c,d,"--");
+        while(a>0)
+        {
+          out(3,a,b,c,d,"--");
+          if(b>c)
+          {
+            out(6,a,b,c,d,"--");
+            for(let i=0;i<b-c;i++)
+            {
+              d+=i;
+              out(10,a,b,c,d,i);
+            }
+            out(12,a,b,c,d,"--");
+          }
+          else
+          {
+            d*=2;
+            out(17,a,b,c,d,"--");
+          }
+          b/=2;
+          a--;
+          out(21,a,b,c,d,"--");
+        }
+        out(23,a,b,c,d,"--");
+      }
+
+      function out(l,a,b,c,d,i)
+      {
+        var r = output.insertRow(-1);
+        r.insertCell(0).innerHTML=""+l;
+        r.insertCell(1).innerHTML=""+a;
+        r.insertCell(2).innerHTML=""+b;
+        r.insertCell(3).innerHTML=""+c;
+        r.insertCell(4).innerHTML=""+d;
+        r.insertCell(5).innerHTML=""+i;
+      }
+    </script>
+  </head>
+  <body onload="start()">
+    <table id="output">
+      <tr><th>Line</th><th>a</th><th>b</th><th>c</th><th>d</th><th>i</th></tr>
+    </table>
+  </body>
+</html>
