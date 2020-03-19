@@ -1,0 +1,17 @@
+<html>
+  <head>
+    <style>
+    </style>
+    <script>
+      function clickMe()
+      {
+        var count=0;
+        count++;
+        document.getElementByID("output").innerHtml="There have been "+count+" button pushes";
+      }
+    </script>
+  <body>
+    <button onclick="clickMe()">Push me</button>
+    <p id="Output">
+    </p>
+</html>
