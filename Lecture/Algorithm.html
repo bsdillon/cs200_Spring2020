@@ -1,0 +1,656 @@
+<html>
+  <head>
+    <style>
+      .blue {color:0000ff;}
+      .green {color:00ff00;}
+    </style>
+    <script>
+      var block = 6;
+      var boardSize = 500;
+      var points = [];
+      var numPoints;
+      var path = [];
+      var bestPath = [];
+      var partialPath = [];
+      var bestDist = Number.MAX_SAFE_INTEGER;
+      var running=false;
+
+      function newBoard()
+      {
+        running=false;
+        path = [];
+        bestPath = [];
+        partialPath = [];
+        bestDist = Number.MAX_SAFE_INTEGER;
+        output.innerHTML="";
+        best.innerHTML="";
+        numPoints = parseInt(pointCount.value,10);
+        points = {};
+        for(let i=0;i<numPoints;i++)
+        {
+          points[i]=[Math.floor(Math.random()*(boardSize-block))+(block/2),Math.floor(Math.random()*(boardSize-block))+(block/2)];
+        }
+        drawBoard();
+      }
+
+      var lineAlpha = .5;
+      function drawBoard()
+      {
+        var tag = document.getElementById("board");
+        var ctx = tag.getContext("2d");
+        var width = tag.width = boardSize;
+        var height = tag.height = boardSize;
+
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(0,0,0,1)";
+        ctx.fillRect(0,0,width,height);
+        ctx.fill();
+
+        for(let i=0;i<numPoints;i++)
+        {
+          var p = points[i];
+          ctx.beginPath();
+          ctx.fillStyle = "rgba(255,0,0,"+lineAlpha+")";
+          ctx.fillRect(p[0]-(block/2),p[1]-(block/2),block,block);
+          ctx.fill();
+          ctx.fillStyle = "rgba(255,255,0,1)";
+          ctx.fonts = "10px Arial";
+          ctx.fillText(""+i,p[0]-(block/2),p[1]-(block/2));
+        }
+
+        drawPartial(ctx);
+
+        drawPath(ctx, bestPath,"rgba(0,0,255,1)");
+
+        drawPath(ctx, path,"rgba(0,255,0,"+lineAlpha+")");
+      }
+
+      function drawPartial(ctx)
+      {
+        var color = "rgba(0,255,255,";
+        for(let i=0;i<partialPath.length;i++)
+        {
+            var tmp=partialPath[i];
+            ctx.beginPath();
+            ctx.strokeStyle=color+partialPath[i][2]+")";
+            var p = points[tmp[0]];
+            ctx.moveTo(p[0], p[1]);
+            var p = points[tmp[1]];
+            ctx.lineTo(p[0], p[1]);
+            ctx.stroke();
+        }
+      }
+
+      function drawPath(ctx, path,color)
+      {
+        if(path.length>1)
+        {
+          for(let i=0;i<path.length-1;i++)//first n to n+1 lines
+          {
+            ctx.beginPath();
+            ctx.strokeStyle=color;
+            var p = points[path[i]];
+            ctx.moveTo(p[0], p[1]);
+            var p = points[path[i+1]];
+            ctx.lineTo(p[0], p[1]);
+            ctx.stroke();
+          }
+
+          //last line n to 0
+          ctx.beginPath();
+          ctx.strokeStyle=color;
+          var p = points[path[path.length-1]];
+          ctx.moveTo(p[0], p[1]);
+          var p = points[path[0]];
+          ctx.lineTo(p[0], p[1]);
+          ctx.stroke();
+        }
+      }
+
+      function distance(i1, i2)
+      {
+        var p1 = points[i1];
+        var p2 = points[i2];
+        var dx = p1[0]-p2[0];
+        var dy = p1[1]-p2[1];
+        return Math.floor(Math.sqrt((dx*dx)+(dy*dy)));
+      }
+
+      function getPathLength(pts)
+      {
+          var dist = 0;
+          for(let i=0;i<pts.length-1;i++)//first n to n+1 lines
+          {
+            dist += distance(pts[i],pts[i+1]);
+          }
+
+          //last line n to 0
+          dist += distance(pts[pts.length-1],pts[0]);
+          return dist;
+      }
+
+      function checkPath()
+      {
+        if(path.length>1)
+        {
+          var dist = getPathLength(path);          
+          if(dist<bestDist)
+          {
+            var text = "Best Path - { ";
+            for(let i=0;i<path.length;i++)
+            {
+              bestPath[i]=path[i];
+              text+= path[i]+" ";
+            }
+            text+="} => "+dist;
+            bestDist=dist;
+            best.innerHTML=text;
+          }
+        }
+      }
+
+      var timeWait=250;
+      function newSpeed()
+      {
+        timeWait=parseInt(ms.value,10);
+      }
+
+      function stop()
+      {
+        running=false;
+      }
+
+      function newAlgo()
+      {
+        if(running)
+        {
+          return;//disallow two pushes
+        }
+
+        running=true;
+        path = [];
+        bestPath = [];
+        partialPath = [];
+        bestDist = Number.MAX_SAFE_INTEGER;
+        output.innerHTML="";
+        best.innerHTML="";
+        var selected = algo.value;
+        if(selected=="brute")
+        {
+          new Brute().run();
+        }
+        else if(selected=="random")
+        {
+          new RandomAlgo().run();
+        }
+        else if(selected=="genetic")
+        {
+          new Genetic().run();
+        }
+        else if(selected=="greedy")
+        {
+          new Greedy().run();
+        }
+        else if(selected=="ant")
+        {
+          new Ant().run();
+        }
+      }
+
+      function createRandomPath()
+      {
+        var temp = [];
+        for(let i=0;i<numPoints;i++)
+        {
+          temp.splice(Math.floor(Math.random()*path.length),0,i);
+        }
+        return temp;
+      }
+
+      function RandomAlgo()
+      {
+        this.count=0;
+      }
+
+      RandomAlgo.prototype.run = function()
+      {
+        var x = this;
+	setTimeout(function(){x.step();},timeWait);
+      }
+
+      RandomAlgo.prototype.step = function()
+      {
+        if(!running)
+        {
+          return;//halt before next step
+        }
+
+	this.think();
+
+        checkPath();
+        drawBoard();
+
+        var x = this;
+	setTimeout(function(){x.step();},timeWait);
+      }
+
+      RandomAlgo.prototype.think = function()
+      {
+        path = createRandomPath();
+
+        var text="";
+        for(let i=0;i<numPoints;i++)
+        {
+          text+=path[i]+" ";
+        }
+        this.count++;
+        output.innerHTML="Path "+this.count+" - { "+text+"}";
+      }
+
+      function Brute()
+      {
+        this.count=0;
+        this.final=false;
+        this.digits = [];
+        path=[];
+        for(let i=0;i<numPoints;i++)
+        {
+          path[i]=i;
+          this.digits[i]=i;
+        }
+        this.digits[numPoints-1]=0;
+      }
+
+      Brute.prototype = Object.create(RandomAlgo.prototype);
+      Brute.prototype.constructor = Brute;
+
+      Brute.prototype.think = function()
+      {
+        this.rollDigits(numPoints-1);//roll to next path
+        while(!this.validatePath())//check each path for validity
+        {
+          output.innerHTML="Searching for viable path...";
+          this.rollDigits(numPoints-1);//roll to next path
+        }
+      }
+
+      Brute.prototype.rollDigits = function(index)
+      {
+        //modulo "roll-over" for the digit
+        this.digits[index]=(this.digits[index]+1)%(numPoints);
+        if(this.digits[index]==0)//this was the roll over to zero
+        {
+          if(index==0)//if the digit being rolled is the first digit
+          {
+            //this is the last roll
+            this.finalize();
+            return;
+          }
+          this.rollDigits(index-1);//roll the next highest place
+        }
+      }
+
+      Brute.prototype.finalize = function()
+      {
+        //put in the best path again and prevent the next iteration
+        this.final=true;
+        running=false;
+        for(let i=0;i<path.length;i++)
+        {
+          path[i]=bestPath[i];
+        }
+      }
+
+      Brute.prototype.validatePath = function()
+      {
+        if(this.final)//approve the final state
+        {
+          output.innerHTML="Done";
+          return true;
+        }
+
+        var other = [];//add each digit to other
+
+        var text="";
+        for(let i=0;i<this.digits.length;i++)
+        {
+          if(other.indexOf(this.digits[i])>-1)
+          {
+            return false;//if a digit repeats, then the path is invalid
+          }
+          text+=this.digits[i]+" "
+          path[i]=this.digits[i];
+          other[i]=this.digits[i];
+        }
+        this.count++;
+        var dist = getPathLength(path);
+        output.innerHTML="Path "+this.count+" - { "+text+"} => "+dist;
+        return true;
+      }
+
+      function Genetic()
+      {
+        this.gen=0;
+        this.popSize=20;
+        this.population = [];
+        this.fitness = [];
+        this.winner=0;
+
+        for(let i=0;i<this.popSize;i++)
+        {
+          this.population[i]=createRandomPath();
+          this.fitness[i]=getPathLength(this.population[i]);
+          if(this.fitness[this.winner]>this.fitness[i])
+          {
+            this.winner=i;
+          }
+        }
+
+        for(let i=0;i<numPoints;i++)
+        {
+          bestPath[i]=this.population[this.winner][i];
+        }
+        this.gen=1;
+      }
+
+      Genetic.prototype = Object.create(RandomAlgo.prototype);
+      Genetic.prototype.constructor = Genetic;
+
+      Genetic.prototype.generation = function()
+      {
+        var last = this.population[this.winner];
+        this.population = [];
+        this.fitness = [];
+        this.winner=0;
+        for(let i=0;i<this.popSize;i++)
+        {
+          this.population[i]=[];
+          for(let j=0;j<numPoints;j++)
+          {
+            if(i<this.popSize/2)
+            {
+              this.population[i][j]=last[j];
+            }
+            else
+            {
+              this.population[i][j]=bestPath[j];
+            }
+          }
+        }
+
+        this.winner=0;
+        var mRate = this.popSize/(2.0*this.popSize);
+        for(let i=0;i<this.popSize;i++)
+        {
+          for(let j=0;j<numPoints;j++)
+          {
+            if(Math.random()<mRate)
+            {
+              var index = Math.floor(Math.random()*numPoints);
+              var holder = this.population[i][j];
+              this.population[i][j]=this.population[i][index]
+              this.population[i][index]=holder;
+            }
+          }
+          this.fitness[i]=getPathLength(this.population[i]);
+          if(this.fitness[this.winner]>this.fitness[i])
+          {
+            this.winner=i;
+          }
+          mRate*=.9;
+          if(i%(this.popSize/2)==0)
+          {
+            mRate=this.popSize/(2.0*this.popSize);
+          }
+        }
+        this.gen++;
+      }
+
+      Genetic.prototype.think = function()
+      {
+        var text="Generation "+this.gen+" - { ";
+        for(let i=0;i<numPoints;i++)
+        {
+          path[i]=this.population[this.winner][i];
+          text+=path[i]+" ";
+        }
+        var dist = getPathLength(path);
+        output.innerHTML=text+"} => "+dist;
+        this.generation()
+      }
+
+      function Greedy()
+      {
+        this.partialSize=0;
+        this.links=[];
+        this.pairs={};
+        this.distances = [];
+        for(let i=0;i<numPoints;i++)
+        {
+          this.links[i]=0;
+          this.pairs[i]=-1;
+          this.distances[i]=[];
+          for(let j=0;j<numPoints;j++)
+          {
+            if(i==j)
+            {
+              this.distances[i][j]=Number.MAX_SAFE_INTEGER;
+            }
+            else
+            {
+              this.distances[i][j]=distance(i,j);
+            }
+          }
+        }
+      }
+
+      Greedy.prototype = Object.create(RandomAlgo.prototype);
+      Greedy.prototype.constructor = Greedy;
+
+      Greedy.prototype.think = function()
+      {
+        var min=Number.MAX_SAFE_INTEGER;
+        var minI=-1;
+        var minJ=-1;
+        for(let i=0;i<numPoints;i++)
+        {
+          for(let j=0;j<numPoints;j++)
+          {
+            if(this.distances[i][j]<min && this.noSubPath(i,j))
+            {
+              min=this.distances[i][j];
+              minI=i;
+              minJ=j;
+            }
+          }
+        }
+
+        if(min==Number.MAX_SAFE_INTEGER)
+        {
+          //end of search
+          var current=0;
+          for(let i=0;i<numPoints;i++)
+          {
+            path[i]=current;
+            current=this.pairs[current];
+          }
+          running=false;
+          output.innerHTML="Done";
+          return;
+        }
+
+        for(let i=0;i<numPoints;i++)
+        {
+          this.distances[i][minJ]=Number.MAX_SAFE_INTEGER;//remove all links to the second node
+          for(let j=0;j<numPoints;j++)
+          {
+            this.distances[minI][j]=Number.MAX_SAFE_INTEGER;//remove all links from first node
+          }
+        }
+        this.distances[minJ][minI]=Number.MAX_SAFE_INTEGER;//remove same link in the other direction
+
+        this.pairs[minI]=minJ;
+        partialPath[this.partialSize++]=[minI,minJ,1];
+        output.innerHTML="Establishing shortest link "+minI+"->"+minJ;
+      }
+
+      Greedy.prototype.noSubPath = function(i,j)
+      {
+        var len=1;
+        var current=j;
+        while(this.pairs[current]!=-1)
+        {
+          len++;
+          if(this.pairs[current]==i)//path back to i
+          {
+            return len==numPoints;
+            break;
+          }
+          current=this.pairs[current];
+        }
+        return true;
+      }
+
+      function Scout(index)
+      {
+        //find initial path
+        this.location = index;
+        this.destination = Math.floor(Math.random()*numPoints);
+        while(this.location==this.destination)
+        {
+          this.destination = Math.floor(Math.random()*numPoints);
+        }
+      }
+
+      Scout.prototype.plan = function(allPaths)
+      {
+        var highest = 0;
+        var next = -1;
+        var random = -1;
+        for(let i=0;i<numPoints;i++)
+        {
+          //new location
+          if(i<this.location)
+          {
+            if(allPaths[i][this.location]>highest)
+            {
+              highest = allPaths[i][this.location];
+              next = i;
+            }
+            else if(Math.random()<.5)//keep one of the others
+            {
+              random=i;
+            }
+          }
+          else if(i>this.location)
+          {
+            if(allPaths[this.location][i]>highest)
+            {
+              highest = allPaths[this.location][i];
+              next = i;
+            }
+            else if(Math.random()<.5)//keep one of the others
+            {
+              random=i;
+            }
+          }
+        }
+
+        if(random>-1 && Math.random()>highest)//with some probability
+        {
+          next=random;//go on a random path.
+        }
+        this.destination=next;//set the next destination
+        this.location=this.destination;
+      }
+
+      Scout.prototype.mark = function(allPaths)
+      {
+        if(this.destination<this.location)
+        {
+          allPaths[this.destination][this.location]+=1;
+        }
+        else
+        {
+          allPaths[this.location][this.destination]+=1;
+        }
+      }
+
+      function Ant()
+      {
+        this.colony = [];
+        for(let i=0;i<5*numPoints;i++)
+        {
+          this.colony.push(new Scout(Math.floor(Math.random()*numPoints)));
+        }
+
+        this.allPaths=[];
+        for(let i=0;i<numPoints;i++)
+        {
+          this.allPaths[i]=[];
+          for(let j=0;j<numPoints;j++)
+          {
+            this.allPaths[i][j]=0;
+          }
+        }
+      }
+
+      Ant.prototype = Object.create(RandomAlgo.prototype);
+      Ant.prototype.constructor = Ant;
+
+      Ant.prototype.think = function()
+      {
+        for(let i=0;this.colony.length;i++)
+        {
+          this.colony[i].plan(this.allPaths);
+        }
+
+        for(let i=0;i<numPoints;i++)
+        {
+          for(let j=0;j<numPoints;j++)
+          {            
+            this.allPaths[i][j]*=.9;//reduce the current path value. by 10%
+          }
+        }
+        
+        for(let i=0;this.colony.length;i++)
+        {
+          this.colony[i].mark(this.allPaths);
+        }
+
+        partialPath[this.partialSize++]=[minI,minJ,1];
+      }
+    </script>
+  </head>
+  <body onload="newBoard()">
+     <label>Number of points</label>
+     <select id="pointCount" onchange="newBoard()">
+       <option value="5" selected>5</option>
+       <option value="10">10</option>
+       <option value="15">15</option>
+       <option value="20">20</option>
+       <option value="100">100</option>
+     </select>
+     <label>Algorithm</label>
+     <select id="algo" onchange="stop()">
+       <option value="random" selected>Random</option>
+       <option value="brute">Brute</option>
+       <option value="genetic">Genetic</option>
+       <option value="greedy">Greedy</option>
+       <option value="ant">Ant</option>
+     </select>
+     <label>Speed</label>
+     <select id="ms" onChange="newSpeed()">
+       <option value="500">Slowest</option>
+       <option value="350">Slower</option>
+       <option value="250" selected>Moderate</option>
+       <option value="150">Faster</option>
+       <option value="50">Fastest</option>
+     </select>
+     <button onclick="newAlgo()">Run</button>
+     <button onclick="stop()">Stop</button><br>
+     <canvas id="board"></canvas><br>
+     <span id="output" class="green"></span><br>
+     <span id="best" class="blue"></span>
+  </body>
+</html>
