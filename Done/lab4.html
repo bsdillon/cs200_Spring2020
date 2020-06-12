@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <style>
+      canvas {background-color:black;}
+    </style>
+    <script>
+      var ctx;
+      var pixels = [];
+      function loadme()
+      {
+        var c = document.getElementById("field");
+        c.width  = 400;
+        c.height = 300; 
+        c.style.width  = '400px';
+        c.style.height = '300px';
+        ctx = c.getContext("2d");
+
+        for(let i=0;i<
+      }
+    </script>
+  </head>
+  <body onload="loadme()">
+    <canvas id="field"></canvas>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <style>
+      canvas {background-color:black;}
+    </style>
+    <script>
+      var ctx;
+      var img;
+      function loadme()
+      {
+        var c = document.getElementById("field");
+        c.width  = 400;
+        c.height = 300; 
+        c.style.width  = '400px';
+        c.style.height = '300px';
+        ctx = c.getContext("2d");
+
+        img = new Image;
+        img.onload = function() {
+           startMoles();
+        };
+        img.src = "https://babylonbaroque.files.wordpress.com/2010/12/mole-262x350.png";
+      }
+ 
+      function startMoles()
+      {
+          var m = new Mole(0,0);
+          m.draw();
+          m = new Mole(20,20);
+          m.draw();
+          m = new Mole(40,40);
+          m.draw();
+      }
+
+      function Mole(x,y)
+      {
+        this.x=x;//this.x=Math.floor(Math.random()*100);
+        this.y=y;//this.y=Math.floor(Math.random()*100);
+      }
+
+      Mole.prototype.draw = function()
+      {
+        ctx.drawImage(img, this.x, this.y, 20, 20);
+      }
+    </script>
+  </head>
+  <body onload="loadme()">
+    <canvas id="field"></canvas>
+  </body>
+</html>
