@@ -11,7 +11,7 @@
         document.addEventListener("keydown", key, false);
         canvas = document.getElementById("road");
         ctx = canvas.getContext("2d");
-        width = canvas.width = 300;
+        width = canvas.width = 600;
         height = canvas.height = window.innerHeight*.9;
 
         speed = 35;
@@ -36,9 +36,10 @@
       {
         ctx.fillStyle = "rgba(0,0,0,1)";
         ctx.fillRect(0,0,width,height);
-        drawLane(laneStart,timeModulo);
-        drawLane(laneStart+laneWidth,timeModulo);
-        drawLane(laneStart+(2*laneWidth),timeModulo);
+        for(let i=0;i<5;i++)
+        {
+          drawLane(laneStart+(i*laneWidth),timeModulo);
+        }
         police.move();
         police.draw(timeModulo);
         timeModulo=(timeModulo+speed)%lineLength;
