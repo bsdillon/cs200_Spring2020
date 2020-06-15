@@ -81,9 +81,9 @@ Police.prototype.move = function()
     this.xVel = 0;
   }
 
-  if(this.x>laneStart+(2*laneWidth))
+  if(this.x>laneStart+((laneCount-1)*laneWidth))
   {
-    this.x = laneStart+(2*laneWidth);
+    this.x = laneStart+((laneCount-1)*laneWidth);
     this.xVel = 0;
   }
 }
