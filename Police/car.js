@@ -22,7 +22,7 @@ vehicles = new Array();
 
 function addCar()
 {
-  vehicles.push(new Car(laneStart+(Math.floor(Math.random()*3)*laneWidth)));
+  vehicles.push(new Car(laneStart+(Math.floor(Math.random()*laneCount)*laneWidth)));
 }
 
 function Car(lane)
