@@ -69,10 +69,18 @@
       {
         if(event.keyCode==37)//left
         {
+          if(police.xVel>0)
+          {
+            poiice.xVel=0;
+          }
           police.xVel-=1;
         }
         else if(event.keyCode==39)//right
         {
+          if(police.xVel<0)
+          {
+            poiice.xVel=0;
+          }
           police.xVel+=1;
         }
       }
