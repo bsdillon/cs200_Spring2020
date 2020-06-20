@@ -5,6 +5,12 @@ function buildAll()
   scene.add(drawPanel(farLeft,level,back-width,farRight,level+.25,front,"foundation"));
   level += .35;
 
+  leftBox();
+  rightBox();
+}
+
+function leftBox()
+{
   //left wall
   scene.add(drawPanel(farLeft,level,back,farLeft,level+height,front,"ext"));
   for(let i=0;i<5;i++)
@@ -14,16 +20,8 @@ function buildAll()
 
   //interior partitions
   scene.add(drawPanel(farLeft+width,level,back,farLeft+width+(margin*2),level+height,back+width,"int"));
-  scene.add(drawPanel(farLeft+width,level,back+(3*width/2),farLeft+width+(margin*2),level+height,back+width,"int"));
+  scene.add(drawPanel(farLeft+width,level,back+(2*width),farLeft+width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farLeft+width,level,front-width,farLeft+width+(margin*2),level+height,front-(2*width),"int"));
-  scene.add(drawPanel(farLeft+width,level,front-(5*width/2),farLeft+width+(margin*2),level+height,front-(2*width),"int"));
-}
-
-function other()
-{
-  //remnant of back wall and side of other box
-  scene.add(drawPanel(farLeft+width,level,back,farLeft+(3*width/2),level+height,back+(margin*2),"int"));
-  scene.add(drawPanel(farLeft+width,level,front-width,farLeft+(3*width/2),level+height,front-width+(margin*2),"int"));
 
   //front wall
   scene.add(drawPanel(farLeft,level,front,farLeft+width,level+height,front,"doors"));
@@ -31,7 +29,10 @@ function other()
 
   //top of box
   scene.add(drawPanel(farLeft,level+height,front,farLeft+width,level+height,back,"top"));
+}
 
+function rightBox()
+{
   //right wall
   scene.add(drawPanel(farRight,level,back,farRight,level+height,front,"ext"));
   for(let i=0;i<5;i++)
@@ -41,9 +42,8 @@ function other()
 
   //interior partitions
   scene.add(drawPanel(farRight-width,level,back,farRight-width+(margin*2),level+height,back+width,"int"));
-  scene.add(drawPanel(farRight-width,level,back+(3*width/2),farRight-width+(margin*2),level+height,back+width,"int"));
+  scene.add(drawPanel(farRight-width,level,back+(2*width),farRight-width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farRight-width,level,front-width,farRight-width+(margin*2),level+height,front-(2*width),"int"));
-  scene.add(drawPanel(farRight-width,level,front-(5*width/2),farRight-width+(margin*2),level+height,front-(2*width),"int"));
 
   //remains of back wall
   scene.add(drawPanel(farRight-width,level,back,farRight-(3*width/2),level+height,back+(margin*2),"int"));
@@ -55,6 +55,13 @@ function other()
 
   //top of box
   scene.add(drawPanel(farRight,level+height,back,farRight-width,level+height,front,"top"));
+}
+
+function other()
+{
+  //remnant of back wall and side of other box
+  scene.add(drawPanel(farLeft+width,level,back,farLeft+(3*width/2),level+height,back+(margin*2),"int"));
+  scene.add(drawPanel(farLeft+width,level,front-width,farLeft+(3*width/2),level+height,front-width+(margin*2),"int"));
 
   //back panel
   scene.add(drawPanel(farLeft,level,back-width,farRight,level+height,back-width,"ext"));
