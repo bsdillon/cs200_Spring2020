@@ -4,7 +4,6 @@ function buildAll()
   //concrete floor
   scene.add(drawPanel(farLeft,level,back-width,farRight,level+.25,front,"foundation"));
   level += .35;
-  var margin=.1;
 
   //left wall
   scene.add(drawPanel(farLeft,level,back,farLeft,level+height,front,"ext"));
