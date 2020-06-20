@@ -6,12 +6,14 @@
     </style>
     <script src="./car.js"></script>
     <script>
+      var laneCount=6;
+      
       function load()
       {
         document.addEventListener("keydown", key, false);
         canvas = document.getElementById("road");
         ctx = canvas.getContext("2d");
-        width = canvas.width = 300;
+        width = canvas.width = (2*laneStart)+(laneCount*laneWidth);
         height = canvas.height = window.innerHeight*.9;
 
         speed = 35;
@@ -36,9 +38,10 @@
       {
         ctx.fillStyle = "rgba(0,0,0,1)";
         ctx.fillRect(0,0,width,height);
-        drawLane(laneStart,timeModulo);
-        drawLane(laneStart+laneWidth,timeModulo);
-        drawLane(laneStart+(2*laneWidth),timeModulo);
+        for(let i=0;i<laneCount;i++)
+        {
+          drawLane(laneStart+(i*laneWidth),timeModulo);
+        }
         police.move();
         police.draw(timeModulo);
         timeModulo=(timeModulo+speed)%lineLength;
@@ -66,16 +69,26 @@
       {
         if(event.keyCode==37)//left
         {
-          police.xVel-=1;
+          if(police.xVel>0)
+          {
+            //police.xVel=0;
+          }
+          police.xVel-=2;
         }
         else if(event.keyCode==39)//right
         {
-          police.xVel+=1;
+          if(police.xVel<0)
+          {
+            //police.xVel=0;
+          }
+          police.xVel+=2;
         }
       }
     </script>
   </head>
   <body onload="load()">
     <canvas id="road"></canvas>
+    <h2>Hey A & K!</h2>
+    <p>We should do some things to make this better for Ian. Give me a call the next time he's playing it.</p>
   </body>
 </html>
