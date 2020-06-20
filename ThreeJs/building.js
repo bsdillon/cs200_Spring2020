@@ -1,5 +1,10 @@
 function buildAll()
 {
+  //8ft w x 8.5ft h x 40ft l
+  //concrete floor
+  scene.add(drawPanel(farLeft,level,back-width,farRight,level+.25,front,"foundation"));
+  level += .35;
+  var margin=.1;
 
   //left wall
   scene.add(drawPanel(farLeft,level,back,farLeft,level+height,front,"ext"));
@@ -13,7 +18,10 @@ function buildAll()
   scene.add(drawPanel(farLeft+width,level,back+(3*width/2),farLeft+width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farLeft+width,level,front-width,farLeft+width+(margin*2),level+height,front-(2*width),"int"));
   scene.add(drawPanel(farLeft+width,level,front-(5*width/2),farLeft+width+(margin*2),level+height,front-(2*width),"int"));
+}
 
+function other()
+{
   //remnant of back wall and side of other box
   scene.add(drawPanel(farLeft+width,level,back,farLeft+(3*width/2),level+height,back+(margin*2),"int"));
   scene.add(drawPanel(farLeft+width,level,front-width,farLeft+(3*width/2),level+height,front-width+(margin*2),"int"));

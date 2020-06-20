@@ -12,6 +12,16 @@
       var renderer = new THREE.WebGLRenderer();
       loadTextures();
 
+      var level = -10;
+      var height = 8.5;
+      var length = 40;
+      var width = 8;
+
+      var farLeft = -20;
+      var farRight = 20;
+      var front = 20;
+      var back = -20;
+
       function load()
       {
         camera.position.y-=5;
@@ -22,20 +32,7 @@
 
         createBackground();
 
-        var level = -10;
-        var height = 8.5;
-        var length = 40;
-        var width = 8;
-
-        var farLeft = -20;
-        var farRight = 20;
-        var front = 20;
-        var back = -20;
-
-  //8ft w x 8.5ft h x 40ft l
-  scene.add(drawPanel(farLeft,level,back-width,farRight,level+.25,front,"foundation"));
-  level += .35;
-  var margin=.1;
+        buildAll();
 
         var render = function () {
           requestAnimationFrame(render);
