@@ -258,11 +258,4 @@ new THREE.Vector2(.3, 1)]);
   scene.add(makeStove(-4,-10,back-width));
   scene.add(makeFridge(-8,-10,back-width));
   //scene.add(makeSink(0,-6,front+20));
-
-  var render = function () {
-requestAnimationFrame(render);
-renderer.render(scene, camera);
-};
-
-  render();
 }
