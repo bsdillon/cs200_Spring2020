@@ -142,7 +142,7 @@ function backTopBox()
   scene.add(drawPanel(farLeft,level+height,back-width,farRight,level+height,back,"topH"));
 }
 
-function frontTopPanel()
+function frontTopBox()
 {
   //front top panel
   scene.add(drawPanel(farLeft,level,front,farRight,level+height,front,"ext"));
