@@ -110,6 +110,9 @@ function frontBox()
   var windowMargin = .1;
   drawWindow(farLeft+width,level,front+width-windowMargin,farLeft+width+windowSize,level+height,front+width+windowMargin);
   drawWindow(farRight-width,level,front+width-windowMargin,farRight-width-windowSize,level+height,front+width+windowMargin);
+
+  //floor
+  scene.add(drawPanel(farLeft,level+margin,back-width,farRight,level+margin,back,"floorH"));
 }
 
 function other()
