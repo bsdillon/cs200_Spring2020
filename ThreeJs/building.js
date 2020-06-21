@@ -145,13 +145,13 @@ function backTopBox()
 function frontTopBox()
 {
   //front top panel
-  scene.add(drawPanel(farLeft,level,front,farRight,level+height,front,"ext"));
+  scene.add(drawPanel(farLeft,level,front+width,farRight,level+height,front+width,"ext"));
   for(let i=0;i<5;i++)
   {//interior of the same and front wall
-    scene.add(drawPanel(farLeft+(i*width),level,front-margin,farLeft+((i+1)*width),level+height,front-margin,"int"));
+    scene.add(drawPanel(farLeft+(i*width),level,front+width-margin,farLeft+((i+1)*width),level+height,front+widht-margin,"int"));
     if(i>0&&i<4)
     {
-      scene.add(drawPanel(farLeft+(i*width),level,front-width-margin,farLeft+((i+1)*width),level+height,front-width-margin,"int"));
+      scene.add(drawPanel(farLeft+(i*width),level,front-margin,farLeft+((i+1)*width),level+height,front-margin,"int"));
     }
   }
 
@@ -171,15 +171,15 @@ function frontTopBox()
 function otherParts()
 {
   //windows on both sides
-  for(let i=0;i<4;i++)
+  for(let i=0;i<5;i++)
   {
-    drawWindow(farLeft,level,front-width-(i*windowSize), farLeft+windowMargin,level+height,front-width-((i+1)*windowSize));
-    drawWindow(farLeft+width,level,front-width-(i*windowSize), farLeft+width+windowMargin,level+4,front-width-((i+1)*windowSize));
-    if(i<3)
+    drawWindow(farLeft,level,front-(i*windowSize), farLeft+windowMargin,level+height,front-((i+1)*windowSize));
+    drawWindow(farLeft+width,level,front-(i*windowSize), farLeft+width+windowMargin,level+4,front-((i+1)*windowSize));
+    if(i<4)
     {
-      drawWindow(farRight-width,level,front-width-(i*windowSize), farRight-width+windowMargin,level+4,front-width-((i+1)*windowSize));
+      drawWindow(farRight-width,level,front-(i*windowSize), farRight-width+windowMargin,level+4,front-((i+1)*windowSize));
     }
-    drawWindow(farRight,level,front-width-(i*windowSize), farRight+windowMargin,level+height,front-width-((i+1)*windowSize));
+    drawWindow(farRight,level,front-(i*windowSize), farRight+windowMargin,level+height,front-((i+1)*windowSize));
   }
   drawWindow(farRight-width,level,back+(windowSize/2), farRight-width+windowMargin,level+4,back+width+windowSize);
 
