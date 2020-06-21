@@ -358,7 +358,7 @@ function otherParts()
   var islandDx=0;
   for(let i=0;i<5;i++)
   {
-    scene.add(makeCabinet(dx,_floor,back-(2*width)));
+    scene.add(makeCabinet(dx,_floor,back-(2*width),2,2.5));
     dx+=2;
     if(i==3)
     {
@@ -382,10 +382,9 @@ function otherParts()
   scene.add(createBarV(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
 
  
-  for(let i=0;i<3;i++)
+  for(let i=0;i<4;i++)
   {
-    scene.add(makeCabinet(islandDx+(i*2),_floor,back-width));
-    scene.add(makeCabinetBackward(islandDx+(i*2),_floor,back-width));
+    scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width,2,2));
   }
-  scene.add(drawPanel(islandDx,_floor+3.17,back-width-2.5,islandDx+6,_floor+3,back-width+2.5,"counters"));
+  scene.add(drawPanel(islandDx,_floor+3.17,back-width-2,islandDx+6,_floor+3,back-width+2,"counters"));
 }
