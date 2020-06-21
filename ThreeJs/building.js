@@ -89,6 +89,11 @@ function backBox()
   //remnant of back wall and side of other box
   scene.add(drawPanel(farLeft+width,level,back,farLeft+(3*width/2),level+height,back+(margin*2),"int"));
   scene.add(drawPanel(farRight-width,level,back,farRight-(3*width/2),level+height,back+(margin*2),"int"));
+
+  //bathroom wall
+  scene.add(drawPanel(farLeft+(2*width),level,back,farLeft+(2*width),level+height,back-(width/3),"int"));
+  scene.add(drawPanel(farLeft+(2*width),level,back-width,farLeft+(2*width),level+height,back-(2*width/3),"int"));
+  scene.add(drawPanel(farLeft+(width/3),level+6,back-width,farLeft+(2*width),level+height,back-(2*width/3),"int"));
 }
 
 function backbackBox()
@@ -115,6 +120,11 @@ function backbackBox()
   //remnant of back wall and side of other box
   //scene.add(drawPanel(farLeft+width,level,back,farLeft+(3*width/2),level+height,back+(margin*2),"int"));
   //scene.add(drawPanel(farRight-width,level,back,farRight-(3*width/2),level+height,back+(margin*2),"int"));
+
+  //pantry wall
+  scene.add(drawPanel(farLeft+(2*width),level,back,farLeft+(2*width),level+height,back-(width/3),"int"));
+  scene.add(drawPanel(farLeft+(2*width),level,back-width,farLeft+(2*width),level+height,back-(2*width/3),"int"));
+  scene.add(drawPanel(farLeft+(width/3),level+6,back-width,farLeft+(2*width),level+height,back-(2*width/3),"int"));
 }
 
 function frontBox()
@@ -334,7 +344,7 @@ function otherParts()
   var object = new THREE.Mesh( geom, textures["floor"] );
   scene.add(object);
 
-  scene.add(makeStove(-4,-10,back-width));
-  scene.add(makeFridge(-8,-10,back-width));
+  scene.add(makeStove(-4,-10,back-(2*width)));
+  scene.add(makeFridge(-8,-10,back-(2*width)));
   //scene.add(makeSink(0,-6,front+20));
 }
