@@ -27,6 +27,7 @@ function loadTextures()
   textures["top"] = makeMaterial("top.png",false);
   textures["topH"] = makeMaterial("top2.png",false);
   textures["extSect"] = makeMaterial("greyWall_sect.jpg",false);
+  textures["windSect"] = makeMaterial("greyWall_wind.png",false);
   textures["trees"] = makeMaterial("tree.png",true,false);
   textures["grass"] = makeMaterial("grass.jpg",true,true);
   textures["foundation"] = makeMaterial("concrete.jpg",true);

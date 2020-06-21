@@ -101,9 +101,9 @@ function frontBox()
 
   //remains of front box
   scene.add(drawPanel(farLeft,level,front+width,farLeft+width,level+height,front+width,"extSect"));
-  scene.add(drawPanel(farRight,level,front+width,farRight-width,level+height,front+width,"extSect"));
+  scene.add(drawPanel(farRight,level,front+width,farRight-width,level+height,front+width,"windSect"));
   scene.add(drawPanel(farLeft,level,front+width-margin,farLeft+width,level+height,front+width-margin,"int"));
-  scene.add(drawPanel(farRight,level,front+width-margin,farRight-width,level+height,front+width-margin,"int"));
+  //scene.add(drawPanel(farRight,level,front+width-margin,farRight-width,level+height,front+width-margin,"int"));
 
   //front doors
   var windowSize = (length-(2*width))/3;
@@ -112,7 +112,7 @@ function frontBox()
   drawWindow(farRight-width,level,front+width-windowMargin,farRight-width-windowSize,level+height,front+width+windowMargin);
 
   //floor
-  scene.add(drawPanel(farLeft,level+margin,back-width,farRight,level+margin,back,"floorH"));
+  scene.add(drawPanel(farLeft,level+margin,front,farRight,level+margin,front+width,"floorH"));
 }
 
 function other()
