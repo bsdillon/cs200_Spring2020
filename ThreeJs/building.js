@@ -188,10 +188,14 @@ function otherParts()
   scene.add(drawPanel(farRight,level+margin,back,farRight-width,level+margin,front,"floor"));
 
   //wall against stairs
-  scene.add(drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-height,back+windowSize),"int"));
-  scene.add(drawPanel(farRight-width-4,level,back+(2*windowSize),farRight-width-4,level-height,back+windowSize),"int"));
+  //half panel over door
   scene.add(drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-2,back,"int"));
-  drawWindow(farRight-width-4,level,back+windowSize/2,farRight-width-4,level+4,back+windowSize));
+  //half panel
+  scene.add(drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-height,back+windowSize),"int"));
+  //full panel
+  scene.add(drawPanel(farRight-width-4,level,back+(2*windowSize),farRight-width-4,level-height,back+windowSize),"int"));
+  //windows
+  drawWindow(farRight-width-4,level,back,farRight-width-4,level+4,back+windowSize));
   drawWindow(farRight-width-4,level,back+windowSize,farRight-width-4,level+4,back+(2*windowSize));
 
   //roof
