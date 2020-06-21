@@ -14,6 +14,7 @@ function buildAll()
   level += height;
 
   backTopBox();
+  frontTopBox();
   otherParts();
 }
 
@@ -176,7 +177,7 @@ function otherParts()
     drawWindow(farLeft+width,level,front-width-(i*windowSize), farLeft+width+windowMargin,level+4,front-width-((i+1)*windowSize));
     if(i<3)
     {
-drawWindow(farRight-width,level,front-width-(i*windowSize), farRight-width+windowMargin,level+4,front-width-((i+1)*windowSize));
+      drawWindow(farRight-width,level,front-width-(i*windowSize), farRight-width+windowMargin,level+4,front-width-((i+1)*windowSize));
     }
     drawWindow(farRight,level,front-width-(i*windowSize), farRight+windowMargin,level+height,front-width-((i+1)*windowSize));
   }
@@ -187,10 +188,11 @@ drawWindow(farRight-width,level,front-width-(i*windowSize), farRight-width+windo
   scene.add(drawPanel(farRight,level+margin,back,farRight-width,level+margin,front,"floor"));
 
   //wall against stairs
-  scene.add(drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-height,back+(3*windowSize/2),"int"));
+  scene.add(drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-height,back+windowSize),"int"));
+  scene.add(drawPanel(farRight-width-4,level,back+(2*windowSize),farRight-width-4,level-height,back+windowSize),"int"));
   scene.add(drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-2,back,"int"));
-  drawWindow(farRight-width-4,level,back+windowSize/2,farRight-width-4,level+4,back+(3*windowSize/2));
-  drawWindow(farRight-width-4,level,back+windowSize/2,farRight-width-4,level+4,back,"int");
+  drawWindow(farRight-width-4,level,back+windowSize/2,farRight-width-4,level+4,back+windowSize));
+  drawWindow(farRight-width-4,level,back+windowSize,farRight-width-4,level+4,back+(2*windowSize));
 
   //roof
   var v1 = new THREE.Vector3(farRight,level+height,back);
@@ -206,11 +208,11 @@ drawWindow(farRight-width,level,front-width-(i*windowSize), farRight-width+windo
   geom.faces.push( new THREE.Face3( 0, 1, 2));
   geom.faces.push( new THREE.Face3( 3, 0, 2));
   geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
-new THREE.Vector2(1, 0),
-new THREE.Vector2(.7, 1)]);
+    new THREE.Vector2(1, 0),
+    new THREE.Vector2(.7, 1)]);
   geom.faceVertexUvs[0].push([new THREE.Vector2(.3, 1),
-new THREE.Vector2(0, 0),
-new THREE.Vector2(1, 1)]);
+    new THREE.Vector2(0, 0),
+    new THREE.Vector2(1, 1)]);
   var object = new THREE.Mesh( geom, textures["shingles"] );
   scene.add(object);
 
@@ -226,11 +228,11 @@ new THREE.Vector2(1, 1)]);
   geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
   geom.faces.push( new THREE.Face3( 3, 0, 2 ) );
   geom.faceVertexUvs[0].push([new THREE.Vector2(.3, 1),
-new THREE.Vector2(.7, 1),
-new THREE.Vector2(1, 0)]);
+    new THREE.Vector2(.7, 1),
+    new THREE.Vector2(1, 0)]);
   geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
-new THREE.Vector2(.3, 1),
-new THREE.Vector2(1, 0)]);
+    new THREE.Vector2(.3, 1),
+    new THREE.Vector2(1, 0)]);
   object = new THREE.Mesh( geom, textures["shingles"] );
   scene.add(object);
 
@@ -243,8 +245,8 @@ new THREE.Vector2(1, 0)]);
   geom.vertices.push(v5);
   geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
   geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
-new THREE.Vector2(.5, 1),
-new THREE.Vector2(1, 0)]);
+    new THREE.Vector2(.5, 1),
+    new THREE.Vector2(1, 0)]);
   object = new THREE.Mesh( geom, textures["shingles"] );
   scene.add(object);
 
@@ -257,17 +259,18 @@ new THREE.Vector2(1, 0)]);
   geom.vertices.push(v6);
   geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
   geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
-new THREE.Vector2(.5, 1),
-new THREE.Vector2(1, 0)]);
+    new THREE.Vector2(.5, 1),
+    new THREE.Vector2(1, 0)]);
   object = new THREE.Mesh( geom, textures["shingles"] );
   scene.add(object);
 
+  //stair ramp
   var v1 = new THREE.Vector3(farRight-width,level,back);
   var v2 = new THREE.Vector3(farRight-width-4,level,back);
   var v3 = new THREE.Vector3(farRight-width,level,back+windowSize/2);
   var v4 = new THREE.Vector3(farRight-width-4,level,back+windowSize/2);
-  var v5 = new THREE.Vector3(farRight-width,level-height,back+(3*windowSize/2));
-  var v6 = new THREE.Vector3(farRight-width-4,level-height,back+(3*windowSize/2));
+  var v5 = new THREE.Vector3(farRight-width,level-height,back+(2*windowSize));
+  var v6 = new THREE.Vector3(farRight-width-4,level-height,back+(2*windowSize));
 
   var geom = new THREE.Geometry(); 
   geom.vertices.push(v1);
@@ -281,17 +284,17 @@ new THREE.Vector2(1, 0)]);
   geom.faces.push( new THREE.Face3( 2, 3, 4 ) );
   geom.faces.push( new THREE.Face3( 3, 4, 5 ) );
   geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
-new THREE.Vector2(.3, 0),
-new THREE.Vector2(0, .2)]);
+    new THREE.Vector2(.3, 0),
+    new THREE.Vector2(0, .2)]);
   geom.faceVertexUvs[0].push([new THREE.Vector2(.3, 0),
-new THREE.Vector2(0, .2),
-new THREE.Vector2(.3, .2)]);
+    new THREE.Vector2(0, .2),
+    new THREE.Vector2(.3, .2)]);
   geom.faceVertexUvs[0].push([new THREE.Vector2(0, .2),
-new THREE.Vector2(.3, .2),
-new THREE.Vector2(0, 1)]);
+    new THREE.Vector2(.3, .2),
+    new THREE.Vector2(0, 1)]);
   geom.faceVertexUvs[0].push([new THREE.Vector2(.3, .2),
-new THREE.Vector2(0, 1),
-new THREE.Vector2(.3, 1)]);
+    new THREE.Vector2(0, 1),
+    new THREE.Vector2(.3, 1)]);
   var object = new THREE.Mesh( geom, textures["floor"] );
   scene.add(object);
 
