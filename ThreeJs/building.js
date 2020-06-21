@@ -91,11 +91,14 @@ function backBox()
 function frontBox()
 {
   //remains of front wall of
-  scene.add(drawPanel(farLeft+width,level,front-width,farLeft+(3*width/2),level+height,front-width+(margin*2),"int"));
-  scene.add(drawPanel(farRight-width,level,front-width,farRight-(3*width/2),level+height,front-width+(margin*2),"int"));
+  scene.add(drawPanel(farLeft+width,level,front,farLeft+(3*width/2),level+height,front+(margin*2),"int"));
+  scene.add(drawPanel(farRight-width,level,front,farRight-(3*width/2),level+height,front+(margin*2),"int"));
+}
 
+function temp()
+{
   //bottom of box in the front
-  scene.add(drawPanel(farLeft,level+height,front-width,farRight,level+height,front,"topH"));
+  scene.add(drawPanel(farLeft,level+height,front,farRight,level+height,front+width,"topH"));
 
   //front doors
   var windowSize = (length-(2*width))/3;
