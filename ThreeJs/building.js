@@ -148,7 +148,7 @@ function frontTopBox()
   scene.add(drawPanel(farLeft,level,front+width,farRight,level+height,front+width,"ext"));
   for(let i=0;i<5;i++)
   {//interior of the same and front wall
-    scene.add(drawPanel(farLeft+(i*width),level,front+width-margin,farLeft+((i+1)*width),level+height,front+widht-margin,"int"));
+    scene.add(drawPanel(farLeft+(i*width),level,front+width-margin,farLeft+((i+1)*width),level+height,front+width-margin,"int"));
     if(i>0&&i<4)
     {
       scene.add(drawPanel(farLeft+(i*width),level,front-margin,farLeft+((i+1)*width),level+height,front-margin,"int"));
