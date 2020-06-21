@@ -5,6 +5,12 @@ function buildAll()
   scene.add(drawPanel(farLeft,level,back-(2*width),farRight,level+.25,front+width,"foundation"));
   level += .35;
 
+  for(let i=0;i<5;i++)
+  {
+    //wood along main floor
+    scene.add(drawPanel(farLeft,level,front-(i*width),farLeft,level,front-((i+1)*width),"floor"));
+  }
+
   leftBox();
   rightBox();
   backBox();
@@ -59,19 +65,14 @@ function rightBox()
 
 function backBox()
 {
-  for(let i=0;i<5;i++)
+  for(let i=0;i<2;i++)
   {
-    if(i<2 || i>3)
-    {
-      //back panel
-      scene.add(drawPanel(farLeft+(i*width),level,back-width,farLeft+((i+1)*width),level+height,back-width,"extSect"));
+    //back panel
+    scene.add(drawPanel(farLeft+(i*width),level,back-width,farLeft+((i+1)*width),level+height,back-width,"extSect"));
 
-      //interior of the same
-      scene.add(drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width+margin,"int"));
-    }
+    //interior of the same
+    scene.add(drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width+margin,"int"));
   }
-  //wood along main floor
-  //scene.add(drawPanel(farLeft+(i*width),level,front,farLeft+((i+1)*width),level,back,"floor"));
 
   //floor
   scene.add(drawPanel(farLeft,level,back-width,farRight,level,back,"floorH"));
@@ -120,8 +121,8 @@ function frontBox()
 {
   //remains of front wall of
   scene.add(drawPanel(farLeft,level,front,farLeft+width,level+height,front+(margin*2),"int"));
-  scene.add(drawPanel(farLeft+width,level,front,farLeft+(3*width/2),level+height,front+(margin*2),"int"));
-  scene.add(drawPanel(farRight-width,level,front,farRight-(3*width/2),level+height,front+(margin*2),"int"));
+  scene.add(drawPanel(farLeft+width,level,front,farLeft+(2*width),level+height,front+(margin*2),"int"));
+  scene.add(drawPanel(farRight-width,level,front,farRight-(2*width),level+height,front+(margin*2),"int"));
   scene.add(drawPanel(farRight,level,front,farRight-width,level+height,front+(margin*2),"int"));
 
   //sealed left and right doors
