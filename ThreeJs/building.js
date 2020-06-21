@@ -352,7 +352,7 @@ function otherParts()
   var object = new THREE.Mesh( geom, textures["floor"] );
   scene.add(object);
 
-  var _floor=-10;
+  var _floor=-10+margin;
   var dx = farLeft+(2*width)+margin;
   for(let i=0;i<5;i++)
   {
