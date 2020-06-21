@@ -209,10 +209,10 @@
         scene.add(createBar(x,y2,z,x2,y2,z2,"metal"));
 
         //side1
-        scene.add(createBar(x,y,z,x,y2,z,"metal"));
+        scene.add(createBarV(x,y,z,x,y2,z,"metal"));
 
         //side2
-        scene.add(createBar(x2,y,z2,x2,y2,z2,"metal"));
+        scene.add(createBarV(x2,y,z2,x2,y2,z2,"metal"));
 
         var texture = new THREE.ImageUtils.loadTexture("window.png");
         var material = new THREE.MeshPhongMaterial({ map:texture, transparent : true, depthWrite: false});

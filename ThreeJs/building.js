@@ -362,7 +362,7 @@ function otherParts()
     if(i==3)
     {
       //island support #1
-      scene.add(createBar(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
+      scene.add(createBarV(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
     }
 
     if(i==1)
@@ -375,5 +375,5 @@ function otherParts()
   dx+=3;
   scene.add(makeFridge(farLeft+(2*width)+13,_floor,back-(2*width)));
   //island support #2
-  scene.add(createBar(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
+  scene.add(createBarV(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
 }

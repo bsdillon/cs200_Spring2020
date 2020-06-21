@@ -48,6 +48,14 @@ function createBar(x1,y1,z1,x2,y2,z2,textureName)
   return cube;
 }
 
+function createBarV(x1,y1,z1,x2,y2,z2,textureName)
+{
+  var cubegeometry = new THREE.BoxGeometry(.1,Math.abs(y1-y2)+.1,.1);
+  var cube = new THREE.Mesh(cubegeometry, textures[textureName]);
+  cube.position.set(x1,(y1+y2)/2,z1);
+  return cube;
+}
+
 function createBackground()
 {
   var cubegeometry = new THREE.BoxGeometry(0,100,400);
