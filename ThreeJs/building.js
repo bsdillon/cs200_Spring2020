@@ -377,15 +377,15 @@ function otherParts()
   dx+=2;
   scene.add(makeStove(dx,_floor,back-(2*width)));
   dx+=3;
-  scene.add(makeFridge(farLeft+(2*width)+13,_floor,back-(2*width)));
+  scene.add(makeFridge(dx,_floor,back-(2*width)));
   //island support #2
   scene.add(createBarV(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
 
  
   for(let i=0;i<4;i++)
   {
-    scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width,2,2));
-    scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width,2,-2));
+    scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width+2,2,2));
+    scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width+2,2,-2));
   }
-  scene.add(drawPanel(islandDx-1,_floor+3.17,back-width-2,islandDx+8,_floor+3,back-width+2,"counters"));
+  scene.add(drawPanel(islandDx-1,_floor+3.17,back-width,islandDx+8,_floor+3,back-width+4,"counters"));
 }
