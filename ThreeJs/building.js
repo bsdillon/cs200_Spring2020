@@ -95,12 +95,9 @@ function frontBox()
   scene.add(drawPanel(farRight,level,front+width,farRight,level+height,front,"doors"));
   scene.add(drawPanel(farLeft+margin,level,front+width,farLeft+margin,level+height,front,"int"));
   scene.add(drawPanel(farRight-margin,level,front+width,farRight-margin,level+height,front,"int"));
-}
 
-function temp()
-{
   //bottom of box in the front
-  scene.add(drawPanel(farLeft,level+height,front,farRight,level+height,front+width,"topH"));
+  scene.add(drawPanel(farLeft,level+height,front+width,farRight,level+height,front,"topH"));
 
   //front doors
   var windowSize = (length-(2*width))/3;
@@ -118,7 +115,7 @@ function other()
     scene.add(drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width+margin,"int"));
     if(i>0&&i<4)
     {
-scene.add(drawPanel(farLeft+(i*width),level,back+margin,farLeft+((i+1)*width),level+height,back,"int"));
+      scene.add(drawPanel(farLeft+(i*width),level,back+margin,farLeft+((i+1)*width),level+height,back,"int"));
     }
   }
 
