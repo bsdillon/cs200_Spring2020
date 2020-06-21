@@ -8,6 +8,11 @@ function buildAll()
   leftBox();
   rightBox();
   backBox();
+  frontBox();
+
+  //next floor
+  level += height;
+
 }
 
 function leftBox()
@@ -83,7 +88,7 @@ function backBox()
   scene.add(drawPanel(farRight-width,level,back,farRight-(3*width/2),level+height,back+(margin*2),"int"));
 }
 
-function other()
+function frontBox()
 {
   //remains of front wall of
   scene.add(drawPanel(farLeft+width,level,front-width,farLeft+(3*width/2),level+height,front-width+(margin*2),"int"));
@@ -97,10 +102,10 @@ function other()
   var windowMargin = .1;
   drawWindow(farLeft+width,level,front-windowMargin,farLeft+width+windowSize,level+height,front+windowMargin);
   drawWindow(farRight-width,level,front-windowMargin,farRight-width-windowSize,level+height,front+windowMargin);
+}
 
-  //next floor
-  level += height;
-
+function other()
+{
   //back top panel
   scene.add(drawPanel(farLeft,level,back-width,farRight,level+height,back-width,"ext"));
   for(let i=0;i<5;i++)
