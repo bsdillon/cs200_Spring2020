@@ -96,7 +96,7 @@ function backBox()
 
   //remnant of back wall and side of other box
   scene.add(drawPanel(farLeft+width,level,back,farLeft+(2*width),level+height,back+(margin*2),"int"));
-  scene.add(drawPanel(farRight-width,level,back,farRight-(3*width/2),level+height,back+(margin*2),"int"));
+  scene.add(drawPanel(farRight-width,level,back,farRight-(2*width),level+height,back+(margin*2),"int"));
 
   //bathroom wall
   scene.add(drawPanel(farLeft+(2*width),level,back,farLeft+(2*width),level+height,back-(width/3),"int"));
@@ -373,7 +373,7 @@ function otherParts()
       scene.add(drawPanel(dx+margin,_floor+3.18,back-(2*width)+margin,dx+6-margin,_floor+3.18,back-(2*width)+2.5-margin,"sink"));
     }
   }
-  scene.add(makeDishwaser(dx,_floor,back-(2*width)));
+  scene.add(makeDishwasher(dx,_floor,back-(2*width)));
   dx+=2;
   scene.add(makeStove(dx,_floor,back-(2*width)));
   dx+=3;
