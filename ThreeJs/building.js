@@ -14,7 +14,7 @@ function buildAll()
   level += height;
 
   backTopBox();
-  other();
+  otherParts();
 }
 
 function leftBox()
@@ -169,7 +169,7 @@ function frontTopPanel()
   scene.add(drawPanel(farLeft,level+height,front,farRight,level+height,front+width,"topH"));
 }
 
-function other()
+function otherParts()
 {
   //windows on both sides
   for(let i=0;i<4;i++)
