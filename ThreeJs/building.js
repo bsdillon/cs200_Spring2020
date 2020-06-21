@@ -64,7 +64,7 @@ function backBox()
     if(i<2 || i>3)
     {
       //back panel
-      scene.add(drawPanel(farLeft+(i*width),level,back-width,farLeft+((i+1))*width),level+height,back-width,"extSect"));
+      scene.add(drawPanel(farLeft+(i*width),level,back-width,farLeft+((i+1)*width),level+height,back-width,"extSect"));
 
       //interior of the same
       scene.add(drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width+margin,"int"));
