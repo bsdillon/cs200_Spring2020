@@ -87,13 +87,13 @@ function backBox()
   scene.add(drawPanel(farLeft,level+height,back-width,farRight,level+height,back,"topH"));
 
   //remnant of back wall and side of other box
-  scene.add(drawPanel(farLeft+width,level,back,farLeft+(3*width/2),level+height,back+(margin*2),"int"));
+  scene.add(drawPanel(farLeft+width,level,back,farLeft+(2*width),level+height,back+(margin*2),"int"));
   scene.add(drawPanel(farRight-width,level,back,farRight-(3*width/2),level+height,back+(margin*2),"int"));
 
   //bathroom wall
   scene.add(drawPanel(farLeft+(2*width),level,back,farLeft+(2*width),level+height,back-(width/3),"int"));
   scene.add(drawPanel(farLeft+(2*width),level,back-width,farLeft+(2*width),level+height,back-(2*width/3),"int"));
-  scene.add(drawPanel(farLeft+(width/3),level+6,back-width,farLeft+(2*width),level+height,back-(2*width/3),"int"));
+  scene.add(drawPanel(farLeft+(2*width),level+6,back-(width/3),farLeft+(2*width),level+height,back-(2*width/3),"int"));
 }
 
 function backbackBox()
@@ -122,9 +122,9 @@ function backbackBox()
   //scene.add(drawPanel(farRight-width,level,back,farRight-(3*width/2),level+height,back+(margin*2),"int"));
 
   //pantry wall
-  scene.add(drawPanel(farLeft+(2*width),level,back,farLeft+(2*width),level+height,back-(width/3),"int"));
-  scene.add(drawPanel(farLeft+(2*width),level,back-width,farLeft+(2*width),level+height,back-(2*width/3),"int"));
-  scene.add(drawPanel(farLeft+(width/3),level+6,back-width,farLeft+(2*width),level+height,back-(2*width/3),"int"));
+  scene.add(drawPanel(farLeft+(2*width),level,back-width,farLeft+(2*width),level+height,back-(4*width/3),"int"));
+  scene.add(drawPanel(farLeft+(2*width),level,back-(2*width),farLeft+(2*width),level+height,back-(5*width/3),"int"));
+  scene.add(drawPanel(farLeft+(2*width),level+6,back-(4*width/3),farLeft+(2*width),level+height,back-(5*width/3),"int"));
 }
 
 function frontBox()
