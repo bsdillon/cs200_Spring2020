@@ -2,7 +2,7 @@ function buildAll()
 {
   //8ft w x 8.5ft h x 40ft l
   //concrete floor
-  scene.add(drawPanel(farLeft,level,back-width,farRight,level+.25,front,"foundation"));
+  scene.add(drawPanel(farLeft,level,back-width,farRight,level+.25,front+width,"foundation"));
   level += .35;
 
   leftBox();
@@ -28,7 +28,7 @@ function leftBox()
   scene.add(drawPanel(farLeft+width,level,back,farLeft+width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farLeft+width,level,back+(2*width),farLeft+width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farLeft+width,level,front-width,farLeft+width+(margin*2),level+height,front-(2*width),"int"));
-  scene.add(drawPanel(farLeft-width,level,front,farLeft-width+(margin*2),level+height,front-width,"int"));
+  scene.add(drawPanel(farLeft+width,level,front,farLeft+width+(margin*2),level+height,front-width,"int"));
 
   //top of box
   scene.add(drawPanel(farLeft,level+height,front,farLeft+width,level+height,back,"top"));
@@ -89,6 +89,12 @@ function frontBox()
   scene.add(drawPanel(farLeft+width,level,front,farLeft+(3*width/2),level+height,front+(margin*2),"int"));
   scene.add(drawPanel(farRight-width,level,front,farRight-(3*width/2),level+height,front+(margin*2),"int"));
   scene.add(drawPanel(farRight,level,front,farRight-width,level+height,front+(margin*2),"int"));
+
+  //sealed left and right doors
+  scene.add(drawPanel(farLeft,level,front+width,farLeft,level+height,front,"doors"));
+  scene.add(drawPanel(farRight,level,front+width,farRight,level+height,front,"doors"));
+  scene.add(drawPanel(farLeft+margin,level,front+width,farLeft+margin,level+height,front,"int"));
+  scene.add(drawPanel(farRight-margin,level,front+width,farRight-margin,level+height,front,"int"));
 }
 
 function temp()
