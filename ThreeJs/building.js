@@ -8,6 +8,7 @@ function buildAll()
   leftBox();
   rightBox();
   backBox();
+  backbackBox();
   frontBox();
 
   //next floor
@@ -58,15 +59,19 @@ function rightBox()
 
 function backBox()
 {
-  //back panel
-  scene.add(drawPanel(farLeft,level,back-width,farRight,level+height,back-width,"ext"));
   for(let i=0;i<5;i++)
-  {//interior of the same
-    scene.add(drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width+margin,"int"));
+  {
+    if(i<2 || i>3)
+    {
+      //back panel
+      scene.add(drawPanel(farLeft+(i*width),level,back-width,farLeft+((i+1))*width),level+height,back-width,"extSect"));
 
-    //wood along main floor
-    scene.add(drawPanel(farLeft+(i*width),level,front,farLeft+((i+1)*width),level,back,"floor"));
+      //interior of the same
+      scene.add(drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width+margin,"int"));
+    }
   }
+  //wood along main floor
+  //scene.add(drawPanel(farLeft+(i*width),level,front,farLeft+((i+1)*width),level,back,"floor"));
 
   //floor
   scene.add(drawPanel(farLeft,level,back-width,farRight,level,back,"floorH"));
@@ -83,6 +88,32 @@ function backBox()
   //remnant of back wall and side of other box
   scene.add(drawPanel(farLeft+width,level,back,farLeft+(3*width/2),level+height,back+(margin*2),"int"));
   scene.add(drawPanel(farRight-width,level,back,farRight-(3*width/2),level+height,back+(margin*2),"int"));
+}
+
+function backbackBox()
+{
+  //back panel
+  scene.add(drawPanel(farLeft,level,back-(2*width),farRight,level+height,back-(2*width),"ext"));
+  for(let i=0;i<5;i++)
+  {//interior of the same
+    scene.add(drawPanel(farLeft+(i*width),level,back-(2*width)+margin,farLeft+((i+1)*width),level+height,back-(2*width)+margin,"int"));
+  }
+
+  //floor
+  scene.add(drawPanel(farLeft,level,back-(2*width),farRight,level,back-width,"floorH"));
+
+  //sealed left and right doors
+  scene.add(drawPanel(farLeft,level,back-width,farLeft,level+height,back-(2*width),"doors"));
+  scene.add(drawPanel(farRight,level,back-width,farRight,level+height,back-(2*width),"doors"));
+  scene.add(drawPanel(farLeft+margin,level,back-width,farLeft+margin,level+height,back-(2*width),"int"));
+  scene.add(drawPanel(farRight-margin,level,back-width,farRight-margin,level+height,back-(2*width),"int"));
+
+  //top of box
+  scene.add(drawPanel(farLeft,level+height,back-width,farRight,level+height,back-(2*width),"topH"));
+
+  //remnant of back wall and side of other box
+  //scene.add(drawPanel(farLeft+width,level,back,farLeft+(3*width/2),level+height,back+(margin*2),"int"));
+  //scene.add(drawPanel(farRight-width,level,back,farRight-(3*width/2),level+height,back+(margin*2),"int"));
 }
 
 function frontBox()
