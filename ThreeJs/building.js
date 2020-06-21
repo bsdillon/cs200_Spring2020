@@ -354,7 +354,7 @@ function otherParts()
 
   var _floor=-10+margin;
   var dx = farLeft+(2*width)+margin;
-  scene.add(drawPanel(dx,_floor+3.17,back-(2*width),dx+2,_floor+3,back-(2*width)+2.5,"counters"));
+  scene.add(drawPanel(dx,_floor+3.17,back-(2*width),dx+10,_floor+3,back-(2*width)+2.5,"counters"));
   for(let i=0;i<5;i++)
   {
     scene.add(makeCabinet(dx,_floor,back-(2*width)));
