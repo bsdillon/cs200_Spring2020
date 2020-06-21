@@ -28,10 +28,7 @@ function leftBox()
   scene.add(drawPanel(farLeft+width,level,back,farLeft+width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farLeft+width,level,back+(2*width),farLeft+width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farLeft+width,level,front-width,farLeft+width+(margin*2),level+height,front-(2*width),"int"));
-
-  //front wall
-  scene.add(drawPanel(farLeft,level,front,farLeft+width,level+height,front,"doors"));
-  scene.add(drawPanel(farLeft,level,front-margin,farLeft+width,level+height,front-margin,"int"));
+  scene.add(drawPanel(farLeft-width,level,front,farLeft-width+(margin*2),level+height,front-width,"int"));
 
   //top of box
   scene.add(drawPanel(farLeft,level+height,front,farLeft+width,level+height,back,"top"));
@@ -50,10 +47,7 @@ function rightBox()
   scene.add(drawPanel(farRight-width,level,back,farRight-width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farRight-width,level,back+(2*width),farRight-width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farRight-width,level,front-width,farRight-width+(margin*2),level+height,front-(2*width),"int"));
-
-  //front wall
-  scene.add(drawPanel(farRight,level,front,farRight-width,level+height,front,"doors"));
-  scene.add(drawPanel(farRight,level,front-margin,farRight-width,level+height,front-margin,"int"));
+  scene.add(drawPanel(farRight-width,level,front,farRight-width+(margin*2),level+height,front-width,"int"));
 
   //top of box
   scene.add(drawPanel(farRight,level+height,back,farRight-width,level+height,front,"top"));
@@ -91,8 +85,10 @@ function backBox()
 function frontBox()
 {
   //remains of front wall of
+  scene.add(drawPanel(farLeft,level,front,farLeft+width,level+height,front+(margin*2),"int"));
   scene.add(drawPanel(farLeft+width,level,front,farLeft+(3*width/2),level+height,front+(margin*2),"int"));
   scene.add(drawPanel(farRight-width,level,front,farRight-(3*width/2),level+height,front+(margin*2),"int"));
+  scene.add(drawPanel(farRight,level,front,farRight-width,level+height,front+(margin*2),"int"));
 }
 
 function temp()
