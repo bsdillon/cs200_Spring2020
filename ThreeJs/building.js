@@ -13,6 +13,8 @@ function buildAll()
   //next floor
   level += height;
 
+  backTopBox();
+  other();
 }
 
 function leftBox()
@@ -115,7 +117,7 @@ function frontBox()
   scene.add(drawPanel(farLeft,level+margin,front,farRight,level+margin,front+width,"floorH"));
 }
 
-function other()
+function backTopBox()
 {
   //back top panel
   scene.add(drawPanel(farLeft,level,back-width,farRight,level+height,back-width,"ext"));
@@ -139,7 +141,10 @@ function other()
 
   //top of panel
   scene.add(drawPanel(farLeft,level+height,back-width,farRight,level+height,back,"topH"));
+}
 
+function frontTopPanel()
+{
   //front top panel
   scene.add(drawPanel(farLeft,level,front,farRight,level+height,front,"ext"));
   for(let i=0;i<5;i++)
@@ -147,22 +152,25 @@ function other()
     scene.add(drawPanel(farLeft+(i*width),level,front-margin,farLeft+((i+1)*width),level+height,front-margin,"int"));
     if(i>0&&i<4)
     {
-scene.add(drawPanel(farLeft+(i*width),level,front-width-margin,farLeft+((i+1)*width),level+height,front-width-margin,"int"));
+      scene.add(drawPanel(farLeft+(i*width),level,front-width-margin,farLeft+((i+1)*width),level+height,front-width-margin,"int"));
     }
   }
 
   //floor
-  scene.add(drawPanel(farLeft,level+margin,front-width,farRight,level+margin,front,"floorH"));
+  scene.add(drawPanel(farLeft,level+margin,front,farRight,level+margin,front+width,"floorH"));
 
   //sealed left/right doors
-  scene.add(drawPanel(farLeft,level,front-width,farLeft,level+height,front,"doors"));
-  scene.add(drawPanel(farRight,level,front-width,farRight,level+height,front,"doors"));
-  scene.add(drawPanel(farLeft+margin,level,front-width,farLeft+margin,level+height,front,"int"));
-  scene.add(drawPanel(farRight-margin,level,front-width,farRight-margin,level+height,front,"int"));
+  scene.add(drawPanel(farLeft,level,front,farLeft,level+height,front+width,"doors"));
+  scene.add(drawPanel(farRight,level,front,farRight,level+height,front+width,"doors"));
+  scene.add(drawPanel(farLeft+margin,level,front,farLeft+margin,level+height,front+width,"int"));
+  scene.add(drawPanel(farRight-margin,level,front,farRight-margin,level+height,front+width,"int"));
 
   //box top
-  scene.add(drawPanel(farLeft,level+height,front-width,farRight,level+height,front,"topH"));
+  scene.add(drawPanel(farLeft,level+height,front,farRight,level+height,front+width,"topH"));
+}
 
+function other()
+{
   //windows on both sides
   for(let i=0;i<4;i++)
   {
