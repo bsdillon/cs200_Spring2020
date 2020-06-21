@@ -362,7 +362,7 @@ function otherParts()
     dx+=2;
     if(i==3)
     {
-      islandDx=Dx
+      islandDx=dx;
       //island support #1
       scene.add(createBarV(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
     }
