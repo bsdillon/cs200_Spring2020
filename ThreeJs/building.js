@@ -374,10 +374,6 @@ function otherParts()
   scene.add(makeStove(dx,_floor,back-(2*width)));
   dx+=3;
   scene.add(makeFridge(farLeft+(2*width)+13,_floor,back-(2*width)));
-  //scene.add(makeSink(0,-6,front+20));
   //island support #2
   scene.add(createBar(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
-
-
-
 }

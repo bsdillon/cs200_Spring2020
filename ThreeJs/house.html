@@ -44,11 +44,6 @@
         render();
       }
 
-      function makeSink(x,y,z)
-      {
-        texture = makeMaterial("stove2.png",false,false); 
-      }
-
       function makeStove(x,y,z)
       {
         texture = makeMaterial("stove2.png",false,false);
@@ -293,93 +288,6 @@
         {
           camera.position.y+=1;
         }
-      }
-
-      function other()
-      {
-        geom.faces.push( new THREE.Face3( 11, 12, 21) );
-        geom.faces.push( new THREE.Face3( 11, 21, 20) );
-        geom.faces.push( new THREE.Face3( 22, 23, 1) );
-        geom.faces.push( new THREE.Face3( 23, 24, 1) );
-        geom.faces.push( new THREE.Face3( 24, 1, 2) );
-        geom.faces.push( new THREE.Face3( 24, 2, 25) );
-        geom.faces.push( new THREE.Face3( 25, 2, 3) );
-        geom.faces.push( new THREE.Face3( 25, 26, 3) );
-        geom.faces.push( new THREE.Face3( 26, 3, 14) );
-        geom.faces.push( new THREE.Face3( 15, 3, 14) );
-        geom.faces.push( new THREE.Face3( 15, 3, 8) );
-        geom.faces.push( new THREE.Face3( 15, 7, 8) );
-        geom.faces.push( new THREE.Face3( 14, 13, 26) );
-        geom.faces.push( new THREE.Face3( 13, 26, 27) );
-        geom.faces.push( new THREE.Face3( 13, 27, 12) );
-        geom.faces.push( new THREE.Face3( 27, 12, 20) );
-        geom.faces.push( new THREE.Face3( 11, 17, 12) );
-        geom.faces.push( new THREE.Face3( 17, 12, 13) );
-        geom.faces.push( new THREE.Face3( 17, 13, 18) );
-        geom.faces.push( new THREE.Face3( 13, 18, 14) );
-        geom.faces.push( new THREE.Face3( 18, 14, 15) );
-        geom.faces.push( new THREE.Face3( 18, 15, 19) );
-        geom.faces.push( new THREE.Face3( 15, 19, 7) );
-        geom.faces.push( new THREE.Face3( 19, 7, 16) );
-        geom.faces.push( new THREE.Face3( 19, 16, 17) );
-        geom.faces.push( new THREE.Face3( 19, 17, 18) );
-        geom.faces.push( new THREE.Face3( 20, 21, 28) );
-        geom.faces.push( new THREE.Face3( 21, 28, 22) );
-        geom.faces.push( new THREE.Face3( 28, 22, 29) );
-        geom.faces.push( new THREE.Face3( 22, 29, 23) );
-        geom.faces.push( new THREE.Face3( 29, 23, 24) );
-        geom.faces.push( new THREE.Face3( 29, 24, 30) );
-        geom.faces.push( new THREE.Face3( 24, 30, 25) );
-        geom.faces.push( new THREE.Face3( 30, 25, 26) );
-        geom.faces.push( new THREE.Face3( 30, 26, 31) );
-        geom.faces.push( new THREE.Face3( 26, 31, 27) );
-        geom.faces.push( new THREE.Face3( 31, 27, 28) );
-        geom.faces.push( new THREE.Face3( 27, 28, 20) );
-        geom.faces.push( new THREE.Face3( 28, 29, 30) );
-        geom.faces.push( new THREE.Face3( 29, 30, 31) );
-
-
-
-        geom.faceVertexUvs[0].push([uv_11,uv_12,uv_21]);
-        geom.faceVertexUvs[0].push([uv_11,uv_21,uv_20]);
-        geom.faceVertexUvs[0].push([uv_22,uv_23,uv1]);
-        geom.faceVertexUvs[0].push([uv_23,uv_24,uv1]);
-        geom.faceVertexUvs[0].push([uv_24,uv1,uv2]);
-        geom.faceVertexUvs[0].push([uv_24,uv2,uv_25]);
-        geom.faceVertexUvs[0].push([uv_25,uv2,uv3]);
-        geom.faceVertexUvs[0].push([uv_25,uv_26,uv3]);
-        geom.faceVertexUvs[0].push([uv_26,uv3,uv_14]);
-        geom.faceVertexUvs[0].push([uv_15,uv3,uv_14]);
-        geom.faceVertexUvs[0].push([uv_15,uv3,uv_8]);
-        geom.faceVertexUvs[0].push([uv_15,uv_7,uv_8]);
-        geom.faceVertexUvs[0].push([uv_14,uv_13,uv_26]);
-        geom.faceVertexUvs[0].push([uv_13,uv_26,uv_27]);
-        geom.faceVertexUvs[0].push([uv_13,uv_27,uv_12]);
-        geom.faceVertexUvs[0].push([uv_27,uv_12,uv_20]);
-        geom.faceVertexUvs[0].push([uv_11,uv_17,uv_12]);
-        geom.faceVertexUvs[0].push([uv_17,uv_12,uv_13]);
-        geom.faceVertexUvs[0].push([uv_17,uv_13,uv_18]);
-        geom.faceVertexUvs[0].push([uv_13,uv_18,uv_14]);
-        geom.faceVertexUvs[0].push([uv_18,uv_14,uv_15]);
-        geom.faceVertexUvs[0].push([uv_18,uv_15,uv_19]);
-        geom.faceVertexUvs[0].push([uv_15,uv_19,uv_7]);
-        geom.faceVertexUvs[0].push([uv_19,uv_7,uv_16]);
-        geom.faceVertexUvs[0].push([uv_19,uv_16,uv_17]);
-        geom.faceVertexUvs[0].push([uv_19,uv_17,uv_18]);
-        geom.faceVertexUvs[0].push([uv_20,uv_21,uv_28]);
-        geom.faceVertexUvs[0].push([uv_21,uv_28,uv_22]);
-        geom.faceVertexUvs[0].push([uv_28,uv_22,uv_29]);
-        geom.faceVertexUvs[0].push([uv_22,uv_29,uv_23]);
-        geom.faceVertexUvs[0].push([uv_29,uv_23,uv_24]);
-        geom.faceVertexUvs[0].push([uv_29,uv_24,uv_30]);
-        geom.faceVertexUvs[0].push([uv_24,uv_30,uv_25]);
-        geom.faceVertexUvs[0].push([uv_30,uv_25,uv_26]);
-        geom.faceVertexUvs[0].push([uv_30,uv_26,uv_31]);
-        geom.faceVertexUvs[0].push([uv_26,uv_31,uv_27]);
-        geom.faceVertexUvs[0].push([uv_31,uv_27,uv_28]);
-        geom.faceVertexUvs[0].push([uv_27,uv_28,uv_20]);
-        geom.faceVertexUvs[0].push([uv_28,uv_29,uv_30]);
-        geom.faceVertexUvs[0].push([uv_29,uv_30,uv_31]);
       }
     </script>
   </head>
