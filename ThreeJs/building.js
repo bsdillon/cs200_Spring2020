@@ -34,6 +34,10 @@ function leftBox()
     scene.add(drawPanel(farLeft+margin,level,back+(i*width),farLeft+margin,level+height,back+((i+1)*width),"int"));
   }
 
+  //back doors
+  scene.add(drawPanel(farLeft,level,back,farLeft+width,level+height,back,"doors"));
+  scene.add(drawPanel(farLeft,level,back+margin,farLeft+width,level+height,back-margin,"int"));
+
   //interior partitions
   scene.add(drawPanel(farLeft+width,level,back,farLeft+width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farLeft+width,level,back+(2*width),farLeft+width+(margin*2),level+height,back+width,"int"));
@@ -53,6 +57,10 @@ function rightBox()
     scene.add(drawPanel(farRight-margin,level,back+(i*width),farRight-margin,level+height,back+((i+1)*width),"int"));
   }
 
+  //back doors
+  scene.add(drawPanel(farRight,level,back,farRight-width,level+height,back,"doors"));
+  scene.add(drawPanel(farRight,level,back+margin,farRight-width,level+height,back-margin,"int"));
+
   //interior partitions
   scene.add(drawPanel(farRight-width,level,back,farRight-width+(margin*2),level+height,back+width,"int"));
   scene.add(drawPanel(farRight-width,level,back+(2*width),farRight-width+(margin*2),level+height,back+width,"int"));
@@ -71,7 +79,7 @@ function backBox()
     scene.add(drawPanel(farLeft+(i*width),level,back-width,farLeft+((i+1)*width),level+height,back-width,"extSect"));
 
     //interior of the same
-    scene.add(drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width+margin,"int"));
+    scene.add(drawPanel(farLeft+(i*width),level,back-width+margin,farLeft+((i+1)*width),level+height,back-width-margin,"int"));
   }
 
   //floor
@@ -344,7 +352,13 @@ function otherParts()
   var object = new THREE.Mesh( geom, textures["floor"] );
   scene.add(object);
 
-  scene.add(makeStove(-4,-10,back-(2*width)));
-  scene.add(makeFridge(-8,-10,back-(2*width)));
+  var _floor=-10;
+  scene.add(makeCabinet(farLeft+(2*width),_floor,back-(2*width)));
+  scene.add(makeCabinet(farLeft+(2*width)+2,_floor,back-(2*width)));
+  scene.add(makeCabinet(farLeft+(2*width)+4,_floor,back-(2*width)));
+  scene.add(makeCabinet(farLeft+(2*width)+6,_floor,back-(2*width)));
+  scene.add(makeCabinet(farLeft+(2*width)+8,_floor,back-(2*width)));
+  scene.add(makeStove(farLeft+(2*width)+10,_floor,back-(2*width)));
+  scene.add(makeFridge(farLeft+(2*width)+13,_floor,back-(2*width)));
   //scene.add(makeSink(0,-6,front+20));
 }

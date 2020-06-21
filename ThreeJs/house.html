@@ -154,6 +154,57 @@
         return object;
       }
 
+      function makeCabinet(x,y,z)
+      {
+        texture = makeMaterial("cabinet.png",false,false);
+        var v0 = new THREE.Vector3(x,y+3.5,z);
+        var v1 = new THREE.Vector3(x,y,z);
+        var v2 = new THREE.Vector3(x,y+3.5,z+3);
+        var v3 = new THREE.Vector3(x,y,z+3);
+        var v4 = new THREE.Vector3(x+2,y+3.5,z+3);
+        var v5 = new THREE.Vector3(x+2,y,z+3);
+        var v6 = new THREE.Vector3(x+2,y+3.5,z);
+        var v7 = new THREE.Vector3(x+2,y,z);
+
+        var geom = new THREE.Geometry(); 
+        geom.vertices.push(v0);
+        geom.vertices.push(v1);
+        geom.vertices.push(v2);
+        geom.vertices.push(v3);
+        geom.vertices.push(v4);
+        geom.vertices.push(v5);
+        geom.vertices.push(v6);
+        geom.vertices.push(v7);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faces.push( new THREE.Face3( 1, 2, 3 ) );
+        geom.faces.push( new THREE.Face3( 2, 3, 4 ) );
+        geom.faces.push( new THREE.Face3( 3, 4, 5 ) );
+        geom.faces.push( new THREE.Face3( 4, 5, 6 ) );
+        geom.faces.push( new THREE.Face3( 5, 6, 7 ) );
+        var corner = 104/430.0;
+        var corner2 = 327/430.0;
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 1),
+                                    new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(corner, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(corner, 1),
+                                    new THREE.Vector2(corner, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner, 1),
+                                    new THREE.Vector2(corner, 0),
+                                    new THREE.Vector2(corner2, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner, 0),
+                                    new THREE.Vector2(corner2, 1),
+                                    new THREE.Vector2(corner2, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner2, 1),
+                                    new THREE.Vector2(corner2, 0),
+                                    new THREE.Vector2(1, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner2, 0),
+                                    new THREE.Vector2(1, 1),
+                                    new THREE.Vector2(1, 0)]);
+        var object = new THREE.Mesh( geom, texture );
+        return object;
+      }
+
       function drawWindow(x,y,z,x2,y2,z2)
       {
         //top bar
