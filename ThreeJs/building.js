@@ -108,8 +108,6 @@ function frontBox()
   scene.add(drawPanel(farRight,level,front+width-margin,farRight-width,level+height,front+width-margin,"windInt"));
 
   //front doors
-  var windowSize = (length-(2*width))/3;
-  var windowMargin = .1;
   drawWindow(farLeft+width,level,front+width-windowMargin,farLeft+width+windowSize,level+height,front+width+windowMargin);
   drawWindow(farRight-width,level,front+width-windowMargin,farRight-width-windowSize,level+height,front+width+windowMargin);
 
