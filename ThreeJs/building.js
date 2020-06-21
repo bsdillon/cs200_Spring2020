@@ -191,9 +191,9 @@ function otherParts()
   //half panel over door
   scene.add(drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-2,back,"int"));
   //half panel
-  scene.add(drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-height,back+windowSize),"int"));
+  scene.add(drawPanel(farRight-width-4,level,back+windowSize/2,farRight-width-4,level-height,back+windowSize,"int"));
   //full panel
-  scene.add(drawPanel(farRight-width-4,level,back+(2*windowSize),farRight-width-4,level-height,back+windowSize),"int"));
+  scene.add(drawPanel(farRight-width-4,level,back+(2*windowSize),farRight-width-4,level-height,back+windowSize,"int"));
   //windows
   drawWindow(farRight-width-4,level,back,farRight-width-4,level+4,back+windowSize));
   drawWindow(farRight-width-4,level,back+windowSize,farRight-width-4,level+4,back+(2*windowSize));
