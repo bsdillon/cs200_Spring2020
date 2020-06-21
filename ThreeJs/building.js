@@ -353,12 +353,30 @@ function otherParts()
   scene.add(object);
 
   var _floor=-10;
-  scene.add(makeCabinet(farLeft+(2*width),_floor,back-(2*width)));
-  scene.add(makeCabinet(farLeft+(2*width)+2,_floor,back-(2*width)));
-  scene.add(makeCabinet(farLeft+(2*width)+4,_floor,back-(2*width)));
-  scene.add(makeCabinet(farLeft+(2*width)+6,_floor,back-(2*width)));
-  scene.add(makeCabinet(farLeft+(2*width)+8,_floor,back-(2*width)));
-  scene.add(makeStove(farLeft+(2*width)+10,_floor,back-(2*width)));
+  var dx = farLeft+(2*width)+margin;
+  for(let i=0;i<5;i++)
+  {
+    scene.add(makeCabinet(dx,_floor,back-(2*width)));
+    dx+=2;
+    if(i==3)
+    {
+      //island support #1
+      scene.add(createBar(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
+    }
+
+    if(i==2)
+    {
+      //kitchen sink
+      scene.add(drawPanel(dx+margin,_floor+3.18,back-(2*width)+margin,dx+6-margin,_floor+3.18,back-(2*width)+2.5-margin,"sink"));
+    }
+  }
+  scene.add(makeStove(dx,_floor,back-(2*width)));
+  dx+=3;
   scene.add(makeFridge(farLeft+(2*width)+13,_floor,back-(2*width)));
   //scene.add(makeSink(0,-6,front+20));
+  //island support #2
+  scene.add(createBar(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
+
+
+
 }

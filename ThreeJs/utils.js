@@ -36,6 +36,8 @@ function loadTextures()
   textures["window"] = makeMaterial("window.png",false);
   textures["int"] = makeMaterial("plaster.jpg",false,false);
   textures["shingles"] = makeMaterial("shingles.jpg",true,true);
+  textures["counters"] = makeMaterial("counters.jpg",true,true);
+  textures["sink"] = makeMaterial("sink2.png",true,true);
 }
 
 function createBar(x1,y1,z1,x2,y2,z2,textureName)
