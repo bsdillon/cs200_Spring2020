@@ -388,10 +388,10 @@ function otherParts()
   }
   scene.add(drawPanel(islandDx-1,_floor+3.17,back-width-1,islandDx+8,_floor+3,back-width+3,"counters"));
 
-  scene.add(createBar(dx+3,_floor,back-width-3,dx+3,_floor+3,back-width-3,"woodLeg"));
-  scene.add(createBar(dx+7,_floor,back-width+5,dx+7,_floor+3,back-width+5,"woodLeg"));
-  scene.add(createBar(dx+7,_floor,back-width-3,dx+7,_floor+3,back-width-3,"woodLeg"));
-  scene.add(createBar(dx+3,_floor,back-width+5,dx+3,_floor+3,back-width+5,"woodLeg"));
+  scene.add(createBarV(dx+3,_floor,back-width-3,dx+3,_floor+3,back-width-3,"woodLeg"));
+  scene.add(createBarV(dx+7,_floor,back-width+5,dx+7,_floor+3,back-width+5,"woodLeg"));
+  scene.add(createBarV(dx+7,_floor,back-width-3,dx+7,_floor+3,back-width-3,"woodLeg"));
+  scene.add(createBarV(dx+3,_floor,back-width+5,dx+3,_floor+3,back-width+5,"woodLeg"));
   scene.add(drawPanel(dx+3-margin,_floor+3,back-width-3-margin,dx+7+margin,_floor+3+margin,back-width+5+margin,"woodTable"));
 
 }
