@@ -37,6 +37,8 @@ function loadTextures()
   textures["int"] = makeMaterial("plaster.jpg",false,false);
   textures["counters"] = makeMaterial("counters.jpg",false,false);
   textures["sink"] = makeMaterial("sink2.png",false,false);
+  textures["woodLeg"] = makeMaterial("woodleg.png",false,false);
+  textures["woodTable"] = makeMaterial("woodtable.png",false,false);
   textures["shingles"] = makeMaterial("shingles.jpg",true,true);
 }
 

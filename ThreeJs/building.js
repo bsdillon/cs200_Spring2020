@@ -58,8 +58,7 @@ function rightBox()
   }
 
   //back doors
-  scene.add(drawPanel(farRight,level,back,farRight-width,level+height,back,"doors"));
-  scene.add(drawPanel(farRight,level,back+margin,farRight-width,level+height,back-margin,"int"));
+  scene.add(drawPanel(farRight,level,back+width-margin,farRight-width,level+height,back+width+margin,"int"));
 
   //interior partitions
   scene.add(drawPanel(farRight-width,level,back,farRight-width+(margin*2),level+height,back+width,"int"));
@@ -384,8 +383,15 @@ function otherParts()
  
   for(let i=0;i<4;i++)
   {
-    scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width+2,2,2));
-    scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width+2,2,-2));
+    scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width+1,2,2));
+    scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width+1,2,-2));
   }
-  scene.add(drawPanel(islandDx-1,_floor+3.17,back-width,islandDx+8,_floor+3,back-width+4,"counters"));
+  scene.add(drawPanel(islandDx-1,_floor+3.17,back-width-1,islandDx+8,_floor+3,back-width+3,"counters"));
+
+  scene.add(createBar(dx+3,_floor,back-width-3,dx+3,_floor+3,back-width-3,"woodLeg"));
+  scene.add(createBar(dx+7,_floor,back-width+5,dx+7,_floor+3,back-width+5,"woodLeg"));
+  scene.add(createBar(dx+7,_floor,back-width-3,dx+7,_floor+3,back-width-3,"woodLeg"));
+  scene.add(createBar(dx+3,_floor,back-width+5,dx+3,_floor+3,back-width+5,"woodLeg"));
+  scene.add(drawPanel(dx+3-margin,_floor+3,back-width-3-margin,dx+7+margin,_floor+3+margin,back-width+5+margin,"woodTable"));
+
 }
