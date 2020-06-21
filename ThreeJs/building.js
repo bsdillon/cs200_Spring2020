@@ -99,11 +99,17 @@ function frontBox()
   //bottom of box in the front
   scene.add(drawPanel(farLeft,level+height,front+width,farRight,level+height,front,"topH"));
 
+  //remains of front box
+  scene.add(drawPanel(farLeft,level,front+width,farLeft+width,level+height,front,"extSect"));
+  scene.add(drawPanel(farRight,level,front+width,farRight-width,level+height,front,"extSect"));
+  scene.add(drawPanel(farLeft,level,front+width-margin,farLeft+width,level+height,front-margin,"int"));
+  scene.add(drawPanel(farRight,level,front+width-margin,farRight-width,level+height,front-margin,"int"));
+
   //front doors
   var windowSize = (length-(2*width))/3;
   var windowMargin = .1;
-  drawWindow(farLeft+width,level,front-windowMargin,farLeft+width+windowSize,level+height,front+windowMargin);
-  drawWindow(farRight-width,level,front-windowMargin,farRight-width-windowSize,level+height,front+windowMargin);
+  drawWindow(farLeft+width,level,front+width-windowMargin,farLeft+width+windowSize,level+height,front+width+windowMargin);
+  drawWindow(farRight-width,level,front+width-windowMargin,farRight-width-windowSize,level+height,front+width+windowMargin);
 }
 
 function other()

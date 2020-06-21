@@ -26,7 +26,7 @@ function loadTextures()
   textures["floorH"] = makeMaterial("floor2.png",true,false);
   textures["top"] = makeMaterial("top.png",false);
   textures["topH"] = makeMaterial("top2.png",false);
-//  textures["blue"] = makeMaterial("blueWall.jpg",false);
+  textures["extSect"] = makeMaterial("greyWall_sect.jpg",false);
   textures["trees"] = makeMaterial("tree.png",true,false);
   textures["grass"] = makeMaterial("grass.jpg",true,true);
   textures["foundation"] = makeMaterial("concrete.jpg",true);
