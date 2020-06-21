@@ -354,6 +354,7 @@ function otherParts()
 
   var _floor=-10+margin;
   var dx = farLeft+(2*width)+margin;
+  scene.add(drawPanel(dx,_floor+3.17,back-(2*width)z,dx+2,_floor+3,back-(2*width)+2.5,"counters"));
   for(let i=0;i<5;i++)
   {
     scene.add(makeCabinet(dx,_floor,back-(2*width)));
@@ -364,7 +365,7 @@ function otherParts()
       scene.add(createBar(dx,_floor,back-width,dx,_floor+height,back-width,"metal"));
     }
 
-    if(i==2)
+    if(i==1)
     {
       //kitchen sink
       scene.add(drawPanel(dx+margin,_floor+3.18,back-(2*width)+margin,dx+6-margin,_floor+3.18,back-(2*width)+2.5-margin,"sink"));
