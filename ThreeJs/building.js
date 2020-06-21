@@ -385,6 +385,7 @@ function otherParts()
   for(let i=0;i<4;i++)
   {
     scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width,2,2));
+    scene.add(makeCabinet(islandDx+(i*2)-1,_floor,back-width,2,-2));
   }
-  scene.add(drawPanel(islandDx,_floor+3.17,back-width-2,islandDx+6,_floor+3,back-width+2,"counters"));
+  scene.add(drawPanel(islandDx-1,_floor+3.17,back-width-2,islandDx+8,_floor+3,back-width+2,"counters"));
 }
