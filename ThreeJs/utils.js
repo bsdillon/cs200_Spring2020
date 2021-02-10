@@ -93,3 +93,252 @@ function drawPanel(x,y,z,x2,y2,z2,str)
   cube.position.set((x+x2)/2,(y+y2)/2,(z+z2)/2);
   return cube;
 }
+
+      function makeStove(x,y,z)
+      {
+        texture = makeMaterial("stove2.png",false,false);
+        var top = 3;
+        var v0 = new THREE.Vector3(x,y+top,z);
+        var v1 = new THREE.Vector3(x+3,y+top,z);
+        var v2 = new THREE.Vector3(x,y+top,z+3);
+        var v3 = new THREE.Vector3(x+3,y+top,z+3);
+        var v4 = new THREE.Vector3(x,y,z+3);
+        var v5 = new THREE.Vector3(x+3,y,z+3);
+        var v6 = new THREE.Vector3(x,y,z);
+        var v7 = new THREE.Vector3(x+3,y,z);
+
+        var uv1 = new THREE.Vector3(0,1);
+        var uv2 = new THREE.Vector3(308/701.0,1);
+        var uv3 = new THREE.Vector3(0,0);
+        var uv4 = new THREE.Vector3(308/701.0,0);
+        var uvS1 = new THREE.Vector3(308/701.0,104/343.0);
+        var uvS2 = new THREE.Vector3(1,104/361.0);
+        var uvS3 = new THREE.Vector3(308/701.0,0);
+        var uvS4 = new THREE.Vector3(1,0);
+
+        var geom = new THREE.Geometry(); 
+        geom.vertices.push(v0);
+        geom.vertices.push(v1);
+        geom.vertices.push(v2);
+        geom.vertices.push(v3);
+        geom.vertices.push(v4);
+        geom.vertices.push(v5);
+        geom.vertices.push(v6);
+        geom.vertices.push(v7);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faces.push( new THREE.Face3( 1, 2, 3 ) );
+        geom.faces.push( new THREE.Face3( 2, 3, 4 ) );
+        geom.faces.push( new THREE.Face3( 3, 4, 5 ) );
+        geom.faces.push( new THREE.Face3( 0, 2, 6 ) );
+        geom.faces.push( new THREE.Face3( 2, 6, 4 ) );
+        geom.faces.push( new THREE.Face3( 3, 1, 5 ) );
+        geom.faces.push( new THREE.Face3( 1, 5, 7 ) );
+        geom.faceVertexUvs[0].push([uvS1,uvS2,uvS3]);
+        geom.faceVertexUvs[0].push([uvS2,uvS3,uvS4]);
+
+        geom.faceVertexUvs[0].push([uv1,uv2,uv3]);
+        geom.faceVertexUvs[0].push([uv2,uv3,uv4]);
+
+        geom.faceVertexUvs[0].push([uvS1,uvS2,uvS3]);
+        geom.faceVertexUvs[0].push([uvS2,uvS3,uvS4]);
+        geom.faceVertexUvs[0].push([uvS1,uvS2,uvS3]);
+        geom.faceVertexUvs[0].push([uvS2,uvS3,uvS4]);
+
+        var object = new THREE.Mesh( geom, texture );
+        return object;
+      }
+
+      function makeFridge(x,y,z)
+      {
+        texture = makeMaterial("fridge.png",false,false);
+        var v0 = new THREE.Vector3(x,y+6,z);
+        var v1 = new THREE.Vector3(x,y,z);
+        var v2 = new THREE.Vector3(x,y+6,z+3);
+        var v3 = new THREE.Vector3(x,y,z+3);
+        var v4 = new THREE.Vector3(x+4,y+6,z+3);
+        var v5 = new THREE.Vector3(x+4,y,z+3);
+        var v6 = new THREE.Vector3(x+4,y+6,z);
+        var v7 = new THREE.Vector3(x+4,y,z);
+
+        var geom = new THREE.Geometry(); 
+        geom.vertices.push(v0);
+        geom.vertices.push(v1);
+        geom.vertices.push(v2);
+        geom.vertices.push(v3);
+        geom.vertices.push(v4);
+        geom.vertices.push(v5);
+        geom.vertices.push(v6);
+        geom.vertices.push(v7);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faces.push( new THREE.Face3( 1, 2, 3 ) );
+        geom.faces.push( new THREE.Face3( 2, 3, 4 ) );
+        geom.faces.push( new THREE.Face3( 3, 4, 5 ) );
+        geom.faces.push( new THREE.Face3( 4, 5, 6 ) );
+        geom.faces.push( new THREE.Face3( 5, 6, 7 ) );
+        var corner = 197/800.0;
+        var corner2 = 601/800.0;
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 1),
+                                    new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(corner, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(corner, 1),
+                                    new THREE.Vector2(corner, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner, 1),
+                                    new THREE.Vector2(corner, 0),
+                                    new THREE.Vector2(corner2, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner, 0),
+                                    new THREE.Vector2(corner2, 1),
+                                    new THREE.Vector2(corner2, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner2, 1),
+                                    new THREE.Vector2(corner2, 0),
+                                    new THREE.Vector2(1, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner2, 0),
+                                    new THREE.Vector2(1, 1),
+                                    new THREE.Vector2(1, 0)]);
+        var object = new THREE.Mesh( geom, texture );
+        return object;
+      }
+
+      function makeDishwasher(x,y,z)
+      {
+        texture = makeMaterial("dishwasher.png",false,false);
+        var v0 = new THREE.Vector3(x,y+3,z);
+        var v1 = new THREE.Vector3(x,y,z);
+        var v2 = new THREE.Vector3(x,y+3,z+2.5);
+        var v3 = new THREE.Vector3(x,y,z+2.5);
+        var v4 = new THREE.Vector3(x+2,y+3,z+2.5);
+        var v5 = new THREE.Vector3(x+2,y,z+2.5);
+        var v6 = new THREE.Vector3(x+2,y+3,z);
+        var v7 = new THREE.Vector3(x+2,y,z);
+
+        var geom = new THREE.Geometry(); 
+        geom.vertices.push(v0);
+        geom.vertices.push(v1);
+        geom.vertices.push(v2);
+        geom.vertices.push(v3);
+        geom.vertices.push(v4);
+        geom.vertices.push(v5);
+        geom.vertices.push(v6);
+        geom.vertices.push(v7);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faces.push( new THREE.Face3( 1, 2, 3 ) );
+        geom.faces.push( new THREE.Face3( 2, 3, 4 ) );
+        geom.faces.push( new THREE.Face3( 3, 4, 5 ) );
+        geom.faces.push( new THREE.Face3( 4, 5, 6 ) );
+        geom.faces.push( new THREE.Face3( 5, 6, 7 ) );
+        var corner = 197/838.0;
+        var corner2 = 641/838.0;
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 1),
+                                    new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(corner, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(corner, 1),
+                                    new THREE.Vector2(corner, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner, 1),
+                                    new THREE.Vector2(corner, 0),
+                                    new THREE.Vector2(corner2, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner, 0),
+                                    new THREE.Vector2(corner2, 1),
+                                    new THREE.Vector2(corner2, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner2, 1),
+                                    new THREE.Vector2(corner2, 0),
+                                    new THREE.Vector2(1, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner2, 0),
+                                    new THREE.Vector2(1, 1),
+                                    new THREE.Vector2(1, 0)]);
+        var object = new THREE.Mesh( geom, texture );
+        return object;
+      }
+
+      function makeCabinet(x,y,z,w,d)
+      {
+        texture = makeMaterial("cabinet.png",false,false);
+        var v0 = new THREE.Vector3(x,y+3,z);
+        var v1 = new THREE.Vector3(x,y,z);
+        var v2 = new THREE.Vector3(x,y+3,z+d);
+        var v3 = new THREE.Vector3(x,y,z+d);
+        var v4 = new THREE.Vector3(x+w,y+3,z+d);
+        var v5 = new THREE.Vector3(x+w,y,z+d);
+        var v6 = new THREE.Vector3(x+w,y+3,z);
+        var v7 = new THREE.Vector3(x+w,y,z);
+
+        var geom = new THREE.Geometry(); 
+        geom.vertices.push(v0);
+        geom.vertices.push(v1);
+        geom.vertices.push(v2);
+        geom.vertices.push(v3);
+        geom.vertices.push(v4);
+        geom.vertices.push(v5);
+        geom.vertices.push(v6);
+        geom.vertices.push(v7);
+        geom.faces.push( new THREE.Face3( 0, 1, 2 ) );
+        geom.faces.push( new THREE.Face3( 1, 2, 3 ) );
+        geom.faces.push( new THREE.Face3( 2, 3, 4 ) );
+        geom.faces.push( new THREE.Face3( 3, 4, 5 ) );
+        geom.faces.push( new THREE.Face3( 4, 5, 6 ) );
+        geom.faces.push( new THREE.Face3( 5, 6, 7 ) );
+        var corner = 187/594.0;
+        var corner2 = 409/594.0;
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 1),
+                                    new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(corner, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+                                    new THREE.Vector2(corner, 1),
+                                    new THREE.Vector2(corner, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner, 1),
+                                    new THREE.Vector2(corner, 0),
+                                    new THREE.Vector2(corner2, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner, 0),
+                                    new THREE.Vector2(corner2, 1),
+                                    new THREE.Vector2(corner2, 0)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner2, 1),
+                                    new THREE.Vector2(corner2, 0),
+                                    new THREE.Vector2(1, 1)]);
+        geom.faceVertexUvs[0].push([new THREE.Vector2(corner2, 0),
+                                    new THREE.Vector2(1, 1),
+                                    new THREE.Vector2(1, 0)]);
+        var object = new THREE.Mesh( geom, texture );
+        return object;
+      }
+
+      function drawWindow(x,y,z,x2,y2,z2)
+      {
+        //top bar
+        scene.add(createBar(x,y,z,x2,y,z2,"metal"));
+
+        //bottom bar
+        scene.add(createBar(x,y2,z,x2,y2,z2,"metal"));
+
+        //side1
+        scene.add(createBarV(x,y,z,x,y2,z,"metal"));
+
+        //side2
+        scene.add(createBarV(x2,y,z2,x2,y2,z2,"metal"));
+
+        var texture = new THREE.ImageUtils.loadTexture("window.png");
+        var material = new THREE.MeshPhongMaterial({ map:texture, transparent : true, depthWrite: false});
+
+        //window
+        cubegeometry = new THREE.BoxGeometry(Math.abs(x-x2),Math.abs(y-y2),Math.abs(z-z2));
+        cube = new THREE.Mesh(cubegeometry, material);
+        cube.position.set((x+x2)/2,(y+y2)/2,(z+z2)/2);
+        scene.add(cube);
+      }
+
+      function createBox(x,y,z,dx,dy,dz,yaw,str)
+      {
+        //depth,height,width
+        var cubegeometry;
+        if(yaw==0)
+        {
+          cubegeometry = new THREE.BoxGeometry(dx,dy,dz);
+        }
+        else
+        {
+          cubegeometry = new THREE.BoxGeometry(dz,dy,dx);
+        }
+
+        var cube = new THREE.Mesh(cubegeometry, textures[str]);
+        cube.position.set(x, y, z);
+        scene.add(cube);
+      }
