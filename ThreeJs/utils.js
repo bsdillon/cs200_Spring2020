@@ -42,6 +42,7 @@ function loadTextures()
   textures["shingles"] = makeMaterial("shingles.jpg",true,true);
   textures["siding"] = makeMaterial("siding.png",true,true);
   textures["dWindow"] = makeMaterial("doubleWindow.png",false,false);
+  textures["lDoor"] = makeMaterial("doorLeft.png",false,false);
   textures["rDoor"] = makeMaterial("doorRight.png",false,false);
   textures["sWall"] = makeMaterial("studWall.png",false,false);
 }
