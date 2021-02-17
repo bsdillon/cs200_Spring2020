@@ -43,6 +43,7 @@ function loadTextures()
   textures["siding"] = makeMaterial("siding.png",true,true);
   textures["dWindow"] = makeMaterial("doubleWindow.png",false,false);
   textures["rDoor"] = makeMaterial("doorRight.png",false,false);
+  textures["sWall"] = makeMaterial("studWall.png",false,false);
 }
 
 function createBar(x1,y1,z1,x2,y2,z2,textureName)
