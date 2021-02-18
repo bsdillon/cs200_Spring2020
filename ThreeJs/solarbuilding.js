@@ -72,10 +72,10 @@ function buildAll()
 
 function addTexture(x,yb,z,x2,yt,z2,str)
 {
-  var v1 = new THREE.Vector3(x,yb,z);
-  var v2 = new THREE.Vector3(x,yt,z);
-  var v3 = new THREE.Vector3(x2,yt,z2);
-  var v4 = new THREE.Vector3(x2,yb,z2);
+  var v1 = new THREE.Vector3(x,yt,z);
+  var v2 = new THREE.Vector3(x,yb,z);
+  var v3 = new THREE.Vector3(x2,yb,z2);
+  var v4 = new THREE.Vector3(x2,yt,z2);
   
   var geom = new THREE.Geometry(); 
   geom.vertices.push(v1);
@@ -84,8 +84,8 @@ function addTexture(x,yb,z,x2,yt,z2,str)
   //geom.vertices.push(v4);
   geom.faces.push( new THREE.Face3( 0, 1, 2));
   //geom.faces.push( new THREE.Face3( 0, 2, 3));
-  geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
-    new THREE.Vector2(0,1),
+  geom.faceVertexUvs[0].push([new THREE.Vector2(0, 1),
+    new THREE.Vector2(0,0),
     new THREE.Vector2(1,1)]);
   //geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
   //  new THREE.Vector2(1, 1),
