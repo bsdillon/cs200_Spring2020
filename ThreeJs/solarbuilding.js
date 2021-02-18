@@ -68,9 +68,9 @@ function buildAll()
   scene.add(addTexture(0,level,front+10,-10,level+height,front+10,"rDoor"));
   scene.add(addTexture(-10,level,front+10+margin,0,level+height,front+10+margin,"crDoor"));
 
-  level+=7;
+  level+=7.5;
   
-  scene.add(drawPanel(20,level,front-5,30,level+1,front-5,"joist"));
+  scene.add(drawPanel(0,level,front-5,10,level+1,front-5.25,"joist"));
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
