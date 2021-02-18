@@ -70,7 +70,13 @@ function buildAll()
 
   level+=7.5;
   
-  scene.add(drawPanel(0,level,front-5,10,level+1,front-5.25,"joist"));
+  for(let i=0;i<20;i+=1.66)
+  {
+    scene.add(drawPanel(0,level,front-i,10,level+1,front-i-0.25,"joist"));
+    scene.add(drawPanel(10,level,front-i,20,level+1,front-i-0.25,"joist"));
+    scene.add(drawPanel(20,level,front-i,30,level+1,front-i-0.25,"joist"));
+    scene.add(drawPanel(30,level,front-i,40,level+1,front-i-0.25,"joist"));
+  }
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
