@@ -82,7 +82,7 @@ function buildAll()
   }
 
   level+=1;
-  for(let i=0;i<20-.3;i+=3)
+  for(let i=0;i<17;i+=3)
   {
     scene.add(drawPanel(0,level,front-i,10,level+.08,front-i-3,"plyboard"));
     scene.add(drawPanel(10,level,front-i,20,level+.08,front-i-3,"plyboard"));
@@ -92,6 +92,10 @@ function buildAll()
       scene.add(drawPanel(30,level,front-i,40,level+.08,front-i-3,"plyboard"));
     }
   }
+  scene.add(drawPanel(0,level,front-17,10,level+.08,back,"plyboard"));
+  scene.add(drawPanel(10,level,front-17,20,level+.08,back,"plyboard"));
+  scene.add(drawPanel(20,level,front-17,30,level+.08,back,"plyboard"));
+  scene.add(drawPanel(30,level,front-17,40,level+.08,back,"plyboard"));
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
