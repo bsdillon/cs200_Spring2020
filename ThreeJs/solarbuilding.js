@@ -66,7 +66,7 @@ function buildAll()
   scene.add(drawPanel2(20,level,back+5,10,level+height,back+5,"lDoor"));
 
 
-  scene.add(addTexture(-10,level,front+10,0,level+height,front+10,"rDoor"));
+  scene.add(addTexture(0,level,front+10,-10,level+height,front+10,"rDoor"));
   scene.add(addTexture(-10,level,front+10+margin,0,level+height,front+10+margin,"crDoor"));
 }
 
