@@ -64,4 +64,31 @@ function buildAll()
   scene.add(drawPanel2(-40,level,front-5,-30,level+height,front-5,"sWall"));
   scene.add(drawPanel2(0,level,back+5,10,level+height,back+5,"rDoor"));
   scene.add(drawPanel2(20,level,back+5,10,level+height,back+5,"lDoor"));
+
+
+  scene.add(addTexture(-10,level,front+10,0,level+height,front+10,"rDoor"));
+  scene.add(addTexture(-10,level,front+10+margin,0,level+height,front+10+margin,"crDoor"));
+}
+
+function addTexture(x,yb,z,x2,yt,z2,str)
+{
+  var v1 = new THREE.Vector3(x,yt,z);
+  var v2 = new THREE.Vector3(x,yb,z);
+  var v3 = new THREE.Vector3(x2,yt,z2);
+  var v4 = new THREE.Vector3(x2,yb,z2);
+  
+  var geom = new THREE.Geometry(); 
+  geom.vertices.push(v1);
+  geom.vertices.push(v2);
+  geom.vertices.push(v3);
+  geom.vertices.push(v4);
+  geom.faces.push( new THREE.Face3( 0, 1, 2));
+  geom.faces.push( new THREE.Face3( 3, 0, 2));
+  geom.faceVertexUvs[0].push([new THREE.Vector2(0, 0),
+    new THREE.Vector2(0, 1),
+    new THREE.Vector2(1,1)]);
+  geom.faceVertexUvs[0].push([new THREE.Vector2(1, 0),
+    new THREE.Vector2(0, 0),
+    new THREE.Vector2(1, 1)]);
+  return new THREE.Mesh( geom, materialArray[str] );
 }
