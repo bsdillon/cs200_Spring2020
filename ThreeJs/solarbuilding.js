@@ -74,8 +74,8 @@ function addTexture(x,yb,z,x2,yt,z2,str)
 {
   var v1 = new THREE.Vector3(x,yt,z);
   var v2 = new THREE.Vector3(x,yb,z);
-  var v3 = new THREE.Vector3(x2,yt,z2);
-  var v4 = new THREE.Vector3(x2,yb,z2);
+  var v3 = new THREE.Vector3(x2,yb,z2);
+  var v4 = new THREE.Vector3(x2,yt,z2);
   
   var geom = new THREE.Geometry(); 
   geom.vertices.push(v1);
