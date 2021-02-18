@@ -70,17 +70,28 @@ function buildAll()
 
   level+=7.5;
   
-  for(let i=0;i<20;i+=1.66)
+  for(let i=0;i<20-.3;i+=1.5)
   {
     scene.add(drawPanel(0,level,front-i,10,level+1,front-i-0.25,"joist"));
     scene.add(drawPanel(10,level,front-i,20,level+1,front-i-0.25,"joist"));
     scene.add(drawPanel(20,level,front-i,30,level+1,front-i-0.25,"joist"));
-    scene.add(drawPanel(30,level,front-i,40,level+1,front-i-0.25,"joist"));
+    if(i>2.9)
+    {
+      scene.add(drawPanel(30,level,front-i,40,level+1,front-i-0.25,"joist"));
+    }
   }
 
   level+=1;
-  scene.add(drawPanel(0,level,front,30,level+.08,back,"plyboard"));
-  scene.add(drawPanel(40,level,front-3,30,level+.08,back,"plyboard"));
+  for(let i=0;i<20-.3;i+=3)
+  {
+    scene.add(drawPanel(0,level,front-i,10,level+.08,front-i-3,"plyboard"));
+    scene.add(drawPanel(10,level,front-i,20,level+.08,front-i-3,"plyboard"));
+    scene.add(drawPanel(20,level,front-i,30,level+.08,front-i-3,"plyboard"));
+    if(i>2.9)
+    {
+      scene.add(drawPanel(30,level,front-i,40,level+.08,front-i-3,"plyboard"));
+    }
+  }
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
