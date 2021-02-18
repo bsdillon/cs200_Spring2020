@@ -56,6 +56,7 @@ function loadTextures()
   textures["cWindow"] = makeMaterial("windowClapboard.png",false,false);
   textures["crDoor"] = makeMaterial("doorRightClapboard.png",false,false);
   textures["cSolid"] = makeMaterial("clapboard.png",false,false);
+  textures["joist"] = makeMaterial("joist.png",false,false);
   materialArray["dWindow"] = makeMaterial2("doubleWindow.png",false,false);
   materialArray["lDoor"] = makeMaterial2("doorLeft.png",false,false);
   materialArray["rDoor"] = makeMaterial2("doorRight.png",false,false);
