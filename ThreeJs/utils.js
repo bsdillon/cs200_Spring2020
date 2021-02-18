@@ -1,4 +1,10 @@
 var textures = new Object();
+var materialArray = new Object();
+
+function makeMaterial2(filename, repeatX, repeatY)
+{
+  return new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( filename ), transparent: true, opacity: 0.5, color: 0xFF0000 });
+}
 
 function makeMaterial(fileName, repeatX, repeatY)
 {
@@ -48,6 +54,13 @@ function loadTextures()
   textures["cWindow"] = makeMaterial("windowClapboard.png",false,false);
   textures["crDoor"] = makeMaterial("doorRightClapboard.png",false,false);
   textures["cSolid"] = makeMaterial("clapboard.png",false,false);
+  materialArray["dWindow"] = makeMaterial2("doubleWindow.png",false,false);
+  materialArray["lDoor"] = makeMaterial2("doorLeft.png",false,false);
+  materialArray["rDoor"] = makeMaterial2("doorRight.png",false,false);
+  materialArray["sWall"] = makeMaterial2("studWall.png",false,false);
+  materialArray["cWindow"] = makeMaterial2("windowClapboard.png",false,false);
+  materialArray["crDoor"] = makeMaterial2("doorRightClapboard.png",false,false);
+  materialArray["cSolid"] = makeMaterial2("clapboard.png",false,false);
 }
 
 function createBar(x1,y1,z1,x2,y2,z2,textureName)
