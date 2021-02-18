@@ -79,8 +79,8 @@ function buildAll()
   }
 
   level+=1;
-  scene.add(addTexture(0,level,front,30,level+.08,back,"plyboard"));
-  scene.add(addTexture(0,level,front-3,30,level+.08,back,"plyboard"));
+  scene.add(drawPanel(0,level,front,30,level+.08,back,"plyboard"));
+  scene.add(drawPanel(40,level,front-3,30,level+.08,back,"plyboard"));
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
