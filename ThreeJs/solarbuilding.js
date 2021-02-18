@@ -90,5 +90,7 @@ function addTexture(x,yb,z,x2,yt,z2,str)
   geom.faceVertexUvs[0].push([new THREE.Vector2(1, 1),
     new THREE.Vector2(0, 0),
     new THREE.Vector2(1, 0)]);
-  return new THREE.Mesh( geom, materialArray[str] );
+  var m = new THREE.Mesh( geom, materialArray[str] );
+  m.side = THREE.DoubleSide;
+  return m;
 }
