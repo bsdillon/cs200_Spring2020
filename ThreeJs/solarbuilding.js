@@ -77,6 +77,10 @@ function buildAll()
     scene.add(drawPanel(20,level,front-i,30,level+1,front-i-0.25,"joist"));
     scene.add(drawPanel(30,level,front-i,40,level+1,front-i-0.25,"joist"));
   }
+
+  level+=1;
+  scene.add(addTexture(0,level,front,30,level+.08,back,"plyboard"));
+  scene.add(addTexture(0,level,front-3,30,level+.08,back,"plyboard"));
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
