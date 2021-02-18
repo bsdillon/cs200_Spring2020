@@ -3,7 +3,7 @@ var materialArray = new Object();
 
 function makeMaterial2(filename, repeatX, repeatY)
 {
-  return new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( filename ), transparent: true, opacity: 0.1, color: 0xffffff });
+  return new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( filename ), transparent: true, opacity: 0.9, color: 0xffffff });
 }
 
 function makeMaterial(fileName, repeatX, repeatY)
