@@ -83,12 +83,12 @@ function addTexture(x,yb,z,x2,yt,z2,str)
   geom.vertices.push(v3);
   geom.vertices.push(v4);
   geom.faces.push( new THREE.Face3( 0, 1, 2));
-  geom.faces.push( new THREE.Face3( 0, 2, 3));
+  geom.faces.push( new THREE.Face3( 2, 1, 3));
   geom.faceVertexUvs[0].push([new THREE.Vector2(0, 1),
     new THREE.Vector2(0,0),
     new THREE.Vector2(1,1)]);
-  geom.faceVertexUvs[0].push([new THREE.Vector2(0, 1),
-    new THREE.Vector2(1, 1),
+  geom.faceVertexUvs[0].push([new THREE.Vector2(1, 1),
+    new THREE.Vector2(0, 0),
     new THREE.Vector2(1, 0)]);
   return new THREE.Mesh( geom, materialArray[str] );
 }
