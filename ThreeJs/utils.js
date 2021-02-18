@@ -118,7 +118,7 @@ function drawPanel(x,y,z,x2,y2,z2,str)
 function drawPanel2(x,y,z,x2,y2,z2,str)
 {
   var cubegeometry = new THREE.BoxGeometry(Math.abs(x-x2),Math.abs(y-y2),Math.abs(z-z2));
-  var cube = new THREE.Mesh(cubegeometry, materials[str]);
+  var cube = new THREE.Mesh(cubegeometry, materialArray[str]);
   cube.position.set((x+x2)/2,(y+y2)/2,(z+z2)/2);
   return cube;
 }
