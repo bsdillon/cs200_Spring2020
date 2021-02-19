@@ -72,7 +72,7 @@ function buildAll()
   
   //beam
   scene.add(drawPanel(27,level,front,33,level+.08,back,"beam"));
-  scene.add(drawPanel(27,level+92,front,33,level+1,back,"beam"));
+  scene.add(drawPanel(27,level+.92,front,33,level+1,back,"beam"));
   scene.add(drawPanel(29.75,level,front,30.25,level+1,back,"beam"));
   
   for(let i=0;i<20-.3;i+=1.5)
