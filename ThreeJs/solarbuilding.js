@@ -119,11 +119,11 @@ function buildAll()
   scene.add(drawPanel2(40,level,front,40,level+height,front-10,"sWall"));
 
   scene.add(drawPanel2(0,level,back,0,level+height,front-10,"sWall"));
-  scene.add(drawPanel2(0,level,bank,10,level+height,bank,"dWindow"));
-  scene.add(drawPanel2(10,level,bank,20,level+height,bank,"dWindow"));
-  scene.add(drawPanel2(20,level,bank,30,level+height,bank,"dWindow"));
-  scene.add(drawPanel2(30,level,bank,40,level+height,bank,"dWindow"));
-  scene.add(drawPanel2(40,level,bank,40,level+height,front-10,"sWall"));
+  scene.add(drawPanel2(0,level,back,10,level+height,back,"dWindow"));
+  scene.add(drawPanel2(10,level,back,20,level+height,back,"dWindow"));
+  scene.add(drawPanel2(20,level,back,30,level+height,back,"dWindow"));
+  scene.add(drawPanel2(30,level,back,40,level+height,back,"dWindow"));
+  scene.add(drawPanel2(40,level,back,40,level+height,front-10,"sWall"));
 
   scene.add(drawPanel2(-margin,level,back,-margin,level+height,back+10,"cSolid"));
   scene.add(drawPanel2(0,level,back-margin,10,level+height,back-margin,"cWindow"));
