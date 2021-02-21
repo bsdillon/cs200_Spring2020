@@ -137,7 +137,8 @@ function drawPanel(x,y,z,x2,y2,z2,str)
     vx = 0;
     vz = 1;
   }
-  p.lookAt(new THREE.Vector3(vx, 0, vz));
+  //p.lookAt(new THREE.Vector3(vx, 0, vz));
+  p.lookAt(new THREE.Vector3(1, 0, 0));
   return p;
 }
 
