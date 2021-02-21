@@ -117,7 +117,7 @@ function drawPanel3(x,y,z,x2,y2,z2,str)
 
 function drawPanel(x,y,z,x2,y2,z2,str)
 {
-  var geometry = new THREE.PlaneGeometry( Math.abs(x-x2), Math.abs(z-z2));
+  var geometry = new THREE.PlaneGeometry( Math.abs(x-x2), Math.abs(y-y2));
   var p = new THREE.Mesh(geometry, textures[str]);
   p.position.set((x+x2)/2,(y+y2)/2,(z+z2)/2);
   return p;
