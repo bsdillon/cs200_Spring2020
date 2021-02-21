@@ -54,7 +54,7 @@ function loadTextures()
   textures["joist"] = makeMaterial("joist.png",false,false,false);
   textures["plyboard"] = makeMaterial("plyboard.png",false,false,false);
   textures["beam"] = makeMaterial("redmetal.jpg",false,false,false);
-  textures["dWindow"] = makeMaterial("doubleWindow.png",false,false,true);
+  textures["dWindow"] = makeMaterial("doubleWindow.png",false,false,false);
   textures["lDoor"] = makeMaterial("doorLeft.png",false,false,true);
   textures["rDoor"] = makeMaterial("doorRight.png",false,false,true);
   textures["sWall"] = makeMaterial("studWall.png",false,false,true);
