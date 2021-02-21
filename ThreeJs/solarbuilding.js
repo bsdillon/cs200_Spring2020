@@ -69,36 +69,36 @@ function buildAll()
   level+=7.5;
   
   //beam
-  scene.add(drawPanel(29.75,level,front,30.25,level+.08,back,"beam"));
-  scene.add(drawPanel(29.75,level+.92,front,30.25,level+1,back,"beam"));
-  scene.add(drawPanel(29.95,level,front,30.05,level+1,back,"beam"));
+  scene.add(createBar(29.75,level,front,30.25,level+.08,back,"beam"));
+  scene.add(createBar(29.75,level+.92,front,30.25,level+1,back,"beam"));
+  scene.add(createBar(29.95,level,front,30.05,level+1,back,"beam"));
   
   for(let i=0;i<20-.3;i+=1.5)
   {
-    scene.add(drawPanel(0,level,front-i,10,level+1,front-i-0.25,"joist"));
-    scene.add(drawPanel(10,level,front-i,20,level+1,front-i-0.25,"joist"));
-    scene.add(drawPanel(20,level,front-i,30,level+1,front-i-0.25,"joist"));
+    scene.add(createBar(0,level,front-i,10,level+1,front-i-0.25,"joist"));
+    scene.add(createBar(10,level,front-i,20,level+1,front-i-0.25,"joist"));
+    scene.add(createBar(20,level,front-i,30,level+1,front-i-0.25,"joist"));
     if(i>2.9)
     {
-      scene.add(drawPanel(30,level,front-i,40,level+1,front-i-0.25,"joist"));
+      scene.add(createBar(30,level,front-i,40,level+1,front-i-0.25,"joist"));
     }
   }
 
   level+=1;
   for(let i=0;i<17;i+=3)
   {
-    scene.add(drawPanel(0,level,front-i,10,level+.08,front-i-3,"plyboard"));
-    scene.add(drawPanel(10,level,front-i,20,level+.08,front-i-3,"plyboard"));
-    scene.add(drawPanel(20,level,front-i,30,level+.08,front-i-3,"plyboard"));
+    scene.add(createBar(0,level,front-i,10,level+.08,front-i-3,"plyboard"));
+    scene.add(createBar(10,level,front-i,20,level+.08,front-i-3,"plyboard"));
+    scene.add(createBar(20,level,front-i,30,level+.08,front-i-3,"plyboard"));
     if(i>2.9)
     {
-      scene.add(drawPanel(30,level,front-i,40,level+.08,front-i-3,"plyboard"));
+      scene.add(createBar(30,level,front-i,40,level+.08,front-i-3,"plyboard"));
     }
   }
-  scene.add(drawPanel(0,level,front-17,10,level+.08,back,"plyboard"));
-  scene.add(drawPanel(10,level,front-17,20,level+.08,back,"plyboard"));
-  scene.add(drawPanel(20,level,front-17,30,level+.08,back,"plyboard"));
-  scene.add(drawPanel(30,level,front-17,40,level+.08,back,"plyboard"));
+  scene.add(createBar(0,level,front-17,10,level+.08,back,"plyboard"));
+  scene.add(createBar(10,level,front-17,20,level+.08,back,"plyboard"));
+  scene.add(createBar(20,level,front-17,30,level+.08,back,"plyboard"));
+  scene.add(createBar(30,level,front-17,40,level+.08,back,"plyboard"));
 
   level += .08;
   
@@ -140,7 +140,6 @@ function buildAll()
   scene.add(drawPanel(10,level,front-5,20,level+height,front-5,"rDoor"));
   scene.add(drawPanel(20,level,front-5,30,level+height,front-5,"lDoor"));
   scene.add(drawPanel(30,level,front-5,40,level+height,front-5,"rDoor"));
-
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
