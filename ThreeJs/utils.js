@@ -130,15 +130,6 @@ function drawPanel(x,y,z,x2,y2,z2,str)
   var p = new THREE.Mesh(geometry, textures[str]);
   p.position.set((x+x2)/2,(y+y2)/2,(z+z2)/2);
   
-  vx = 1;
-  vz = 0;
-  if(dx==0)
-  {
-    vx = 0;
-    vz = 1;
-  }
-  //p.lookAt(new THREE.Vector3(vx, 0, vz));
-  p.lookAt(new THREE.Vector3(1, 0, 0));
   return p;
 }
 
