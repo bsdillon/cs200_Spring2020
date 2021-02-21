@@ -41,7 +41,7 @@ function loadTextures()
   textures["windInt"] = makeMaterial("plaster_wind.png",false,false,false);
   textures["trees"] = makeMaterial("tree.png",true,false,false);
   textures["grass"] = makeMaterial("grass.jpg",true,true,false);
-  textures["foundation"] = makeMaterial("concrete.jpg",true,false,false);
+  textures["foundation"] = makeMaterial("concrete.jpg",true,true,false);
   textures["metal"] = makeMaterial("metal.jpg",false,false,false);
   textures["window"] = makeMaterial("window.png",false,false,true);
   textures["int"] = makeMaterial("plaster.jpg",false,false,false);
