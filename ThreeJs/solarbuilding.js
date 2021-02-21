@@ -7,16 +7,7 @@ function buildAll()
   var margin = .1;
  
   //exterior walls first floor
-  scene.add(drawPanel(-40,level,back,-40,level+height,back+10,"sWall"));
   scene.add(drawPanel(-40,level,back,-30,level+height,back,"foundation"));
-  scene.add(drawPanel(-30,level,back,-20,level+height,back,"dWindow"));
-  scene.add(drawPanel(-20,level,back,-10,level+height,back,"dWindow"));
-  scene.add(drawPanel(-10,level,back,0,level+height,back,"rDoor"));
-  scene.add(drawPanel(0,level,back,10,level+height,back,"dWindow"));
-  scene.add(drawPanel(10,level,back,20,level+height,back,"dWindow"));
-  scene.add(drawPanel(20,level,back,30,level+height,back,"dWindow"));
-  scene.add(drawPanel(30,level,back,40,level+height,back,"dWindow"));
-  scene.add(drawPanel(40,level,back,40,level+height,back+10,"rDoor"));
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
