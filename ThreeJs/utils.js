@@ -18,7 +18,7 @@ function makeMaterial(fileName, repeatX, repeatY, transparent)
   var material;
   if(transparent)
   {
-    materail = new THREE.MeshBasicMaterial( { map: texture, transparent: true, opacity: 0.9, side: THREE.DoubleSide});
+    materail = new THREE.MeshBasicMaterial( { map: texture, transparent: true, opacity: 0.9, color: 0xffff00, side: THREE.DoubleSide});
   }
   else
   {
