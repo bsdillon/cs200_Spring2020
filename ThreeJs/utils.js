@@ -1,14 +1,6 @@
 var textures = new Object();
-var materialArray = new Object();
 
-function makeMaterial2(filename, repeatX, repeatY)
-{
-  var m = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( filename ), transparent: true, opacity: 0.9, color: 0xffffff });
-  m.wrapS = THREE.MirroredRepeatWrapping
-  return m;
-}
-
-function makeMaterial(fileName, repeatX, repeatY)
+function makeMaterial(fileName, repeatX, repeatY, transparent)
 {
   var texture = new THREE.ImageUtils.loadTexture(fileName);
   if(repeatX)
@@ -22,50 +14,53 @@ function makeMaterial(fileName, repeatX, repeatY)
     texture.wrapT = THREE.RepeatWrapping;
     texture.repeat.y=4;
   }
-  return new THREE.MeshBasicMaterial({ map:texture, side:THREE.DoubleSide});
+  
+  var material;
+  if(transparent)
+  {
+    materail = new THREE.MeshBasicMaterial( { map: texture, transparent: true, opacity: 0.9, side: THREE.DoubleSide});
+  }
+  else
+  {
+    material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide, side: THREE.DoubleSide});
+  }
+  return material;
 }
 
 function loadTextures()
 {
-  textures["grey"] = makeMaterial("greyWall.png",false);
-  textures["ext"] = makeMaterial("greyWall2.jpg",false);
-  textures["doors"] = makeMaterial("doors.jpg",false);
-  textures["floor"] = makeMaterial("floor2.png",false,true);
-  textures["floorH"] = makeMaterial("floor2.png",true,false);
-  textures["top"] = makeMaterial("top.png",false);
-  textures["topH"] = makeMaterial("top2.png",false);
-  textures["extSect"] = makeMaterial("greyWall_sect.jpg",false);
-  textures["windSect"] = makeMaterial("greyWall_wind.png",false);
-  textures["windInt"] = makeMaterial("plaster_wind.png",false);
-  textures["trees"] = makeMaterial("tree.png",true,false);
-  textures["grass"] = makeMaterial("grass.jpg",true,true);
-  textures["foundation"] = makeMaterial("concrete.jpg",true);
-  textures["metal"] = makeMaterial("metal.jpg",false);
-  textures["window"] = makeMaterial("window.png",false);
-  textures["int"] = makeMaterial("plaster.jpg",false,false);
-  textures["counters"] = makeMaterial("counters.jpg",false,false);
-  textures["sink"] = makeMaterial("sink2.png",false,false);
-  textures["woodLeg"] = makeMaterial("woodleg.png",false,false);
-  textures["woodTable"] = makeMaterial("woodtable.png",false,false);
-  textures["shingles"] = makeMaterial("shingles.jpg",true,true);
-  textures["siding"] = makeMaterial("siding.png",true,true);
-  textures["dWindow"] = makeMaterial("doubleWindow.png",false,false);
-  textures["lDoor"] = makeMaterial("doorLeft.png",false,false);
-  textures["rDoor"] = makeMaterial("doorRight.png",false,false);
-  textures["sWall"] = makeMaterial("studWall.png",false,false);
-  textures["cWindow"] = makeMaterial("windowClapboard.png",false,false);
-  textures["crDoor"] = makeMaterial("doorRightClapboard.png",false,false);
-  textures["cSolid"] = makeMaterial("clapboard.png",false,false);
-  textures["joist"] = makeMaterial("joist.png",false,false);
-  textures["plyboard"] = makeMaterial("plyboard.png",false,false);
-  textures["beam"] = makeMaterial("redmetal.jpg",false,false);
-  materialArray["dWindow"] = makeMaterial2("doubleWindow.png",false,false);
-  materialArray["lDoor"] = makeMaterial2("doorLeft.png",false,false);
-  materialArray["rDoor"] = makeMaterial2("doorRight.png",false,false);
-  materialArray["sWall"] = makeMaterial2("studWall.png",false,false);
-  materialArray["cWindow"] = makeMaterial2("windowClapboard.png",false,false);
-  materialArray["crDoor"] = makeMaterial2("doorRightClapboard.png",false,false);
-  materialArray["cSolid"] = makeMaterial2("clapboard.png",false,false);
+  textures["grey"] = makeMaterial("greyWall.png",false,false,false);
+  textures["ext"] = makeMaterial("greyWall2.jpg",false,false,false);
+  textures["doors"] = makeMaterial("doors.jpg",false,false,false);
+  textures["floor"] = makeMaterial("floor2.png",false,true,false);
+  textures["floorH"] = makeMaterial("floor2.png",true,false,false);
+  textures["top"] = makeMaterial("top.png",false,false,false);
+  textures["topH"] = makeMaterial("top2.png",false,false,false);
+  textures["extSect"] = makeMaterial("greyWall_sect.jpg",false,false,false);
+  textures["windSect"] = makeMaterial("greyWall_wind.png",false,false,false);
+  textures["windInt"] = makeMaterial("plaster_wind.png",false,false,false);
+  textures["trees"] = makeMaterial("tree.png",true,false,false);
+  textures["grass"] = makeMaterial("grass.jpg",true,true,false);
+  textures["foundation"] = makeMaterial("concrete.jpg",true,false,false);
+  textures["metal"] = makeMaterial("metal.jpg",false,false,false);
+  textures["window"] = makeMaterial("window.png",false,false,true);
+  textures["int"] = makeMaterial("plaster.jpg",false,false,false);
+  textures["counters"] = makeMaterial("counters.jpg",false,false,false);
+  textures["sink"] = makeMaterial("sink2.png",false,false,false);
+  textures["woodLeg"] = makeMaterial("woodleg.png",false,false,false);
+  textures["woodTable"] = makeMaterial("woodtable.png",false,false,false);
+  textures["shingles"] = makeMaterial("shingles.jpg",true,true,false);
+  textures["siding"] = makeMaterial("siding.png",true,true,false);
+  textures["joist"] = makeMaterial("joist.png",false,false,false);
+  textures["plyboard"] = makeMaterial("plyboard.png",false,false,false);
+  textures["beam"] = makeMaterial("redmetal.jpg",false,false,false);
+  textures["dWindow"] = makeMaterial("doubleWindow.png",false,false,true);
+  textures["lDoor"] = makeMaterial("doorLeft.png",false,false,true);
+  textures["rDoor"] = makeMaterial("doorRight.png",false,false,true);
+  textures["sWall"] = makeMaterial("studWall.png",false,false,true);
+  textures["cWindow"] = makeMaterial("windowClapboard.png",false,false,true);
+  textures["crDoor"] = makeMaterial("doorRightClapboard.png",false,false,true);
+  textures["cSolid"] = makeMaterial("clapboard.png",false,false,true);
 }
 
 function createBar(x1,y1,z1,x2,y2,z2,textureName)
@@ -112,12 +107,20 @@ function createBackground()
   scene.add(cube);
 }
 
-function drawPanel(x,y,z,x2,y2,z2,str)
+function drawPanel3(x,y,z,x2,y2,z2,str)
 {
   var cubegeometry = new THREE.BoxGeometry(Math.abs(x-x2),Math.abs(y-y2),Math.abs(z-z2));
   var cube = new THREE.Mesh(cubegeometry, textures[str]);
   cube.position.set((x+x2)/2,(y+y2)/2,(z+z2)/2);
   return cube;
+}
+
+function drawPanel(x,y,z,x2,y2,z2,str)
+{
+  var geometry = new THREE.PlaneGeometry( Math.abs(x-x2), Math.abs(z-z2));
+  var p = new THREE.Mesh(geometry, textures[str]);
+  p.position.set((x+x2)/2,(y+y2)/2,(z+z2)/2);
+  return p;
 }
 
 function drawPanel2(x,y,z,x2,y2,z2,str)
