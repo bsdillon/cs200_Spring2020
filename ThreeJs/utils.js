@@ -1,5 +1,12 @@
 var textures = new Object();
 
+function makeMaterial2(filename, repeatX, repeatY)
+{
+  var m = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( filename ), transparent: true, opacity: 0.9, color: 0xffffff });
+  m.side = THREE.DoubleSide;
+  return m;
+}
+
 function makeMaterial(fileName, repeatX, repeatY, transparent)
 {
   var texture = new THREE.ImageUtils.loadTexture(fileName);
@@ -54,13 +61,13 @@ function loadTextures()
   textures["joist"] = makeMaterial("joist.png",false,false,false);
   textures["plyboard"] = makeMaterial("plyboard.png",false,false,false);
   textures["beam"] = makeMaterial("redmetal.jpg",false,false,false);
-  textures["dWindow"] = makeMaterial("doubleWindow.png",false,false,true);
-  textures["lDoor"] = makeMaterial("doorLeft.png",false,false,true);
-  textures["rDoor"] = makeMaterial("doorRight.png",false,false,true);
-  textures["sWall"] = makeMaterial("studWall.png",false,false,true);
-  textures["cWindow"] = makeMaterial("windowClapboard.png",false,false,true);
-  textures["crDoor"] = makeMaterial("doorRightClapboard.png",false,false,true);
-  textures["cSolid"] = makeMaterial("clapboard.png",false,false,true);
+  textures["dWindow"] = makeMaterial2("doubleWindow.png",false,false,true);
+  textures["lDoor"] = makeMaterial2("doorLeft.png",false,false,true);
+  textures["rDoor"] = makeMaterial2("doorRight.png",false,false,true);
+  textures["sWall"] = makeMaterial2("studWall.png",false,false,true);
+  textures["cWindow"] = makeMaterial2("windowClapboard.png",false,false,true);
+  textures["crDoor"] = makeMaterial2("doorRightClapboard.png",false,false,true);
+  textures["cSolid"] = makeMaterial2("clapboard.png",false,false,true);
 }
 
 function createBar(x1,y1,z1,x2,y2,z2,textureName)
