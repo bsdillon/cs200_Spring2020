@@ -11,12 +11,12 @@ function buildAll()
   scene.add(drawPanel(-40,level,back,-30,level+height,back,"dWindow"));
   scene.add(drawPanel(-30,level,back,-20,level+height,back,"dWindow"));
   scene.add(drawPanel(-20,level,back,-10,level+height,back,"dWindow"));
-  scene.add(drawPanel(-10,level,back,0,level+height,back,"rDoor"));
+  scene.add(drawPanel(-10,level,back,0,level+height,back,"lDoor"));
   scene.add(drawPanel(0,level,back,10,level+height,back,"dWindow"));
   scene.add(drawPanel(10,level,back,20,level+height,back,"dWindow"));
   scene.add(drawPanel(20,level,back,30,level+height,back,"dWindow"));
   scene.add(drawPanel(30,level,back,40,level+height,back,"dWindow"));
-  scene.add(drawPanel(40,level,back,40,level+height,back+10,"rDoor"));
+  scene.add(drawPanel(40,level,back,40,level+height,back+10,"lDoor"));
   scene.add(drawPanel(-40,level,front,-40,level+height,front-10,"sWall"));
   scene.add(drawPanel(-40,level,front,-30,level+height,front,"sWall"));
   scene.add(drawPanel(-30,level,front,-20,level+height,front,"dWindow"));
@@ -40,19 +40,20 @@ function buildAll()
   scene.add(drawPanel(20,level,front,20,level+height,front-10,"sWall"));
   scene.add(drawPanel(20,level,back,20,level+height,front-10,"lDoor"));
   scene.add(drawPanel(-40,level,front-5,-30,level+height,front-5,"sWall"));
-  scene.add(drawPanel(0,level,back+5,10,level+height,back+5,"rDoor"));
-  scene.add(drawPanel(20,level,back+5,10,level+height,back+5,"lDoor"));
+  scene.add(drawPanel(0,level,back+5,10,level+height,back+5,"lDoor"));
+  scene.add(drawPanel(20,level,back+5,10,level+height,back+5,"rDoor"));
 
+  //clapboard
   scene.add(drawPanel(-40-margin,level,back,-40-margin,level+height,back+10,"cSolid"));
   scene.add(drawPanel(-40,level,back-margin,-30,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(-30,level,back-margin,-20,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(-20,level,back-margin,-10,level+height,back-margin,"cWindow"));
-  scene.add(drawPanel(-10,level,back-margin,0,level+height,back-margin,"crDoor"));
+  scene.add(drawPanel(-10,level,back-margin,0,level+height,back-margin,"clDoor"));
   scene.add(drawPanel(0,level,back-margin,10,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(10,level,back-margin,20,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(20,level,back-margin,30,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(30,level,back-margin,40,level+height,back-margin,"cWindow"));
-  scene.add(drawPanel(40+margin,level,back,40+margin,level+height,back+10,"crDoor"));
+  scene.add(drawPanel(40+margin,level,back,40+margin,level+height,back+10,"clDoor"));
   
   scene.add(drawPanel(-40-margin,level,front,-40-margin,level+height,front-10,"cSolid"));
   scene.add(drawPanel(-40,level,front+margin,-30,level+height,front+margin,"cSolid"));
@@ -73,9 +74,9 @@ function buildAll()
   scene.add(drawCube(29.75,level+.92,front,30.25,level+1,back,"beam"));
   scene.add(drawCube(29.95,level,front,30.05,level+1,back,"beam"));
 
-  scene.add(drawCube(-29.75,level,front,-30.25,level+.08,back,"beam"));
-  scene.add(drawCube(-29.75,level+.92,front,-30.25,level+1,back,"beam"));
-  scene.add(drawCube(-29.95,level,front,-30.05,level+1,back,"beam"));
+  scene.add(drawCube(-19.75,level,front,-20.25,level+.08,back,"beam"));
+  scene.add(drawCube(-19.75,level+.92,front,-20.25,level+1,back,"beam"));
+  scene.add(drawCube(-19.95,level,front,-20.05,level+1,back,"beam"));
 
   for(let i=0;i<20-.3;i+=1.5)
   {
