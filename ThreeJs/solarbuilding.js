@@ -69,13 +69,13 @@ function buildAll()
   level+=7.5;
   
   //beam
-  scene.add(createBar(29.75,level,front,30.25,level+.08,back,"beam"));
-  scene.add(createBar(29.75,level+.92,front,30.25,level+1,back,"beam"));
-  scene.add(createBar(29.95,level,front+20,30.05,level+13,back,"beam"));
+  scene.add(drawCube(29.75,level,front,30.25,level+.08,back,"beam"));
+  scene.add(drawCube(29.75,level+.92,front,30.25,level+1,back,"beam"));
+  scene.add(drawCube(29.95,level,front,30.05,level+1,back,"beam"));
 
-  scene.add(createBar(-29.75,level,front,-30.25,level+.08,back,"beam"));
-  scene.add(createBar(-29.75,level+.92,front,-30.25,level+1,back,"beam"));
-  scene.add(createBar(-29.90,level,front,-30.10,level+1,back,"beam"));
+  scene.add(drawCube(-29.75,level,front,-30.25,level+.08,back,"beam"));
+  scene.add(drawCube(-29.75,level+.92,front,-30.25,level+1,back,"beam"));
+  scene.add(drawCube(-29.95,level,front,-30.05,level+1,back,"beam"));
 
   for(let i=0;i<20-.3;i+=1.5)
   {
