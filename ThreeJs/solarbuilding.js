@@ -71,7 +71,7 @@ function buildAll()
   //beam
   scene.add(createBar(29.75,level,front,30.25,level+.08,back,"beam"));
   scene.add(createBar(29.75,level+.92,front,30.25,level+1,back,"beam"));
-  scene.add(createBar(29.95,level,front+20,30.05,level+3,back,"beam"));
+  scene.add(createBar(29.95,level,front+20,30.05,level+13,back,"beam"));
 
   scene.add(createBar(-29.75,level,front,-30.25,level+.08,back,"beam"));
   scene.add(createBar(-29.75,level+.92,front,-30.25,level+1,back,"beam"));
