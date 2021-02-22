@@ -114,7 +114,7 @@ function createBackground()
   scene.add(cube);
 }
 
-function drawPanel3(x,y,z,x2,y2,z2,str)
+function drawCube(x,y,z,x2,y2,z2,str)
 {
   var cubegeometry = new THREE.BoxGeometry(Math.abs(x-x2),Math.abs(y-y2),Math.abs(z-z2));
   var cube = new THREE.Mesh(cubegeometry, textures[str]);
