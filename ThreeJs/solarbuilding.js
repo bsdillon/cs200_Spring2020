@@ -140,10 +140,10 @@ function buildAll()
   scene.add(drawPanel(20,level,back,20,level+height,front-10,"sWall"));
   scene.add(drawPanel(30,level,front,30,level+height,front-10,"lDoor"));
   scene.add(drawPanel(30,level,back,30,level+height,front-10,"sWall"));
-  scene.add(drawPanel(0,level,front-5,10,level+height,front-5,"lDoor"));
-  scene.add(drawPanel(10,level,front-5,20,level+height,front-5,"rDoor"));
-  scene.add(drawPanel(20,level,front-5,30,level+height,front-5,"lDoor"));
-  scene.add(drawPanel(30,level,front-5,40,level+height,front-5,"rDoor"));
+  scene.add(drawPanel(10,level,front-5,0,level+height,front-5,"lDoor"));
+  scene.add(drawPanel(20,level,front-5,10,level+height,front-5,"rDoor"));
+  scene.add(drawPanel(30,level,front-5,20,level+height,front-5,"lDoor"));
+  scene.add(drawPanel(40,level,front-5,30,level+height,front-5,"rDoor"));
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
