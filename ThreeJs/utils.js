@@ -1,6 +1,6 @@
 var textures = new Object();
 
-function makeMaterial2(filename, repeatX, repeatY)
+function makeTransparentMaterial(filename, repeatX, repeatY)
 {
   var m = new THREE.MeshBasicMaterial( { map: THREE.ImageUtils.loadTexture( filename ), transparent: true, opacity: 0.9, color: 0xffffff });
   m.side = THREE.DoubleSide;
@@ -61,18 +61,18 @@ function loadTextures()
   textures["joist"] = makeMaterial("joist.png",false,false,false);
   textures["plyboard"] = makeMaterial("plyboard.png",false,false,false);
   textures["beam"] = makeMaterial("redmetal.jpg",false,false,false);
-  textures["dWindow"] = makeMaterial2("doubleWindow.png",false,false,true);
-  textures["lDoor"] = makeMaterial2("doorLeft.png",false,false,true);
-  textures["rDoor"] = makeMaterial2("doorRight.png",false,false,true);
-  textures["sWall"] = makeMaterial2("studWall.png",false,false,true);
-  textures["ssWall"] = makeMaterial2("shortSolidFrame.png",false,false,true);
-  textures["truss"] = makeMaterial2("truss.png",false,false,true);
-  textures["cWindow"] = makeMaterial2("windowClapboard.png",false,false,true);
-  textures["clDoor"] = makeMaterial2("doorLeftClapboard.png",false,false,true);
-  textures["crDoor"] = makeMaterial2("doorRightClapboard.png",false,false,true);
-  textures["cSolid"] = makeMaterial2("clapboard.png",false,false,true);
-  textures["csSolid"] = makeMaterial2("shortClapboard.png",false,false,false);
-  textures["cTruss"] = makeMaterial2("trussClapboard.png",false,false,false);
+  textures["csSolid"] = makeMaterial("shortClapboard.png",false,false,false);
+  textures["cTruss"] = makeMaterial("trussClapboard.png",false,false,false);
+  textures["cSolid"] = makeMaterial("clapboard.png",false,false,false);
+  textures["dWindow"] = makeTransparentMaterial("doubleWindow.png",false,false,true);
+  textures["lDoor"] = makeTransparentMaterial("doorLeft.png",false,false,true);
+  textures["rDoor"] = makeTransparentMaterial("doorRight.png",false,false,true);
+  textures["sWall"] = makeTransparentMaterial("studWall.png",false,false,true);
+  textures["ssWall"] = makeTransparentMaterial("shortSolidFrame.png",false,false,true);
+  textures["truss"] = makeTransparentMaterial("truss.png",false,false,true);
+  textures["cWindow"] = makeTransparentMaterial("windowClapboard.png",false,false,true);
+  textures["clDoor"] = makeTransparentMaterial("doorLeftClapboard.png",false,false,true);
+  textures["crDoor"] = makeTransparentMaterial("doorRightClapboard.png",false,false,true);
 }
 
 function createBar(x1,y1,z1,x2,y2,z2,textureName)
