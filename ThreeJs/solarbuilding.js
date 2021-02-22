@@ -66,6 +66,12 @@ function buildAll()
   scene.add(drawPanel(30,level,front+margin,40,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(40+margin,level,front,40+margin,level+height,front-10,"cSolid"));
 
+  scene.add(drawPanel(-40-margin,level+height,back,-40-margin,level+height+6.89,front,"cTruss"));
+  scene.add(drawPanel(-40,level+height,back,-40,level+height+6.89,front,"truss"));
+  scene.add(drawPanel(-30,level+height,back,-30,level+height+6.89,front,"truss"));
+  scene.add(drawPanel(-20,level+height,back,-20,level+height+6.89,front,"truss"));
+  scene.add(drawPanel(-10,level+height,back,-10,level+height+6.89,front,"truss"));
+  scene.add(drawPanel(0,level+height,back,0,level+height+6.89,front,"truss"));
 
   level+=7.5;
   
@@ -145,6 +151,24 @@ function buildAll()
   scene.add(drawPanel(20,level,front-5,10,level+height,front-5,"rDoor"));
   scene.add(drawPanel(30,level,front-5,20,level+height,front-5,"lDoor"));
   scene.add(drawPanel(40,level,front-5,30,level+height,front-5,"rDoor"));
+
+  scene.add(drawPanel(-40,level,back,-30,level+height,back,"ssWall"));
+  scene.add(drawPanel(-30,level,back,-20,level+height,back,"ssWall"));
+  scene.add(drawPanel(-20,level,back,-10,level+height,back,"ssWall"));
+  scene.add(drawPanel(-10,level,back,0,level+height,back,"ssWall"));
+  scene.add(drawPanel(0,level+height,back,10,level+height+6.89,back,"ssWall"));
+  scene.add(drawPanel(10,level+height,back,20,level+height+6.89,back,"ssWall"));
+  scene.add(drawPanel(20,level+height,back,30,level+height+6.89,back,"ssWall"));
+  scene.add(drawPanel(30,level+height,back,40,level+height+6.89,back,"ssWall"));
+
+  scene.add(drawPanel(-40,level,back-margin,-30,level+height,back-margin,"csSolid"));
+  scene.add(drawPanel(-30,level,back-margin,-20,level+height,back-margin,"csSolid"));
+  scene.add(drawPanel(-20,level,back-margin,-10,level+height,back-margin,"csSolid"));
+  scene.add(drawPanel(-10,level,back-margin,0,level+height,back-margin,"csSolid"));
+  scene.add(drawPanel(0,level+height,back-margin,10,level+height+6.89,back-margin,"csSolid"));
+  scene.add(drawPanel(10,level+height,back-margin,20,level+height+6.89,back-margin,"csSolid"));
+  scene.add(drawPanel(20,level+height,back-margin,30,level+height+6.89,back-margin,"csSolid"));
+  scene.add(drawPanel(30,level+height,back-margin,40,level+height+6.89,back-margin,"csSolid"));
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
