@@ -65,10 +65,14 @@ function loadTextures()
   textures["lDoor"] = makeMaterial2("doorLeft.png",false,false,true);
   textures["rDoor"] = makeMaterial2("doorRight.png",false,false,true);
   textures["sWall"] = makeMaterial2("studWall.png",false,false,true);
+  textures["ssWall"] = makeMaterial2("shortSolidFrame.png",false,false,true);
+  textures["truss"] = makeMaterial2("truss.png",false,false,true);
   textures["cWindow"] = makeMaterial2("windowClapboard.png",false,false,true);
   textures["clDoor"] = makeMaterial2("doorLeftClapboard.png",false,false,true);
   textures["crDoor"] = makeMaterial2("doorRightClapboard.png",false,false,true);
   textures["cSolid"] = makeMaterial2("clapboard.png",false,false,true);
+  textures["csSolid"] = makeMaterial2("shortClapboard.png",false,false,false);
+  textures["cTruss"] = makeMaterial2("trussClapboard.png",false,false,false);
 }
 
 function createBar(x1,y1,z1,x2,y2,z2,textureName)
