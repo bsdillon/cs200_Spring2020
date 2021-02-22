@@ -139,7 +139,7 @@ function drawPanel(x,y,z,x2,y2,z2,str)
   
   if(dx==0)
   {
-    p.rotateZ( Math.PI / 2 );
+    p.rotateY( Math.PI / 2 );
   }
   
   return p;
