@@ -137,6 +137,11 @@ function drawPanel(x,y,z,x2,y2,z2,str)
   var p = new THREE.Mesh(geometry, textures[str]);
   p.position.set((x+x2)/2,(y+y2)/2,(z+z2)/2);
   
+  if(dx==0)
+  {
+    p.rotateX( Math.PI / 2 );
+  }
+  
   return p;
 }
 
