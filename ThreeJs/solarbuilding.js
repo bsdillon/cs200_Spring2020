@@ -244,7 +244,7 @@ function buildAll()
       var tmp = createBar(j*10,level+k,front-i,(j+1)*10,level+k+.08,front-i-3,"plyboard")
       tmp.rotateX( 8.53*Math.PI/180);
       scene.add(tmp);
-      tmp = createBar(-j*10,level+k+.09,front-i,-(j+1)*10,level+k+.09,front-i-3,"shingles")
+      tmp = createBar(j*10,level+k+.09,front-i,(j+1)*10,level+k+.09,front-i-3,"shingles")
       tmp.rotateX( 8.53*Math.PI/180);
       scene.add(tmp);
     }
