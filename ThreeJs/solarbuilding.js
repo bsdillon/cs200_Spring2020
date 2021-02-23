@@ -90,10 +90,10 @@ function buildAll()
   //roof over kitchen
   for(let i=0;i<17;i+=3)
   {
-    var k = 2.9*(1.5+i)/20+height-.8;
+    var k = 2.9*(1.5+i)/20+height+.2;
     for(let j=0;j<10;j++)
     {
-      var tmp = createBar(j*10,level+k,front-i,(j+1)*10,level+k+.08,front-i-3,"plyboard")
+      var tmp = createBar(-j*10,level+k,front-i,-(j+1)*10,level+k+.08,front-i-3,"plyboard")
       tmp.rotateX( 8.53*Math.PI/180);
       scene.add(tmp);
     }
