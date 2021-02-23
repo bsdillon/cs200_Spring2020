@@ -66,12 +66,24 @@ function buildAll()
   scene.add(drawPanel(30,level,front+margin,40,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(40+margin,level,front,40+margin,level+height,front-10,"cSolid"));
 
-  scene.add(drawPanel(-40-margin,level+height,back,-40-margin,level+height+6.89,front,"cTruss"));
-  scene.add(drawPanel(-40,level+height,back,-40,level+height+6.89,front,"truss"));
-  scene.add(drawPanel(-30,level+height,back,-30,level+height+6.89,front,"truss"));
-  scene.add(drawPanel(-20,level+height,back,-20,level+height+6.89,front,"truss"));
-  scene.add(drawPanel(-10,level+height,back,-10,level+height+6.89,front,"truss"));
-  scene.add(drawPanel(0,level+height,back,0,level+height+6.89,front,"truss"));
+  var tmp = drawPanel(-40-margin,level+height,back,-40-margin,level+height+6.89,front,"cTruss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
+  tmp = drawPanel(-40,level+height,back,-40,level+height+6.89,front,"truss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
+  tmp = drawPanel(-30,level+height,back,-30,level+height+6.89,front,"truss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
+  tmp = drawPanel(-20,level+height,back,-20,level+height+6.89,front,"truss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
+  tmp = drawPanel(-10,level+height,back,-10,level+height+6.89,front,"truss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
+  tmp = drawPanel(0,level+height,back,0,level+height+6.89,front,"truss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
 
   level+=7.5;
   
@@ -169,6 +181,22 @@ function buildAll()
   scene.add(drawPanel(10,level+height,back-margin,20,level+height+6.89,back-margin,"csSolid"));
   scene.add(drawPanel(20,level+height,back-margin,30,level+height+6.89,back-margin,"csSolid"));
   scene.add(drawPanel(30,level+height,back-margin,40,level+height+6.89,back-margin,"csSolid"));
+
+  var tmp = drawPanel(40+margin,level+height,back,40+margin,level+height+6.89,front,"cTruss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
+  tmp = drawPanel(40,level+height,back,40,level+height+6.89,front,"truss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
+  tmp = drawPanel(30,level+height,back,30,level+height+6.89,front,"truss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
+  tmp = drawPanel(20,level+height,back,20,level+height+6.89,front,"truss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
+  tmp = drawPanel(10,level+height,back,10,level+height+6.89,front,"truss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
