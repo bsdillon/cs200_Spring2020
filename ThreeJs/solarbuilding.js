@@ -88,7 +88,7 @@ function buildAll()
   }
 
   //roof over kitchen
-  for(let i=0;i<=17;i+=3)
+  for(let i=0;i<20;i+=3)
   {
     var k = 2.9*(1.5+i)/20+height+.2;
     for(let j=0;j<4;j++)
@@ -211,6 +211,7 @@ function buildAll()
   }
   
   //joists over great room
+  var tmp = drawPanel(-margin,level+height,back-.8,-margin,level+height+3.2,front+1.1,"cTruss");
   for(let i=1.33;i<20-.3;i+=1.33)
   {
     var k = 2.9*i/20+height-.9;
@@ -221,7 +222,7 @@ function buildAll()
   }
 
   //roof over kitchen
-  for(let i=0;i<=17;i+=3)
+  for(let i=0;i<20;i+=3)
   {
     var k = 2.9*(1.5+i)/20+height+.2;
     for(let j=0;j<4;j++)
