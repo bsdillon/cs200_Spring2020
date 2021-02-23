@@ -77,6 +77,16 @@ function buildAll()
     scene.add(tmp);
   }
 
+  //joists over great room
+  for(let i=1.33;i<20-.3;i+=1.33)
+  {
+    var k = 3*i/20;
+    scene.add(drawCube(0,level+k,front-i,-10,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(-10,level+k,front-i,-20,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(-20,level+k,front-i,-30,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(-30,level+k,front-i,-40,level+1+k,front-i-0.25,"joist"));
+  }
+
   scene.add(drawPanel(-40,level+height,back,-30,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-30,level+height,back,-20,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-20,level+height,back,-10,level+height+3,back,"ssWall"));
@@ -98,7 +108,7 @@ function buildAll()
   scene.add(drawCube(-19.95,level,front,-20.05,level+1,back,"beam"));
 
   //joists over great room
-  for(let i=0;i<20-.3;i+=1.5)
+  for(let i=1.33;i<20-.3;i+=1.33)
   {
     scene.add(drawCube(0,level,front-i,10,level+1,front-i-0.25,"joist"));
     scene.add(drawCube(10,level,front-i,20,level+1,front-i-0.25,"joist"));
