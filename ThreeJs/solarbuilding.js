@@ -244,13 +244,19 @@ function buildAll()
       var tmp = createBar(j*10,level+k,front-i,(j+1)*10,level+k+.08,front-i-3,"plyboard")
       tmp.rotateX( 8.53*Math.PI/180);
       scene.add(tmp);
+      tmp = createBar(-j*10,level+k,front-i,-(j+1)*10,level+k+.01,front-i-3,"shingles")
+      tmp.rotateX( 8.53*Math.PI/180);
+      scene.add(tmp);
     }
   }
   
   var k = 2.9*(1.1/2)/20+height+.2;
   for(let j=0;j<4;j++)
   {
-    var tmp = createBar(-j*10,level+k,front+1.1,-(j+1)*10,level+k+.08,front,"plyboard")
+    var tmp = createBar(j*10,level+k,front+1.1,(j+1)*10,level+k+.08,front,"plyboard")
+    tmp.rotateX( 8.53*Math.PI/180);
+    scene.add(tmp);
+    tmp = createBar(j*10,level+k,front+1.1,(j+1)*10,level+k+.08,front,"shingles")
     tmp.rotateX( 8.53*Math.PI/180);
     scene.add(tmp);
   }
