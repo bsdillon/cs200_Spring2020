@@ -80,7 +80,7 @@ function buildAll()
   //joists over great room
   for(let i=1.33;i<20-.3;i+=1.33)
   {
-    var k = 3*i/20+height-1;
+    var k = 3*i/20+height-.8;
     scene.add(drawCube(0,level+k,front-i,-10,level+1+k,front-i-0.25,"joist"));
     scene.add(drawCube(-10,level+k,front-i,-20,level+1+k,front-i-0.25,"joist"));
     scene.add(drawCube(-20,level+k,front-i,-30,level+1+k,front-i-0.25,"joist"));
