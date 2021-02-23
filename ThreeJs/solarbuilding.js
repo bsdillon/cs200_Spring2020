@@ -96,7 +96,21 @@ function buildAll()
       var tmp = createBar(-j*10,level+k,front-i,-(j+1)*10,level+k+.08,front-i-3,"plyboard")
       tmp.rotateX( 8.53*Math.PI/180);
       scene.add(tmp);
+      tmp = createBar(-j*10,level+k,front-i,-(j+1)*10,level+k+.01,front-i-3,"shingles")
+      tmp.rotateX( 8.53*Math.PI/180);
+      scene.add(tmp);
     }
+  }
+  
+  var k = 2.9*(1.1/2)/20+height+.2;
+  for(let j=0;j<4;j++)
+  {
+    var tmp = createBar(-j*10,level+k,front+1.1,-(j+1)*10,level+k+.08,front,"plyboard")
+    tmp.rotateX( 8.53*Math.PI/180);
+    scene.add(tmp);
+    tmp = createBar(-j*10,level+k,front+1.1,-(j+1)*10,level+k+.01,front,"shingles")
+    tmp.rotateX( 8.53*Math.PI/180);
+    scene.add(tmp);
   }
 
   scene.add(drawPanel(-40,level+height,back,-30,level+height+3,back,"ssWall"));
@@ -221,7 +235,7 @@ function buildAll()
     scene.add(drawCube(30,level+k,front-i,40,level+1+k,front-i-0.25,"joist"));
   }
 
-  //roof over kitchen
+  //roof over second floor
   for(let i=0;i<20;i+=3)
   {
     var k = 2.9*(1.5+i)/20+height+.2;
@@ -231,6 +245,14 @@ function buildAll()
       tmp.rotateX( 8.53*Math.PI/180);
       scene.add(tmp);
     }
+  }
+  
+  var k = 2.9*(1.1/2)/20+height+.2;
+  for(let j=0;j<4;j++)
+  {
+    var tmp = createBar(-j*10,level+k,front+1.1,-(j+1)*10,level+k+.08,front,"plyboard")
+    tmp.rotateX( 8.53*Math.PI/180);
+    scene.add(tmp);
   }
 }
 
