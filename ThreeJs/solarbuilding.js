@@ -214,10 +214,10 @@ function buildAll()
   for(let i=1.33;i<20-.3;i+=1.33)
   {
     var k = 2.9*i/20+height-.9;
-    scene.add(drawCube(0,level+k,front-i,-10,level+1+k,front-i-0.25,"joist"));
-    scene.add(drawCube(-10,level+k,front-i,-20,level+1+k,front-i-0.25,"joist"));
-    scene.add(drawCube(-20,level+k,front-i,-30,level+1+k,front-i-0.25,"joist"));
-    scene.add(drawCube(-30,level+k,front-i,-40,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(0,level+k,front-i,10,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(10,level+k,front-i,20,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(20,level+k,front-i,30,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(30,level+k,front-i,40,level+1+k,front-i-0.25,"joist"));
   }
 
   //roof over kitchen
@@ -226,7 +226,7 @@ function buildAll()
     var k = 2.9*(1.5+i)/20+height+.2;
     for(let j=0;j<4;j++)
     {
-      var tmp = createBar(-j*10,level+k,front-i,-(j+1)*10,level+k+.08,front-i-3,"plyboard")
+      var tmp = createBar(j*10,level+k,front-i,(j+1)*10,level+k+.08,front-i-3,"plyboard")
       tmp.rotateX( 8.53*Math.PI/180);
       scene.add(tmp);
     }
