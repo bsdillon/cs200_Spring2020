@@ -62,8 +62,8 @@ function loadTextures()
   textures["plyboard"] = makeMaterial("plyboard.png",false,false,false);
   textures["beam"] = makeMaterial("redmetal.jpg",false,false,false);
   textures["csSolid"] = makeMaterial("shortClapboard.png",false,false,false);
-  textures["cTruss"] = makeMaterial("trussClapboard.png",false,false,false);
   textures["cSolid"] = makeMaterial("clapboard.png",false,false,false);
+  textures["cTruss"] = makeTransparentMaterial("trussClapboard.png",false,false,true);
   textures["dWindow"] = makeTransparentMaterial("doubleWindow.png",false,false,true);
   textures["lDoor"] = makeTransparentMaterial("doorLeft.png",false,false,true);
   textures["rDoor"] = makeTransparentMaterial("doorRight.png",false,false,true);
