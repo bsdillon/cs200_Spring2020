@@ -87,6 +87,18 @@ function buildAll()
     scene.add(drawCube(-30,level+k,front-i,-40,level+1+k,front-i-0.25,"joist"));
   }
 
+  //roof over kitchen
+  for(let i=0;i<17;i+=3)
+  {
+    var k = 2.9*i/20+height-.8;
+    for(let j=0;j<10;j++)
+    {
+      var tmp = createBar(j*10,level+k,front-i,(j+1)*10,level+k+.08,front-i-3,"plyboard")
+      tmp.rotateX( 8.53*Math.PI/180);
+      scene.add(tmp);
+    }
+  }
+
   scene.add(drawPanel(-40,level+height,back,-30,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-30,level+height,back,-20,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-20,level+height,back,-10,level+height+3,back,"ssWall"));
