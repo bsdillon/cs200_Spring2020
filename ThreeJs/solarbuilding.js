@@ -226,6 +226,8 @@ function buildAll()
   
   //joists over great room
   var tmp = drawPanel(-margin,level+height,back-.8,-margin,level+height+3.2,front+1.1,"cTruss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
   for(let i=1.33;i<20-.3;i+=1.33)
   {
     var k = 2.9*i/20+height-.9;
