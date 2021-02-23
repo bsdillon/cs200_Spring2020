@@ -69,7 +69,7 @@ function buildAll()
   var tmp = drawPanel(-40-margin,level+height,back,-40-margin,level+height+3,front,"cTruss");
   tmp.rotateY( Math.PI);
   scene.add(tmp);
-  for(let i=0;i<40;i++)
+  for(let i=0;i<40;i+=10)
   {
     tmp = drawPanel(i-40,level+height,back,i-40,level+height+3,front,"truss");
     tmp.rotateY( Math.PI);
@@ -176,7 +176,7 @@ function buildAll()
   var tmp = drawPanel(40+margin,level+height,back,40+margin,level+height+3,front,"cTruss");
   tmp.rotateY( Math.PI);
   scene.add(tmp);
-  for(let i=10;i<40;i++)
+  for(let i=10;i<40;i+=10)
   {
     tmp = drawPanel(i,level+height,back,i,level+height+3,front,"truss");
     tmp.rotateY( Math.PI);
