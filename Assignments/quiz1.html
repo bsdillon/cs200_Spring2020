@@ -1,0 +1,305 @@
+<html>
+  <head>
+  <style>
+    table, td {text-align:center; border:1px solid black;}
+    .red {color:red;}
+    .blue {color:#6060FF; font-weight:bold;}
+  </style>
+  <script>
+    var rng;
+    function RNG(s)
+    {
+      this.m = 0X80000000;
+      this.a = 1103515245;
+      this.c = 12345;
+
+      this.seed = s ? s : Math.floor(Math.random() * (this.m-1));
+    }
+
+    RNG.prototype.nextInt = function()
+    {
+      this.seed = (this.a * this.seed + this.c) % (this.m-1);
+      return this.seed;
+    }
+
+    RNG.prototype.nextFloat = function()
+    {
+      return this.nextInt() / (this.m - 1);
+    }
+
+    function Random()
+    {
+       return rng.nextFloat();
+    }
+
+    var showAnswers = false;
+    function newExam()
+    {
+      var num = Math.floor(Math.random()*10000+5000);
+      examID.value=num;
+      loadExam(false);
+    }
+
+    function loadExam(shouldAnswer)
+    {
+      showAnswers=shouldAnswer;
+      var x = examID.value;
+      x=parseInt(x);
+      if(isNaN(x))
+      {
+        alert("Value "+examID.value+" is NOT an integer");
+        newExam();
+        return;
+      }
+      x=x%15000;
+      rng = new RNG(x);
+      examID.value=x;
+      //lockID(x);
+      createExam();
+    }
+
+    function decToBinary(dec)
+    {
+      var bin = "";
+      var tmp = dec;
+      var p = 1;
+      while(tmp>0)
+      {
+        if(tmp%2==1)
+        {
+          bin="1"+bin;
+        }
+        else
+        {
+          bin="0"+bin;
+        }
+
+        p*=2;
+        tmp=Math.floor(tmp/2);
+      }
+
+      while(bin.length<8)
+      {
+        bin="0"+bin;
+      }
+
+      bin = bin.slice(0,4)+" "+bin.slice(4,8);
+      return bin;
+    }
+
+    function createExam()
+    {
+      lines = [];
+      var index=0;
+      var r = Math.floor(Random()*4);
+      var map= ["binary","octal","decimal","hexadecimal"];
+      var s="Describe the advantages of encoding a number as "+map[r]+". Where is that number format used?";
+      lines[index++]=s+" <span class='blue'>(2 pts)</span><br>";
+
+      var dec = Math.floor(Random()*128+120);
+      var bin = decToBinary(dec);
+      var hMap =['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+      var hex=hMap[Math.floor(dec/16)]+hMap[dec%16];
+      var oct=''+(Math.floor(dec/64))+(Math.floor(dec/8)%8)+(dec%8);
+    
+      r = Math.floor(Random()*4);
+      s="Convert the number into the other bases <span class='blue'>(6 pts)</span><br>";
+      s+="<table><tr><th>Base-10</th><th>Base-2</th><th>Base 8</th><th>Base 16</th></tr>";
+      if(showAnswers)
+      {
+        s+="<tr class='red'>";
+      }
+      else
+      {
+        s+="<tr>";
+      }
+      s+="<td>";
+      if(r==0||showAnswers){s+=dec;}
+      s+="</td><td>";
+      if(r==1||showAnswers){s+=bin;}
+      s+="</td><td>";
+      if(r==2||showAnswers){s+=oct;}
+      s+="</td><td>";
+      if(r==3||showAnswers){s+=hex;}
+      s+="</td></tr>";
+
+      var dec = Math.floor(Random()*128+120);
+      var bin = decToBinary(dec);
+      var hMap =['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+      var hex=hMap[Math.floor(dec/16)]+hMap[dec%16];
+      var oct=''+(Math.floor(dec/64))+(Math.floor(dec/8)%8)+(dec%8);
+    
+      r = Math.floor(Random()*4);
+      if(showAnswers)
+      {
+        s+="<tr class='red'>";
+      }
+      else
+      {
+        s+="<tr>";
+      }
+      s+="<td>";
+      if(r==0||showAnswers){s+=dec;}
+      s+="</td><td>";
+      if(r==1||showAnswers){s+=bin;}
+      s+="</td><td>";
+      if(r==2||showAnswers){s+=oct;}
+      s+="</td><td>";
+      if(r==3||showAnswers){s+=hex;}
+      s+="</td></tr>";
+      s+="</table>";
+      lines[index++]=s+"<br>";
+
+      s="Create a truth table for ";
+      r=Math.floor(Random()*3);
+      if(r==0)
+      {
+        s+="!A &and; (C &or; B)";
+      }
+      else if(r==1)
+      {
+        s+="(A &or; !A) or B";
+      }
+      else if(r==2)
+      {
+        s+="(!A &and; B) &or; !C";
+      }
+      lines[index++]=s+". <span class='blue'>(2 pts)</span><br><br>";
+
+      s="Select a value for each variable that will evaluate this expression as TRUE: ";
+      r=Math.floor(Random()*3);
+      if(r==0)
+      {
+        s+="(!A &or; !B) &and; (C &or; B)";
+      }
+      else if(r==1)
+      {
+        s+="(B &or; A) or !B";
+      }
+      else if(r==2)
+      {
+        s+="A &and; (B &or; !B) &and; C";
+      }
+      lines[index++]=s+". <span class='blue'>(2 pts)</span><br><br>";
+
+      s="Create a separate html page with the following elements <span class='blue'>(3 pts)</span>:<br>";
+      var tmp = ["An H1 with your name","A paragraph with <a href='https://loremipsum.io/generator/' target='popup'>Lorem ipsum</a>","An image"];
+      var tmp2 = ["H1","paragraph","image"];
+      r = Math.floor(Random()*3);
+      alter = (r+1)%3;
+      s+=tmp[r]+"<br>";
+      s+=tmp[alter]+"<br>";
+      s+="Use style to affect the whole page<br>Extra credit: Use style to uniquely affect the "+tmp2[alter]+". <span class='blue'>(1 pt)</span>";
+      lines[index++]=s+"<br><br>";
+
+      var tmp = ["form","action","/my-handling-form-page","method","post","ul","li","label","for","input","type","text","id","mail","email","msg","textarea","user_name",];
+      var tmp2 = [1,2,3,2,3,1,1,1,2,1,2,3,2,3,3,3,1,3];
+      s="Identify the role of each term according to standard HTML syntax.<span class='blue'>(5 pts)</span><br>";
+      s+="<pre>  &lt;form action='/my-handling-form-page' method='post'&gt;<br>";
+      s+="   &lt;ul&gt;<br>";
+      s+="    &lt;li&gt;<br>";
+      s+="      &lt;label for='name'&gt;Name:&lt;/label&gt;<br>";
+      s+="      &lt;input type='text' id='name' name='user_name'&gt;<br>";
+      s+="    &lt;/li&gt;<br>";
+      s+="    &lt;li&gt;<br>";
+      s+="      &lt;label for='mail'&gt;E-mail:&lt;/label&gt;<br>";
+      s+="      &lt;input type='email' id='mail' name='user_email'&gt;<br>";
+      s+="    &lt;/li&gt;<br>";
+      s+="    &lt;li&gt;<br>";
+      s+="      &lt;label for='msg'&gt;Message:&lt;/label&gt;<br>";
+      s+="      &lt;textarea id='msg' name='user_message'&gt;&lt;/textarea&gt;<br>";
+      s+="    &lt;/li&gt;<br>";
+      s+="   &lt;/ul&gt;<br>";
+      s+="  &lt;/form&gt;<br></pre><br>";
+      s+="<table><tr><th></th><th>&nbsp;&nbsp;&nbsp;tag&nbsp;&nbsp;&nbsp;</th><th>attribute</th><th>&nbsp;value&nbsp;</th></tr>";
+      for(let i=0;i<5;i++)
+      {
+        var x = Math.floor(Random()*tmp.length);
+        var name = tmp[x];
+        var ans = tmp2[x];
+        tmp.splice(x,1);
+        tmp2.splice(x,1);
+        var t = (showAnswers&&ans==1)? "<span class='red'>tag</span>":"";
+        var a = (showAnswers&&ans==2)? "<span class='red'>attr</span>":"";
+        var v = (showAnswers&&ans==3)? "<span class='red'>val</span>":"";
+        s+="<tr><th>"+name+"</th><td>"+t+"</td><td>"+a+"</td><td>"+v+"</td></tr>"        
+      }
+      s+="</table>";
+      lines[index++]=s+"</pre><br>";
+
+      s="The following HTML is wrong in several ways. Correct it, highlighting your changes <span class='blue'>(5 pt)</span>:<br>";
+      s+="<pre>&lt;html&gt;<br>";
+      s+="  &lt;head&gt;<br>";
+      s+="    &lt;script&gt;<br>";
+      s+="    &lt;/script&gt;<br>";
+      s+="    &lt;style&gt;<br>";
+      if(Random()>.5)
+      {
+        s+="      body {col"+(showAnswers?"<span class='red'>o</span>":"")+"r: red;}<br>";
+      }
+      else
+      {
+        s+="      body {color"+(showAnswers?"<span class='red'>:</span>":";")+" red;}<br>";
+      }
+      s+="    &lt;/style&gt;<br>";
+      s+=(showAnswers?"<span class='red'>  &lt;/head&gt;<br></span>":"");
+      s+="  &lt;body&gt;<br>";
+      if(Random()>.5)
+      {
+        s+="    &lt;h1"+(showAnswers?"<span class='red'>&gt;</span>":"")+" Title&lt;/h1&gt;<br>";
+      }
+      else
+      {
+        s+="    &lt;h1&gt;Title"+(showAnswers?"<span class='red'>&lt;/h1&gt;</span>":"")+"<br>";
+      }
+      s+="    &lt;p&gt;Hi there&lt;/p&gt;<br>";
+      s+="  &lt;/body&gt;<br>";
+      if(Random()>.5)
+      {
+        s+=(showAnswers?"<span class='red'>&lt;</span>":"")+"html&gt;<br>";
+      }
+      else
+      {
+        s+="&lt;ht"+(showAnswers?"<span class='red'>m</span>":"n")+"l&gt;<br>";
+      }
+      lines[index++]=s+"</pre><br>";
+
+      var final="<ol>";
+      while(lines.length>0)
+      {
+        index=lines.length-1;
+        //index=Math.floor(Random()*lines.length);
+        tmp=lines[index];
+        lines.splice(index,1);
+        final+="<li>"+tmp+"</li>";
+      }
+      final+="</ol>";
+      final+="<h2 class='red'>Include this statement with your quiz submission.</h2>";
+      final+="<p>By submitting this statement you are agreeing to abide by the terms of academic honesty as laid out below.<br>";
+      final+="I am allowed to use already existing reference material, including anything found online or more specifically the course discussion board.<br>";
+      final+="I am <span class='red'>not</span> allowed to directly ask for answers to the quiz through sites like Yahoo Answers, Quora, or StackOverflow.<br>";
+      final+="I am <span class='red'>not</span> allowed to post questions about the quiz on the course discussion board.<br>";
+      final+="All questions about the quiz are to be handled through private email or phone to the professor according to the syllabus.<br>";
+      final+="I AGREE TO FOLLOW THE TERMS OF THE ACADEMIC HONESTY POLICY AS OUTLINED.</p>";
+      output.innerHTML=final;
+    }
+
+    function lockID(id)
+    {
+      var tmp = "<h2 class='red'>Your Test ID</h2><p>ID:"+id+"</p>";
+      tmp += "<p>The test below is uniquely generated based on this ID.<br>You must include the Test ID with your quiz submission.<br>You can save the test ID and regenerate it at any time.<br><span class='red'>If you do not save this value you cannot recover the test.</span></p>";
+      document.getElementById("randomSection").innerHTML=tmp;
+    }
+    //<button onClick="loadExam(true)">Answer</button></p>
+  </script>
+  </head>
+  <body>
+    <div id="randomSection">
+      <button onclick="newExam()">I don't have a Quiz ID</button><br>
+      <p><b>Exam ID: </b><input type="text" id="examID"></input>
+      <button onClick="loadExam(false)">Load my Quiz ID</button>
+    </div>
+    <p id="output"></p>
+  </body>
+</html>
+
