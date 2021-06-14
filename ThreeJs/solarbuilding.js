@@ -1,5 +1,11 @@
 function buildAll()
 {
+  //         long axis, height, back-front
+  //         center = 0
+  //                    top = 0
+  //                           front = 20
+  createWire([-8,-10,-10,-40],[-8,-8,-1,-1],[8,8,8,8],"redP");
+
   //8ft w x 8.5ft h x 40ft l
   //concrete floor
   scene.add(createBar(farLeft,level,back,farRight,level+.25,front,"foundation"));
@@ -303,9 +309,6 @@ function buildAll()
     tmp.rotateX( 8.53*Math.PI/180);
     scene.add(tmp);
   }
-  
-  //         long axis, back-front, height
-  createWire([0,-30],[-2,-2],[10,10],"redP");
 }
 
 function createWire(xArr, yArr, zArr, texture)
