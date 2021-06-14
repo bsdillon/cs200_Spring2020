@@ -98,7 +98,7 @@
       function turn(yaw)
       {
           camera.rotation.y+=yaw*3*3.14/180;
-          compass-=3*3.14/180;
+          compass+=yaw*3*3.14/180;
       }
       
       function move(x,y,z)
