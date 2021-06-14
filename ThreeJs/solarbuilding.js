@@ -303,6 +303,17 @@ function buildAll()
     tmp.rotateX( 8.53*Math.PI/180);
     scene.add(tmp);
   }
+  
+  createWire([-8,-10],[front-2,front-2],[1,1],"redW");
+}
+
+function createWire(xArr, yArr, zArr, texture)
+{
+  for(let i=0;i<xArr.length-1;i++)
+  {
+    let tmp = createBar(xArr[i],yArr[i],zArr[i],xArr[i+1],yArr[i+1],zArr[i+1],texture)
+    scene.add(tmp);
+  }
 }
 
 function addTexture(x,yb,z,x2,yt,z2,str)
