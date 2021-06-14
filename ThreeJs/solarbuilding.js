@@ -66,15 +66,6 @@ function buildAll()
   scene.add(drawPanel(30,level,front+margin,40,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(40+margin,level,front,40+margin,level+height,front-10,"cSolid"));
 
-  scene.add(drawPanel(-40,level+height,back,-30,level+height+3,back,"ssWall"));
-  scene.add(drawPanel(-30,level+height,back,-20,level+height+3,back,"ssWall"));
-  scene.add(drawPanel(-20,level+height,back,-10,level+height+3,back,"ssWall"));
-  scene.add(drawPanel(-10,level+height,back,0,level+height+3,back,"ssWall"));
-  scene.add(drawPanel(-40,level+height,back-margin,-30,level+height+3,back-margin,"csSolid"));
-  scene.add(drawPanel(-30,level+height,back-margin,-20,level+height+3,back-margin,"csSolid"));
-  scene.add(drawPanel(-20,level+height,back-margin,-10,level+height+3,back-margin,"csSolid"));
-  scene.add(drawPanel(-10,level+height,back-margin,0,level+height+3,back-margin,"csSolid"));
-
   level+=7.5;
   
   //beams
@@ -186,6 +177,14 @@ function buildAll()
   scene.add(drawPanel(40,level,front-5,30,level+height,front-5,"rDoor"));
 
   //2nd floor window side
+  scene.add(drawPanel(-40,level+height,back,-30,level+height+3,back,"ssWall"));
+  scene.add(drawPanel(-30,level+height,back,-20,level+height+3,back,"ssWall"));
+  scene.add(drawPanel(-20,level+height,back,-10,level+height+3,back,"ssWall"));
+  scene.add(drawPanel(-10,level+height,back,0,level+height+3,back,"ssWall"));
+  scene.add(drawPanel(-40,level+height,back-margin,-30,level+height+3,back-margin,"csSolid"));
+  scene.add(drawPanel(-30,level+height,back-margin,-20,level+height+3,back-margin,"csSolid"));
+  scene.add(drawPanel(-20,level+height,back-margin,-10,level+height+3,back-margin,"csSolid"));
+  scene.add(drawPanel(-10,level+height,back-margin,0,level+height+3,back-margin,"csSolid"));
   scene.add(drawPanel(0,level+height,back,10,level+height+3,back,"ssWall"));
   scene.add(drawPanel(10,level+height,back,20,level+height+3,back,"ssWall"));
   scene.add(drawPanel(20,level+height,back,30,level+height+3,back,"ssWall"));
