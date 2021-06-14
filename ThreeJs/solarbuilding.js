@@ -77,20 +77,6 @@ function buildAll()
     scene.add(tmp);
   }
 
-  //joists over first floor
-  for(let i=1.33;i<20-.3;i+=1.33)
-  {
-    var k = 2.9*i/20+height-.9;
-    scene.add(drawCube(0,level+k,front-i,10,level+1+k,front-i-0.25,"joist"));
-    scene.add(drawCube(10,level+k,front-i,20,level+1+k,front-i-0.25,"joist"));
-    scene.add(drawCube(20,level+k,front-i,30,level+1+k,front-i-0.25,"joist"));
-    scene.add(drawCube(30,level+k,front-i,40,level+1+k,front-i-0.25,"joist"));
-    scene.add(drawCube(0,level+k,front-i,-10,level+1+k,front-i-0.25,"joist"));
-    scene.add(drawCube(-10,level+k,front-i,-20,level+1+k,front-i-0.25,"joist"));
-    scene.add(drawCube(-20,level+k,front-i,-30,level+1+k,front-i-0.25,"joist"));
-    scene.add(drawCube(-30,level+k,front-i,-40,level+1+k,front-i-0.25,"joist"));
-  }
-
   scene.add(drawPanel(-40,level+height,back,-30,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-30,level+height,back,-20,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-20,level+height,back,-10,level+height+3,back,"ssWall"));
@@ -114,6 +100,10 @@ function buildAll()
   //joists over great room
   for(let i=1.33;i<20-.3;i+=1.33)
   {
+    scene.add(drawCube(-30,level,front-i,-40,level+1,front-i-0.25,"joist"));
+    scene.add(drawCube(-20,level,front-i,-30,level+1,front-i-0.25,"joist"));
+    scene.add(drawCube(-10,level,front-i,-20,level+1,front-i-0.25,"joist"));
+    scene.add(drawCube(0,level,front-i,-10,level+1,front-i-0.25,"joist"));
     scene.add(drawCube(0,level,front-i,10,level+1,front-i-0.25,"joist"));
     scene.add(drawCube(10,level,front-i,20,level+1,front-i-0.25,"joist"));
     scene.add(drawCube(20,level,front-i,30,level+1,front-i-0.25,"joist"));
@@ -211,6 +201,16 @@ function buildAll()
   scene.add(drawPanel(10,level+height,back-margin,20,level+height+3,back-margin,"csSolid"));
   scene.add(drawPanel(20,level+height,back-margin,30,level+height+3,back-margin,"csSolid"));
   scene.add(drawPanel(30,level+height,back-margin,40,level+height+3,back-margin,"csSolid"));
+
+  //joists over kitchen
+  for(let i=1.33;i<20-.3;i+=1.33)
+  {
+    var k = 2.9*i/20+height-.9;
+    scene.add(drawCube(0,level+k,front-i,-10,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(-10,level+k,front-i,-20,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(-20,level+k,front-i,-30,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(-30,level+k,front-i,-40,level+1+k,front-i-0.25,"joist"));
+  }
 
   var tmp = drawPanel(40+margin,level+height,back-.8,40+margin,level+height+3.2,front+1.1,"cTruss");
   tmp.rotateY( Math.PI);
