@@ -1,6 +1,6 @@
 function buildAll()
 {
-  var showClapboard = 0;
+  var showClapboard = true;
 
   //         long axis, height, back-front
   //         center = 0
