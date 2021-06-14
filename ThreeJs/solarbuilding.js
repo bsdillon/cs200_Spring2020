@@ -130,11 +130,12 @@ function buildAll()
   level += .08;
   
   //second exterior wall
+  scene.add(drawPanel(-40,level,back,-40,level+height,front-10,"sWall"));
+  scene.add(drawPanel(-40,level,front,-40,level+height,front-10,"sWall"));
   scene.add(drawPanel(-30,level,front,-40,level+height,front,"sWall"));
   scene.add(drawPanel(-20,level,front,-30,level+height,front,"sWall"));
   scene.add(drawPanel(-10,level,front,-20,level+height,front,"sWall"));
   scene.add(drawPanel(0,level,front,-10,level+height,front,"sWall"));
-  //scene.add(drawPanel(0,level,front,0,level+height,front-10,"sWall"));
   scene.add(drawPanel(0,level,front,10,level+height,front,"sWall"));
   scene.add(drawPanel(10,level,front,20,level+height,front,"sWall"));
   scene.add(drawPanel(20,level,front,30,level+height,front,"sWall"));
@@ -144,7 +145,6 @@ function buildAll()
   scene.add(drawPanel(-20,level,front,-30,level+height,front,"dWindow"));
   scene.add(drawPanel(-10,level,front,-20,level+height,front,"dWindow"));
   scene.add(drawPanel(0,level,front,-10,level+height,front,"dWindow"));
-  //scene.add(drawPanel(0,level,back,0,level+height,front-10,"sWall"));
   scene.add(drawPanel(0,level,back,10,level+height,back,"dWindow"));
   scene.add(drawPanel(10,level,back,20,level+height,back,"dWindow"));
   scene.add(drawPanel(20,level,back,30,level+height,back,"dWindow"));
@@ -152,17 +152,16 @@ function buildAll()
   scene.add(drawPanel(40,level,back,40,level+height,front-10,"sWall"));
 
   //exterior second wall clapboard
+  scene.add(drawPanel(-40-margin,level,front,-40-margin,level+height,front-10,"cSolid"));
+  scene.add(drawPanel(-40-margin,level,back,-40-margin,level+height,back+10,"cSolid"));
   scene.add(drawPanel(-30,level,front+margin,-40,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(-20,level,front+margin,-30,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(-10,level,front+margin,-20,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(0,level,front+margin,-10,level+height,front+margin,"cSolid"));
-  //scene.add(drawPanel(-margin,level,front,-margin,level+height,front-10,"cSolid"));
   scene.add(drawPanel(0,level,front+margin,10,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(10,level,front+margin,20,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(20,level,front+margin,30,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(30,level,front+margin,40,level+height,front+margin,"cSolid"));
-  scene.add(drawPanel(40+margin,level,front,40+margin,level+height,front-10,"cSolid"));
-  scene.add(drawPanel(-margin,level,back,-margin,level+height,back+10,"cSolid"));
   scene.add(drawPanel(-30,level,back-margin,-40,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(-20,level,back-margin,-30,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(-10,level,back-margin,-20,level+height,back-margin,"cWindow"));
@@ -171,6 +170,7 @@ function buildAll()
   scene.add(drawPanel(10,level,back-margin,20,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(20,level,back-margin,30,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(30,level,back-margin,40,level+height,back-margin,"cWindow"));
+  scene.add(drawPanel(40+margin,level,front,40+margin,level+height,front-10,"cSolid"));
   scene.add(drawPanel(40+margin,level,back,40+margin,level+height,back+10,"cSolid"));
 
   //second floor interior
