@@ -304,15 +304,24 @@ function buildAll()
     scene.add(tmp);
   }
   
-  createWire([-8,-10],[-8,-10],[1,1],"redW");
+  //         long axis, back-front, height
+  createWire([-8,-10,-10],[-2,-2,-10],[1,1,1],"redP");
 }
 
 function createWire(xArr, yArr, zArr, texture)
 {
   for(let i=0;i<xArr.length-1;i++)
   {
-    let tmp = createBar(xArr[i],yArr[i],zArr[i],xArr[i+1],yArr[i+1],zArr[i+1],texture)
-    scene.add(tmp);
+    if(yArr[i]==yArr[i+1])
+    {
+      let tmp = createBar(xArr[i],yArr[i],zArr[i],xArr[i+1],yArr[i+1],zArr[i+1],texture)
+      scene.add(tmp);
+    }
+    else
+    {
+      let tmp = createBarV(xArr[i],yArr[i],zArr[i],xArr[i+1],yArr[i+1],zArr[i+1],texture)
+      scene.add(tmp);
+    }
   }
 }
 
