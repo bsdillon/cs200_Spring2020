@@ -110,7 +110,6 @@ function buildAll()
     }
   }
   scene.add(createBar(-30,level,front-17,-40,level+.08,back,"plyboard"));
-  scene.add(createBar(-20,level,front-17,-30,level+.08,back,"plyboard"));
   scene.add(createBar(-10,level,front-17,-20,level+.08,back,"plyboard"));
   scene.add(createBar(0,level,front-17,-10,level+.08,back,"plyboard"));
   scene.add(createBar(0,level,front-17,10,level+.08,back,"plyboard"));
@@ -165,6 +164,8 @@ function buildAll()
   scene.add(drawPanel(40+margin,level,back,40+margin,level+height,back+10,"cSolid"));
 
   //second floor interior
+  scene.add(drawPanel(-20,level,front,-20,level+height,front-10,"rDoor"));
+  scene.add(drawPanel(-20,level,back,-20,level+height,front-10,"sWall"));
   scene.add(drawPanel(-10,level,front,-10,level+height,front-10,"rDoor"));
   scene.add(drawPanel(-10,level,back,-10,level+height,front-10,"sWall"));
   scene.add(drawPanel(0,level,front,0,level+height,front-10,"rDoor"));
