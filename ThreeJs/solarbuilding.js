@@ -304,7 +304,7 @@ function buildAll()
     scene.add(tmp);
   }
   
-  createWire([front-2,front-2],[-8,-10],[1,1],"redW");
+  createWire([-8,-10],[-8,-10],[1,1],"redW");
 }
 
 function createWire(xArr, yArr, zArr, texture)
