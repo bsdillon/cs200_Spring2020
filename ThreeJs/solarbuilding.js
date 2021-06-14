@@ -66,17 +66,6 @@ function buildAll()
   scene.add(drawPanel(30,level,front+margin,40,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(40+margin,level,front,40+margin,level+height,front-10,"cSolid"));
 
-  //truss over kitchen side
-  var tmp = drawPanel(-40-margin,level+height,back-.8,-40-margin,level+height+3.2,front+1.1,"cTruss");
-  tmp.rotateY( Math.PI);
-  scene.add(tmp);
-  for(let i=0;i<40;i+=10)
-  {
-    tmp = drawPanel(i-40,level+height,back-.8,i-40,level+height+3.2,front+1.1,"truss");
-    tmp.rotateY( Math.PI);
-    scene.add(tmp);
-  }
-
   scene.add(drawPanel(-40,level+height,back,-30,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-30,level+height,back,-20,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-20,level+height,back,-10,level+height+3,back,"ssWall"));
@@ -205,6 +194,17 @@ function buildAll()
   scene.add(drawPanel(10,level+height,back-margin,20,level+height+3,back-margin,"csSolid"));
   scene.add(drawPanel(20,level+height,back-margin,30,level+height+3,back-margin,"csSolid"));
   scene.add(drawPanel(30,level+height,back-margin,40,level+height+3,back-margin,"csSolid"));
+
+  //truss over kitchen side
+  var tmp = drawPanel(-40-margin,level+height,back-.8,-40-margin,level+height+3.2,front+1.1,"cTruss");
+  tmp.rotateY( Math.PI);
+  scene.add(tmp);
+  for(let i=0;i<40;i+=10)
+  {
+    tmp = drawPanel(i-40,level+height,back-.8,i-40,level+height+3.2,front+1.1,"truss");
+    tmp.rotateY( Math.PI);
+    scene.add(tmp);
+  }
 
   //joists over kitchen
   for(let i=1.33;i<20-.3;i+=1.33)
