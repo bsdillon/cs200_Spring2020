@@ -305,7 +305,7 @@ function buildAll()
   }
   
   //         long axis, back-front, height
-  createWire([0,-30],[-2,-2],[1,1,1],"redP");
+  createWire([0,-30],[-2,-2],[10,10],"redP");
 }
 
 function createWire(xArr, yArr, zArr, texture)
