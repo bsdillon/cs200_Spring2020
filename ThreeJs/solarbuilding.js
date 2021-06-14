@@ -30,7 +30,7 @@ function buildAll()
 
   //interior walls
   scene.add(drawPanel(-30,level,front,-30,level+height,front-10,"rDoor"));
-  scene.add(drawPanel(-30,level,back,-30,level+height,front-10,"lDoor"));
+  scene.add(drawPanel(-30,level,back,-30,level+height,front-10,"rDoor"));
   scene.add(drawPanel(-10,level,front,-10,level+height,front-10,"sWall"));
   scene.add(drawPanel(-10,level,back,-10,level+height,front-10,"lDoor"));
   scene.add(drawPanel(0,level,front,0,level+height,front-10,"sWall"));
@@ -115,7 +115,7 @@ function buildAll()
       scene.add(createBar(30,level,front-i,40,level+.08,front-i-3,"plyboard"));
     }
   }
-  scene.add(createBar(30,level,front-3,40,level+.08,front-4,"plyboard"));
+  scene.add(createBar(30,level,front-4,40,level+.08,front-6,"plyboard"));
   scene.add(createBar(-30,level,front-17,-40,level+.08,back,"plyboard"));
   scene.add(createBar(-10,level,front-17,-20,level+.08,back,"plyboard"));
   scene.add(createBar(0,level,front-17,-10,level+.08,back,"plyboard"));
@@ -182,13 +182,13 @@ function buildAll()
   scene.add(drawPanel(20,level,front,20,level+height,front-10,"rDoor"));
   scene.add(drawPanel(20,level,back,20,level+height,front-10,"sWall"));
   scene.add(drawPanel(30,level,front,30,level+height,front-10,"rDoor"));
-  scene.add(drawPanel(30,level,back,30,level+height,front-10,"sWall"));
+  scene.add(drawPanel(30,level,back,30,level+height,front-10,"lDoor"));
   scene.add(drawPanel(-10,level,front-5,-20,level+height,front-5,"lDoor"));
   scene.add(drawPanel(0,level,front-5,-10,level+height,front-5,"rDoor"));
   scene.add(drawPanel(10,level,front-5,0,level+height,front-5,"lDoor"));
   scene.add(drawPanel(20,level,front-5,10,level+height,front-5,"rDoor"));
   scene.add(drawPanel(30,level,front-5,20,level+height,front-5,"lDoor"));
-  scene.add(drawPanel(40,level,front-5,30,level+height,front-5,"rDoor"));
+  scene.add(drawPanel(40,level,front-5,30,level+height,front-5,"sWall"));
 
   //2nd floor window side
   scene.add(drawPanel(-40,level+height,back,-30,level+height+3,back,"ssWall"));
