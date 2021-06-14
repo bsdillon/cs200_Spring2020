@@ -81,7 +81,10 @@ function buildAll()
   for(let i=1.33;i<20-.3;i+=1.33)
   {
     scene.add(drawCube(-30,level,front-i,-40,level+1,front-i-0.25,"joist"));
-    scene.add(drawCube(-20,level,front-i,-30,level+1,front-i-0.25,"joist"));
+    if(i<=15)
+    {
+      scene.add(drawCube(-20,level,front-i,-30,level+1,front-i-0.25,"joist"));
+    }
     scene.add(drawCube(-10,level,front-i,-20,level+1,front-i-0.25,"joist"));
     scene.add(drawCube(0,level,front-i,-10,level+1,front-i-0.25,"joist"));
     scene.add(drawCube(0,level,front-i,10,level+1,front-i-0.25,"joist"));
@@ -98,7 +101,10 @@ function buildAll()
   for(let i=0;i<17;i+=3)
   {
     scene.add(createBar(-40,level,front-i,-30,level+.08,front-i-3,"plyboard"));
-    scene.add(createBar(-30,level,front-i,-20,level+.08,front-i-3,"plyboard"));
+    if(i<=15)
+    {
+      scene.add(createBar(-30,level,front-i,-20,level+.08,front-i-3,"plyboard"));
+    }
     scene.add(createBar(-20,level,front-i,-10,level+.08,front-i-3,"plyboard"));
     scene.add(createBar(-10,level,front-i,0,level+.08,front-i-3,"plyboard"));
     scene.add(createBar(0,level,front-i,10,level+.08,front-i-3,"plyboard"));
