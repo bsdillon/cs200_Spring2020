@@ -73,6 +73,10 @@ function loadTextures()
   textures["cWindow"] = makeTransparentMaterial("windowClapboard.png",false,false,true);
   textures["clDoor"] = makeTransparentMaterial("doorLeftClapboard.png",false,false,true);
   textures["crDoor"] = makeTransparentMaterial("doorRightClapboard.png",false,false,true);
+  textures["redP"] = makeMaterial("RedPipe.jpg",true,true,false);
+  textures["blueP"] = makeMaterial("BluePipe.jpg",true,true,false);
+  textures["blackP"] = makeMaterial("BlackPipe.jpg",true,true,false);
+  textures["grayW"] = makeMaterial("GrayWire.jpg",true,true,false);
 }
 
 function createBar(x1,y1,z1,x2,y2,z2,textureName)
