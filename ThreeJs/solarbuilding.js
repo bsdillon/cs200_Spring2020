@@ -129,6 +129,10 @@ function buildAll()
       scene.add(createBar(30,level,front-i,40,level+.08,front-i-3,"plyboard"));
     }
   }
+  scene.add(createBar(-30,level,front-17,-40,level+.08,back,"plyboard"));
+  scene.add(createBar(-20,level,front-17,-30,level+.08,back,"plyboard"));
+  scene.add(createBar(-10,level,front-17,-20,level+.08,back,"plyboard"));
+  scene.add(createBar(0,level,front-17,-10,level+.08,back,"plyboard"));
   scene.add(createBar(0,level,front-17,10,level+.08,back,"plyboard"));
   scene.add(createBar(10,level,front-17,20,level+.08,back,"plyboard"));
   scene.add(createBar(20,level,front-17,30,level+.08,back,"plyboard"));
