@@ -4,7 +4,7 @@ function buildAll()
   //         center = 0
   //                    top = 0
   //                           front = 20
-  createWire([-8,-10,-10,-40],[-8,-8,-1,-1],[8,8,8,8],"redP");
+  createWire([-8,-10,-10,-40],[-9,-9,-2,-2],[18,18,18,18],"redP");
 
   //8ft w x 8.5ft h x 40ft l
   //concrete floor
