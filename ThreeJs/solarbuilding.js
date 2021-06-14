@@ -87,32 +87,6 @@ function buildAll()
     scene.add(drawCube(-30,level+k,front-i,-40,level+1+k,front-i-0.25,"joist"));
   }
 
-  //roof over kitchen
-  for(let i=0;i<20;i+=3)
-  {
-    var k = 2.9*(1.5+i)/20+height+.2;
-    for(let j=0;j<4;j++)
-    {
-      var tmp = createBar(-j*10,level+k,front-i,-(j+1)*10,level+k+.08,front-i-3,"plyboard")
-      tmp.rotateX( 8.53*Math.PI/180);
-      scene.add(tmp);
-      tmp = createBar(-j*10,level+k+.09,front-i,-(j+1)*10,level+k+.09,front-i-3,"shingles")
-      tmp.rotateX( 8.53*Math.PI/180);
-      scene.add(tmp);
-    }
-  }
-  
-  var k = 2.9*(1.1/2)/20+height+.2;
-  for(let j=0;j<4;j++)
-  {
-    var tmp = createBar(-j*10,level+k,front+1.1,-(j+1)*10,level+k+.08,front,"plyboard")
-    tmp.rotateX( 8.53*Math.PI/180);
-    scene.add(tmp);
-    tmp = createBar(-j*10,level+k+.08,front+1.1,-(j+1)*10,level+k+.09,front,"shingles")
-    tmp.rotateX( 8.53*Math.PI/180);
-    scene.add(tmp);
-  }
-
   scene.add(drawPanel(-40,level+height,back,-30,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-30,level+height,back,-20,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-20,level+height,back,-10,level+height+3,back,"ssWall"));
@@ -149,6 +123,10 @@ function buildAll()
   level+=1;
   for(let i=0;i<17;i+=3)
   {
+    scene.add(createBar(-40,level,front-i,-30,level+.08,front-i-3,"plyboard"));
+    scene.add(createBar(-30,level,front-i,-20,level+.08,front-i-3,"plyboard"));
+    scene.add(createBar(-20,level,front-i,-10,level+.08,front-i-3,"plyboard"));
+    scene.add(createBar(-10,level,front-i,0,level+.08,front-i-3,"plyboard"));
     scene.add(createBar(0,level,front-i,10,level+.08,front-i-3,"plyboard"));
     scene.add(createBar(10,level,front-i,20,level+.08,front-i-3,"plyboard"));
     scene.add(createBar(20,level,front-i,30,level+.08,front-i-3,"plyboard"));
@@ -165,13 +143,21 @@ function buildAll()
   level += .08;
   
   //second exterior wall
-  scene.add(drawPanel(0,level,front,0,level+height,front-10,"sWall"));
+  scene.add(drawPanel(-30,level,front,-40,level+height,front,"sWall"));
+  scene.add(drawPanel(-20,level,front,-30,level+height,front,"sWall"));
+  scene.add(drawPanel(-10,level,front,-20,level+height,front,"sWall"));
+  scene.add(drawPanel(0,level,front,-10,level+height,front,"sWall"));
+  //scene.add(drawPanel(0,level,front,0,level+height,front-10,"sWall"));
   scene.add(drawPanel(0,level,front,10,level+height,front,"sWall"));
   scene.add(drawPanel(10,level,front,20,level+height,front,"sWall"));
   scene.add(drawPanel(20,level,front,30,level+height,front,"sWall"));
   scene.add(drawPanel(30,level,front,40,level+height,front,"sWall"));
   scene.add(drawPanel(40,level,front,40,level+height,front-10,"sWall"));
-  scene.add(drawPanel(0,level,back,0,level+height,front-10,"sWall"));
+  scene.add(drawPanel(-30,level,front,-40,level+height,front,"dWindow"));
+  scene.add(drawPanel(-20,level,front,-30,level+height,front,"dWindow"));
+  scene.add(drawPanel(-10,level,front,-20,level+height,front,"dWindow"));
+  scene.add(drawPanel(0,level,front,-10,level+height,front,"dWindow"));
+  //scene.add(drawPanel(0,level,back,0,level+height,front-10,"sWall"));
   scene.add(drawPanel(0,level,back,10,level+height,back,"dWindow"));
   scene.add(drawPanel(10,level,back,20,level+height,back,"dWindow"));
   scene.add(drawPanel(20,level,back,30,level+height,back,"dWindow"));
@@ -179,13 +165,21 @@ function buildAll()
   scene.add(drawPanel(40,level,back,40,level+height,front-10,"sWall"));
 
   //exterior second wall clapboard
-  scene.add(drawPanel(-margin,level,front,-margin,level+height,front-10,"cSolid"));
+  scene.add(drawPanel(-30,level,front+margin,-40,level+height,front+margin,"cSolid"));
+  scene.add(drawPanel(-20,level,front+margin,-30,level+height,front+margin,"cSolid"));
+  scene.add(drawPanel(-10,level,front+margin,-20,level+height,front+margin,"cSolid"));
+  scene.add(drawPanel(0,level,front+margin,-10,level+height,front+margin,"cSolid"));
+  //scene.add(drawPanel(-margin,level,front,-margin,level+height,front-10,"cSolid"));
   scene.add(drawPanel(0,level,front+margin,10,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(10,level,front+margin,20,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(20,level,front+margin,30,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(30,level,front+margin,40,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(40+margin,level,front,40+margin,level+height,front-10,"cSolid"));
   scene.add(drawPanel(-margin,level,back,-margin,level+height,back+10,"cSolid"));
+  scene.add(drawPanel(-30,level,back-margin,-40,level+height,back-margin,"cWindow"));
+  scene.add(drawPanel(-20,level,back-margin,-30,level+height,back-margin,"cWindow"));
+  scene.add(drawPanel(-10,level,back-margin,-20,level+height,back-margin,"cWindow"));
+  scene.add(drawPanel(0,level,back-margin,-10,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(0,level,back-margin,10,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(10,level,back-margin,20,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(20,level,back-margin,30,level+height,back-margin,"cWindow"));
@@ -259,6 +253,32 @@ function buildAll()
     tmp.rotateX( 8.53*Math.PI/180);
     scene.add(tmp);
     tmp = createBar(j*10,level+k+.09,front+1.1,(j+1)*10,level+k+.09,front,"shingles")
+    tmp.rotateX( 8.53*Math.PI/180);
+    scene.add(tmp);
+  }
+
+  //roof over kitchen
+  for(let i=0;i<20;i+=3)
+  {
+    var k = 2.9*(1.5+i)/20+height+.2;
+    for(let j=0;j<4;j++)
+    {
+      var tmp = createBar(-j*10,level+k,front-i,-(j+1)*10,level+k+.08,front-i-3,"plyboard")
+      tmp.rotateX( 8.53*Math.PI/180);
+      scene.add(tmp);
+      tmp = createBar(-j*10,level+k+.09,front-i,-(j+1)*10,level+k+.09,front-i-3,"shingles")
+      tmp.rotateX( 8.53*Math.PI/180);
+      scene.add(tmp);
+    }
+  }
+  
+  var k = 2.9*(1.1/2)/20+height+.2;
+  for(let j=0;j<4;j++)
+  {
+    var tmp = createBar(-j*10,level+k,front+1.1,-(j+1)*10,level+k+.08,front,"plyboard")
+    tmp.rotateX( 8.53*Math.PI/180);
+    scene.add(tmp);
+    tmp = createBar(-j*10,level+k+.08,front+1.1,-(j+1)*10,level+k+.09,front,"shingles")
     tmp.rotateX( 8.53*Math.PI/180);
     scene.add(tmp);
   }
