@@ -4,7 +4,7 @@ function buildAll()
   //         center = 0
   //                    top = 0
   //                           front = 20
-  createWire([-8,-10,-10,-40],[-9,-9,-2,-2],[18,18,18,18],"redP");
+  //createWire([-8,-10,-10,-40],[-9,-9,-6,-6],[18,18,18,19.75],"redP");
 
   //8ft w x 8.5ft h x 40ft l
   //concrete floor
@@ -50,6 +50,8 @@ function buildAll()
   scene.add(drawPanel(20,level,back+5,10,level+height,back+5,"rDoor"));
 
   //clapboard
+  if(showClapboard)
+  {
   scene.add(drawPanel(-40-margin,level,back,-40-margin,level+height,back+10,"cSolid"));
   scene.add(drawPanel(-40,level,back-margin,-30,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(-30,level,back-margin,-20,level+height,back-margin,"cWindow"));
@@ -71,7 +73,8 @@ function buildAll()
   scene.add(drawPanel(20,level,front+margin,30,level+height,front+margin,"cWindow"));
   scene.add(drawPanel(30,level,front+margin,40,level+height,front+margin,"cSolid"));
   scene.add(drawPanel(40+margin,level,front,40+margin,level+height,front-10,"cSolid"));
-
+  }
+  
   level+=7.5;
   
   //beams
@@ -155,6 +158,8 @@ function buildAll()
   scene.add(drawPanel(40,level,back,40,level+height,front-10,"sWall"));
 
   //exterior second wall clapboard
+  if(showClapboard)
+  {
   scene.add(drawPanel(-40-margin,level,front,-40-margin,level+height,front-10,"cSolid"));
   scene.add(drawPanel(-40-margin,level,back,-40-margin,level+height,back+10,"cSolid"));
   scene.add(drawPanel(-30,level,front+margin,-40,level+height,front+margin,"cSolid"));
@@ -175,7 +180,8 @@ function buildAll()
   scene.add(drawPanel(30,level,back-margin,40,level+height,back-margin,"cWindow"));
   scene.add(drawPanel(40+margin,level,front,40+margin,level+height,front-10,"cSolid"));
   scene.add(drawPanel(40+margin,level,back,40+margin,level+height,back+10,"cSolid"));
-
+  }
+  
   //second floor interior
   scene.add(drawPanel(-20,level,front,-20,level+height,front-10,"rDoor"));
   scene.add(drawPanel(-20,level,back,-20,level+height,front-10,"sWall"));
@@ -201,18 +207,22 @@ function buildAll()
   scene.add(drawPanel(-30,level+height,back,-20,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-20,level+height,back,-10,level+height+3,back,"ssWall"));
   scene.add(drawPanel(-10,level+height,back,0,level+height+3,back,"ssWall"));
-  scene.add(drawPanel(-40,level+height,back-margin,-30,level+height+3,back-margin,"csSolid"));
-  scene.add(drawPanel(-30,level+height,back-margin,-20,level+height+3,back-margin,"csSolid"));
-  scene.add(drawPanel(-20,level+height,back-margin,-10,level+height+3,back-margin,"csSolid"));
-  scene.add(drawPanel(-10,level+height,back-margin,0,level+height+3,back-margin,"csSolid"));
   scene.add(drawPanel(0,level+height,back,10,level+height+3,back,"ssWall"));
   scene.add(drawPanel(10,level+height,back,20,level+height+3,back,"ssWall"));
   scene.add(drawPanel(20,level+height,back,30,level+height+3,back,"ssWall"));
   scene.add(drawPanel(30,level+height,back,40,level+height+3,back,"ssWall"));
+
+  if(showClapboard)
+  {
+  scene.add(drawPanel(-40,level+height,back-margin,-30,level+height+3,back-margin,"csSolid"));
+  scene.add(drawPanel(-30,level+height,back-margin,-20,level+height+3,back-margin,"csSolid"));
+  scene.add(drawPanel(-20,level+height,back-margin,-10,level+height+3,back-margin,"csSolid"));
+  scene.add(drawPanel(-10,level+height,back-margin,0,level+height+3,back-margin,"csSolid"));
   scene.add(drawPanel(0,level+height,back-margin,10,level+height+3,back-margin,"csSolid"));
   scene.add(drawPanel(10,level+height,back-margin,20,level+height+3,back-margin,"csSolid"));
   scene.add(drawPanel(20,level+height,back-margin,30,level+height+3,back-margin,"csSolid"));
   scene.add(drawPanel(30,level+height,back-margin,40,level+height+3,back-margin,"csSolid"));
+  }
 
   //truss over kitchen side
   var tmp = drawPanel(-40-margin,level+height,back-.8,-40-margin,level+height+3.2,front+1.1,"cTruss");
@@ -235,7 +245,10 @@ function buildAll()
     scene.add(drawCube(-30,level+k,front-i,-40,level+1+k,front-i-0.25,"joist"));
   }
 
+  if(showClapboard)
+  {
   var tmp = drawPanel(40+margin,level+height,back-.8,40+margin,level+height+3.2,front+1.1,"cTruss");
+  }
   tmp.rotateY( Math.PI);
   scene.add(tmp);
   for(let i=0;i<=40;i+=10)
@@ -246,7 +259,10 @@ function buildAll()
   }
   
   //joists over great room
+  if(showClapboard)
+  {
   var tmp = drawPanel(-margin,level+height,back-.8,-margin,level+height+3.2,front+1.1,"cTruss");
+  }
   tmp.rotateY( Math.PI);
   scene.add(tmp);
   for(let i=1.33;i<20-.3;i+=1.33)
