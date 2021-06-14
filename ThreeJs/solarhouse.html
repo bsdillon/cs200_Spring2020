@@ -32,7 +32,7 @@
       {
         camera.position.y-=5;
         camera.position.z=50;
-        renderer.setSize(window.innerWidth*.5, window.innerHeight*.5);
+        renderer.setSize(window.innerWidth*.9, window.innerHeight*.75);
         document.getElementById("image").appendChild(renderer.domElement);
         document.addEventListener("keydown", key, false);
 
@@ -142,8 +142,8 @@
   <body onload="load()">
     <p id="image"></p>
     <table>
-      <tr><td></td><td><button onclick="move(0,1,0)">&uarr;</button></td><td></td></td><td><button onclick="move(0,0,1)">&mapstoup;</button></td><td></td></tr>
-      <tr><td><button onclick="move(-1,0,0)">&larr;</button></td><td><button onclick="move(0,-1,0)">&darr;</button></td><td><button onclick="move(1,0,0)">&rarr;</button></td><td><button onclick="turn(1)">&cularr;</button></td><td><button onclick="move(0,0,-1)">&mapstodown;</button></td><td><button onclick="turn(-1)">&curarr;</button></td></tr>
+      <tr><td></td><td><button onclick="move(0,1,0)">&uarr;</button></td><td></td><td></td></td></td><td><button onclick="move(0,0,1)">&mapstoup;</button></td><td></td></tr>
+      <tr><td><button onclick="move(-1,0,0)">&larr;</button></td><td><button onclick="move(0,-1,0)">&darr;</button></td><td></td><td><button onclick="move(1,0,0)">&rarr;</button></td><td><button onclick="turn(1)">&cularr;</button></td><td><button onclick="move(0,0,-1)">&mapstodown;</button></td><td><button onclick="turn(-1)">&curarr;</button></td></tr>
     </table>
   </body>
 </html>
