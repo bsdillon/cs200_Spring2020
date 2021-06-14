@@ -230,9 +230,9 @@ function buildAll()
   if(showClapboard)
   {
   var tmp = drawPanel(-40-margin,level+height,back-.8,-40-margin,level+height+3.2,front+1.1,"cTruss");
-  }
   tmp.rotateY( Math.PI);
   scene.add(tmp);
+  }
   for(let i=0;i<30;i+=10)
   {
     tmp = drawPanel(i-40,level+height,back-.8,i-40,level+height+3.2,front+1.1,"truss");
@@ -253,9 +253,9 @@ function buildAll()
   if(showClapboard)
   {
   var tmp = drawPanel(40+margin,level+height,back-.8,40+margin,level+height+3.2,front+1.1,"cTruss");
-  }
   tmp.rotateY( Math.PI);
   scene.add(tmp);
+  }
   for(let i=0;i<=40;i+=10)
   {
     tmp = drawPanel(i,level+height,back-.8,i,level+height+3.2,front+1.1,"truss");
