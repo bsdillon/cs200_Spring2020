@@ -101,7 +101,7 @@ function buildAll()
   for(let i=0;i<17;i+=3)
   {
     scene.add(createBar(-40,level,front-i,-30,level+.08,front-i-3,"plyboard"));
-    if(i<=15)
+    if(i<=12)
     {
       scene.add(createBar(-30,level,front-i,-20,level+.08,front-i-3,"plyboard"));
     }
