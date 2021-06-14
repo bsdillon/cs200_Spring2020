@@ -77,10 +77,14 @@ function buildAll()
     scene.add(tmp);
   }
 
-  //joists over great room
+  //joists over first floor
   for(let i=1.33;i<20-.3;i+=1.33)
   {
     var k = 2.9*i/20+height-.9;
+    scene.add(drawCube(0,level+k,front-i,10,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(10,level+k,front-i,20,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(20,level+k,front-i,30,level+1+k,front-i-0.25,"joist"));
+    scene.add(drawCube(30,level+k,front-i,40,level+1+k,front-i-0.25,"joist"));
     scene.add(drawCube(0,level+k,front-i,-10,level+1+k,front-i-0.25,"joist"));
     scene.add(drawCube(-10,level+k,front-i,-20,level+1+k,front-i-0.25,"joist"));
     scene.add(drawCube(-20,level+k,front-i,-30,level+1+k,front-i-0.25,"joist"));
