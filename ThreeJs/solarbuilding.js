@@ -229,13 +229,13 @@ function buildAll()
   //truss over kitchen side
   if(showClapboard)
   {
-  var tmp = drawPanel(-40-margin,level+height,back-.8,-40-margin,level+height+3.2,front+1.1,"cTruss");
+  let tmp = drawPanel(-40-margin,level+height,back-.8,-40-margin,level+height+3.2,front+1.1,"cTruss");
   tmp.rotateY( Math.PI);
   scene.add(tmp);
   }
-  for(let i=0;i<30;i+=10)
+  for(let i=0;i<40;i+=10)
   {
-    tmp = drawPanel(i-40,level+height,back-.8,i-40,level+height+3.2,front+1.1,"truss");
+    let tmp = drawPanel(i-40,level+height,back-.8,i-40,level+height+3.2,front+1.1,"truss");
     tmp.rotateY( Math.PI);
     scene.add(tmp);
   }
@@ -252,13 +252,13 @@ function buildAll()
 
   if(showClapboard)
   {
-  var tmp = drawPanel(40+margin,level+height,back-.8,40+margin,level+height+3.2,front+1.1,"cTruss");
+  let tmp = drawPanel(40+margin,level+height,back-.8,40+margin,level+height+3.2,front+1.1,"cTruss");
   tmp.rotateY( Math.PI);
   scene.add(tmp);
   }
   for(let i=0;i<=40;i+=10)
   {
-    tmp = drawPanel(i,level+height,back-.8,i,level+height+3.2,front+1.1,"truss");
+    let tmp = drawPanel(i,level+height,back-.8,i,level+height+3.2,front+1.1,"truss");
     tmp.rotateY( Math.PI);
     scene.add(tmp);
   }
@@ -266,10 +266,10 @@ function buildAll()
   //joists over great room
   if(showClapboard)
   {
-  var tmp = drawPanel(-margin,level+height,back-.8,-margin,level+height+3.2,front+1.1,"cTruss");
-  }
+  let tmp = drawPanel(-margin,level+height,back-.8,-margin,level+height+3.2,front+1.1,"cTruss");
   tmp.rotateY( Math.PI);
   scene.add(tmp);
+  }
   for(let i=1.33;i<20-.3;i+=1.33)
   {
     var k = 2.9*i/20+height-.9;
@@ -285,7 +285,7 @@ function buildAll()
     var k = 2.9*(1.5+i)/20+height+.2;
     for(let j=0;j<4;j++)
     {
-      var tmp = createBar(j*10,level+k,front-i,(j+1)*10,level+k+.08,front-i-3,"plyboard")
+      let tmp = createBar(j*10,level+k,front-i,(j+1)*10,level+k+.08,front-i-3,"plyboard")
       tmp.rotateX( 8.53*Math.PI/180);
       scene.add(tmp);
       tmp = createBar(j*10,level+k+.09,front-i,(j+1)*10,level+k+.09,front-i-3,"shingles")
@@ -297,7 +297,7 @@ function buildAll()
   var k = 2.9*(1.1/2)/20+height+.2;
   for(let j=0;j<4;j++)
   {
-    var tmp = createBar(j*10,level+k,front+1.1,(j+1)*10,level+k+.08,front,"plyboard")
+    let tmp = createBar(j*10,level+k,front+1.1,(j+1)*10,level+k+.08,front,"plyboard")
     tmp.rotateX( 8.53*Math.PI/180);
     scene.add(tmp);
     tmp = createBar(j*10,level+k+.09,front+1.1,(j+1)*10,level+k+.09,front,"shingles")
@@ -311,7 +311,7 @@ function buildAll()
     var k = 2.9*(1.5+i)/20+height+.2;
     for(let j=0;j<4;j++)
     {
-      var tmp = createBar(-j*10,level+k,front-i,-(j+1)*10,level+k+.08,front-i-3,"plyboard")
+      let tmp = createBar(-j*10,level+k,front-i,-(j+1)*10,level+k+.08,front-i-3,"plyboard")
       tmp.rotateX( 8.53*Math.PI/180);
       scene.add(tmp);
       tmp = createBar(-j*10,level+k+.09,front-i,-(j+1)*10,level+k+.09,front-i-3,"shingles")
@@ -323,7 +323,7 @@ function buildAll()
   var k = 2.9*(1.1/2)/20+height+.2;
   for(let j=0;j<4;j++)
   {
-    var tmp = createBar(-j*10,level+k,front+1.1,-(j+1)*10,level+k+.08,front,"plyboard")
+    let tmp = createBar(-j*10,level+k,front+1.1,-(j+1)*10,level+k+.08,front,"plyboard")
     tmp.rotateX( 8.53*Math.PI/180);
     scene.add(tmp);
     tmp = createBar(-j*10,level+k+.08,front+1.1,-(j+1)*10,level+k+.09,front,"shingles")
