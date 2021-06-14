@@ -90,7 +90,7 @@ function buildAll()
     scene.add(drawCube(0,level,front-i,10,level+1,front-i-0.25,"joist"));
     scene.add(drawCube(10,level,front-i,20,level+1,front-i-0.25,"joist"));
     scene.add(drawCube(20,level,front-i,30,level+1,front-i-0.25,"joist"));
-    if(i>2.9)
+    if(i>3.9)
     {
       scene.add(drawCube(30,level,front-i,40,level+1,front-i-0.25,"joist"));
     }
@@ -115,7 +115,7 @@ function buildAll()
       scene.add(createBar(30,level,front-i,40,level+.08,front-i-3,"plyboard"));
     }
   }
-  scene.add(createBar(30,level,front-3,40,level+.08,front-3,"plyboard"));
+  scene.add(createBar(30,level,front-3,40,level+.08,front-4,"plyboard"));
   scene.add(createBar(-30,level,front-17,-40,level+.08,back,"plyboard"));
   scene.add(createBar(-10,level,front-17,-20,level+.08,back,"plyboard"));
   scene.add(createBar(0,level,front-17,-10,level+.08,back,"plyboard"));
