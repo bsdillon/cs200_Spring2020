@@ -1,0 +1,206 @@
+
+<html>
+  <head>
+  <style>
+    table, td {text-align:center; border:1px solid black;}
+    .red {color:red;}
+    .blue {color:#6060FF; font-weight:bold;}
+  </style>
+  <script>
+    var rng;
+    function RNG(s)
+    {
+      this.m = 0X80000000;
+      this.a = 1103515245;
+      this.c = 12345;
+
+      this.seed = s ? s : Math.floor(Math.random() * (this.m-1));
+    }
+
+    RNG.prototype.nextInt = function()
+    {
+      this.seed = (this.a * this.seed + this.c) % (this.m-1);
+      return this.seed;
+    }
+
+    RNG.prototype.nextFloat = function()
+    {
+      return this.nextInt() / (this.m - 1);
+    }
+
+    function Random()
+    {
+       return rng.nextFloat();
+    }
+
+    var showAnswers = false;
+    function newExam()
+    {
+      var num = Math.floor(Math.random()*10000+5000);
+      examID.value=num;
+      loadExam(false);
+    }
+
+    function loadExam(shouldAnswer)
+    {
+      showAnswers=shouldAnswer;
+      var x = examID.value;
+      x=parseInt(x);
+      if(isNaN(x))
+      {
+        alert("Value "+examID.value+" is NOT an integer");
+        newExam();
+        return;
+      }
+      x=x%15000;
+      rng = new RNG(x);
+      examID.value=x;
+      lockID(x);
+      createExam();
+    }
+
+    function createExam()
+    {
+      lines = [];
+      var index=0;
+
+      var s="Create a separate HTML file with the following properties <span class='blue'>(4 pts)</span>:<br>";
+      var names1 = ["Astro","bagel","cifuentes","Dalmation","Eggbert","fiasco"];
+      var r1 = Math.floor(Random()*6);
+      var r2 = Math.floor(Random()*6);
+      while(r1==r2)
+      {
+        r2 = Math.floor(Random()*6);
+      }
+      s+="<ul>";
+      s+="<li>A global field '"+names1[r1]+"'.</li>";
+      s+="<li>A function '"+names1[r2]+"' with "+Math.floor(Random()*4)+" parameter(s).</li>";
+      s+="<li>Inside '"+names1[r2]+"' create a local variable '"+names1[r1]+"'.</li>";
+      s+="<li>Inside '"+names1[r2]+"' assign 'local' to the local variable and 'global' to the global one.</li>";
+      s+="</ul>";
+      lines[index++]=s+"<br>";
+
+      s="Create a separate HTML file with the following properties <span class='blue'>(4 pts)</span>:<br>";
+      var names2 = ["able","bibel","cibel","dibel","eibel","fibel"];
+      r1 = Math.floor(Random()*6);
+      v1 = names2[r1];
+      v2 = names2[(r1+1)%6];
+      v3 = names2[(r1+2)%6];
+      v4 = Math.floor(Random()*10);
+      var op = ["sum","difference","ratio","product"];
+      var myOp = op[Math.floor(Random()*4)];
+      s+="<ul>";
+      s+="<li>Three fields '"+v1+"', '"+v2+"', and '"+v3+"'.</li>";
+      s+="<li>Assign "+v4+" to "+v1+" and "+(v4+Math.floor(Random()*5))+" to "+v2+".</li>";
+      s+="<li>A function which takes two parameters and returns the "+myOp+" of those parameters.</li>";
+      s+="<li>Call the function with "+v1+" and "+v2+" and write the "+myOp+" to "+v3+".</li>";
+      s+="</ul>";
+      lines[index++]=s+"<br>";
+
+      dec=Math.floor(Random()*10+5);
+      dec2=Math.floor(Random()*3+2);
+      tmp = dec2;
+      ans = dec;
+      while(tmp>0)
+      {
+        ans+=tmp--;
+      }
+      s="With respect to the code below <span class='blue'>(4 pts)</span>:<br><ul><li>Draw a table with registers A, B, and PC.</li><li>Hand execute the program.</li><li>Record the value written to memory #9.</li></ul>";
+      s+="<table>";
+      s+="<tr><th>Memory#</th><th>Instruction</th></tr>";
+      s+="<tr><td>0</td><td>Load <b><em>7</em></b> to A</td></tr>";
+      s+="<tr><td>1</td><td>Load <b><em>8</em></b> to B</td></tr>";
+      s+="<tr><td>2</td><td>A+A->A</td></tr>";
+      s+="<tr><td>3</td><td>B-1->B</td></tr>";
+      s+="<tr><td>4</td><td>if B=0 Jmp 6</td></tr>";
+      s+="<tr><td>5</td><td>Jmp 2</td></tr>";
+      s+="<tr><td>6</td><td>Write A to <b><em>9</em></b></td></tr>";
+      s+="<tr><td>7</td><td>"+dec+"</td></tr>";
+      s+="<tr><td>8</td><td>"+dec2+"</td></tr>";
+      s+="<tr><td>9</td><td>";
+      s+="</td></tr>";
+      s+="</table>";
+      lines[index++]=s+".<br>";
+
+      dec1=Math.floor(Random()*10-5);
+      while(tmp>0)
+      {
+        ans+=tmp--;
+      }
+      s="With respect to the code below <span class='blue'>(4 pts)</span>:<br><ul><li>Draw a table with registers A, B, and PC.</li><li>Hand execute the program.</li><li>Record the value written to memory #9.</li></ul>";
+      s+="<table>";
+      s+="<tr><th>Memory#</th><th>Instruction</th></tr>";
+      s+="<tr><td>0</td><td>Load <b><em>12</em></b> to A</td></tr>";
+      s+="<tr><td>1</td><td>Load "+Math.floor(Random()*10-5)+" to B</td></tr>";
+      s+="<tr><td>2</td><td>A*B->B</td></tr>";
+      s+="<tr><td>3</td><td>A*B->B</td></tr>";
+      s+="<tr><td>4</td><td>Write B to <b><em>13</em></b></td></tr>";
+      s+="<tr><td>5</td><td>Load "+Math.floor(Random()*10-5)+" to B</td></tr>";
+      s+="<tr><td>6</td><td>A*B->B</td></tr>";
+      s+="<tr><td>7</td><td>Load <b><em>13</em></b> to A</td></tr>";
+      s+="<tr><td>8</td><td>A+B->A</td></tr>";
+      s+="<tr><td>9</td><td>Load "+Math.floor(Random()*10-5)+" to B</td></tr>";
+      s+="<tr><td>10</td><td>A+B->B</td></tr>";
+      s+="<tr><td>11</td><td>Write B to <b><em>14</em></b></td></tr>";
+      s+="<tr><td>12</td><td>"+dec+"</td></tr>";
+      s+="<tr><td>13</td><td>";
+      s+="<tr><td>14</td><td>";
+      s+="</td></tr>";
+      s+="</table>";
+      lines[index++]=s+".<br>";
+
+      r = Math.floor(Random()*3);
+      tmp = ["operating system","virtual machine","container"];
+      s="Define the term "+tmp[r];
+      lines[index++]=s+".<span class='blue'>(1 pt)</span><br><br>";
+
+      r2 = Math.floor(Random()*3);
+      while(r2==r){r2 = Math.floor(Random()*3);}
+      s="Explain the way that the "+tmp[r2]+" provides a layer of abstraction";
+      lines[index++]=s+".<span class='blue'>(1 pt)</span><br><br>";
+
+      tmp2 = ["home budget","warehouse inventory","school/work mailing list","travel planning","foreign language translation"];
+      r2 = Math.floor(Random()*5);
+      s="Suppose you are building an application for "+tmp2[r2]+". Give reasons why it may be suited to desktop, web, and mobile platforms. <span class='blue'>(7 pts)</span><br>";
+      s+="Give an advantage for this application on each platform.<br>";
+      s+="Give a disadvantage for this application on each platform.<br>";
+      s+="Which platform is best suited to the application?";
+      lines[index++]=s+"<br><br>";
+
+      var final="<ol>";
+      while(lines.length>0)
+      {
+        index=lines.length-1;
+        //index=Math.floor(Random()*lines.length);
+        tmp=lines[index];
+        lines.splice(index,1);
+        final+="<li>"+tmp+"</li>";
+      }
+      final+="</ol>";
+      final+="<h2 class='red'>Include this statement with your quiz submission.</h2>";
+      final+="<p>By submitting this statement you are agreeing to abide by the terms of academic honesty as laid out below.<br>";
+      final+="I am allowed to use already existing reference material, including anything found online or more specifically the course discussion board.<br>";
+      final+="I am <span class='red'>not</span> allowed to directly ask for answers to the quiz through sites like Yahoo Answers, Quora, or StackOverflow.<br>";
+      final+="I am <span class='red'>not</span> allowed to post questions about the quiz on the course discussion board.<br>";
+      final+="All questions about the quiz are to be handled through private email or phone to the professor according to the syllabus.<br>";
+      final+="I AGREE TO FOLLOW THE TERMS OF THE ACADEMIC HONESTY POLICY AS OUTLINED.</p>";
+      output.innerHTML=final;
+    }
+
+    function lockID(id)
+    {
+      var tmp = "<h2 class='red'>Your Test ID</h2><p>ID:"+id+"</p>";
+      tmp += "<p>The test below is uniquely generated from this ID out of  several million possible choices.<br>You must include the Test ID with your quiz submission.<br>You can save the test ID and regenerate it at any time.<br><span class='red'>If you do not save this value you cannot recover the test.</span></p>";
+      document.getElementById("randomSection").innerHTML=tmp;
+    }
+  </script>
+  </head>
+  <body>
+    <div id="randomSection">
+      <button onclick="newExam()">I don't have a Quiz ID</button><br>
+      <p><b>Exam ID: </b><input type="text" id="examID"></input>
+      <button onClick="loadExam(false)">Load my Quiz ID</button>
+    </div>
+    <p id="output"></p>
+  </body>
+</html>
