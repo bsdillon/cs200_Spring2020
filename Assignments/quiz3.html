@@ -1,0 +1,162 @@
+<html>
+  <head>
+  <style>
+    table, td {text-align:center; border:1px solid black;}
+    .red {color:red;}
+    .blue {color:#6060FF; font-weight:bold;}
+  </style>
+  <script>
+    var rng;
+    function RNG(s)
+    {
+      this.m = 0X80000000;
+      this.a = 1103515245;
+      this.c = 12345;
+
+      this.seed = s ? s : Math.floor(Math.random() * (this.m-1));
+    }
+
+    RNG.prototype.nextInt = function()
+    {
+      this.seed = (this.a * this.seed + this.c) % (this.m-1);
+      return this.seed;
+    }
+
+    RNG.prototype.nextFloat = function()
+    {
+      return this.nextInt() / (this.m - 1);
+    }
+
+    function Random()
+    {
+       return rng.nextFloat();
+    }
+
+    var showAnswers = false;
+    function newExam()
+    {
+      var num = Math.floor(Math.random()*10000+5000);
+      examID.value=num;
+      loadExam(false);
+    }
+
+    function loadExam(shouldAnswer)
+    {
+      showAnswers=shouldAnswer;
+      var x = examID.value;
+      x=parseInt(x);
+      if(isNaN(x))
+      {
+        alert("Value "+examID.value+" is NOT an integer");
+        newExam();
+        return;
+      }
+      x=x%15000;
+      rng = new RNG(x);
+      examID.value=x;
+      lockID(x);
+      createExam();
+    }
+
+    function createExam()
+    {
+      lines = [];
+      var index=0;
+
+
+//programming
+//Use an event handler to launch after page load.
+//Use time functions.
+//Generate simple logical and arithmetic algorithms.
+      
+
+      s = "Create a new HTML page with script that has the following features <span class='blue'>(8 pts)</span>:<br><ul>";
+      tmp = ["id","name","class"];
+      r = Math.floor(Random()*3);
+      tmp2 = ["font size","font color", "background color"];
+      r2 = Math.floor(Random()*3);
+      s+="<li>Use "+tmp[r]+" to alter the "+tmp2[r2]+" of "+(r+1)+" paragraph(s) of Lorem ipsum.</li>";
+      tmp = ["some radio button","a slider","a checkbox"];
+      r = Math.floor(Random()*3);
+      s+="<li>Use "+tmp[r]+" inputs to generate onchange events.</li>";
+      s+="<li>Create an event handler that will express at least two style changes based on the value of the input.</li>";
+      lines[index++]=s+"</ul><br>";
+
+      s = "Create a new HTML page with script that has the following features <span class='blue'>(8 pts)</span>:<br><ul>";
+      tmp = ["p","h3","img"];
+      r = Math.floor(Random()*3);
+      s+="<li>A 'Grow' function that adds a new "+tmp[r]+" to the document.</li>";
+      s+="<li>Use a timeout or interval to call 'Grow' every 5 seconds.</li>";
+      if(Random()>.5)
+      {
+        s+="<li>Two buttons that start and stop the growth.</li>";
+      }
+      else
+      {
+        s+="<li>A button that resets the growth (i.e. clears all that has been added)</li>";
+      }
+      lines[index++]=s+"</ul><br>";
+
+      s="Give an example each where setTimeout or setInterval is appropriately used.";
+      lines[index++]=s+"<span class='blue'>(2 pts)</span><br><br>";
+
+      tmp = ["memory","networking","processors"];
+      r = Math.floor(Random()*3);
+      s="Explain how Moore's law applies to "+tmp[r];
+      lines[index++]=s+".<span class='blue'>(1 pt)</span><br><br>";
+
+      s="Give an example of how you might use the body.onload() function.";
+      lines[index++]=s+".<span class='blue'>(1 pt)</span><br><br>";
+
+      s="Give two reasons why style standards and coding conventions exist";
+      lines[index++]=s+".<span class='blue'>(2 pts)</span><br><br>";
+
+      tmp = ["Mailing each house on a block","Serving each DMV customer","Licking an ice cream cone","Running a marathon","Putting a price tag on each can of beans on the shelf","Cleaning dishes at a restaurant"];
+      s="Explain how each task is more related to a 'for' or 'while' loop.<span class='blue'>(3 pts)</span><br><ul>";
+      while(tmp.length>3)
+      {
+        let i = Math.floor(Random()*tmp.length);
+        s+="<li>"+tmp[i]+"</li>";
+        tmp[i]=tmp[tmp.length-1];
+        tmp.pop();
+      }
+      lines[index++]=s+"</ul><br>";
+
+      var final="<ol>";
+      while(lines.length>0)
+      {
+        index=lines.length-1;
+        //index=Math.floor(Random()*lines.length);
+        tmp=lines[index];
+        lines.splice(index,1);
+        final+="<li>"+tmp+"</li>";
+      }
+      final+="</ol>";
+      final+="<h2 class='red'>Include this statement with your quiz submission.</h2>";
+      final+="<p>By submitting this statement you are agreeing to abide by the terms of academic honesty as laid out below.<br>";
+      final+="I am allowed to use already existing reference material, including anything found online or more specifically the course discussion board.<br>";
+      final+="I am <span class='red'>not</span> allowed to directly ask for answers to the quiz through sites like Yahoo Answers, Quora, or StackOverflow.<br>";
+      final+="I am <span class='red'>not</span> allowed to post questions about the quiz on the course discussion board.<br>";
+      final+="All questions about the quiz are to be handled through private email or phone to the professor according to the syllabus.<br>";
+      final+="I AGREE TO FOLLOW THE TERMS OF THE ACADEMIC HONESTY POLICY AS OUTLINED.</p>";
+      output.innerHTML=final;
+    }
+
+    function lockID(id)
+    {
+      var tmp = "<h2 class='red'>Your Test ID</h2><p>ID:"+id+"</p>";
+      tmp += "<p>The test below is uniquely generated from this ID out of  13,685,760 possible choices.<br>You must include the Test ID with your quiz submission.<br>You can save the test ID and regenerate it at any time.<br><span class='red'>If you do not save this value you cannot recover the test.</span></p>";
+      document.getElementById("randomSection").innerHTML=tmp;
+    }
+  </script>
+  </head>
+  <body>
+    <div id="randomSection">
+      <button onclick="newExam()">I don't have a Quiz ID</button><br>
+      <p><b>Exam ID: </b><input type="text" id="examID"></input>
+      <button onClick="loadExam(false)">Load my Quiz ID</button>
+    </div>
+    <p id="output"></p>
+  </body>
+</html>
+
