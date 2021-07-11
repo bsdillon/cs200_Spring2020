@@ -24,7 +24,7 @@
         goldField.AddMine();
       }
       
-      Goldfield.prototype.AddMine = function()
+      GoldField.prototype.AddMine = function()
       {
          var id = this.CreateMoverTag();
          var udt = new Mine(id);
@@ -50,7 +50,7 @@
         goldField.AddShip();
       }
 
-      Goldfield.prototype.AddShip = function()
+      GoldField.prototype.AddShip = function()
       {
          var id = this.CreateMoverTag();
          var udt = new Ship(id);
