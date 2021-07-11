@@ -12,40 +12,33 @@
         goldField.RandomFill(.05);
         goldField.SetClickListener(Click);
         goldField.SetKeyListener(Key);
-        goldField.AddSound("fart.wav","fart");
-        AddCheckBox();
+        goldField.AddSound("explode.wav","explode");
+        for(let i=0;i<15;i++)
+        {
+          AddMine();
+        }
       }
 
-      function AddCheckBox()
-      {
-        goldField.AddCheckBox();
-      }
-
-      function changeSound()
-      {
-         field.ChangeSound("gong.wav", "fart");
-      }
-
-      GoldField.prototype.AddCheckBox = function()
+      GoldField.prototype.AddMine = function()
       {
          var id = this.CreateMoverTag();
-         var udt = new CheckBox(id);
+         var udt = new Mine(id);
          this.AddGenericMover(udt);
          return udt;
       }
 
-      var CheckBox = function(id)
+      var Mine = function(id)
       {
-         this.Description = "CheckBox";
-         this.imageURL = "check.png";
-         this.destroyURL = "redex.png";
-         this.destroyAudio = "fart";
+         this.Description = "Sea Mine";
+         this.imageURL = "mine.png";
+         this.destroyURL = "explode.gif_c200";
+         this.destroyAudio = "explode";
          this.destroyTime = 1000;
          this.InitTag(id);
       }
 
-      CheckBox.prototype = Object.create(Mover.prototype);
-      CheckBox.prototype.constructor = CheckBox;
+      Mine.prototype = Object.create(Mover.prototype);
+      Mine.prototype.constructor = Mine;
 
       function Click(event)
       {
@@ -108,93 +101,10 @@
            }
         }
       }
-
-      function win()
-      {
-        goldField.Win();
-      }
-
-      function lose()
-      {
-        goldField.Lose();
-      }
-
-      var hero = null;
-      function addHero()
-      {
-        hero = goldField.AddHero();
-      }
-
-      function killHero()
-      {
-        goldField.Hero.Destroy();
-      }
-
-      var gold=null;
-      function addGold()
-      {
-        gold = goldField.AddGold();
-      }
-
-      function killGold()
-      {
-        gold.Destroy();
-      }
-
-      function reset()
-      {
-        goldField.Reset();
-        goldField.RandomFill(.05);
-      }
-
-// create an array to keep ref to our instances
-var monsters= [];
-// var monster = null;
-function addMonster()
-{
-  // monster = goldField.AddMonster();⏎
-  // push every monster in array
-  monsters.push(goldField.AddMonster());
-}
-
-function killMonster()
-{
-  // if array.length is true
-  if (monsters.length) {
-    // call the destroy function on the last ref
-    monsters[monsters.length - 1].Destroy();
-    // remove the last ref from array using pop
-    monsters.pop();
-  }
-//monster.Destroy();
-}
-
-      var tower=null;
-      function addTower()
-      {
-        tower = goldField.AddTower();
-      }
-
-      function killTower()
-      {
-        tower.Destroy();
-      }
     </script>
   </head>
   <body onload="init()">
     <div id="field"></div>
-    <button onclick="win()">WIN</button>
-    <button onclick="lose()">Lose</button>
-    <button onclick="addHero()">Add Hero</button>
-    <button onclick="killHero()">Kill Hero</button>
-    <button onclick="addGold()">Add Gold</button>
-    <button onclick="killGold()">Take Gold</button>
-    <button onclick="addMonster()">Add Monster</button>
-    <button onclick="killMonster()">Kill Monster</button>
-    <button onclick="addTower()">Add Tower</button>
-    <button onclick="killTower()">Kill Tower</button>
-    <button onclick="AddCheckBox()">Add CheckBox</button>
-    <button onclick="changeSound()">Change CheckBox Sound</button>
     <button onclick="reset()">Reset</button>
     <p id="output"></p>
   </body>
