@@ -16,6 +16,7 @@
         {
           goldField.AddMine();
         }
+        goldField.AddShip();
       }
 
       Goldfield.prototype.AddMine = function()
@@ -38,6 +39,27 @@
 
       Mine.prototype = Object.create(Mover.prototype);
       Mine.prototype.constructor = Mine;
+
+      Goldfield.prototype.AddShip = function()
+      {
+         var id = this.CreateMoverTag();
+         var udt = new Ship(id);
+         this.AddGenericMover(udt);
+         return udt;
+      }
+
+      var Ship = function(id)
+      {
+         this.Description = "USS Kidd DDG-100 ";
+         this.imageURL = "ship.png";
+         this.destroyURL = "explode.gif_c200";
+         this.destroyAudio = "explode";
+         this.destroyTime = 1000;
+         this.InitTag(id);
+      }
+
+      Ship.prototype = Object.create(Mover.prototype);
+      Ship.prototype.constructor = Ship;
 
       function Click(event)
       {
@@ -79,10 +101,10 @@
           deltaY = 1;
         }
 
-        if(hero != null)
+        if(ship != null)
         {
            var dim = field.GetDimensions();
-           var loc = hero.GetPosition();
+           var loc = ship.GetPosition();
            if(!(loc[0] + deltaX < 0 || loc[0] + deltaX == dim[0]))
            {
              loc[0] = loc[0]+deltaX;
@@ -96,7 +118,7 @@
            var nextSpace = field.LookAt(loc[0],loc[1]);
            if(nextSpace[0]==Empty)
            {
-             hero.SetPosition(loc[0],loc[1]);
+             ship.SetPosition(loc[0],loc[1]);
            }
         }
       }
