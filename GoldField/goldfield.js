@@ -12,7 +12,7 @@ var Empty = -1;
 var sounds = new Array();
 
 /////////// Start GoldField /////////////////
-function GoldField(tag, block_size, block_width, block_height)
+function GoldField(tag, block_size, block_width, block_height, background)
 {
    characterSize = block_size;
    MaxW = block_width;
@@ -41,7 +41,14 @@ function GoldField(tag, block_size, block_width, block_height)
    this.Hero = null;
    this.Tower = null;
 
-   this.tag.style.backgroundImage="url('https://bsdillon.github.io/cs200_Spring2020/GoldField/grass.jfif')";
+   if(arguments.length==4)
+   {
+     this.tag.style.backgroundImage="url('https://bsdillon.github.io/cs200_Spring2020/GoldField/grass.jfif')";
+   }
+   else
+   {
+     this.tag.style.backgroundImage="url('"+background+"')";
+   }
    this.tag.style.backgroundSize="250px 150px";
    this.tag.style.backgroundRepeat="repeat";
 
