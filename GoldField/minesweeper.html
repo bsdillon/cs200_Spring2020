@@ -9,7 +9,6 @@
       function init()
       {
         goldField = new GoldField(document.getElementById("field"),30, 20, 15,"ocean.png");
-        goldField.RandomFill(.05);
         goldField.SetClickListener(Click);
         goldField.SetKeyListener(Key);
         goldField.AddSound("explode.wav","explode");
