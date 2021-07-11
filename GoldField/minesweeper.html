@@ -14,11 +14,11 @@
         goldField.AddSound("explode.wav","explode");
         for(let i=0;i<15;i++)
         {
-          AddMine();
+          goldField.AddMine();
         }
       }
 
-      function AddMine()
+      Goldfield.prototype.AddMine = function()
       {
          var id = this.CreateMoverTag();
          var udt = new Mine(id);
