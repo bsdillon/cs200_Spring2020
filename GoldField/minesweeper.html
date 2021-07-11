@@ -14,11 +14,16 @@
         goldField.AddSound("explode.wav","explode");
         for(let i=0;i<15;i++)
         {
-          goldField.AddMine();
+          AddMine();
         }
-        ship = goldField.AddShip();
+        ship = AddShip();
       }
 
+      function AddMine()
+      {
+        goldField.AddMine();
+      }
+      
       Goldfield.prototype.AddMine = function()
       {
          var id = this.CreateMoverTag();
@@ -39,6 +44,11 @@
 
       Mine.prototype = Object.create(Mover.prototype);
       Mine.prototype.constructor = Mine;
+      
+      function AddShip()
+      {
+        goldField.AddShip();
+      }
 
       Goldfield.prototype.AddShip = function()
       {
