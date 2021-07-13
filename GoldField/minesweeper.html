@@ -208,6 +208,12 @@
            {
              bot.SetPosition(loc[0],loc[1]);
            }
+           else if(nextSpace[1]==="Sea Mine")
+           {
+             var mover = goldField.GetMover(nextSpace[0]);
+             mover.Destroy();
+             bot.SetPosition(loc[0],loc[1]);
+           }
         }
       }
     </script>
