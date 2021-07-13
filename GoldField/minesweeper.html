@@ -157,6 +157,12 @@
            {
              ship.SetPosition(loc[0],loc[1]);
            }
+           else if(nextSpace[0]==="Sea Mine")
+           {
+             ship.Destroy();
+             var mover = goldField.GetMover(nextSpace[0]);
+             mover.Destroy();
+           }
         }
 
         //65 A
