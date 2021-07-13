@@ -17,10 +17,10 @@
           AddMine();
         }
         ship = AddShip();
-        var bot = AddBot();
-        setInterval(function(){RandomBot(bot);},250);
-        bot = AddBot();
-        setInterval(function(){FollowBot(bot);},250);
+        var x = AddBot();
+        setInterval(function(){RandomBot(x);},250);
+        var y = AddBot();
+        setInterval(function(){FollowBot(y);},250);
       }
 
       function AddMine()
