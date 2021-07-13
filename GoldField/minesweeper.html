@@ -17,8 +17,8 @@
           AddMine();
         }
         ship = AddShip();
-        bot = AddBot();
-        setInterval(AIBot,250);
+        var bot = AddBot();
+        setInterval(function(){AIBot(bot);},250);
       }
 
       function AddMine()
@@ -167,7 +167,7 @@
         }
       }
       
-      function AIBot()
+      function AIBot(bot)
       {
         deltaX = 0;
         deltaY = 0;
