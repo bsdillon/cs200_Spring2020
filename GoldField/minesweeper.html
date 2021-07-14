@@ -21,6 +21,8 @@
         setInterval(function(){RandomBot(x);},250);
         var y = AddBot();
         setInterval(function(){FollowBot(y);},250);
+        var m = AddMissile();
+        setInterval(function(){MoveMissile(m);},250);
       }
 
       function AddMine()
@@ -100,7 +102,57 @@
 
       Bot.prototype = Object.create(Mover.prototype);
       Bot.prototype.constructor = Bot;
+      
+      function AddMissile()
+      {
+        return goldField.AddMissile();
+      }
 
+      GoldField.prototype.AddMissile = function()
+      {
+         var id = this.CreateMoverTag();
+         var udt = new Missile(id);
+         this.AddGenericMover(udt);
+         return udt;
+      }
+
+      var Missile = function(id)
+      {
+         this.Description = "Missile";
+         this.imageURL = "missile.png";
+         this.destroyURL = "explode.gif_c200";
+         this.destroyAudio = "explode";
+         this.destroyTime = 1000;
+         this.InitTag(id);
+      }
+
+      Missile.prototype = Object.create(Mover.prototype);
+      Missile.prototype.constructor = Missile;
+
+      function MoveMissile(m)
+      {
+        var loc = m.GetPosition();
+        if(loc[0]==30)
+        {
+          loc[0]=0;
+        }
+        
+        if(loc[1]==20)
+        {
+          loc[1]=0;
+        }
+        loc[0]++;
+        loc[1]++;
+        
+        var nextSpace = field.LookAt(loc[0],loc[1]);
+        if(nextSpace[1]==="USS Kidd DDG-100 ")
+        {
+          ship.destroy();
+        }
+
+        m.SetLoction(loc[0],loc[1]);
+      }
+      
       function Click(event)
       {
         var contents = goldField.LookAt(event[0],event[1]);
