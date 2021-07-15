@@ -145,9 +145,10 @@
         loc[1]--;
         
         var nextSpace = field.LookAt(loc[0],loc[1]);
-        if(nextSpace[1]==="USS Kidd DDG-100 ")
+        if(nextSpace[0]!==Empty)
         {
-          ship.destroy();
+           var mover = goldField.GetMover(nextSpace[0]);
+           mover.Destroy();
         }
 
         m.SetPosition(loc[0],loc[1]);
