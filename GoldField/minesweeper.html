@@ -120,7 +120,7 @@
       var Missile = function(id)
       {
          this.Description = "Missile";
-         this.imageURL = "missile.png";
+         this.imageURL = "missile.gif";
          this.destroyURL = "explode.gif_c200";
          this.destroyAudio = "explode";
          this.destroyTime = 1000;
@@ -135,16 +135,16 @@
         var loc = m.GetPosition();
         var dim = field.GetDimensions();
 
-        if(loc[0]+1==dim[0])
+        if(loc[0]==0)
         {
-          loc[0]=0;
+          loc[0]=dim[0];
         }
         
         if(loc[1]==0)
         {
           loc[1]=dim[1];
         }
-        loc[0]++;
+        loc[0]--;
         loc[1]--;
         
         var nextSpace = field.LookAt(loc[0],loc[1]);
