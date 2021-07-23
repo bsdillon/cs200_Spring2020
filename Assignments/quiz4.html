@@ -1,0 +1,178 @@
+
+
+<html>
+  <head>
+  <style>
+    table, td {text-align:center; border:1px solid black;}
+    .red {color:red;}
+    .blue {color:#6060FF; font-weight:bold;}
+  </style>
+  <script>
+    var rng;
+    function RNG(s)
+    {
+      this.m = 0X80000000;
+      this.a = 1103515245;
+      this.c = 12345;
+
+      this.seed = s ? s : Math.floor(Math.random() * (this.m-1));
+    }
+
+    RNG.prototype.nextInt = function()
+    {
+      this.seed = (this.a * this.seed + this.c) % (this.m-1);
+      return this.seed;
+    }
+
+    RNG.prototype.nextFloat = function()
+    {
+      return this.nextInt() / (this.m - 1);
+    }
+
+    function Random()
+    {
+       return rng.nextFloat();
+    }
+
+    var showAnswers = false;
+    function newExam()
+    {
+      var num = Math.floor(Math.random()*10000+5000);
+      examID.value=num;
+      loadExam(false);
+    }
+
+    function loadExam(shouldAnswer)
+    {
+      showAnswers=shouldAnswer;
+      var x = examID.value;
+      x=parseInt(x);
+      if(isNaN(x))
+      {
+        alert("Value "+examID.value+" is NOT an integer");
+        newExam();
+        return;
+      }
+      x=x%15000;
+      rng = new RNG(x);
+      examID.value=x;
+      lockID(x);
+      createExam();
+    }
+
+    function createExam()
+    {
+      lines = [];
+      var index=0;
+
+      //algorithm
+      tmp = ["wash clothes","plant a garden","make instant soup","fry an egg"];
+      r = Math.floor(Random()*4);
+      s="Describe the algorithm you use to "+tmp[r]+". You will be graded on completeness. <span class='blue'>2 pts</span>";
+      lines[index++]=s+"<br><br>";
+
+      tmp = ["memory","speed","power"];
+      r = Math.floor(Random()*3);
+      s="Explain the importance of algorithmic efficiency in terms of "+tmp[r]+" <span class='blue'>1 pt</span>";
+      lines[index++]=s+"<br><br>";
+
+      tmp = ["average","sum","maximum","minimum"];
+      r = Math.floor(Random()*4);
+      s="Write a function that takes in an array of values and finds/computes the "+tmp[r]+" of the set. <span class='blue'>2 pts</span>";
+      lines[index++]=s+"<br><br>";
+
+      //cyber risks
+      s="Suppose that in five years every financial transaction, every contract, every check you sign might require a";
+      s+=" digital signature from a RF ID chip embeded in your wrist. No wallet, cash, or plastic card. Give an example";
+      s+=" of a concern you might have for your privacy and/or security.<span class='blue'>2 pts</span>";
+      lines[index++]=s+"<br><br>";
+
+      s="For each password below, indicate if the password is secure or not and why.<span class='blue'>3 pts</span><br><ul>";
+      tmp =["password","ThisIsMyStupidPassword","7h1$1$My$7up!dP@$$w0rd","BirthdayJan1@2004","J3llyB3llyB3@n$","C@n7R3@d!7","Lynn","book!@#$%","abc123!","Qwerty!2"];
+      for(let i=0;i<3;i++)
+      {
+        x=Math.floor(Random()*tmp.length);
+        s+="<li>"+tmp[x]+"</li>";
+        tmp.splice(x,1);
+      }
+      s+="</ul><br>";
+      lines[index++]=s;
+
+      //programming languages
+      tmp = ["what a compiler does","the meaning of 'Turing complete'","how the C programming language has been influential"];
+      r = Math.floor(Random()*3);
+      s="In your own words, explain "+tmp[r]+". <span class='blue'>1 pt</span>";
+      lines[index++]=s+"<br><br>";
+       //compiler
+       //define turing complete
+       //c language
+
+      s="Copy the example GoldField page [<a href='https://bsdillon.github.io/cs200_Spring2020/GoldField/example.html'>link</a>] and create your own Mover. Add your mover to the page. <span class='blue'>3 pts</span>";
+      lines[index++]=s+"<br><br>";
+
+      //exception handling
+      s="Create two functions CauseError and CatchError that do the following <span class='blue'>3 pts</span>:<br><ul>";
+      s+="<li>CauseError takes one parameter.</li>";
+      s+="<li>If the parameter is not a number, CauseError throws an exception.</li>";
+      s+="<li>If the parameter is a number, CauseError says 'The number is <FILL IN THE NUMBER>'.</li>";
+      s+="<li>CatchError takes one parameter.</li>";
+      s+="<li>CatchError calls CauseError and passes in the same parameter.</li>";
+      s+="<li>Have CatchError catch the exception and display it to the user.</li>";
+      s+="<li>Call 'CauseError(11)' to show it works.</li>";
+      s+="<li>Call 'CauseError(7)' to provoke the error.</li></ul>";
+      lines[index++]=s+"<br><br>";
+      
+      tmp = ["Dolphin","Elephant","Wolf"];
+      r = Math.floor(Random()*3);
+      s="Create an object "+tmp[r]+" that has two functions 'MakeSound' (which puts appropriate text in the alert)";
+      s+=" and 'GetPicture' (which returns the URL of an appropriate picture). Create an instance of the object. ";
+      s+="Call GetPicture and use the URL to place an image on the screen. Call MakeSound to show the animal working. <span class='blue'>4 pts</span>";
+      lines[index++]=s+"<br><br>";
+
+      //4 points left
+      s="Create an object PingPong and do the following <span class='blue'>4 pts</span>:<br><ul>";
+      s+="<li>In the constructor set up an interval to call a Noise function.</li>";
+      s+="<li>Create an instance variable to tell if you are in the ping or pong state.</li>";
+      s+="<li>Create the Noise function which checks if you are in ping or pong and writes 'ping' or 'pong' in an alert.</li>";
+      s+="<li>Have Noise change the ping/pong state.</li>";
+      s+="<li>Use a closure to fix the error.</li>";
+      s+="<li>Test your code to make sure it works.</li></ul>";
+      lines[index++]=s+"<br><br>";
+
+      var final="<ol>";
+      while(lines.length>0)
+      {
+        index=lines.length-1;
+        //index=Math.floor(Random()*lines.length);
+        tmp=lines[index];
+        lines.splice(index,1);
+        final+="<li>"+tmp+"</li>";
+      }
+      final+="</ol>";
+      final+="<h2 class='red'>Include this statement with your quiz submission.</h2>";
+      final+="<p>By submitting this statement you are agreeing to abide by the terms of academic honesty as laid out below.<br>";
+      final+="I am allowed to use already existing reference material, including anything found online or more specifically the course discussion board.<br>";
+      final+="I am <span class='red'>not</span> allowed to directly ask for answers to the quiz through sites like Yahoo Answers, Quora, or StackOverflow.<br>";
+      final+="I am <span class='red'>not</span> allowed to post questions about the quiz on the course discussion board.<br>";
+      final+="All questions about the quiz are to be handled through private email or phone to the professor according to the syllabus.<br>";
+      final+="I AGREE TO FOLLOW THE TERMS OF THE ACADEMIC HONESTY POLICY AS OUTLINED.</p>";
+      output.innerHTML=final;
+    }
+
+    function lockID(id)
+    {
+      var tmp = "<h2 class='red'>Your Test ID</h2><p>ID:"+id+"</p>";
+      tmp += "<p>The test below is uniquely generated from this ID out of  several million possible choices.<br>You must include the Test ID with your quiz submission.<br>You can save the test ID and regenerate it at any time.<br><span class='red'>If you do not save this value you cannot recover the test.</span></p>";
+      document.getElementById("randomSection").innerHTML=tmp;
+    }
+  </script>
+  </head>
+  <body>
+    <div id="randomSection">
+      <button onclick="newExam()">I don't have a Quiz ID</button><br>
+      <p><b>Exam ID: </b><input type="text" id="examID"></input>
+      <button onClick="loadExam(false)">Load my Quiz ID</button>
+    </div>
+    <p id="output"></p>
+  </body>
+</html>
