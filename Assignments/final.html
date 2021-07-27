@@ -1,0 +1,347 @@
+<html>
+  <head>
+  <style>
+    table, td {text-align:center; border:1px solid black;}
+    .red {color:red;}
+    .blue {color:#6060FF; font-weight:bold;}
+  </style>
+  <script>
+    var rng;
+    function RNG(s)
+    {
+      this.m = 0X80000000;
+      this.a = 1103515245;
+      this.c = 12345;
+
+      this.seed = s ? s : Math.floor(Math.random() * (this.m-1));
+    }
+
+    RNG.prototype.nextInt = function()
+    {
+      this.seed = (this.a * this.seed + this.c) % (this.m-1);
+      return this.seed;
+    }
+
+    RNG.prototype.nextFloat = function()
+    {
+      return this.nextInt() / (this.m - 1);
+    }
+
+    function Random()
+    {
+       return rng.nextFloat();
+    }
+
+    var showAnswers = false;
+    function newExam()
+    {
+      var num = Math.floor(Math.random()*10000+5000);
+      examID.value=num;
+      loadExam(false);
+    }
+
+    function decToBinary(dec)
+    {
+      var bin = "";
+      var tmp = dec;
+      var p = 1;
+      while(tmp>0)
+      {
+        if(tmp%2==1)
+        {
+          bin="1"+bin;
+        }
+        else
+        {
+          bin="0"+bin;
+        }
+
+        p*=2;
+        tmp=Math.floor(tmp/2);
+      }
+
+      while(bin.length<8)
+      {
+        bin="0"+bin;
+      }
+
+      bin = bin.slice(0,4)+" "+bin.slice(4,8);
+      return bin;
+    }
+
+    function loadExam(shouldAnswer)
+    {
+      showAnswers=shouldAnswer;
+      var x = examID.value;
+      x=parseInt(x);
+      if(isNaN(x))
+      {
+        alert("Value "+examID.value+" is NOT an integer");
+        newExam();
+        return;
+      }
+      x=x%15000;
+      rng = new RNG(x);
+      examID.value=x;
+      lockID(x);
+      createExam();
+    }
+
+    function createExam()
+    {
+      lines = [];
+      var index=0;
+
+      //70 points
+      s="Write a simple program for TicTacToe <span class='blue'>(70 pts)</span>:";
+      s+="<ul>";
+      s+="<li>You need to display some type of 'board'</li>";
+      s+="<li>You need to have some form of 'x' and 'o'</li>";
+      s+="<li>The human always goes first by clicking on the board to mark a square.</li>";
+      s+="<li>Create a VERY simple AI that randomly picks any remaining square.</li>";
+      s+="<li>After each move, check for a win.</li>";
+      s+="<li>End the game as soon as the human or AI wins.</li>";
+      s+="<li>Provide a reset function to restart the game.</li>";
+      s+="</ul>";
+      lines[index++]=s+"<br><br>";
+
+      s="Write a program with the following characteristics <span class='blue'>(20 pts)</span>:";
+      s+="<ul>";
+      s+="<li>Create at least 10 functions with different letters 'AddA()', 'AddB()', etc.</li>";
+      s+="<li>Each function should take a parameter and add the letter to that parameter, returning the result.<br>";
+      s+="Ex. AddA(p){ return p+A; }</li>";
+      s+="<li>Use your functions to create a word and write the result to screen.<br>";
+      s+="Ex. AddE(AddL(AddP(AddP(AddA(''))))) should create the string 'APPLE'.</li>";
+      s+="<li>Change the functions so that AddA(AddP(AddP(AddL(AddE(''))))) spells 'APPLE'.</li>";
+      s+="<li>Test the output with your own non-Apple word</li>";
+      s+="</ul>";
+      lines[index++]=s+"<br><br>";
+
+      s="Write a program with the following characteristics <span class='blue'>(20 pts)</span>:";
+      s+="<ul>";
+      s+="<li>Create a Clock object.</li>";
+      s+="<li>Create two functions in Clock that output the time in two very different ways.</li>";
+      s+="<li>In the Clock constructor, take an ID as a parameter. This will be the tag where you output your time.</li>";
+      s+="<li>In the Clock constructor, take a parameter that defines which output function you want.</li>";
+      s+="<li>In the Clock constructor, use a time function to prompt the clock to rewrite the time.</li>";
+      s+="<li>Create two panels with appropriate IDs</li>";
+      s+="<li>Call a function from body.onload to construct and start two clocks, one for each of the different time formats.</li>";
+      s+="</ul>";
+      lines[index++]=s+"<br><br>";
+
+
+      s="Write a program with the following characteristics <span class='blue'>(20 pts)</span>:";
+      s+="<ul>";
+      s+="<li>Create two paragraphs of Lorem Ipsum</li>";
+      s+="<li>Create two buttons labeled 'Day' and 'Night'</li>";
+      s+="<li>When 'Day' is clicked, cause the page to take on a 'Daytime' style.</li>";
+      s+="<li>When 'Night' is clicked, cause the page to take on a 'Nighttime' style.</li>";
+      s+="</ul>";
+      lines[index++]=s+"<br><br>";
+
+      s="Write a program with the following characteristics <span class='blue'>(20 pts)</span>:";
+      s+="<ul>";
+      s+="<li>Create four paragraphs of Lorem Ipsum</li>";
+      s+="<li>Create an h2 for each paragraph, giving it the name of a season.</li>";
+      s+="<li>Use different styles to give a season-appropriate feel to each paragraph and h2.</li>";
+      s+="</ul>";
+      lines[index++]=s+"<br><br>";
+
+      s="What is the difference between a front-end, back-end, and full stack developer? <span class='blue'>(6 pts)</span>";
+      lines[index++]=s+"<br><br>";
+
+      s="Give me a reason why each of these is or is not intelligence. Defend your answer. <span class='blue'>(6 pts)</span><br>";
+      s+="When I go out, my fitbit registers my heartbeat and can detect a heart attack in progress.<br>";
+      s+="My car can prevent me from running into another car or out of my lane.<br>";
+      s+="My email service automatically filters out all the SPAM I am sent.<br>";
+      lines[index++]=s+"<br><br>";
+
+      s="Explain how "+(Random()>.5?"Agile":"DevOps")+" resolves the barriers between developers and others. Given an example. <span class='blue'>(4 pts)</span>";
+      lines[index++]=s+"<br><br>";
+      
+      tmp = ["NIC","RAM","GPU"];
+      r = Math.floor(Random()*4);
+      s="Describe how the "+tmp[r]+" works? <br><br>Explain how it might be used in a program. <span class='blue'>4 pts</span>";
+      lines[index++]=s+"<br><br>";
+
+      s="Why are programming languages like Cow less popular than C-family languages? Give three reasons. <span class='blue'>(6 pts)</span>";
+      lines[index++]=s+"<br><br>";
+
+      s="How do your personal security choices affect the security of your school? Your bank? Explain your answer. <span class='blue'>(4 pts)</span>";
+      lines[index++]=s+"<br><br>";
+
+      s="Your new job needs you to create a password for the system. You are NOT allowed to use numbers,<br>";
+      s+="special characters, or uppercase letters.<br><br>What password would you select? How do you know it is secure? <span class='blue'>(4 pts)</span>";
+      lines[index++]=s+"<br><br>";
+
+      tmp = ["memory","speed","power"];
+      r = Math.floor(Random()*3);
+      s="Explain how the limitations of a hand-held device affect the place of "+tmp[r]+" in a program.<br>What would algorithmic efficiency look like in this context? <span class='blue'>4 pts</span>";
+      lines[index++]=s+"<br><br>";
+
+      tmp2 = ["for","while"];
+      r2 = Math.floor(Random()*tmp2.length);
+      s="Explain why the action is ill-suited for a "+tmp2[1-r2]+" loop. <span class='blue'>(2 pts)</span>";
+      lines[index++]=s+"<br><br>";
+
+      s="Give an example of an action best handled with a "+tmp2[r2]+" loop.<span class='blue'>(2 pts)</span>";
+      lines[index++]=s+"<br><br>";
+
+      s="Steve says 'I already write good code and it's neat enough. I don't see any reason why I also need<br>";
+      s+="to use a style standard. My code works perfectly every time. I teach others how to code better. I <br>";
+      s+="don't need silly rules that cramp my style.'<br><br>Do you agree or disagree? Give an example to illustrate your point. <span class='blue'>(6 pts)</span>";
+      lines[index++]=s+"<br><br>";
+
+      tmp2 = ["Let your soup simmer to 3 minutes.","A reminder to leave for a meeting in 30 minutes.","Giving a group of people five minutes to work on a problem.","Microwave the caramels, stirring every 30 second.","Keep checking to see if your grades are posted.","Wake up every morning at 6:30am."];
+      s="Decide whether each application is better suited for setTimeout or setInterval. Why? <span class='blue'>(6 pts)</span><br>";
+      s+="<ul>";
+      for(let i=0;i<3;i++)
+      {
+        r2 = Math.floor(Random()*tmp2.length);
+        s+="<li>"+tmp2[r2]+"</li>";
+        tmp2[r2]=tmp2[tmp2.length-1];
+        tmp2.pop();
+      }
+      s+="</ul>";
+      lines[index++]=s+"<br>";
+
+      tmp2 = ["desktop","mobile","web"];
+      r2 = Math.floor(Random()*3);
+      r = Math.floor(Random()*3);
+      while(r==r2)
+      {
+        r = Math.floor(Random()*3);
+      }
+      s="Describe a system you might build for a "+tmp2[r2]+" platform. <span class='blue'>(4 pts)</span><br>";
+      s+="What are your concerns related to security? <span class='blue'>(2 pts)</span><br>";
+      s+="How will network speed and availability affect your system? <span class='blue'>(2 pts)</span><br>";
+      s+="How will you manage the application's memory? <span class='blue'>(2 pts)</span><br>";
+      s+="How might your answers change if your system were for a "+tmp2[r]+" platform? <span class='blue'>(2 pts)</span><br>";
+      lines[index++]=s+"<br>";
+
+      r = Math.floor(Random()*3);
+      tmp = ["operating system","virtual machine","container"];
+      s="Define the term "+tmp[r]+". Which layers of the computer stack does it abstract from each other?";
+      lines[index++]=s+".<span class='blue'>(4 pts)</span><br><br>";
+
+      dec=Math.floor(Random()*10+5);
+      dec2=Math.floor(Random()*3+2);
+      tmp = dec2;
+      ans = dec;
+      while(tmp>0)
+      {
+        ans+=tmp--;
+      }
+      s="With respect to the code below <span class='blue'>(12 pts)</span>:<br><ul><li>Draw a table with registers A, B, and PC.</li><li>Hand execute the program.</li></ul>";
+      s+="<table>";
+      s+="<tr><th>Memory#</th><th>Instruction</th></tr>";
+      s+="<tr><td>0</td><td>Load <b>Memory#<em>9</em></b> to A</td></tr>";
+      s+="<tr><td>1</td><td>Load <b>Memory#<em>10</em></b> to B</td></tr>";
+      s+="<tr><td>2</td><td>Load 0 to C</td></tr>";
+      s+="<tr><td>3</td><td>if B=0 Jmp 7</td></tr>";
+      s+="<tr><td>4</td><td>B-1->B</td></tr>";
+      s+="<tr><td>5</td><td>A+C->C</td></tr>";
+      s+="<tr><td>6</td><td>Jmp 4</td></tr>";
+      s+="<tr><td>7</td><td>Write C to <b>Memory#<em>9</em></b></td></tr>";
+      s+="<tr><td>8</td><td>STOP</td></tr>";
+      s+="<tr><td>9</td><td>"+dec+"</td></tr>";
+      s+="<tr><td>10</td><td>"+dec2+"</td></tr>";
+      s+="<tr><td>11</td><td>";
+      s+="</td></tr>";
+      s+="</table>";
+      lines[index++]=s+".<br>";
+
+      s="Write the standard HTML page with one example of the paragraph, one applicable style, and a single alert <span class='blue'>(6 pts)</span><br>";
+      lines[index++]=s+"<br>";
+
+      var dec = Math.floor(Random()*128+120);
+      var bin = decToBinary(dec);
+      var hMap =['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+      var hex=hMap[Math.floor(dec/16)]+hMap[dec%16];
+      var oct=''+(Math.floor(dec/64))+(Math.floor(dec/8)%8)+(dec%8);
+    
+      r = Math.floor(Random()*4);
+      s="Convert the number into the other bases <span class='blue'>(12 pts)</span><br>";
+      s+="<table><tr><th>Base-10</th><th>Base-2</th><th>Base 8</th><th>Base 16</th></tr>";
+      if(showAnswers)
+      {
+        s+="<tr class='red'>";
+      }
+      else
+      {
+        s+="<tr>";
+      }
+      s+="<td>";
+      if(r==0||showAnswers){s+=dec;}
+      s+="</td><td>";
+      if(r==1||showAnswers){s+=bin;}
+      s+="</td><td>";
+      if(r==2||showAnswers){s+=oct;}
+      s+="</td><td>";
+      if(r==3||showAnswers){s+=hex;}
+      s+="</td></tr>";
+
+      var dec = Math.floor(Random()*128+120);
+      var bin = decToBinary(dec);
+      var hMap =['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'];
+      var hex=hMap[Math.floor(dec/16)]+hMap[dec%16];
+      var oct=''+(Math.floor(dec/64))+(Math.floor(dec/8)%8)+(dec%8);
+    
+      r = Math.floor(Random()*4);
+      if(showAnswers)
+      {
+        s+="<tr class='red'>";
+      }
+      else
+      {
+        s+="<tr>";
+      }
+      s+="<td>";
+      if(r==0||showAnswers){s+=dec;}
+      s+="</td><td>";
+      if(r==1||showAnswers){s+=bin;}
+      s+="</td><td>";
+      if(r==2||showAnswers){s+=oct;}
+      s+="</td><td>";
+      if(r==3||showAnswers){s+=hex;}
+      s+="</td></tr>";
+      s+="</table>";
+      lines[index++]=s+"<br>";
+
+      var final="<ol>";
+      while(lines.length>0)
+      {
+        index=lines.length-1;
+        //index=Math.floor(Random()*lines.length);
+        tmp=lines[index];
+        lines.splice(index,1);
+        final+="<li>"+tmp+"</li>";
+      }
+      final+="</ol>";
+      final+="<h2 class='red'>Include this statement with your quiz submission.</h2>";
+      final+="<p>By submitting this statement you are agreeing to abide by the terms of academic honesty as laid out below.<br>";
+      final+="I am allowed to use already existing reference material, including anything found online or more specifically the course discussion board.<br>";
+      final+="I am <span class='red'>not</span> allowed to directly ask for answers to the quiz through sites like Yahoo Answers, Quora, or StackOverflow.<br>";
+      final+="I am <span class='red'>not</span> allowed to post questions about the quiz on the course discussion board.<br>";
+      final+="All questions about the quiz are to be handled through private email or phone to the professor according to the syllabus.<br>";
+      final+="I AGREE TO FOLLOW THE TERMS OF THE ACADEMIC HONESTY POLICY AS OUTLINED.</p>";
+      output.innerHTML=final;
+    }
+
+    function lockID(id)
+    {
+      var tmp = "<h2 class='red'>Your Test ID</h2><p>ID:"+id+"</p>";
+      tmp += "<p>The test below is uniquely generated from this ID out of  several million possible choices.<br>You must include the Test ID with your quiz submission.<br>You can save the test ID and regenerate it at any time.<br><span class='red'>If you do not save this value you cannot recover the test.</span></p>";
+      document.getElementById("randomSection").innerHTML=tmp;
+    }
+  </script>
+  </head>
+  <body>
+    <div id="randomSection">
+      <button onclick="newExam()">I don't have a Quiz ID</button><br>
+      <p><b>Exam ID: </b><input type="text" id="examID"></input>
+      <button onClick="loadExam(false)">Load my Quiz ID</button>
+    </div>
+    <p id="output"></p>
+  </body>
+</html>
