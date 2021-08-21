@@ -1,0 +1,157 @@
+<html>
+  <head>
+    <style>
+    </style>
+    <script src="https://bsdillon.github.io/cs200_Spring2020/GoldField/goldfield.js"></script>
+    <script>
+      var goldField;
+
+      function init()
+      {
+        goldField = new GoldField(document.getElementById("field"),30, 20, 15,"ocean.png");
+        goldField.SetClickListener(Click);
+        goldField.SetKeyListener(Key);
+        for(let i=0;i<45;i++)
+        {
+          AddGumdrop();
+        }
+        for(let i=0;i<15;i++)
+        {
+          AddCMonster();
+        }
+        princess = AddPrincess();
+      }
+
+      function AddPrincess()
+      {
+        goldField.AddPrincess();
+      }
+      
+      GoldField.prototype.AddPrincess = function()
+      {
+         var id = this.CreateMoverTag();
+         var udt = new Princess(id);
+         this.AddGenericMover(udt);
+         return udt;
+      }
+
+      var Princess = function(id)
+      {
+         this.Description = "Princess";
+         this.imageURL = "princess.png";
+         this.destroyURL = "";
+         this.destroyAudio = "";
+         this.destroyTime = 1000;
+         this.InitTag(id);
+      }
+
+      Princess.prototype = Object.create(Mover.prototype);
+      Princess.prototype.constructor = Princess;
+
+      function AddGumdrop()
+      {
+        goldField.AddGumdrop();
+      }
+      
+      GoldField.prototype.AddGumdrop = function()
+      {
+         var id = this.CreateMoverTag();
+         var udt = new Gumdrop(id);
+         this.AddGenericMover(udt);
+         return udt;
+      }
+
+      var Gumdrop = function(id)
+      {
+         this.Description = "Gumdrop";
+         this.imageURL = "gumdrop.png";
+         this.destroyURL = "";
+         this.destroyAudio = "";
+         this.destroyTime = 1000;
+         this.InitTag(id);
+      }
+
+      Gumdrop.prototype = Object.create(Mover.prototype);
+      Gumdrop.prototype.constructor = Gumdrop;
+
+      function AddCMonster()
+      {
+        goldField.AddCMonster();
+      }
+      
+      GoldField.prototype.AddCMonster = function()
+      {
+         var id = this.CreateMoverTag();
+         var udt = new CMonster(id);
+         this.AddGenericMover(udt);
+         return udt;
+      }
+
+      var CMonster = function(id)
+      {
+         this.Description = "CMonster";
+         this.imageURL = "cmonster.png";
+         this.destroyURL = "";
+         this.destroyAudio = "";
+         this.destroyTime = 1000;
+         this.InitTag(id);
+      }
+
+      CMonster.prototype = Object.create(Mover.prototype);
+      CMonster.prototype.constructor = CMonster;
+
+      function Key(event)
+      {
+        document.getElementById("output").innerHTML = "Key: "+event;
+        //37 left arrow
+        //38 up arrow
+        //39 right arrow
+        //40 down arrow
+
+        var deltaX = 0;
+        var deltaY = 0;
+        if(event[0]==37)
+        {
+          deltaX = -1;
+        }
+        else if(event[0]==38)
+        {
+          deltaY = -1;
+        }
+        else if(event[0]==39)
+        {
+          deltaX = 1;
+        }
+        else if(event[0]==40)
+        {
+          deltaY = 1;
+        }
+
+        if(princess != null)
+        {
+           var dim = field.GetDimensions();
+           var loc = princess.GetPosition();
+           if(!(loc[0] + deltaX < 0 || loc[0] + deltaX == dim[0]))
+           {
+             loc[0] = loc[0]+deltaX;
+           }
+
+           if(!(loc[1] + deltaY < 0 || loc[1] + deltaY == dim[1]))
+           {
+             loc[1] = loc[1]+deltaY;
+           }
+
+           var nextSpace = field.LookAt(loc[0],loc[1]);
+           if(nextSpace[0]==Empty)
+           {
+             princess.SetPosition(loc[0],loc[1]);
+           }
+        }
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <div id="field"></div>
+    <p id="output"></p>
+  </body>
+</html>
