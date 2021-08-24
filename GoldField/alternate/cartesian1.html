@@ -27,15 +27,6 @@
         document.getElementById("output").innerHTML = "Hero at X=0";
         targetLocation_value = Math.floor(Math.random()*21-10);
         document.getElementById("targetLocation").innerHTML = ""+targetLocation_value;
-        
-        goldField2 = new GoldField(document.getElementById("problem1"),30, 11, 1);
-        xAxis2 = new XAxis()
-        goldField2.AddGenericLayer(xAxis2);
-        xAxis2.SetLayerOn(true);
-        goldField2.Redraw();
-        gold2 = goldField2.AddGold();
-        hero2 = goldField2.AddHero();
-        distance = gold2.GetPosition()[0] - hero2.GetPosition()[0];
       }
 
       function Key(event)
@@ -96,40 +87,6 @@
            }
         }
       }
-      
-      function checkDistance()
-      {
-        var fromUser = parseInt(document.getElementById("distanceValue").value)
-        if(distance==fromUser)
-        {
-          var g = Math.floor(Math.random()*11);
-          var h = Math.floor(Math.random()*11);
-          while(h==g)
-          {
-            h = Math.floor(Math.random()*11);
-          }
-          gold2.SetLocation(g,0);
-          hero2.SetLocation(h,0);
-          distance = g - h;
-          goldField.Win();
-          document.getElementById("message").innerHTML="Great job! Try again";
-          goldField2.Reset();
-
-          xAxis2 = new XAxis()
-          goldField2.AddGenericLayer(xAxis2);
-          xAxis2.SetLayerOn(true);
-          goldField2.Redraw();
-          gold2 = goldField2.AddGold();
-          hero2 = goldField2.AddHero();
-        }
-        else
-        {
-          var m = goldField2.AddMonster();
-          m.setLocation(fromUser,0);
-          document.getElementById("message").innerHTML="Oh no! Try again";
-          goldField.PlaySound("monster");
-        }
-      }
     </script>
   </head>
   <body onload="init()">
@@ -163,15 +120,6 @@
           <h3>
             Move the hero to X=<span id="targetLocation"></span>.
           </h3>
-          <h1>Steps away from a goal</h1>
-          <p>
-            In this image the hero is located on the same line as a gold. How many steps left (negative)
-            or right (positive) does the hero need to take to get the gold?
-            <br><span id="message"></span>
-            <br>
-            <input type="text" id="distanceValue"></input>
-          </p>
-          <canvas id="problem1"></canvas>
         </td>
       </tr>
     </table>
