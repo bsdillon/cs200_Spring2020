@@ -22,7 +22,10 @@
         goldField.Redraw();
 
         hero = goldField.AddHero();
-        hero.SetPosition(10,0);
+        if(hero.GetPosition()[0]!=halfX)
+        {
+          hero.SetPosition(halfX,0);
+        }
         document.getElementById("output").innerHTML = "Hero at X=0";
         targetLocation_value = Math.floor(Math.random()*21-10);
         document.getElementById("targetLocation").innerHTML = ""+targetLocation_value;
