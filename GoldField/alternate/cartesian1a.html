@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <style>
+      #output {text-align:center;}
+      #targetLocation {color:red; font-weight:bold;}
+    </style>
+    <script src="goldfield.js"></script>
+    <script src="cartesian.js"></script>
+    <script>
+      var goldField;
+      var halfX = 10
+      var hero = null;
+      var targetLocation_value;
+      var distance;
+
+      function init()
+      {
+        goldField2 = new GoldField(document.getElementById("field"),50, 2*halfX+1, 1);
+        xAxis2 = new XAxis()
+        goldField2.AddGenericLayer(xAxis2);
+        xAxis2.SetLayerOn(true);
+        goldField2.Redraw();
+        gold2 = goldField2.AddGold();
+        hero2 = goldField2.AddHero();
+        distance = gold2.GetPosition()[0] - hero2.GetPosition()[0];
+      }
+
+      function checkDistance()
+      {
+        var fromUser = parseInt(document.getElementById("distanceValue").value)
+        if(distance==fromUser)
+        {
+          var g = Math.floor(Math.random()*11);
+          var h = Math.floor(Math.random()*11);
+          while(h==g)
+          {
+            h = Math.floor(Math.random()*11);
+          }
+          gold2.SetLocation(g,0);
+          hero2.SetLocation(h,0);
+          distance = g - h;
+          goldField.Win();
+          document.getElementById("message").innerHTML="Great job! Try again";
+          goldField2.Reset();
+
+          xAxis2 = new XAxis()
+          goldField2.AddGenericLayer(xAxis2);
+          xAxis2.SetLayerOn(true);
+          goldField2.Redraw();
+          gold2 = goldField2.AddGold();
+          hero2 = goldField2.AddHero();
+        }
+        else
+        {
+          var m = goldField2.AddMonster();
+          m.setLocation(fromUser,0);
+          document.getElementById("message").innerHTML="Oh no! Try again";
+          goldField.PlaySound("monster");
+        }
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <table>
+      <tr>
+        <td>
+          <canvas id="field"></canvas>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h1>Steps away from a goal</h1>
+          <p>
+            In this image the hero is located on the same line as a gold. How many steps left (negative)
+            or right (positive) does the hero need to take to get the gold?
+            <br><span id="message">&nbsp;</span>
+            <br>
+            <input type="text" id="distanceValue"></input>
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
