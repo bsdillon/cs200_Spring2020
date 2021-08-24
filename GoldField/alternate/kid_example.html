@@ -22,33 +22,6 @@
         princess = AddPrincess();
       }
 
-      function AddTown()
-      {
-        goldField.AddTown();
-      }
-      
-      GoldField.prototype.AddTown = function()
-      {
-         var id = this.CreateMoverTag();
-         var udt = new Town(id);
-         this.AddGenericMover(udt);
-         return udt;
-      }
-
-      var Town = function(id)
-      {
-         this.Description = "Town";
-         var images = ["house1.png","house2.png","house3.png","house4.png","person1.png","person2.png","person3.png","person4.png","shop1.png","shop2.png","shop3.png","shop4.png","shop5.png","shop6.png","shrub1.png","shrub2.png","shrub3.png","shrub1.png","shrub2.png","shrub3.png","shrub1.png","shrub2.png","shrub3.png","shrub1.png","shrub2.png","shrub3.png"]
-         this.imageURL = images[Math.floor(Math.random()*images.length)];
-         this.destroyURL = "";
-         this.destroyAudio = "";
-         this.destroyTime = 1000;
-         this.InitTag(id);
-      }
-
-      Town.prototype = Object.create(Mover.prototype);
-      Town.prototype.constructor = Town;
-
       function AddPrincess()
       {
         return goldField.AddPrincess();
