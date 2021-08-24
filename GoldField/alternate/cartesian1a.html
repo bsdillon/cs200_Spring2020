@@ -28,10 +28,11 @@
       function checkDistance()
       {
         var fromUser = parseInt(document.getElementById("distanceValue").value)
+        var g0 = gold2.GetPosition()[0];
+        var h0 = hero2.GetPosition()[0];
+        var nextLoc = fromUser+h0;
         if(distance==fromUser)
         {
-          var g0 = gold2.GetPosition()[0];
-          var h0 = hero2.GetPosition()[0];
           var g = Math.floor(Math.random()*(2*halfX+1));
           while(g==g0 || g==h0)
           {
@@ -45,7 +46,7 @@
           }
           hero2.SetPosition(h,0);
           distance = g - h;
-          goldField2.Win();
+          goldField2.PlaySound("coin");
           document.getElementById("message").innerHTML="Great job! Try again";
           goldField2.Reset();
 
@@ -56,12 +57,19 @@
           gold2 = goldField2.AddGold();
           hero2 = goldField2.AddHero();
         }
-        else
+        else 
         {
-          var m = goldField2.AddMonster();
-          m.SetPosition(fromUser,0);
           document.getElementById("message").innerHTML="Oh no! Try again";
-          goldField2.PlaySound("monster");
+          if(nextLoc<0 || nextLoc>=2*halfX+1)
+          {
+            var m = goldField2.AddMonster();
+            m.SetPosition(nextLoc,0);
+            goldField2.PlaySound("monster");
+          }
+          else
+          {
+            goldField2.PlaySound("explode");
+          }
         }
       }
     </script>
