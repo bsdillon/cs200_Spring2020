@@ -76,10 +76,11 @@
            {
              document.getElementById("output").innerHTML = "Hero at X="+(loc[0]-halfX);
              hero.SetPosition(loc[0],loc[1]);
-             if(loc[0]==targetLocation_value)
+             if(loc[0]-halfX==targetLocation_value)
              {
                var temp = targetLocation_value;
-               while(temp-10==targetLocation_value)
+               targetLocation_value = Math.floor(Math.random()*21-10);
+               while(temp==targetLocation_value)
                {
                  targetLocation_value = Math.floor(Math.random()*21-10);
                }
