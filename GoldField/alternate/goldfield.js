@@ -343,7 +343,7 @@ GoldField.prototype.DeleteMover = function(id)
   var mover = document.getElementById("mover"+id);
   if(!isHero)
   {
-    this.movertag.removeChild(mover);
+    this.moverTag.removeChild(mover);
     delete this.movers[id];
   }
 }
