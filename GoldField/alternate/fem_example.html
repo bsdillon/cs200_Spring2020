@@ -9,6 +9,7 @@
       function init()
       {
         goldField = new GoldField(document.getElementById("field"),30, 20, 15);
+        goldField.SetKeyListener(Key);
         for(let i=0;i<75;i++)
         {
           AddTown();
