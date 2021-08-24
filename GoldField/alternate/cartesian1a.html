@@ -30,13 +30,19 @@
         var fromUser = parseInt(document.getElementById("distanceValue").value)
         if(distance==fromUser)
         {
-          var g = Math.floor(Math.random()*11);
-          var h = Math.floor(Math.random()*11);
-          while(h==g)
+          var g0 = gold2.GetPosition()[0];
+          var h0 = hero2.GetPosition()[0];
+          var g = Math.floor(Math.random()*(2*halfX+1));
+          while(g==g0 || g==h0)
           {
-            h = Math.floor(Math.random()*11);
+            g = Math.floor(Math.random()*(2*halfX+1));
           }
           gold2.SetPosition(g,0);
+          var h = Math.floor(Math.random()*(2*halfX+1));
+          while(h==g || h==h0)
+          {
+            h = Math.floor(Math.random()*(2*halfX+1));
+          }
           hero2.SetPosition(h,0);
           distance = g - h;
           goldField2.Win();
