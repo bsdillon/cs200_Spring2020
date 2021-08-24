@@ -321,7 +321,7 @@ GoldField.prototype.CreateMoverTag = function()
 
 GoldField.prototype.DeleteLayer = function(id)
 {
-  var layer = document.getElementById("layer"+id);
+  var layer = document.getElementById(id);
   this.movertag.removeChild(layer);
   delete this.layers[id];
 }
