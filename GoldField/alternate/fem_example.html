@@ -101,7 +101,7 @@
         if(biker != null)
         {
            var dim = field.GetDimensions();
-           var loc = princess.GetPosition();
+           var loc = biker.GetPosition();
            if(!(loc[0] + deltaX < 0 || loc[0] + deltaX == dim[0]))
            {
              loc[0] = loc[0]+deltaX;
