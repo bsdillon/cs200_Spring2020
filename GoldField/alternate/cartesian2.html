@@ -6,11 +6,11 @@
     <script src="cartesian.js"></script>
     <script>
       var goldField;
-      var halfY = 10
+      var halfY = 5
 
       function init()
       {
-        goldField = new GoldField(document.getElementById("field"),30, 1, 2*halfY+1);
+        goldField = new GoldField(document.getElementById("field"),50, 1, 2*halfY+1);
         goldField.SetKeyListener(Key);
 
         yAxis = new YAxis()
