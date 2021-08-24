@@ -1,6 +1,8 @@
 <html>
   <head>
     <style>
+      #output {text-align:center;}
+      #targetLocation {color:red; font-weight:bold;}
     </style>
     <script src="goldfield.js"></script>
     <script src="cartesian.js"></script>
@@ -8,6 +10,7 @@
       var goldField;
       var halfX = 10
       var hero = null;
+      var targetLocation_value;
 
       function init()
       {
@@ -20,7 +23,9 @@
 
         hero = goldField.AddHero();
         hero.SetPosition(10,0);
-        document.getElementById("output").innerHTML = "Hero at : 0";
+        document.getElementById("output").innerHTML = "Hero at X=0";
+        targetLocation_value = Math.floor(Math.random()*21);
+        document.getElementById("targetLocation").innerHTML = ""+targetLocation_value;
       }
 
       function Key(event)
@@ -66,15 +71,57 @@
            var nextSpace = field.LookAt(loc[0],loc[1]);
            if(nextSpace[0]==Empty)
            {
-             document.getElementById("output").innerHTML = "Hero at : "+(loc[0]-halfX);
+             document.getElementById("output").innerHTML = "Hero at X="+(loc[0]-halfX);
              hero.SetPosition(loc[0],loc[1]);
+             if(loc[0]==targetLocation_value)
+             {
+               var temp = targetLocation_value;
+               while(temp==targetLocation_value)
+               {
+                 targetLocation_value = Math.floor(Math.random()*21);
+               }
+               document.getElementById("targetLocation").innerHTML = ""+targetLocation_value;
+               goldField.Win();
+             }
            }
         }
       }
     </script>
   </head>
   <body onload="init()">
-    <canvas id="field"></canvas>
-    <p id="output"></p>
+    <table>
+      <tr>
+        <td>
+          <canvas id="field"></canvas>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p id="output"></p>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <p>
+            In GoldField, moving Characters are located at a fixed point on the field. By tradition, 
+            the distance across the screen is measured as the "X" value. Note that the black line 
+            across the screen is labeled "X" on the right. Each fixed point is marked by a small black
+            line and each has a numerical value. This strategy ensures that when two characters are
+            located on the screen their locations can be described using simple numbers.
+          </p>
+          <h1>Move to Location</h1>
+          <p>
+            The X value in the middle of the screen is marked as a zero. This means that as the hero 
+            moves around the field his location is updated in terms of X. You can use the left and 
+            right arrow keys to move the hero and see the location updated. Try it to see how the X
+            value works across the computer screen.<br>
+            Move the hero to X=<span id="targetLocation"></span>.
+          </p>
+          <p>
+          </p>
+          <canvas id="problem1"></canvas>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
