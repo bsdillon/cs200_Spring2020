@@ -19,12 +19,24 @@ function GoldField(tag, block_size, block_width, block_height, background)
    MaxH = block_height;
    field = this;
    this.tag = tag;
+   this.moverTag = this.tag.parentElement;
    this.tag.id="OnlyGoldField";
    this.ctx = this.tag.getContext("2d");
    this.tag.width = this.tag.style.width=MaxW*characterSize;
    this.tag.height = this.tag.style.height=MaxH*characterSize;
    
    var rect = this.tag.getBoundingClientRect();
+   if(arguments.length==4)
+   {
+     this.tag.style.backgroundImage="url('https://bsdillon.github.io/cs200_Spring2020/GoldField/grass.jfif')";
+   }
+   else
+   {
+     this.tag.style.backgroundImage="url('"+background+"')";
+   }
+   this.tag.style.backgroundSize="250px 150px";
+   this.tag.style.backgroundRepeat="repeat";
+
    offsetX = rect.left;
    offsetY = rect.top;
 
@@ -44,17 +56,6 @@ function GoldField(tag, block_size, block_width, block_height, background)
    this.Hero = null;
    this.Tower = null;
 
-   if(arguments.length==4)
-   {
-     this.tag.style.backgroundImage="url('https://bsdillon.github.io/cs200_Spring2020/GoldField/grass.jfif')";
-   }
-   else
-   {
-     this.tag.style.backgroundImage="url('"+background+"')";
-   }
-   this.tag.style.backgroundSize="250px 150px";
-   this.tag.style.backgroundRepeat="repeat";
-
    var audioNames = ["coin", "monster", "hero", "win", "lose"];
    var audioURL = ["https://bsdillon.github.io/cs200_Spring2020/GoldField/coinSound.wav","https://bsdillon.github.io/cs200_Spring2020/GoldField/monsterSound.wav","https://bsdillon.github.io/cs200_Spring2020/GoldField/heroSound.wav","https://bsdillon.github.io/cs200_Spring2020/GoldField/winSound.wav","https://bsdillon.github.io/cs200_Spring2020/GoldField/loseSound.mp3"];
 
@@ -64,7 +65,7 @@ function GoldField(tag, block_size, block_width, block_height, background)
       audio.setAttribute('id', audioNames[i]+"Audio");
       var source = document.createElement("source");
       source.setAttribute("src",audioURL[i]);
-      this.tag.appendChild(audio);
+      this.moverTag.appendChild(audio);
       audio.appendChild(source);
       this[audioNames[i]+"Audio"] = audio;
       sounds[audioNames[i]]=audio;
@@ -72,7 +73,7 @@ function GoldField(tag, block_size, block_width, block_height, background)
 
    var audio = document.createElement("img");
    audio.setAttribute('id', name+"Audio");
-   this.tag.appendChild(audio);
+   this.moverTag.appendChild(audio);
    this.noneAudio = audio;
    sounds["none"]=audio;
 
@@ -216,7 +217,7 @@ GoldField.prototype.AddHero = function()
 
    var img = document.createElement("img");
    img.setAttribute('id', 'mover' + this.moverCount);
-   this.tag.appendChild(img);
+   this.moverTag.appendChild(img);
    this.Hero = new Hero(this.moverCount);
    this.movers[this.moverCount++]=this.Hero;
    return this.Hero;
@@ -232,7 +233,7 @@ GoldField.prototype.AddMonster = function()
 
    var img = document.createElement("img");
    img.setAttribute('id', 'mover' + this.moverCount);
-   this.tag.appendChild(img);
+   this.moverTag.appendChild(img);
    var monster = new Monster(this.moverCount);
    this.movers[this.moverCount++]= monster;
    return monster;
@@ -248,7 +249,7 @@ GoldField.prototype.AddGold = function()
 
    var img = document.createElement("img");
    img.setAttribute('id', 'mover' + this.moverCount);
-   this.tag.appendChild(img);
+   this.moverTag.appendChild(img);
    var gold = new Gold(this.moverCount);
    this.movers[this.moverCount++]= gold;
    return gold;
@@ -270,7 +271,7 @@ GoldField.prototype.AddTower = function()
 
    var img = document.createElement("img");
    img.setAttribute('id', 'mover' + this.moverCount);
-   this.tag.appendChild(img);
+   this.moverTag.appendChild(img);
    var tower = new Tower(this.moverCount);
    this.movers[this.moverCount++]= tower;
    return tower;
@@ -286,7 +287,7 @@ GoldField.prototype.AddObstacle = function()
 
    var img = document.createElement("img");
    img.setAttribute('id', 'mover' + this.moverCount);
-   this.tag.appendChild(img);
+   this.moverTag.appendChild(img);
    var obstacle = new Obstacle(this.moverCount);
    this.movers[this.moverCount++]= obstacle;
    return obstacle;
@@ -314,14 +315,14 @@ GoldField.prototype.CreateMoverTag = function()
 
    var img = document.createElement("img");
    img.setAttribute('id', 'mover' + this.moverCount);
-   this.tag.appendChild(img);
+   this.moverTag.appendChild(img);
    return this.moverCount++;
 }
 
 GoldField.prototype.DeleteLayer = function(id)
 {
   var layer = document.getElementById("layer"+id);
-  this.tag.removeChild(layer);
+  this.movertag.removeChild(layer);
   delete this.layers[id];
 }
 
@@ -342,7 +343,7 @@ GoldField.prototype.DeleteMover = function(id)
   var mover = document.getElementById("mover"+id);
   if(!isHero)
   {
-    this.tag.removeChild(mover);
+    this.movertag.removeChild(mover);
     delete this.movers[id];
   }
 }
@@ -406,7 +407,7 @@ GoldField.prototype.AddSound = function(soundURL, name)
    audio.setAttribute('id', name+"Audio");
    var source = document.createElement("source");
    source.setAttribute("src",soundURL);
-   this.tag.appendChild(audio);
+   this.moverTag.appendChild(audio);
    audio.appendChild(source);
    this[name] = audio;
    sounds[name]=this[name];
@@ -427,7 +428,7 @@ GoldField.prototype.ChangeSound = function(soundURL, name)
    audio.setAttribute('id', name+"Audio");
    var source = document.createElement("source");
    source.setAttribute("src",soundURL);
-   this.tag.appendChild(audio);
+   this.moverTag.appendChild(audio);
    audio.appendChild(source);
    this[name] = audio;
    sounds[name]=this[name];
