@@ -39,6 +39,8 @@
           }
           count++;
         }
+        this.ctx.font = "20px Georgia";
+        this.ctx.fillText("X", w-20, h/2)
         this.ctx.stroke();
       }
 
@@ -85,6 +87,8 @@
           }
           count--;
         }
+        this.ctx.font = "20px Georgia";
+        this.ctx.fillText("Y", w/2, 0)
         this.ctx.stroke();
       }
 
