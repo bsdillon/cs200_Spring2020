@@ -88,7 +88,7 @@
           count--;
         }
         this.ctx.font = "20px Georgia";
-        this.ctx.fillText("Y", w/2, 0)
+        this.ctx.fillText("Y", w/2, 10)
         this.ctx.stroke();
       }
 
