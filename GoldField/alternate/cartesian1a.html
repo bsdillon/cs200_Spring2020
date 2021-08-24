@@ -39,7 +39,7 @@
           gold2.SetPosition(g,0);
           hero2.SetPosition(h,0);
           distance = g - h;
-          goldField.Win();
+          goldField2.Win();
           document.getElementById("message").innerHTML="Great job! Try again";
           goldField2.Reset();
 
@@ -55,7 +55,7 @@
           var m = goldField2.AddMonster();
           m.setLocation(fromUser,0);
           document.getElementById("message").innerHTML="Oh no! Try again";
-          goldField.PlaySound("monster");
+          goldField2.PlaySound("monster");
         }
       }
     </script>
