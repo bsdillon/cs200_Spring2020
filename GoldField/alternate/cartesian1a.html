@@ -63,13 +63,13 @@
           document.getElementById("message").innerHTML="Oh no! Try again";
           if(nextLoc<0 || nextLoc>=2*halfX+1)
           {
-            var m = goldField2.AddMonster();
-            m.SetPosition(nextLoc,0);
-            goldField2.PlaySound("monster");
+            goldField2.PlaySound("explode");
           }
           else
           {
-            goldField2.PlaySound("explode");
+            var m = goldField2.AddMonster();
+            m.SetPosition(nextLoc,0);
+            goldField2.PlaySound("monster");
           }
         }
       }
