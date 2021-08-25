@@ -150,12 +150,10 @@ GoldField.prototype.Reset = function()
    this.moverCount = 0
    this.movers = new Array();
 
-   var deleteAll2 = function(item, id)
+   while(this.layers.length>0)
    {
-     myField.DeleteLayer(id);
+      this.layers.pop(0);
    }
-
-   this.layers.forEach(deleteAll2);
 
    this.layerCount = 0
    this.layers = new Array();
