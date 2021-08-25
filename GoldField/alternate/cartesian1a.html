@@ -16,6 +16,7 @@
       function init()
       {
         goldField2 = new GoldField(document.getElementById("field"),50, 2*halfX+1, 1);
+        goldField2.AddSound("explode.wav","explode");
         xAxis2 = new XAxis()
         goldField2.AddGenericLayer(xAxis2);
         xAxis2.SetLayerOn(true);
@@ -54,9 +55,18 @@
           xAxis2.SetLayerOn(true);
           goldField2.Redraw();
           gold2 = goldField2.AddGold();
+          g0 = gold2.GetPosition()[0];
+          if(g0!=g)
+          {
+            gold2.SetPosition(g,0);
+          }
           hero2 = goldField2.AddHero();
-          gold2.SetPosition(g,0);
-          hero2.SetPosition(h,0);
+          h0 = hero2.GetPosition()[0];
+          if(h0!=h)
+          {
+            hero2.SetPosition(h,0);
+          }
+          document.getElementById("nextLink").innerHTML = "Next Challenge >>>"
         }
         else 
         {
@@ -101,5 +111,6 @@
         </td>
       </tr>
     </table>
+    <a href="cartesian2.html" id="nextLink"></a>
   </body>
 </html>
