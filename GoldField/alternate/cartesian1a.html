@@ -77,9 +77,21 @@
           }
           else
           {
-            var m = goldField2.AddMonster();
-            m.SetPosition(nextLoc,0);
-            goldField2.PlaySound("monster");
+            goldField2.LookAt(nextLoc,0)
+            var nextSpace = goldField.LookAt(loc[0],loc[1]);
+            if(nextSpace[0]==Empty)
+            {
+              var m = goldField2.AddMonster();
+              if(m.GetPosition()[0]!=nexLoc)
+              {
+                m.SetPosition(nextLoc,0);
+              }
+              goldField2.PlaySound("monster");
+            }
+            else
+            {
+              goldField2.PlaySound("explode");
+            }
           }
         }
       }
