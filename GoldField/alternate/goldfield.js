@@ -317,13 +317,6 @@ GoldField.prototype.CreateMoverTag = function()
    return this.moverCount++;
 }
 
-GoldField.prototype.DeleteLayer = function(id)
-{
-  var layer = document.getElementById(id);
-  this.movertag.removeChild(layer);
-  delete this.layers[id];
-}
-
 GoldField.prototype.DeleteMover = function(id)
 {
   var isHero = false;
