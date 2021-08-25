@@ -25,7 +25,10 @@
       function startGame()
       {
         var h0 = Math.floor(Math.random()*(2*halfY+1))
-        hero.SetPosition(0,h0);
+        if(hero.GetPosition()[1]!=h0)
+        {
+          hero.SetPosition(0,h0);
+        }
         
         goldlocation = Math.floor(Math.random()*(2*halfY+1));
         while(goldlocation==h0)
