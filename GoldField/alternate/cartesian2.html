@@ -12,7 +12,12 @@
       {
         goldField = new GoldField(document.getElementById("field"),50, 1, 2*halfY+1);
         goldField.SetClickListener(Click);
-        
+        ResetBoard();
+      }
+      
+      function ResetBoard()
+      {
+        goldField.Reset();
         yAxis = new YAxis()
         goldField.AddGenericLayer(yAxis);
         yAxis.SetLayerOn(true);
@@ -50,7 +55,7 @@
             gold.SetPosition(0,goldlocation);
           }
           gold.Destroy();
-          setTimeout(startGame,1000);
+          setTimeout(ResetBoard,1000);
         }
         else
         {
