@@ -19,19 +19,44 @@
         goldField.Redraw();
 
         hero = goldField.AddHero();
-        hero.SetPosition(0,halfY);
+        startGame();
+      }
+      
+      function startGame()
+      {
+        var h0 = Math.floor(Math.random()*(2*halfY+1))
+        hero.SetPosition(0,h0);
+        
+        goldlocation = Math.floor(Math.random()*(2*halfY+1));
+        while(goldlocation==h0)
+        {
+          goldlocation = Math.floor(Math.random()*(2*halfY+1));
+        }
+        distance = goldlocation - h0;
+        document.getElementById("distancevalue").innerHTML=""+distance;
+        document.getElementById("heroval").innerHTML=""+(h0-halfY);
       }
 
       function Click(event)
       {
-        var contents = goldField.LookAt(event[0],event[1]);
-        var mover = goldField.GetMover(contents[0]);
-
-        document.getElementById("output").innerHTML = "Mouse: "+event+" - "+ contents[1];
-
-        if(mover != null)
+        if(event[1]==goldlocation)
         {
-          mover.Destroy();
+          var gold = goldField.AddGold();
+          if(gold.GetPosition()[1]!=goldlocation)
+          {
+            gold.SetPosition(0,goldlocation);
+          }
+          gold.Destroy();
+          setTimeout(startGame,1000);
+        }
+        else
+        {
+          var monster = goldField.AddMonster();
+          if(monster.GetPosition()[1]!=event[1])
+          {
+            monster.SetPosition(0,event[1]);
+          }
+          goldField.PlaySound("monster");
         }
       }
     </script>
@@ -50,7 +75,6 @@
             numbers are. The black line shown here is just like the X dimension with postive numbers
             above a zero and negative numbers below zero.
           </p>
-          <h1>Where is the Gold?</h1>
           <p>
             In a computer program, we often have a number, but we can't see anything.
             We have to use those numbers to decide what to do. It's like you are in the dark and 
@@ -61,7 +85,13 @@
             Do you remember the formula to find the distance to the goal? This time we are going to
             change things. We can use the distance you have and the position of the hero to fill in 
             some of the missing information. Now that we have filled in the missing information, can
-            you figure out the missing location of the 
+            you figure out the missing location of the gold?
+          </p>
+          <h3> Distance = Goal &minus; Hero;</h3>
+          <h3> <span id="distancevalue"></span> = Goal &minus; <span id="heroval"></span></h3>
+          <h1>Where is the Gold?</h1>
+          <p>
+            Click where the gold belongs.
           </p>
         </td>
       </tr>
