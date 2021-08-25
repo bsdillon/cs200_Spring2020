@@ -38,13 +38,12 @@
           {
             g = Math.floor(Math.random()*(2*halfX+1));
           }
-          gold2.SetPosition(g,0);
           var h = Math.floor(Math.random()*(2*halfX+1));
           while(h==g || h==h0)
           {
             h = Math.floor(Math.random()*(2*halfX+1));
           }
-          hero2.SetPosition(h,0);
+          distance = gold2.GetPosition()[0] - hero2.GetPosition()[0];
           distance = g - h;
           goldField2.PlaySound("coin");
           document.getElementById("message").innerHTML="Great job! Try again";
@@ -56,6 +55,8 @@
           goldField2.Redraw();
           gold2 = goldField2.AddGold();
           hero2 = goldField2.AddHero();
+          gold2.SetPosition(g,0);
+          hero2.SetPosition(h,0);
         }
         else 
         {
