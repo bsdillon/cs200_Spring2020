@@ -35,7 +35,7 @@
         {
           goldlocation = Math.floor(Math.random()*(2*halfY+1));
         }
-        distance = goldlocation - h0;
+        distance = -(goldlocation - h0);
         document.getElementById("distancevalue").innerHTML=""+distance;
         document.getElementById("heroval").innerHTML=""+(halfY-h0);
       }
