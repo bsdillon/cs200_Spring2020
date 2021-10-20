@@ -2,6 +2,8 @@
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
+      .red {color:red; font-weight:bold;}
+      .green {color:red; font-weight:bold;}
       .transparent {pointer-events:none;}
       .flipped {-webkit-transform: scaleX(-1); transform: scaleX(-1);}
       .scared {
@@ -81,7 +83,6 @@
         }
         hero.SetPosition(h1,0);
 
-        var s ="Hero at ";
         var count = Math.floor(Math.random()*2+2);
         var mMin = 2*half+1;
         var mMax = -1;
@@ -90,46 +91,37 @@
           var m = goldField.AddMonster();
           monsters.push(m);
           var m0 = m.GetPosition()[0];
-          s+="Monster at "+m0;
+
           if(m0<mMin)
           {
             mMin=m0;
-            s+= "Min: "+mMin+"<br>";
           }
 
           if(m0>mMax)
           {
             mMax=m0;
-            s+= "Max: "+mMax+"<br>";
           }
         }
 
-        s+= "Final Min: "+mMin+"<br>Max: "+mMax;
-        
         if(h1>mMin)//there is at least one monster LEFT the hero
         {
-          s+="<br>Human to the right";
           // ---M----H---
           if(isFlipped)//the hero is facing toward it
           {
-            s+="<br>Flipping";
             flip();//flip the hero to ensure he is scared of that one.
           }
         }
         else if(h1<mMax)//there is at least one monster RIGHT the hero
         {
-          s+="<br>Human to the left";
           // ---H----M---
           if(!isFlipped)//the hero is facing toward it
           {
-            s+="<br>Flipping";
             flip();//flip the hero to ensure he is scared of that one.
           }
         }
         //logically the here either is to the left or right of a monster.
         //there are no other options. He MUST be scared now.
 
-        document.getElementById("message").innerHTML=s;
         CheckHero();
       }
 
@@ -219,22 +211,31 @@
 
       function CheckHero()
       {
+        var s = "<ul>"
         var scared = false;
         h0 = hero.GetPosition()[0];
+        var f = isFlipped?">":"<";
         for(let i=0;i<monsters.length;i++)
         {
           m = monsters[i].GetPosition()[0];
+          s+="<li>"+(m>h0)? ("Hero@"+h0+" "+f+" M@"+m) : ("M@"+m+" "+f+" Hero@"+h0)
+          s+=(m>h0==isFlipped)?"&nbsp;&nbsp;&nbsp;<span class='scared red'>Scary</span></li>":"&nbsp;&nbsp;&nbsp;<span class='green'>Safe</span></li>";
+
           if(m>h0==isFlipped)//either condition has to match the other to be scared
           {
             scared = scared || true;
           }
         }
-        
+               
         if(scared!=isScared)
         {
           hero.HTMLtag.classList.toggle("scared");
           isScared = !isScared;
         }
+        s+="</ul>";
+
+        document.getElementById("boundaries").innerHTML=s;
+
         return isScared;
       }
       
@@ -252,11 +253,26 @@
         <td>
           <p class="content">
              Often the computer program needs to check a boundary condition. Boundaries are described as 
-             being "less than" &lt; or "greater than" &gt; some critical value.
+             being "less than" &lt; or "greater than" &gt; some critical value. In this case we want the
+             hero to create a boundary where the monsters are contained. As long as he can see all the 
+             monsters he is <b>SAFE</b>. If one is behind him, he will be <b>SCARED</b>.
           </p>
-          <h3> Distance = Goal &minus; Hero;</h3>
-          <h3> <span id="distancevalue"></span> = Goal &minus; <span id="heroval"></span></h3>
-          <h1>Where is the Gold?</h1>
+          <p class="content">
+             We can use the X position of the hero and monsters to compare our boundary. See which ones 
+             show as safe or scary conditions.
+          </p>
+          <p id="boundaries">
+          </p>
+          <h1>Are you safe?</h1>
+          <p class="content">
+             Right now the hero is scared because some monsters are out of sight. Move him left or right 
+             with the arrow keys. Use the space key to turn the hero around. Put him in a position where he is
+             safe.            
+          </p>
+          <p class="content">
+          </p>
+          <p class="content">
+          </p>
           <p>
             Click where the gold belongs.
           </p>
