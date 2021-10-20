@@ -81,6 +81,7 @@
         }
         hero.SetPosition(h1,0);
 
+        var s ="";
         var count = Math.floor(Math.random()*2+2);
         var mMin = 2*half+1;
         var mMax = -1;
@@ -89,6 +90,7 @@
           var m = goldField.AddMonster();
           monsters.push(m);
           var m0 = m.GetPosition()[1];
+          s+"Monster at "+m0;
           if(m0<mMin)
           {
             mMin=m0;
@@ -98,9 +100,10 @@
           {
             mMax=m0;
           }
+          s+= "Min: "+mMin+"<br>Max: "+mMax;
         }
 
-        var s = "Min: "+mMin+"<br>Max: "+mMax;
+        s+= "Final Min: "+mMin+"<br>Max: "+mMax;
         
         if(h1>mMin)//there is at least one monster LEFT the hero
         {
@@ -126,6 +129,7 @@
         //there are no other options. He MUST be scared now.
 
         document.getElementById("message").innerHTML=s;
+        CheckHero();
       }
 
       function Click(event)
