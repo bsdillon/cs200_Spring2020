@@ -211,15 +211,15 @@
 
       function CheckHero()
       {
-        var s = "<ul>"
+        var s = ""
         var scared = false;
         h0 = hero.GetPosition()[0];
         var f = isFlipped?">":"<";
         for(let i=0;i<monsters.length;i++)
         {
           m = monsters[i].GetPosition()[0];
-          s+="<li>"+(m>h0)? ("Hero@"+h0+" "+f+" M@"+m) : ("M@"+m+" "+f+" Hero@"+h0)
-          s+=(m>h0==isFlipped)?"&nbsp;&nbsp;&nbsp;<span class='scared red'>Scary</span></li>":"&nbsp;&nbsp;&nbsp;<span class='green'>Safe</span></li>";
+          s+=(m>h0)? ("Hero@"+h0+" "+f+" M@"+m) : ("M@"+m+" "+f+" Hero@"+h0)
+          s+=(m>h0==isFlipped)?"&nbsp;&nbsp;&nbsp;<span class='scared red'>Scary</span><br>":"&nbsp;&nbsp;&nbsp;<span class='green'>Safe</span><br>";
 
           if(m>h0==isFlipped)//either condition has to match the other to be scared
           {
@@ -232,7 +232,6 @@
           hero.HTMLtag.classList.toggle("scared");
           isScared = !isScared;
         }
-        s+="</ul>";
 
         document.getElementById("boundaries").innerHTML=s;
 
@@ -268,13 +267,6 @@
              Right now the hero is scared because some monsters are out of sight. Move him left or right 
              with the arrow keys. Use the space key to turn the hero around. Put him in a position where he is
              safe.            
-          </p>
-          <p class="content">
-          </p>
-          <p class="content">
-          </p>
-          <p>
-            Click where the gold belongs.
           </p>
         </td>
       </tr>
