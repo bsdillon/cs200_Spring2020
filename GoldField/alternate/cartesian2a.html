@@ -215,9 +215,13 @@
       {
         if(!isScared)
         {
+          while(monsters.length>0)
+          {
+            var m = monsters.pop();
+            m.Destroy();
+          }
           goldField.Win();
-          document.getElementById("nextLink").innerHTML = "Next Challenge >>>"
-          startGame();
+          document.getElementById("nextLink").innerHTML = "<button onclick='ResetBoard()'>Try again</button>Next Challenge >>>"
         }
       }
 
