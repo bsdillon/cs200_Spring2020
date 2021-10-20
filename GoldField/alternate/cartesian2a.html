@@ -232,13 +232,17 @@
           hero.HTMLtag.classList.toggle("scared");
           isScared = !isScared;
         }
+        else
+        {
+          goldField.Win();
+          document.getElementById("nextLink").innerHTML = "Next Challenge >>>"
+          startGame();
+        }
 
         document.getElementById("boundaries").innerHTML=s;
 
         return isScared;
       }
-      
-      // document.getElementById("nextLink").innerHTML = "Next Challenge >>>"
     </script>
   </head>
   <body onload="init()">
