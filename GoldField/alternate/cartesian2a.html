@@ -100,19 +100,25 @@
           }
         }
 
+        var s = "Min: "+mMin+"<br>Max: "+mMax;
+        
         if(h1>mMin)//there is at least one monster LEFT the hero
         {
+          s+="<br>Human to the right";
           // ---M----H---
           if(isFlipped)//the hero is facing toward it
           {
+            s+="<br>Flipping";
             flip();//flip the hero to ensure he is scared of that one.
           }
         }
         else if(h1<mMax)//there is at least one monster RIGHT the hero
         {
+          s+="<br>Human to the left";
           // ---H----M---
           if(!isFlipped)//the hero is facing toward it
           {
+            s+="<br>Flipping";
             flip();//flip the hero to ensure he is scared of that one.
           }
         }
