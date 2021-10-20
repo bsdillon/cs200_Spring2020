@@ -73,29 +73,66 @@
         }
         goldField.SetMute(false);
 
-        var h0 = Math.floor(Math.random()*(2*half+1))
-        while(hero.GetPosition()[1]==h0)
+        var h0 = hero.GetPosition()[1];
+        var h1 = Math.floor(Math.random()*(2*half+1))
+        while(h0==h1)
         {
-          h0 = Math.floor(Math.random()*(2*half+1))
+          h1 = Math.floor(Math.random()*(2*half+1))
         }
-        hero.SetPosition(h0,0);
+        hero.SetPosition(h1,0);
 
         var count = Math.floor(Math.random()*2+2);
+        var mMin = 2*half+1;
+        var mMax = -1;
         for(let i=0;i<count;i++)
         {
-          monsters.push(goldField.AddMonster());
+          var m = goldField.AddMonster();
+          monsters.push(m);
+          var m0 = m.GetPosition()[1];
+          if(m0<mMin)
+          {
+            mMin=m0;
+          }
+
+          if(m0>mMax)
+          {
+            mMax=m0;
+          }
         }
-        CheckHero();
+
+        if(h1>mMin)//there is at least one monster LEFT the hero
+        {
+          // ---M----H---
+          if(isFlipped)//the hero is facing toward it
+          {
+            flip();//flip the hero to ensure he is scared of that one.
+          }
+        }
+        else if(h1<mMax)//there is at least one monster RIGHT the hero
+        {
+          // ---H----M---
+          if(!isFlipped)//the hero is facing toward it
+          {
+            flip();//flip the hero to ensure he is scared of that one.
+          }
+        }
+        //logically the here either is to the left or right of a monster.
+        //there are no other options. He MUST be scared now.
       }
 
       function Click(event)
       {
         if(event[1]==hero.GetPosition()[1])
         {
+          flip();
+        }
+      }
+
+      function flip()
+      {
           hero.HTMLtag.classList.toggle("flipped");
           isFlipped = !isFlipped;
-        }
-        CheckHero();
+          CheckHero();
       }
 
       function Key(event)
@@ -122,6 +159,10 @@
         else if(event[0]==40)
         {
           deltaY = 1;
+        }
+        else
+        {
+          document.getElementById("message").innerHTML=event[0]+" button "+event[1];
         }
 
         if(hero != null)
@@ -174,12 +215,16 @@
             scared = scared || true;
           }
         }
+        
         if(scared!=isScared)
         {
           hero.HTMLtag.classList.toggle("scared");
           isScared = !isScared;
         }
+        return isScared;
       }
+      
+      // document.getElementById("nextLink").innerHTML = "Next Challenge >>>"
     </script>
   </head>
   <body onload="init()">
@@ -204,5 +249,7 @@
         </td>
       </tr>
     </table>
+    <p id="message"></p>
+    <a href="cartesian3.html" id="nextLink"></a>
   </body>
 </html>
