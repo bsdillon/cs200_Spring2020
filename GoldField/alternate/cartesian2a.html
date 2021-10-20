@@ -131,6 +131,7 @@
         {
           flip();
         }
+        CheckWin();
       }
 
       function flip()
@@ -168,6 +169,7 @@
         else if(event[0]==32)
         {
           flip();
+          CheckWin();
           return;
         }
 
@@ -206,6 +208,17 @@
             hero.SetPosition(loc[0],loc[1]);
           }
           CheckHero();
+          CheckWin();
+        }
+      }
+
+      function CheckWin()
+      {
+        if(!isScared)
+        {
+          goldField.Win();
+          document.getElementById("nextLink").innerHTML = "Next Challenge >>>"
+          startGame();
         }
       }
 
@@ -231,12 +244,6 @@
         {
           hero.HTMLtag.classList.toggle("scared");
           isScared = !isScared;
-        }
-        else
-        {
-          goldField.Win();
-          document.getElementById("nextLink").innerHTML = "Next Challenge >>>"
-          startGame();
         }
 
         document.getElementById("boundaries").innerHTML=s;
@@ -269,8 +276,8 @@
           <h1>Are you safe?</h1>
           <p class="content">
              Right now the hero is scared because some monsters are out of sight. Move him left or right 
-             with the arrow keys. Use the space key to turn the hero around. Put him in a position where he is
-             safe.            
+             with the arrow keys. Use the space key or click on the hero to turn him around. Put him in 
+             a position where he is safe.
           </p>
         </td>
       </tr>
