@@ -73,7 +73,7 @@
         }
         goldField.SetMute(false);
 
-        var h0 = hero.GetPosition()[1];
+        var h0 = hero.GetPosition()[0];
         var h1 = Math.floor(Math.random()*(2*half+1))
         while(h0==h1)
         {
@@ -81,7 +81,7 @@
         }
         hero.SetPosition(h1,0);
 
-        var s ="";
+        var s ="Hero at ";
         var count = Math.floor(Math.random()*2+2);
         var mMin = 2*half+1;
         var mMax = -1;
@@ -89,18 +89,19 @@
         {
           var m = goldField.AddMonster();
           monsters.push(m);
-          var m0 = m.GetPosition()[1];
-          s+"Monster at "+m0;
+          var m0 = m.GetPosition()[0];
+          s+="Monster at "+m0;
           if(m0<mMin)
           {
             mMin=m0;
+            s+= "Min: "+mMin+"<br>";
           }
 
           if(m0>mMax)
           {
             mMax=m0;
+            s+= "Max: "+mMax+"<br>";
           }
-          s+= "Min: "+mMin+"<br>Max: "+mMax;
         }
 
         s+= "Final Min: "+mMin+"<br>Max: "+mMax;
