@@ -124,6 +124,8 @@
         }
         //logically the here either is to the left or right of a monster.
         //there are no other options. He MUST be scared now.
+
+        document.getElementById("message").innerHTML=s;
       }
 
       function Click(event)
@@ -166,9 +168,10 @@
         {
           deltaY = 1;
         }
-        else
+        else if(event[0]==32)
         {
-          document.getElementById("message").innerHTML=event[0]+" button "+event[1];
+          flip();
+          return;
         }
 
         if(hero != null)
