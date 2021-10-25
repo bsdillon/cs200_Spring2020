@@ -58,6 +58,7 @@
         xAxis.SetLayerOn(true);
         goldField.Redraw();
 
+        document.getElementById("reset").style.visibility="hidden";
         hero = goldField.AddHero();
         hero.HTMLtag.classList.toggle("transparent");
 
@@ -222,7 +223,8 @@
             m.Destroy();
           }
           goldField.Win();
-          document.getElementById("nextLink").innerHTML = "<button onclick='ResetBoard()'>Try again</button>Next Challenge >>>"
+          document.getElementById("reset").style.visibility="visible";
+          document.getElementById("nextLink").innerHTML = "Next Challenge >>>"
         }
       }
 
@@ -235,7 +237,7 @@
         for(let i=0;i<monsters.length;i++)
         {
           m = monsters[i].GetPosition()[0];
-          s+=(m>h0)? ("Hero@"+h0+" "+f+" M@"+m) : ("M@"+m+" "+f+" Hero@"+h0)
+          s+=(m>h0)? ("Hero@"+h0+" "+f+" Monster@"+m) : ("Monster@"+m+" "+f+" Hero@"+h0)
           s+=(m>h0==isFlipped)?"&nbsp;&nbsp;&nbsp;<span class='scared red'>Scary</span><br>":"&nbsp;&nbsp;&nbsp;<span class='green'>Safe</span><br>";
 
           if(m>h0==isFlipped)//either condition has to match the other to be scared
@@ -287,6 +289,7 @@
       </tr>
     </table>
     <p id="message"></p>
+    <button id="reset" onclick='ResetBoard()'>Try again</button>
     <a href="cartesian3.html" id="nextLink"></a>
   </body>
 </html>
