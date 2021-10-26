@@ -237,11 +237,11 @@
         var s = ""
         var scared = false;
         h0 = hero.GetPosition()[0];
-        var f = isFlipped?">":"<";
+        var f = isFlipped?">Hero@"+h0:"Hero@"+h0+"<";
         for(let i=0;i<monsters.length;i++)
         {
           m = monsters[i].GetPosition()[0];
-          s+=(m>h0)? ("Hero@"+h0+" "+f+" Monster@"+m) : ("Monster@"+m+" "+f+" Hero@"+h0)
+          s+=(m>h0)? (f+" Monster@"+m) : ("Monster@"+m+" "+f)
           s+=(m>h0==isFlipped)?"&nbsp;&nbsp;&nbsp;<span class='scared red'>Scary</span><br>":"&nbsp;&nbsp;&nbsp;<span class='green'>Safe</span><br>";
 
           if(m>h0==isFlipped)//either condition has to match the other to be scared
