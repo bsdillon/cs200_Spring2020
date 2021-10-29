@@ -44,6 +44,7 @@
 
       function init()
       {
+        document.getElementById("nextLink").style.visibility="hidden"
         goldField = new GoldField(document.getElementById("field"),50, 2*half+1, 1);
         goldField.SetClickListener(Click);
         goldField.SetKeyListener(Key);
@@ -229,7 +230,7 @@
           }
           goldField.Win();
           document.getElementById("reset").style.visibility="visible";
-          document.getElementById("nextLink").innerHTML = "Next Challenge >>>"
+          document.getElementById("nextLink").style.visibility="visible"
         }
       }
 
@@ -298,6 +299,6 @@
     </table>
     <p id="message"></p>
     <button id="reset" onclick='ResetBoard()'>Try again</button><br>
-    <a href="cartesian3.html" id="nextLink"></a>
+    <a href="cartesian3.html" id="nextLink"><img src="nextbutton.png"></a>
   </body>
 </html>
