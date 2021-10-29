@@ -16,6 +16,7 @@
 
       function init()
       {
+        document.getElementById("nextLink").style.visibility="hidden"
         goldField2 = new GoldField(document.getElementById("field"),50, 2*halfX+1, 1);
         goldField2.AddSound("explode.wav","explode");
         xAxis2 = new XAxis()
@@ -67,7 +68,7 @@
           {
             hero2.SetPosition(h,0);
           }
-          document.getElementById("nextLink").innerHTML = "Next Challenge >>>"
+          document.getElementById("nextLink").style.visibility="visible"
         }
         else 
         {
@@ -124,6 +125,6 @@
         </td>
       </tr>
     </table>
-    <a href="cartesian2.html" id="nextLink"></a>
+    <a href="cartesian2.html" id="nextLink"><img src="nextbutton.png"></a>
   </body>
 </html>
