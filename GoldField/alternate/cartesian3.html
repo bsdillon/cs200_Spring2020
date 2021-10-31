@@ -8,6 +8,8 @@
     <script>
       var goldField;
       var half = 4
+      var xCurr=0;
+      var yCurr=0;
 
       function init()
       {
@@ -29,8 +31,21 @@
         goldField.Redraw();
 
         hero = goldField.AddHero();
-        hero.SetPosition(half,half);
-        document.getElementById("output").innerHTML = "Hero at : (0, 0)";
+        xCurr = Math.floor(Math.Random()*(2*half+1));
+        yCurr = Math.floor(Math.Random()*(2*half+1));
+        hero.SetPosition(xCurr,yCurr);
+        xCurr+=half;
+        yCurr+=half;
+
+        for(let e in document.getElementsByName("xPos"))
+        {
+          e.innerHTML=""+xCurr;
+        }
+
+        for(let e in document.getElementsByName("yPos"))
+        {
+          e.innerHTML=""+yCurr;
+        }
       }
 
       function Key(event)
@@ -94,7 +109,7 @@
           current position.
         </p>
         <p class="code">
-          
+          (this.xPos, this.yPos) = (<input type="text" name="xPos"></input>,<input type="text" name="yPos"></input>) 
         </p>
         <p class="content">
           In GoldField, when the Hero moves it has to do three things:
@@ -104,7 +119,6 @@
             <tr><td>Set the next position in the field.</td><td></td></tr>
           </table>
         </p>
-        <p id="output"></p>
         <a href="cartesian3.html" id="nextLink"><img src="nextbutton.png"></a>
       </td></tr></table>
   </body>
