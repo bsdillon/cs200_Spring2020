@@ -38,16 +38,16 @@
         yCurr+=half;
 
         var elements = document.getElementsByName("xPos");
-        for (let e of elements) 
+        elements.forEach((e) => 
         {
           e.value=""+xCurr;
-        }
+        })
 
         elements = document.getElementsByName("yPos");
-        for (let e of elements) 
+        elements.forEach((e) => 
         {
           e.value=""+yCurr;
-        }
+        })
       }
 
       function Key(event)
