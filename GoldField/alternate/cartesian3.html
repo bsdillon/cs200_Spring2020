@@ -13,6 +13,7 @@
 
       function init()
       {
+        blockWin = false;
         document.getElementById("nextLink").style.visibility="hidden"
         goldField = new GoldField(document.getElementById("field"),30, 2*half+1, 2*half+1);
         goldField.SetKeyListener(Key);
@@ -33,21 +34,21 @@
         hero = goldField.AddHero();
         xCurr = Math.floor(Math.random()*(2*half+1));
         yCurr = Math.floor(Math.random()*(2*half+1));
+        targetX = Math.floor(Math.random()*(2*half+1));
+        targetY = Math.floor(Math.random()*(2*half+1));
+        while(xCurr==targetX && yCurr==targetY)
+        {
+          targetX = Math.floor(Math.random()*(2*half+1));
+          targetY = Math.floor(Math.random()*(2*half+1));
+          distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
+        }
+        
         hero.SetPosition(xCurr,yCurr);
-        xCurr+=half;
-        yCurr+=half;
+        xCurr-=half;
+        yCurr-=half;
 
-        var elements = document.getElementsByName("xPos");
-        elements.forEach((e) => 
-        {
-          e.value=""+xCurr;
-        })
-
-        elements = document.getElementsByName("yPos");
-        elements.forEach((e) => 
-        {
-          e.value=""+yCurr;
-        })
+        document.getElementsById("xPos").value=""+xCurr;
+        document.getElementsById("yPos").value=""+yCurr;
       }
 
       function Key(event)
@@ -94,8 +95,49 @@
            if(nextSpace[0]==Empty)
            {
              hero.SetPosition(loc[0],loc[1]);
+             xCurr=loc[0];
+             yCurr=loc[1];
+             checkWin();
            }
+        }        
+      }
+
+      function checkWin()
+      {
+        blockWin = true;
+        if(blockWin)
+        {
+          return;//only one win at a time
         }
+        document.getElementById("xPos").value=""+xCurr;
+        document.getElementById("yPos").value=""+yCurr;
+         var d0 = distance;
+         distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
+
+         if(distance==0)
+         {
+           document.getElementById("output").innerHTML="You got it!";
+         }
+         else if(d0-distance>0)
+         {
+           document.getElementById("output").innerHTML="Closer....";
+         }
+         else if(d0-distance>0)
+         {
+           document.getElementById("output").innerHTML="Nearer....";
+         }
+         else //relatively the same
+         {
+           document.getElementById("output").innerHTML="About th esame";
+         }
+      }
+      
+      function newLocation()
+      {
+        xCurr=parseInt(document.getElementById("xPos").value);
+        yCurr=parseInt(document.getElementById("yPos").value);
+        hero.SetPosition(xCurr,yCurr);
+        checkWin();
       }
     </script>
   </head>
@@ -111,9 +153,15 @@
         </p>
         <p class="code">
           <br>
-          (this.xPos, this.yPos) = (<input type="text" name="xPos" maxlength="1" size="1"></input>,<input type="text" name="yPos" maxlength="1" size="1"></input>) 
+          (this.xPos, this.yPos) = (<input type="text" id="xPos" maxlength="2" size="2" onchange="newLocation()"></input>,<input type="text" id="yPos" maxlength="2" size="2" onchange="newLocation()"></input>) 
           <br>&nbsp;
         </p>
+        <h2>Can You Find the Gold?</h2>
+        <p class="content">
+          There is a hidden gold bar in the field. Change the xPos and yPos above to search the space. You can also use the arrows.
+          I'll let you know if you are further or nearer until you find it. 
+        </p>
+        <p id="output"></p>
         <p class="content">
           In GoldField, when the Hero moves it has to do three things:
           <table>
