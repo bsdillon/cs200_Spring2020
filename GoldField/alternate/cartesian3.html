@@ -7,7 +7,7 @@
     <script src="cartesian.js"></script>
     <script>
       var goldField;
-      var half = 4
+      var half = 9;
       var xCurr=0;
       var yCurr=0;
 
@@ -93,7 +93,6 @@
            var nextSpace = field.LookAt(loc[0],loc[1]);
            if(nextSpace[0]==Empty)
            {
-             document.getElementById("output").innerHTML = "Hero at : ("+(loc[0]-half)+", "+(-(loc[1]-half))+")";
              hero.SetPosition(loc[0],loc[1]);
            }
         }
@@ -112,7 +111,7 @@
         </p>
         <p class="code">
           <br>
-          (this.xPos, this.yPos) = (<input type="text" name="xPos"></input>,<input type="text" name="yPos"></input>) 
+          (this.xPos, this.yPos) = (<input type="text" name="xPos" maxlength="1" size="1"></input>,<input type="text" name="yPos" maxlength="1" size="1"></input>) 
           <br>&nbsp;
         </p>
         <p class="content">
