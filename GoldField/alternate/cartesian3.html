@@ -104,13 +104,13 @@
 
       function checkWin()
       {
-        blockWin = true;
         if(blockWin)
         {
           return;//only one win at a time
         }
-        document.getElementById("xPos").value=""+xCurr;
-        document.getElementById("yPos").value=""+yCurr;
+        blockWin = true;
+        document.getElementById("xPos").value=""+(xCurr-half);
+        document.getElementById("yPos").value=""+(yCurr-half);
          var d0 = distance;
          distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
 
@@ -135,8 +135,8 @@
       
       function newLocation()
       {
-        xCurr=parseInt(document.getElementById("xPos").value);
-        yCurr=parseInt(document.getElementById("yPos").value);
+        xCurr=parseInt(document.getElementById("xPos").value)+half;
+        yCurr=parseInt(document.getElementById("yPos").value)+half;
         hero.SetPosition(xCurr,yCurr);
         checkWin();
       }
