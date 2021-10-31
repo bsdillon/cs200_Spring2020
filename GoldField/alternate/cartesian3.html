@@ -39,12 +39,12 @@
 
         for(let e in document.getElementsByName("xPos"))
         {
-          e.innerHTML=""+xCurr;
+          e.value=""+xCurr;
         }
 
         for(let e in document.getElementsByName("yPos"))
         {
-          e.innerHTML=""+yCurr;
+          e.value=""+yCurr;
         }
       }
 
@@ -109,7 +109,9 @@
           current position.
         </p>
         <p class="code">
+          <br>
           (this.xPos, this.yPos) = (<input type="text" name="xPos"></input>,<input type="text" name="yPos"></input>) 
+          <br>
         </p>
         <p class="content">
           In GoldField, when the Hero moves it has to do three things:
