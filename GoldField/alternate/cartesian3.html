@@ -37,12 +37,14 @@
         xCurr+=half;
         yCurr+=half;
 
-        for(let e in document.getElementsByName("xPos"))
+        var elements = document.getElementsByName("xPos");
+        for(let e in elements)
         {
           e.value=""+xCurr;
         }
 
-        for(let e in document.getElementsByName("yPos"))
+        elements = document.getElementsByName("yPos");
+        for(let e in elements)
         {
           e.value=""+yCurr;
         }
