@@ -47,8 +47,8 @@
         xCurr-=half;
         yCurr-=half;
 
-        document.getElementsById("xPos").value=""+xCurr;
-        document.getElementsById("yPos").value=""+yCurr;
+        document.getElementById("xPos").value=""+xCurr;
+        document.getElementById("yPos").value=""+yCurr;
       }
 
       function Key(event)
@@ -130,6 +130,7 @@
          {
            document.getElementById("output").innerHTML="About th esame";
          }
+        blockWin = false;
       }
       
       function newLocation()
