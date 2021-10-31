@@ -1,5 +1,6 @@
 <html>
   <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <style>
     </style>
     <script src="goldfield.js"></script>
@@ -10,6 +11,7 @@
 
       function init()
       {
+        document.getElementById("nextLink").style.visibility="hidden"
         goldField = new GoldField(document.getElementById("field"),30, 2*half+1, 2*half+1);
         goldField.SetKeyListener(Key);
 
@@ -86,10 +88,24 @@
       <canvas id="field"></canvas></td>
       <td>
         <p class="content">
-          This is content
+          The Hero is an <em>object</em> that has its own variables for x and y position. Within the Hero object, <em>this</em> just means
+          'this object'. So the Hero's location is always known as this.xPos and this.yPos. The Hero always knowns where it is using these
+          variables. We can write out the position as a pair of values. In computers, this is called a <em>tuple</em>. This is the Hero's
+          current position.
+        </p>
+        <p class="code">
+          
+        </p>
+        <p class="content">
+          In GoldField, when the Hero moves it has to do three things:
+          <table>
+            <tr><td>Clear the last position from the field.</td><td><pre>field.spaces[this.xPos][this.yPos]=-1;</pre></td></tr>
+            <tr><td>Update the Hero's own X and Y positions.</td><td></td></tr>
+            <tr><td>Set the next position in the field.</td><td></td></tr>
+          </table>
         </p>
         <p id="output"></p>
         <a href="cartesian3.html" id="nextLink"><img src="nextbutton.png"></a>
-      </td>
+      </td></tr></table>
   </body>
 </html>
