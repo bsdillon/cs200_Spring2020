@@ -6,7 +6,7 @@
     <script src="cartesian.js"></script>
     <script>
       var goldField;
-      var half = 10
+      var half = 4
 
       function init()
       {
@@ -82,7 +82,14 @@
     </script>
   </head>
   <body onload="init()">
-    <canvas id="field"></canvas>
-    <p id="output"></p>
+    <table><tr><td>
+      <canvas id="field"></canvas></td>
+      <td>
+        <p class="content">
+          This is content
+        </p>
+        <p id="output"></p>
+        <a href="cartesian3.html" id="nextLink"><img src="nextbutton.png"></a>
+      </td>
   </body>
 </html>
