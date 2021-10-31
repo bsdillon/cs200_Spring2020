@@ -38,13 +38,13 @@
         yCurr+=half;
 
         var elements = document.getElementsByName("xPos");
-        for(let e in elements)
+        for (let e of elements) 
         {
           e.value=""+xCurr;
         }
 
         elements = document.getElementsByName("yPos");
-        for(let e in elements)
+        for (let e of elements) 
         {
           e.value=""+yCurr;
         }
