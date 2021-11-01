@@ -127,13 +127,13 @@
          {
            document.getElementById("output").innerHTML="Closer....";
          }
-         else if(d0-distance>0)
+         else if(d0-distance<0)
          {
-           document.getElementById("output").innerHTML="Nearer....";
+           document.getElementById("output").innerHTML="Farther....";
          }
          else //relatively the same
          {
-           document.getElementById("output").innerHTML="About th esame";
+           document.getElementById("output").innerHTML="About the same";
          }
          blockWin = false;
       }
@@ -168,15 +168,7 @@
           I'll let you know if you are further or nearer until you find it. 
         </p>
         <p id="output"></p>
-        <p class="content">
-          In GoldField, when the Hero moves it has to do three things:
-          <table>
-            <tr><td>Clear the last position from the field.</td><td><pre>field.spaces[this.xPos][this.yPos]=-1;</pre></td></tr>
-            <tr><td>Update the Hero's own X and Y positions.</td><td></td></tr>
-            <tr><td>Set the next position in the field.</td><td></td></tr>
-          </table>
-        </p>
-        <a href="cartesian3.html" id="nextLink"><img src="nextbutton.png"></a>
+        <a href="cartesian3a.html" id="nextLink"><img src="nextbutton.png"></a>
       </td></tr>
     </table>
     <div id="tooltip">
