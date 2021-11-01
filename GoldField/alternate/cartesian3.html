@@ -2,14 +2,14 @@
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
-      .tooltip {
+      #tooltip {
         position: absolute;
         margin: 5px;
         width: 200px;
         height: auto;
-        border: 1px solid #0000ff;
+        border: 2px solid #0000ff;
         display: block;
-        background-color: #ffffff;
+        background-color: #A0A0ff;
         visible: hidden;
       }
     </style>
@@ -212,10 +212,7 @@
         <a href="cartesian3.html" id="nextLink"><img src="nextbutton.png"></a>
       </td></tr>
     </table>
-    <div class="name" onmouseover="show(tooltip1)" onmouseout="hide(tooltip1)">
-      NAME
-      <div class="tooltip" id="tooltip">
-      </div>
+    <div id="tooltip">
     </div>
   </body>
 </html>
