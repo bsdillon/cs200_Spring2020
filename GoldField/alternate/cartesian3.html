@@ -28,8 +28,8 @@
         var tag = document.getElementById("tooltip");
         tag.innerHTML=ttips[ttID];
         var loc = document.getElementById(ttID);
-        tag.style.left = loc.style.left;
-        tag.style.top = loc.style.top;
+        tag.style.left = loc.offsetLeft;
+        tag.style.top = loc.offsetTop;
         tag.style.display = "block";
       }
       
