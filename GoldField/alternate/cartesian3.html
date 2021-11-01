@@ -5,10 +5,10 @@
       .tooltip {
         position: absolute;
         margin: 5px;
-        width: 200px;
-        height: 50px;
-        border: 1px solid black;
+        border: 1px solid #0000ff;
         display: none;
+        background-color: #ffffff;
+        
       }
     </style>
     <script src="goldfield.js"></script>
@@ -31,14 +31,14 @@
         var rect = loc.getBoundingClientRect();
         tag.style.left = rect.left + window.scrollX + 5;
         tag.style.top = rect.top + window.scrollY + 5;
-        tag.style.display = "block";
+        tag.style.visible = "block";
       }
       
       function hideTTip()
       {
         var tag = document.getElementById("tooltip");
         tag.innerHTML="empty";
-        tag.style.display = "hidden";
+        tag.style.visible = "hidden";
       }
       
       var goldField;
