@@ -2,54 +2,19 @@
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
-      #tooltip {
-        position: absolute;
-        margin: 5px;
-        width: 200px;
-        height: auto;
-        border: 2px solid #0000ff;
-        display: none;
-        background-color: #DDDDff;
-        visible: hidden;
-      }
     </style>
+    <script src="ttip.js"></script>
     <script src="goldfield.js"></script>
     <script src="cartesian.js"></script>
     <script>
-      var ttips = {};
-      
-      function addToolTip(id,value)
-      {
-        ttips[id]=value;
-      }
-      
-      addToolTip("object","OBJECT - Portions of software data and operations that are contained in one packet of software code.");
-      
-      function showTTip(ttID)
-      {
-        var tag = document.getElementById("tooltip");
-        tag.innerHTML=ttips[ttID];
-        var loc = document.getElementById(ttID);
-        var rect = loc.getBoundingClientRect();
-        tag.style.left = rect.left + window.scrollX + 5;
-        tag.style.top = rect.top + window.scrollY + 5;
-        tag.style.visible = "visible";
-        tag.style.display = "block"
-      }
-      
-      function hideTTip()
-      {
-        var tag = document.getElementById("tooltip");
-        tag.innerHTML="empty";
-        tag.style.visible = "hidden";
-        tag.style.display = "none"
-      }
-      
       var goldField;
       var half = 9;
       var xCurr=0;
       var yCurr=0;
       var distance=0;
+      
+      addToolTip("object","OBJECT - Portions of software data and operations that are contained in one packet of software code.");
+      addToolTip("tuple","TUPLE - A list of values contained by parenthesis (red,blue,green,yellow), (1,2,3,4,5,6)");
 
       function init()
       {
@@ -187,9 +152,9 @@
       <canvas id="field"></canvas></td>
       <td>
         <p class="content">
-          The Hero is an <em id="object" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">object</em> that has its own variables for x and y position. Within the Hero object, <em>this</em> just means
+          The Hero is an <span id="object" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">object</span> that has its own variables for x and y position. Within the Hero object, <em>this</em> just means
           'this object'. So the Hero's location is always known as this.xPos and this.yPos. The Hero always knowns where it is using these
-          variables. We can write out the position as a pair of values. In computers, this is called a <em>tuple</em>. This is the Hero's
+          variables. We can write out the position as a pair of values. In computers, this is called a <span id="tuple" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">tuple</span>. This is the Hero's
           current position.
         </p>
         <p class="code">
