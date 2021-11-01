@@ -2,10 +2,44 @@
   <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <style>
+      .tooltip {
+        position: absolute;
+        margin: 5px;
+        width: 200px;
+        height: 50px;
+        border: 1px solid black;
+        display: none;
+      }
     </style>
     <script src="goldfield.js"></script>
     <script src="cartesian.js"></script>
     <script>
+      var ttips = {};
+      
+      function addToolTip(id,value)
+      {
+        ttips[id]=value;
+      }
+      
+      addToolTip("object","OBJECT - Portions of software data and operations that are contained in one packet of software code.");
+      
+      function showTTip(ttID)
+      {
+        var tag = document.getElementById("tooltip");
+        tag.innerHTML=ttips[ttID];
+        var loc = document.getElementById(ttID);
+        tag.style.left = loc.style.left;
+        tag.style.top = loc.style.top;
+        tag.style.display = "block";
+      }
+      
+      function hideTTip()
+      {
+        var tag = document.getElementById("tooltip");
+        tag.innerHTML="empty";
+        tag.style.display = "hidden";
+      }
+      
       var goldField;
       var half = 9;
       var xCurr=0;
@@ -148,7 +182,7 @@
       <canvas id="field"></canvas></td>
       <td>
         <p class="content">
-          The Hero is an <em>object</em> that has its own variables for x and y position. Within the Hero object, <em>this</em> just means
+          The Hero is an <em id="object" onmouseover="showTTip(object)" onmouseout="hideTTip()">object</em> that has its own variables for x and y position. Within the Hero object, <em>this</em> just means
           'this object'. So the Hero's location is always known as this.xPos and this.yPos. The Hero always knowns where it is using these
           variables. We can write out the position as a pair of values. In computers, this is called a <em>tuple</em>. This is the Hero's
           current position.
@@ -173,6 +207,12 @@
           </table>
         </p>
         <a href="cartesian3.html" id="nextLink"><img src="nextbutton.png"></a>
-      </td></tr></table>
+      </td></tr>
+    </table>
+    <div class="name" onmouseover="show(tooltip1)" onmouseout="hide(tooltip1)">
+      NAME
+      <div class="tooltip" id="tooltip">
+      </div>
+    </div>
   </body>
 </html>
