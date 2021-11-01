@@ -182,7 +182,7 @@
       <canvas id="field"></canvas></td>
       <td>
         <p class="content">
-          The Hero is an <em id="object" onmouseover="showTTip(object)" onmouseout="hideTTip()">object</em> that has its own variables for x and y position. Within the Hero object, <em>this</em> just means
+          The Hero is an <em id="object" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">object</em> that has its own variables for x and y position. Within the Hero object, <em>this</em> just means
           'this object'. So the Hero's location is always known as this.xPos and this.yPos. The Hero always knowns where it is using these
           variables. We can write out the position as a pair of values. In computers, this is called a <em>tuple</em>. This is the Hero's
           current position.
