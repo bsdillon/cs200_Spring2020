@@ -57,6 +57,7 @@
 
         document.getElementById("xPos").value=""+xCurr;
         document.getElementById("yPos").value=""+yCurr;
+        checkWin();
       }
 
       function Key(event)
@@ -125,6 +126,8 @@
         document.getElementById("xPos").value=""+(xCurr-half);
         document.getElementById("yPos").value=""+(yCurr-half);
          var d0 = distance;
+        
+         document.getElementbyId("log").innerHTML+="target: "+targetX+", "+targetY+"  Character: "+xCurr+", "+yCurr+"<br>";
          distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
 
          if(distance==0)
@@ -181,5 +184,6 @@
     </table>
     <div id="tooltip">
     </div>
+<p id="log"></p>
   </body>
 </html>
