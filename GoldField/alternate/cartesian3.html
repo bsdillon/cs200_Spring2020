@@ -48,6 +48,7 @@
           targetY = Math.floor(Math.random()*(2*half+1));
           distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
         }
+        document.getElementById("log").innerHTML+="target: "+targetX+", "+targetY+"  Character: "+xCurr+", "+yCurr+"<br>";
         
         gold = goldField.AddGold();
         gold.setPosition(targetX, targetY);
