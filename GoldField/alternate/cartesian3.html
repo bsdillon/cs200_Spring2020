@@ -51,8 +51,8 @@
         document.getElementById("log").innerHTML+="target: "+targetX+", "+targetY+"  Character: "+xCurr+", "+yCurr+"<br>";
         
         gold = goldField.AddGold();
-        gold.setPosition(targetX, targetY);
-        hero.setPosition(xCurr,yCurr);
+        gold.SetPosition(targetX, targetY);
+        hero.SetPosition(xCurr,yCurr);
         xCurr-=half;
         yCurr-=half;
 
