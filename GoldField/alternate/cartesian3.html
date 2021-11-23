@@ -48,17 +48,15 @@
           targetY = Math.floor(Math.random()*(2*half+1));
           distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
         }
-        document.getElementById("log").innerHTML+="target: "+targetX+", "+targetY+"  Character: "+xCurr+", "+yCurr+"<br>";
         
         gold = goldField.AddGold();
         gold.SetPosition(targetX, targetY);
         hero.SetPosition(xCurr,yCurr);
         xCurr-=half;
-        yCurr-=half;
+        yCurr=half-yCurr;
 
         document.getElementById("xPos").value=""+xCurr;
         document.getElementById("yPos").value=""+yCurr;
-        checkWin();
       }
 
       function Key(event)
@@ -125,7 +123,7 @@
         }
         blockWin = true;
         document.getElementById("xPos").value=""+(xCurr-half);
-        document.getElementById("yPos").value=""+(yCurr-half);
+        document.getElementById("yPos").value=""+(half-yCurr);
          var d0 = distance;
         
          document.getElementById("log").innerHTML+="target: "+targetX+", "+targetY+"  Character: "+xCurr+", "+yCurr+"<br>";
