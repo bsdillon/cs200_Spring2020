@@ -127,7 +127,7 @@
         document.getElementById("yPos").value=""+(yCurr-half);
          var d0 = distance;
         
-         document.getElementbyId("log").innerHTML+="target: "+targetX+", "+targetY+"  Character: "+xCurr+", "+yCurr+"<br>";
+         document.getElementById("log").innerHTML+="target: "+targetX+", "+targetY+"  Character: "+xCurr+", "+yCurr+"<br>";
          distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
 
          if(distance==0)
