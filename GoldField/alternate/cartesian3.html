@@ -38,6 +38,11 @@
         goldField.Redraw();
 
         hero = goldField.AddHero();
+        ResetBoard();
+      }
+     
+      function ResetBoard()
+      {
         xCurr = Math.floor(Math.random()*(2*half+1));
         yCurr = Math.floor(Math.random()*(2*half+1));
         targetX = Math.floor(Math.random()*(2*half+1));
@@ -49,8 +54,9 @@
           distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
         }
         
-        gold = goldField.AddGold();
-        gold.SetPosition(targetX, targetY);
+        //used for debug only
+        //gold = goldField.AddGold();
+        //gold.SetPosition(targetX, targetY);
         hero.SetPosition(xCurr,yCurr);
         xCurr-=half;
         yCurr=half-yCurr;
@@ -126,12 +132,14 @@
         document.getElementById("yPos").value=""+(half-yCurr);
          var d0 = distance;
         
-         document.getElementById("log").innerHTML+="target: "+targetX+", "+targetY+"  Character: "+xCurr+", "+yCurr+"<br>";
          distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
 
          if(distance==0)
          {
            document.getElementById("output").innerHTML="You got it!";
+           goldField.PlaySound("coin");
+           document.getElementById("reset").style.visibility="visible";
+           document.getElementById("nextLink").style.visibility="visible"
          }
          else if(d0-distance>0)
          {
@@ -181,8 +189,9 @@
         <a href="cartesian3a.html" id="nextLink"><img src="nextbutton.png"></a>
       </td></tr>
     </table>
+    <button id="reset" onclick='ResetBoard()'>Try again</button><br>
+    <a href="cartesian3a.html" id="nextLink"><img src="nextbutton.png"></a>
     <div id="tooltip">
     </div>
-<p id="log"></p>
   </body>
 </html>
