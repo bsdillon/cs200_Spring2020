@@ -37,15 +37,15 @@
         grid.SetLayerOn(true);
 
         var origin = half+1;
-        xComp = new Vector(origin,origin,origin+4,origin,"#FF0000")
+        xComp = new Vector(origin,origin,4,0,"#FF0000")
         goldField.AddGenericLayer(xComp);
         xComp.SetLayerOn(true);
 
-        yComp = new Vector(origin+4,origin,origin,origin-3,"#0000FF")
+        yComp = new Vector(origin+4,origin,0,-3,"#0000FF")
         goldField.AddGenericLayer(yComp);
         yComp.SetLayerOn(true);
 
-        vect = new Vector(origin,origin,origin+4,origin-3,"#00FFFF")
+        vect = new Vector(origin,origin,4,-3,"#FFFF00")
         goldField.AddGenericLayer(vect);
         vect.SetLayerOn(true);
         goldField.Redraw();
