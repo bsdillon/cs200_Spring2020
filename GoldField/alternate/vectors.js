@@ -13,6 +13,7 @@
 
       Vector.prototype.DrawLayer = function(block)
       {
+        this.ctx.fillStyle = this.color;
         this.ctx.strokeStyle = this.color;
         this.ctx.beginPath();
           this.ctx.arc(block*this.xStart, block*this.yStart, block/4, 0, 2 * Math.PI);
