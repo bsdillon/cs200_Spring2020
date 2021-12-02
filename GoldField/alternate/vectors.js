@@ -22,6 +22,9 @@
         this.ctx.beginPath();
           this.ctx.moveTo(block*this.xStart, block*this.yStart);
           this.ctx.lineTo(block*(this.xStart+this.xHat), block*(this.yStart+this.yHat));
-        this.ctx.draw();
+          var theta =  Math.atan2(this.yStart+this.yHat, this.xStart+this.xHat)+(135*Math.PI/180);
+          this.ctx.moveTo(block*(this.xStart+this.xHat), block*(this.yStart+this.yHat));
+          this.ctx.moveTo(block*(this.xStart+Math.cos(theta)), block*(this.yStart-Math.sin(theta));          
+        this.ctx.drawPath();
         this.ctx.lineWidth = wasWidth;
       }
