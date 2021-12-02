@@ -6,6 +6,7 @@
     <script src="ttip.js"></script>
     <script src="goldfield.js"></script>
     <script src="cartesian.js"></script>
+    <script src="vectors.js"></script>
     <script>
       var goldField;
       var half = 9;
@@ -35,6 +36,18 @@
         goldField.AddGenericLayer(grid);
         grid.SetLayerOn(true);
         goldField.Redraw();
+
+        xComp = new Vector(0,0,4,0,"#FF0000")
+        goldField.AddGenericLayer(xComp);
+        xComp.SetLayerOn(true);
+
+        yComp = new Vector(4,0,0,3,"#0000FF")
+        goldField.AddGenericLayer(yComp);
+        yComp.SetLayerOn(true);
+
+        vect = new Vector(0,0,4,3,"#FF00FF")
+        goldField.AddGenericLayer(vect);
+        vect.SetLayerOn(true);
 
         hero = goldField.AddHero();
         xCurr = Math.floor(Math.random()*(2*half+1));
