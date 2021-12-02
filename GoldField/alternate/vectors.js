@@ -24,9 +24,12 @@
           this.ctx.moveTo(block*this.xStart, block*this.yStart);
           this.ctx.lineTo(block*(this.xStart+this.xHat), block*(this.yStart+this.yHat));
           var theta =  Math.atan2(-this.yHat, this.xHat);
-          theta+=(135*Math.PI/180);
+          var theta2= theta+(160*Math.PI/180);
           this.ctx.moveTo(block*(this.xStart+this.xHat), block*(this.yStart+this.yHat));
-          this.ctx.lineTo(block*(this.xStart+this.xHat+Math.cos(theta)), block*(this.yStart+this.yHat-Math.sin(theta)));          
+          this.ctx.lineTo(block*(this.xStart+this.xHat+Math.cos(theta2)), block*(this.yStart+this.yHat-Math.sin(theta2)));
+          var theta2= theta+(160*Math.PI/180);
+          this.ctx.moveTo(block*(this.xStart+this.xHat), block*(this.yStart+this.yHat));
+          this.ctx.lineTo(block*(this.xStart+this.xHat+Math.cos(theta2)), block*(this.yStart+this.yHat-Math.sin(theta2)));
         this.ctx.stroke();
         this.ctx.lineWidth = wasWidth;
       }
