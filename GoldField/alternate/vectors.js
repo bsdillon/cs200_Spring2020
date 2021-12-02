@@ -26,10 +26,10 @@
           var theta =  Math.atan2(-this.yHat, this.xHat);
           var theta2= theta+(160*Math.PI/180);
           this.ctx.moveTo(block*(this.xStart+this.xHat), block*(this.yStart+this.yHat));
-          this.ctx.lineTo(block*(this.xStart+this.xHat+Math.cos(theta2)), block*(this.yStart+this.yHat-Math.sin(theta2)));
-          var theta2= theta+(160*Math.PI/180);
-          this.ctx.moveTo(block*(this.xStart+this.xHat), block*(this.yStart+this.yHat));
-          this.ctx.lineTo(block*(this.xStart+this.xHat+Math.cos(theta2)), block*(this.yStart+this.yHat-Math.sin(theta2)));
-        this.ctx.stroke();
-        this.ctx.lineWidth = wasWidth;
+          this.ctx.lineTo(block*(this.xStart+this.xHat+(.5*Math.cos(theta2))), block*(this.yStart+this.yHat-(.5*Math.sin(theta2))));
+          var theta2= theta-(160*Math.PI/180);
+          this.ctx.lineTo(block*(this.xStart+this.xHat+(.5*Math.cos(theta2))), block*(this.yStart+this.yHat-(.5*Math.sin(theta2))));
+          this.ctx.closePath();
+          this.ctx.fill();
+          this.ctx.lineWidth = wasWidth;
       }
