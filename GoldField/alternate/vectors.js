@@ -15,13 +15,13 @@
       {
         this.ctx.strokeStyle = this.color;
         this.ctx.beginPath();
-          this.ctx.arc(block*xStart, block.yStart, block/4, 0, 2 * Math.PI);
+          this.ctx.arc(block*this.xStart, block*this.yStart, block/4, 0, 2 * Math.PI);
         this.ctx.fill();
         var wasWidth = this.ctx.lineWidth;
         this.ctx.lineWidth = 5;
         this.ctx.beginPath();
-          this.ctx.moveTo(block*xStart, block*yStart);
-          this.ctx.lineTo(block*(xStart+xHat), block*(yStart+yHat));
+          this.ctx.moveTo(block*this.xStart, block*this.yStart);
+          this.ctx.lineTo(block*(this.xStart+this.xHat), block*(this.yStart+this.yHat));
         this.ctx.draw();
         this.ctx.lineWidth = wasWidth;
       }
