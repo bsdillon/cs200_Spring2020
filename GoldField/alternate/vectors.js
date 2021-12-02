@@ -23,6 +23,8 @@
         this.ctx.beginPath();
           this.ctx.moveTo(block*this.xStart, block*this.yStart);
           this.ctx.lineTo(block*(this.xStart+this.xHat), block*(this.yStart+this.yHat));
+        this.ctx.stroke();
+        this.ctx.beginPath();
           var theta =  Math.atan2(-this.yHat, this.xHat);
           var theta2= theta+(160*Math.PI/180);
           this.ctx.moveTo(block*(this.xStart+this.xHat), block*(this.yStart+this.yHat));
