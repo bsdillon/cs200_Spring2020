@@ -35,7 +35,6 @@
         grid = new Grid()
         goldField.AddGenericLayer(grid);
         grid.SetLayerOn(true);
-        goldField.Redraw();
 
         xComp = new Vector(0,0,4,0,"#FF0000")
         goldField.AddGenericLayer(xComp);
@@ -48,6 +47,7 @@
         vect = new Vector(0,0,4,3,"#FF00FF")
         goldField.AddGenericLayer(vect);
         vect.SetLayerOn(true);
+        goldField.Redraw();
 
         hero = goldField.AddHero();
         xCurr = Math.floor(Math.random()*(2*half+1));
