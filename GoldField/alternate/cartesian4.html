@@ -74,11 +74,11 @@
         //gold = goldField.AddGold();
         //gold.SetPosition(targetX, targetY);
         hero.SetPosition(xCurr,yCurr);
-        xComp.xHat=xCurr;
+        xComp.xHat=xCurr-xComp.xStart;
         yComp.xStart=xCurr;
-        yComp.yHat=yCurr
-        vect.xHat=xCurr;
-        vect.yHat=yCurr;
+        yComp.yHat=yCurr-yComp.yStart
+        vect.xHat=xCurr-vect.xStart;
+        vect.yHat=yCurr-vect.yStart;
         goldField.Redraw();
 
         xCurr-=half;
