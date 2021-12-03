@@ -139,11 +139,11 @@
              hero.SetPosition(loc[0],loc[1]);
              xCurr=loc[0];
              yCurr=loc[1];
-             xComp.xHat=xCurr;
+             xComp.xHat=xCurr-xComp.xStart;
              yComp.xStart=xCurr;
-             yComp.yHat=yCurr
-             vect.xHat=xCurr;
-             vect.yHat=yCurr;
+             yComp.yHat=yCurr-yComp.yStart
+             vect.xHat=xCurr-vect.xStart;
+             vect.yHat=yCurr-vect.yStart;
              goldField.Redraw();
              checkWin();
            }
