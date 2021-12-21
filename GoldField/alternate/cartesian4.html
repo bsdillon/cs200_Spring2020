@@ -9,7 +9,7 @@
     <script src="vectors.js"></script>
     <script>
       var goldField;
-      var half = 9;
+      var half = 10;
       var xCurr=0;
       var yCurr=0;
       var distance=0;
@@ -37,7 +37,7 @@
         goldField.AddGenericLayer(grid);
         grid.SetLayerOn(true);
         
-        var origin = half+1;
+        var origin = half;
         xComp = new Vector(origin,origin,4,0,"#FF0000")
         goldField.AddGenericLayer(xComp);
         xComp.SetLayerOn(true);
@@ -70,9 +70,6 @@
           distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
         }
         
-        //used for debug only
-        //gold = goldField.AddGold();
-        //gold.SetPosition(targetX, targetY);
         hero.SetPosition(xCurr,yCurr);
         xComp.xHat=xCurr-xComp.xStart;
         yComp.xStart=xCurr;

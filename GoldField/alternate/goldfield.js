@@ -83,6 +83,7 @@ function GoldField(tag, block_size, block_width, block_height, background)
 
 GoldField.prototype.Redraw = function()
 {
+  this.ctx.clearRect(0,0,this.tag.width,this.tag.height);
   for(let i=0;i<this.layerCount;i++)
   {
     var tmp = this.layers[i];
