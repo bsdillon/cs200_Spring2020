@@ -1,5 +1,5 @@
 .content {background-color:#EFE4B0;}
-.code {background-color:#8080FF;}
+.code {background-color:#8080FF; color:#ffffff;}
 #tooltip {
   position: absolute;
   margin: 15px;

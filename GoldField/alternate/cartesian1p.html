@@ -1,0 +1,207 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>      
+      #output {text-align:center;}
+      #targetLocation {color:red; font-weight:bold;}
+    </style>
+    <script src="ttip.js"></script>
+    <script src="goldfield.js"></script>
+    <script src="cartesian.js"></script>
+    <script>
+      var goldField;
+      var halfX = 10
+      var hero = null;
+      var targetLocation_value;
+      var distance;
+      var redX = "https://cdn.pixabay.com/photo/2014/03/25/15/19/cross-296507__340.png"
+      var check = "https://www.venzagroup.com/wp-content/uploads/transparent-green-checkmark-md.png"
+
+      function init()
+      {
+        document.getElementById("nextLink").style.visibility="hidden"
+        goldField = new GoldField(document.getElementById("field"),50, 2*halfX+1, 1);
+        goldField.AddSound("explode.wav","explode");
+        xAxis = new XAxis()
+        goldField.AddGenericLayer(xAxis);
+        xAxis.SetLayerOn(true);
+        goldField.Redraw();
+        gold = goldField.AddGold();
+        hero = goldField.AddHero();
+        if(Math.random()>.5)
+        {
+          document.getElementById("dist").innerHTML="From Hero to Gold";
+          distance = gold.GetPosition()[0] - hero.GetPosition()[0];
+          tag1Goal = "gold";
+          tag2Goal = "hero";
+        }
+        else
+        {
+          document.getElementById("dist").innerHTML="From Gold to Hero";
+          distance = hero.GetPosition()[0] - gold.GetPosition()[0];
+          tag2Goal = "gold";
+          tag1Goal = "hero";
+        }
+        checkAll();
+      }
+
+      function checkAll()
+      {
+        var allowed = true;
+        try
+        {
+          var hX = parseInt(document.getElementById("heroX").value)
+          if(isNaN(hX))
+          {
+            document.getElementById("correct1").src=redX;
+            document.getElementById("valid1").src=redX;
+            allowed = false;
+          }
+          else
+          {
+            document.getElementById("valid1").src=check;
+            if(hX==hero.GetPosition()[0]-10)
+            {
+              document.getElementById("correct1").src=check;
+            }
+            else
+            {
+              document.getElementById("correct1").src=redX;
+              allowed = false;
+            }
+          }
+        }
+        catch
+        {
+          document.getElementById("correct1").src=redX;
+          document.getElementById("valid1").src=redX;
+          allowed = false;
+        }
+
+        try
+        {
+          var gX = parseInt(document.getElementById("goldX").value)
+          if(isNaN(gX))
+          {
+            document.getElementById("correct2").src=redX;
+            document.getElementById("valid2").src=redX;
+            allowed = false;
+          }
+          else
+          {
+            document.getElementById("valid2").src=check;
+            if(gX==gold.GetPosition()[0]-10)
+            {
+              document.getElementById("correct2").src=check;
+            }
+            else
+            {
+              document.getElementById("correct2").src=redX;
+              document.getElementById("correct2").src=redX;
+              allowed = false;
+            }
+          }
+        }
+        catch
+        {
+          document.getElementById("correct2").src=redX;
+          document.getElementById("valid2").src=redX;
+          allowed = false;
+        }
+
+        valids = ["hero","gold","dist","xPos"];
+        var tag1Val = document.getElementById("tag1").value;
+        if(valids.includes(tag1Val))
+        {
+          document.getElementById("valid3").src=check;
+        }
+        else
+        {
+          document.getElementById("valid3").src=redX;
+          allowed = false;
+        }
+          
+        var tag2Val = document.getElementById("tag2").value;
+        if(valids.includes(tag2Val))
+        {
+          document.getElementById("valid4").src=check;
+        }
+        else
+        {
+          document.getElementById("valid4").src=redX;
+          allowed = false;
+        }
+
+        if(tag1Val===tag1Goal && tag2Val===tag2Goal && allowed)
+        {
+          document.getElementById("correct3").src=check;
+        }
+        else
+        {
+          document.getElementById("correct3").src=redX;
+          allowed = false;
+        }
+
+        if(allowed)
+        {
+          document.getElementById("nextLink").style.visibility="visible";
+        }
+      }
+
+      addToolTip("object","OBJECT - Portions of software data and operations that are contained in one packet of software code.");
+      addToolTip("keyword","KEYWORD - Text that has a specific meaning in the program. Keywords like 'var' can ONLY be used for that one meaning.");
+      addToolTip("variable","VARIABLE - Text that you can define to store data in a program. See also FIELD.");
+      addToolTip("field","FIELD - Text that you can define to store data in a program. See also VARIABLE.");
+      addToolTip("dotOperator","DOT OPERTOR - The '.' character indicating 'has a part' as in x.y which is read 'x has a part y'.");
+    </script>
+  </head>
+  <body onload="init()">
+    <table>
+      <tr>
+        <td>
+          <canvas id="field"></canvas>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h1>Fill in the Code</h1>
+          <p class="content">
+            The code below shows a few lines of code. We are going to introduce some important
+            programming vocabulary. On lines 1 and 4 we use the <span class="ttip" id="keyword" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">keyword</span>
+            var to create <span class="ttip" id="variable" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">variable</span>s named 'hero' and 'gold'. These variables actually hold the <span class="ttip" id="object" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">object</span>
+            for the Hero character and the Gold pile. Each of these objects has a <span class="ttip" id="field" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">field</span> xPos
+            which is short for the x position of the character. We can access those fields with the <span class="ttip" id="dotOperator" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">dot operator</span>.
+          </p>
+          <p class="content">
+             Look at the position of the two characters above and write the correct values into the xPos field for each.
+             Then put the right variable names in the remaining blocks to calculate the right distance.
+          </p>
+          <p class="code">
+            <br>
+            1. var hero = goldField.AddHero();<br>
+            2. hero.xPos = <input type="text" id="heroX" maxlength="3" size="3" onKeyUp="checkAll()"></input>
+            <br><br>
+            4. var gold = goldField.AddGold();<br>
+            5. gold.xPos = <input type="text" id="goldX" maxlength="3" size="3" onKeyUp="checkAll()"></input>
+            <br><br>
+            7. var dist = <input type="text" id="tag1" maxlength="4" size="4" onKeyUp="checkAll()"></input>.xPos - <input type="text" id="tag2" maxlength="4" size="4" onKeyUp="checkAll()"></input>.xPos;<br>
+            8. //dist = <span id="dist"></span><br>&nbsp;
+          </p>
+          <h3>Check Your Code!</h3>
+          <ul>
+            <li><img src="" id="valid1" width="20"> Valid value for hero.xPos</li>
+            <li><img src="" id="correct1" width="20"> Correct value for hero.xPos</li>
+            <li><img src="" id="valid2" width="20"> Valid value for gold.xPos</li>
+            <li><img src="" id="correct2" width="20"> Correct value for gold.xPos</li>
+            <li><img src="" id="valid3" width="20"> Valid variable in box #1</li>
+            <li><img src="" id="valid4" width="20"> Valid variable in box #1</li>
+            <li><img src="" id="correct3" width="20"> Correct distance calculation</li>
+          </dl>
+        </td>
+      </tr>
+    </table>
+    <a href="cartesian2.html" id="nextLink"><img src="nextbutton.png"></a>
+    <div id="tooltip">
+    </div>
+  </body>
+</html>

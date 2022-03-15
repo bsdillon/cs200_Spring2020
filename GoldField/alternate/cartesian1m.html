@@ -28,6 +28,15 @@
         distance = gold2.GetPosition()[0] - hero2.GetPosition()[0];
       }
 
+      function typeChange(event)
+      {
+        var x = event.keyCode;
+        if(x==13)
+        {
+          checkDistance();
+        }
+      }
+
       function checkDistance()
       {
         var fromUser = parseInt(document.getElementById("distanceValue").value)
@@ -49,26 +58,8 @@
           distance = gold2.GetPosition()[0] - hero2.GetPosition()[0];
           distance = g - h;
           goldField2.PlaySound("coin");
-          document.getElementById("message").innerHTML="Great job! Try again";
-          goldField2.Reset();
 
-          xAxis2 = new XAxis()
-          goldField2.AddGenericLayer(xAxis2);
-          xAxis2.SetLayerOn(true);
-          goldField2.Redraw();
-          gold2 = goldField2.AddGold();
-          g0 = gold2.GetPosition()[0];
-          if(g0!=g)
-          {
-            gold2.SetPosition(g,0);
-          }
-          hero2 = goldField2.AddHero();
-          h0 = hero2.GetPosition()[0];
-          if(h0!=h)
-          {
-            hero2.SetPosition(h,0);
-          }
-          document.getElementById("nextLink").style.visibility="visible"
+          CreateMath();
         }
         else 
         {
@@ -97,6 +88,83 @@
           }
         }
       }
+
+      function CreateMath()
+      {
+        tag = document.getElementById("activity");
+        tag.innerHTML = "Nice job. Calculating the distance between two things on the horizontal axis is a key part of programming. You have to do it all the time. Solve the rest of these equations to advance and apply this in a program."
+        var objs = ["Gold", "Monster", "Hero"];
+        for(let i=0;i<10;i++)
+        {
+          var i1 = Math.floor(Math.random()*3);
+          var x1 = Math.floor(Math.random()*20-10);
+          var i2 = Math.floor(Math.random()*3);
+          var x2 = Math.floor(Math.random()*20-10);
+          while(i1==i2 || x1==x2)
+          {
+            i2 = Math.floor(Math.random()*3);
+            x2 = Math.floor(Math.random()*20-10);
+          }
+
+          s = "<p id='problem"+i+"'>The "+objs[i1]+" is at "+x1+" and the "+objs[i2]+" is at "+x2+".<br>How far from the ";
+          if(Math.random()>.5)
+          {
+            dx=x2-x1;
+            s += objs[i1] + " from the "+objs[i2]+"? <input type='text' id='input"+i+"' onKeyUp='checkMath(event,"+i+","+dx+")'></input>";
+          }
+          else
+          {
+            dx=x1-x2;
+            s += objs[i2] + " from the "+objs[i1]+"? <input type='text' id='input"+i+"' onKeyUp='checkMath(event,"+i+","+dx+")'></input>";
+          }
+          tag.innerHTML += s+"</p>";
+        }
+      }
+
+      function checkMath(event,index, answer)
+      {
+        if(event.keyCode!=13)
+        {
+          return;
+        }
+
+        try
+        {
+          var val = parseInt(document.getElementById("input"+index).value);
+          if(answer==val)
+          {
+            el=document.getElementById("problem"+index);
+            el.parentNode.removeChild(el);
+            goldField2.PlaySound("coin");
+          }
+          else
+          {
+            //wrong answer
+            document.getElementById("input"+index).style.color="RED"
+            goldField2.PlaySound("explode");
+          }
+        }
+        catch(ex)
+        {
+          //bad format
+          document.getElementById("input"+index).style.color="RED"
+          goldField2.PlaySound("monster");
+        }
+
+        //check for any remaining problems
+        for(let i=0;i<10;i++)
+        {
+          var temp = document.getElementById("problem"+i);
+          if(temp)
+          {
+            return;
+          }
+        }
+
+        //if we get this far, we are done.
+        document.getElementById("activity").innerHTML="That was great. Move on!";
+        document.getElementById("nextLink").style.visibility="visible"
+      }
     </script>
   </head>
   <body onload="init()">
@@ -114,17 +182,17 @@
             to go? Most of the time, how far depends on what you are trying to reach. The way to figure out the 
             distance to a goal is to subtract one from another. This calculation shows up a lot in the code.
           </p>
-          <h3> Distance = Goal &minus; Hero;</h3>
-          <p class="content">
+          <h3> Distance = Goal &minus; Start;</h3>
+          <p class="content" id="activity">
             In this image the hero is located on the same line as a gold. How many steps left (negative)
             or right (positive) does the hero need to take to get the gold?
             <br><span id="message">&nbsp;</span>
             <br>
-            <input type="text" id="distanceValue"></input><button onclick="checkDistance()">Check</button>
+            <input type="text" id="distanceValue" onkeydown="typeChange(event)"></input><button onclick="checkDistance()">Check</button>
           </p>
         </td>
       </tr>
     </table>
-    <a href="cartesian2.html" id="nextLink"><img src="nextbutton.png"></a>
+    <a href="cartesian1p.html" id="nextLink"><img src="nextbutton.png"></a>
   </body>
 </html>
