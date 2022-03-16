@@ -297,19 +297,19 @@
           r = Math.random();
           if(r<.25)
           {
-            s += "Which is <em>vertically higher on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx>0==rightway)+",i)'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx<0==rightway)+",i)'>"+tmp2+"</button></li></ol><br><br>";
+            s += "Which is <em>vertically higher on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx>0==rightway)+","+i+")'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx<0==rightway)+","+i+")'>"+tmp2+"</button></li></ol><br><br>";
           }
           else if(r<.5)
           {
-            s += "Which is <em>vertically lower on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx<0==rightway)+",i)'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx>0==rightway)+",i)'>"+tmp2+"</button></li></ol><br><br>";
+            s += "Which is <em>vertically lower on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx<0==rightway)+","+i+")'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx>0==rightway)+","+i+")'>"+tmp2+"</button></li></ol><br><br>";
           }
           else if(r<.75)
           {
-            s += "What is the <em>numerical distance</em> from "+objs[i1]+" to "+objs[i2]+"?<br><ol type='A'><li><button onclick='answer("+rightway+",i)'>"+dx + "</button></li><li><button onclick='answer("+(!rightway)+",i)'>"+(-dx)+"</button></li></ol><br><br>";
+            s += "What is the <em>numerical distance</em> from "+objs[i1]+" to "+objs[i2]+"?<br><ol type='A'><li><button onclick='answer("+rightway+","+i+")'>"+dx + "</button></li><li><button onclick='answer("+(!rightway)+","+i+")'>"+(-dx)+"</button></li></ol><br><br>";
           }
           else
           {
-            s += "What is the <em>numerical distance from</em> "+objs[i2]+" to "+objs[i1]+"?<br><ol type='A'><li><button onclick='answer("+(!rightway)+",i)'>"+dx + "</button></li><li><button onclick='answer("+rightway+",i)'>"+(-dx)+"</button></li></ol><br><br>";
+            s += "What is the <em>numerical distance from</em> "+objs[i2]+" to "+objs[i1]+"?<br><ol type='A'><li><button onclick='answer("+(!rightway)+","+i+")'>"+dx + "</button></li><li><button onclick='answer("+rightway+","+i+")'>"+(-dx)+"</button></li></ol><br><br>";
           }
           tag.innerHTML += s+"</p>";
         }
@@ -347,7 +347,7 @@
     </script>
   </head>
   <body onload="init()">
-    Version 1.2b
+    Version 1.2c
     <table>
       <tr>
         <td>
