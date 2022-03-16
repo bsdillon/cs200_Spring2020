@@ -316,7 +316,7 @@
       }
 
       function answer(ans,index)
-      {
+      {try(
         if(ans)
         {
           el=document.getElementById("problem"+index);
@@ -342,15 +342,12 @@
         //if we get this far, we are done.
         document.getElementById("activity").innerHTML="That was great. Move on!";
         document.getElementById("nextLink").style.visibility="visible"
-      }
-      
-      function finalWin()
-      {
-          document.getElementById("nextLink").style.visibility="visible"
+      }catch(ex){alert("Error: "+ex.message+"   "+ex.stack)}
       }
     </script>
   </head>
   <body onload="init()">
+    Version 1.2
     <table>
       <tr>
         <td>
