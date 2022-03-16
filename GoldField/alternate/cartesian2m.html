@@ -229,8 +229,7 @@
             m.Destroy();
           }
           goldField.Win();
-          document.getElementById("reset").style.visibility="visible";
-          document.getElementById("nextLink").style.visibility="visible"
+          CreateMath();
         }
       }
 
@@ -263,6 +262,92 @@
 
         return isScared;
       }
+
+      function CreateMath()
+      {
+        tag = document.getElementById("activity");
+        tag.innerHTML = "Nice job. Calculating the distance between two things on the horizontal axis is a key part of programming. You have to do it all the time. Solve the rest of these equations to advance and apply this in a program."
+        var objs = ["Gold", "Monster", "Hero"];
+        for(let i=0;i<10;i++)
+        {
+          var i1 = Math.floor(Math.random()*3);
+          var x1 = Math.floor(Math.random()*20-10);
+          var i2 = Math.floor(Math.random()*3);
+          var x2 = Math.floor(Math.random()*20-10);
+          while(i1==i2 || x1==x2)
+          {
+            i2 = Math.floor(Math.random()*3);
+            x2 = Math.floor(Math.random()*20-10);
+          }
+
+          s = "<p id='problem"+i+"'>The "+objs[i1]+" is at y="+x1+" and the "+objs[i2]+" is at y="+x2+".<br>";
+
+          rightway = true;
+          dx=x2-x1;
+          tmp1 = objs[i1];
+          tmp2 = objs[i2];
+          //tmp2 is LOWER than tmp1 if dx>0
+          if(Math.random()<.5)
+          {
+            rightway = false;
+            dx=x1-x2;
+            tmp1 = objs[i2];
+            tmp2 = objs[i1];
+          }
+          r = Math.random();
+          if(r<.25)
+          {
+            s += "Which is <em>vertically higher on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx>0==rightway)+",i)'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx<0==rightway)+",i)'>"+tmp2+"</button></li></ol><br><br>";
+          }
+          else if(r<.5)
+          {
+            s += "Which is <em>vertically lower on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx<0==rightway)+",i)'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx>0==rightway)+",i)'>"+tmp2+"</button></li></ol><br><br>";
+          }
+          else if(r<.75)
+          {
+            s += "What is the <em>numerical distance</em> from "+objs[i1]+" to "+objs[i2]+"?<br><ol type='A'><li><button onclick='answer("+rightway+",i)'>"+dx + "</button></li><li><button onclick='answer("+(!rightway)+",i)'>"+(-dx)+"</button></li></ol><br><br>";
+          }
+          else
+          {
+            s += "What is the <em>numerical distance from</em> "+objs[i2]+" to "+objs[i1]+"?<br><ol type='A'><li><button onclick='answer("+(!rightway)+",i)'>"+dx + "</button></li><li><button onclick='answer("+rightway+",i)'>"+(-dx)+"</button></li></ol><br><br>";
+          }
+          tag.innerHTML += s+"</p>";
+        }
+      }
+
+      function answer(ans,index)
+      {
+        if(ans)
+        {
+          el=document.getElementById("problem"+index);
+          el.parentNode.removeChild(el);
+          goldField2.PlaySound("coin");          
+        }
+        else
+        {
+          document.getElementById("hint"+index).style.visibility="visible";
+          goldField2.PlaySound("monster");
+        }
+
+        //check for any remaining problems
+        for(let i=0;i<10;i++)
+        {
+          var temp = document.getElementById("problem"+i);
+          if(temp)
+          {
+            return;
+          }
+        }
+
+        //if we get this far, we are done.
+        document.getElementById("activity").innerHTML="That was great. Move on!";
+        document.getElementById("nextLink").style.visibility="visible"
+      }
+      
+      function finalWin()
+      {
+          document.getElementById("nextLink").style.visibility="visible"
+      }
     </script>
   </head>
   <body onload="init()">
@@ -286,6 +371,7 @@
              our boundary. See which ones show as safe or scary conditions? If the boundary is true, then
              hero is safe. You will see that scary situations are created because of incorrect logic.
           </p>
+          <div id="activity">
           <p id="boundaries">
           </p>
           <h1>Are you safe?</h1>
@@ -294,6 +380,7 @@
              with the arrow keys. Use the space key or click on the hero to turn him around. Put him in 
              a position where he is safe.
           </p>
+          </div>
         </td>
       </tr>
     </table>
