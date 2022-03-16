@@ -262,7 +262,7 @@
 
         return isScared;
       }
-alert("here");
+
       function CreateMath()
       {
         tag = document.getElementById("activity");
@@ -314,18 +314,17 @@ alert("here");
           tag.innerHTML += s+"</p>";
         }
       }
-alert("here2");
 
       function answer(ans,index)
-      {try{
+      {alert("here");try{
         if(ans)
-        {
+        {alert("here2");
           el=document.getElementById("problem"+index);
           el.parentNode.removeChild(el);
           goldField2.PlaySound("coin");          
         }
         else
-        {
+        {alert("here3");
           document.getElementById("hint"+index).style.visibility="visible";
           goldField2.PlaySound("monster");
         }
@@ -345,11 +344,10 @@ alert("here2");
         document.getElementById("nextLink").style.visibility="visible"
       }catch(ex){alert("Error: "+ex.message+"   "+ex.stack)}
       }
-alert("here3");
     </script>
   </head>
   <body onload="init()">
-    Version 1.2a
+    Version 1.2b
     <table>
       <tr>
         <td>
