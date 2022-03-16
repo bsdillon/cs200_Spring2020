@@ -262,7 +262,7 @@
 
         return isScared;
       }
-
+alert("here");
       function CreateMath()
       {
         tag = document.getElementById("activity");
@@ -314,9 +314,10 @@
           tag.innerHTML += s+"</p>";
         }
       }
+alert("here2");
 
       function answer(ans,index)
-      {try(
+      {try{
         if(ans)
         {
           el=document.getElementById("problem"+index);
@@ -344,10 +345,11 @@
         document.getElementById("nextLink").style.visibility="visible"
       }catch(ex){alert("Error: "+ex.message+"   "+ex.stack)}
       }
+alert("here3");
     </script>
   </head>
   <body onload="init()">
-    Version 1.2
+    Version 1.2a
     <table>
       <tr>
         <td>
