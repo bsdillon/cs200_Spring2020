@@ -5,6 +5,7 @@
       .red {color:red; font-weight:bold;}
       .green {color:green; font-weight:bold;}
       .transparent {pointer-events:none;}
+      .hidden {color:white;}
       .flipped {-webkit-transform: scaleX(-1); transform: scaleX(-1);}
       .scared {
          animation: shakeImg 0.5s;
@@ -63,7 +64,6 @@
         xAxis.SetLayerOn(true);
         goldField.Redraw();
 
-        document.getElementById("reset").style.visibility="hidden";
         hero = goldField.AddHero();
         hero.HTMLtag.classList.toggle("transparent");
 
@@ -268,6 +268,7 @@
         tag = document.getElementById("activity");
         tag.innerHTML = "Nice job. Calculating the distance between two things on the horizontal axis is a key part of programming. You have to do it all the time. Solve the rest of these equations to advance and apply this in a program."
         var objs = ["Gold", "Monster", "Hero"];
+        var text = "<table>";
         for(let i=0;i<10;i++)
         {
           var i1 = Math.floor(Math.random()*3);
@@ -280,7 +281,7 @@
             x2 = Math.floor(Math.random()*20-10);
           }
 
-          s = "<p id='problem"+i+"'>The "+objs[i1]+" is at y="+x1+" and the "+objs[i2]+" is at y="+x2+".<br>";
+          s = "<tr id='problem"+i+"'><td>The "+objs[i1]+" is at y="+x1+" and the "+objs[i2]+" is at y="+x2+".<br>";
 
           rightway = true;
           dx=x2-x1;
@@ -297,35 +298,40 @@
           r = Math.random();
           if(r<.25)
           {
-            s += "Which is <em>vertically higher on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx>0==rightway)+","+i+")'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx<0==rightway)+","+i+")'>"+tmp2+"</button></li></ol><br><br>";
+            s += "Which is <em>vertically higher on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx>0==rightway)+","+i+")'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx<0==rightway)+","+i+")'>"+tmp2+"</button></li></ol></td>";
+            s += "<td class='hidden' id='hint"+i+"'>Hint: The top of the screen is always a lower y value than the bottom</span></td></tr>";
           }
           else if(r<.5)
           {
-            s += "Which is <em>vertically lower on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx<0==rightway)+","+i+")'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx>0==rightway)+","+i+")'>"+tmp2+"</button></li></ol><br><br>";
+            s += "Which is <em>vertically lower on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx>0==rightway)+","+i+")'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx<0==rightway)+","+i+")'>"+tmp2+"</button></li></ol></td>";
+            s += "<td class='hidden' id='hint"+i+"'>Hint: The top of the screen is always a lower y value than the bottom</span></td></tr>";
           }
           else if(r<.75)
           {
-            s += "What is the <em>numerical distance</em> from "+objs[i1]+" to "+objs[i2]+"?<br><ol type='A'><li><button onclick='answer("+rightway+","+i+")'>"+dx + "</button></li><li><button onclick='answer("+(!rightway)+","+i+")'>"+(-dx)+"</button></li></ol><br><br>";
+            s += "What is the <em>numerical distance</em> from "+objs[i1]+" to "+objs[i2]+"?<br><ol type='A'><li><button onclick='answer("+rightway+","+i+")'>"+dx + "</button></li><li><button onclick='answer("+(!rightway)+","+i+")'>"+(-dx)+"</button></li></ol></td>";
+            s += "<td class='hidden' id='hint"+i+"'>Hint: This distance is the GOAL - START.</span></td></tr>";
           }
           else
           {
-            s += "What is the <em>numerical distance from</em> "+objs[i2]+" to "+objs[i1]+"?<br><ol type='A'><li><button onclick='answer("+(!rightway)+","+i+")'>"+dx + "</button></li><li><button onclick='answer("+rightway+","+i+")'>"+(-dx)+"</button></li></ol><br><br>";
+            s += "What is the <em>numerical distance from</em> "+objs[i2]+" to "+objs[i1]+"?<br><ol type='A'><li><button onclick='answer("+(!rightway)+","+i+")'>"+dx + "</button></li><li><button onclick='answer("+rightway+","+i+")'>"+(-dx)+"</button></li></ol></td>";
+            s += "<td class='hidden' id='hint"+i+"'>Hint: This distance is the GOAL - START.</span></td></tr>";
           }
-          tag.innerHTML += s+"</p>";
+          text += s+"</tr>";
         }
+        tag.innerHTML += text + "</table>";
       }
 
       function answer(ans,index)
-      {alert("here");try{
+      {
         if(ans)
-        {alert("here2");
+        {
           el=document.getElementById("problem"+index);
           el.parentNode.removeChild(el);
-          goldField2.PlaySound("coin");          
+          goldField.PlaySound("coin");          
         }
         else
-        {alert("here3");
-          document.getElementById("hint"+index).style.visibility="visible";
+        {
+          document.getElementById("hint"+index).style.color="red";
           goldField.PlaySound("monster");
         }
 
@@ -333,7 +339,7 @@
         for(let i=0;i<10;i++)
         {
           var temp = document.getElementById("problem"+i);
-          if(temp)
+          if(temp != null)
           {
             return;
           }
@@ -342,12 +348,10 @@
         //if we get this far, we are done.
         document.getElementById("activity").innerHTML="That was great. Move on!";
         document.getElementById("nextLink").style.visibility="visible"
-      }catch(ex){alert("Error: "+ex.message+"   "+ex.stack)}
       }
     </script>
   </head>
   <body onload="init()">
-    Version 1.2c
     <table>
       <tr>
         <td>
@@ -382,7 +386,6 @@
       </tr>
     </table>
     <p id="message"></p>
-    <button id="reset" onclick='ResetBoard()'>Try again</button><br>
-    <a href="cartesian3.html" id="nextLink"><img src="nextbutton.png"></a>
+    <a href="cartesian2p.html" id="nextLink"><img src="nextbutton.png"></a>
   </body>
 </html>

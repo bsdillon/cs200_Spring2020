@@ -15,9 +15,6 @@
       var distance=0;
       var gold=0;
       
-      addToolTip("object","OBJECT - Portions of software data and operations that are contained in one packet of software code.");
-      addToolTip("tuple","TUPLE - A list of values contained by parenthesis (red,blue,green,yellow), (1,2,3,4,5,6)");
-
       function init()
       {
         blockWin = false;
@@ -194,11 +191,10 @@
   <body onload="init()">
     <table><tr><td>
       <canvas id="field"></canvas></td>
-      <td>
+      <td class="top">
         <p class="content">
-          The Hero is an <span class="ttip" id="object" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">object</span> that has its own variables for x and y position. Within the Hero object, <em>this</em> just means
-          'this object'. So the Hero's location is always known as this.xPos and this.yPos. The Hero always knowns where it is using these
-          variables. We can write out the position as a pair of values. In computers, this is called a <span class="ttip" id="tuple" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">tuple</span>. This is the Hero's
+          The Hero is an <span class="ttip" id="object" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">object</span> that has its own <span class="ttip" id="variable" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">variable</span>s for x and y position. Within the Hero object, <em>this</em> just means
+          'this object'. So the Hero's location is always known as this.xPos and this.yPos. The Hero always knowns where it is using these variables. We can write out the position as a pair of values. In computers, this is called a <span class="ttip" id="tuple" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">tuple</span>. This is the Hero's
           current position.
         </p>
         <p class="code">

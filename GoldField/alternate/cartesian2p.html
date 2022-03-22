@@ -1,0 +1,282 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+      .red {color:red; font-weight:bold;}
+      .green {color:green; font-weight:bold;}
+      .transparent {pointer-events:none;}
+      .hidden {color:white;}
+    </style>
+    <script src="ttip.js"></script>
+    <script src="goldfield.js"></script>
+    <script src="cartesian.js"></script>
+    <script>
+      var goldField;
+      var half = 5
+
+      function init()
+      {
+        document.getElementById("nextLink").style.visibility="hidden";
+        goldField = new GoldField(document.getElementById("field"),50, 1, 2*half+1);
+
+        goldField.Reset();
+        yAxis = new YAxis()
+        goldField.AddGenericLayer(yAxis);
+        yAxis.SetLayerOn(true);
+        goldField.Redraw();
+
+        hero = goldField.AddHero();
+        monster = goldField.AddMonster();
+        gold = goldField.AddGold();
+        distHtoG = gold.yPos - hero.yPos;
+        label1= "distHtoG";
+        variable1 = "gold";
+        variable2 = "hero";
+        if(Math.random()>.5)
+        {
+          distHtoG = -distHtoG;
+          label1 = "distGtoH";
+          variable1 = "hero";
+          variable2 = "gold";
+        }
+        document.getElementById("label1a").innerHTML = label1;
+        document.getElementById("label1b").innerHTML = label1;
+
+        distMtoG = gold.yPos - monster.yPos;
+        label2= "distMtoG";
+        variable3 = "gold";
+        variable4 = "monster";
+        if(Math.random()>.5)
+        {
+          distMtoG = -distMtoG;
+          label2 = "distGtoM";
+          variable3 = "monster";
+          variable4 = "gold";
+        }
+        document.getElementById("label2a").innerHTML = label2;
+        document.getElementById("label2b").innerHTML = label2;
+
+        distMtoH = hero.yPos - monster.yPos;
+        label3= "distMtoH";
+        variable5 = "hero";
+        variable6 = "monster";
+        if(Math.random()>.5)
+        {
+          distMtoH = -distMtoH;
+          label3 = "distHtoM";
+          variable5 = "monster";
+          variable6 = "hero";
+        }
+        document.getElementById("label3a").innerHTML = label3;
+        document.getElementById("label3b").innerHTML = label3;
+        checkAll();
+      }
+
+      function checkAll()
+      {
+        var allPass = true;
+        var names = ['gold', 'hero', 'monster'];
+
+        v1 = document.getElementById("v1").value;
+        v2 = document.getElementById("v2").value
+        if(v1===variable1 && v2===variable2)
+        {
+          document.getElementById("valid1").src="greencheck.png";
+          document.getElementById("valid2").src="greencheck.png";
+          document.getElementById("correct12").src="greencheck.png";
+        }
+        else
+        {
+          allPass=false;
+          document.getElementById("valid1").src="redx.png";
+          document.getElementById("valid2").src="redx.png";
+          document.getElementById("correct12").src="redx.png";
+
+          if(names.includes(v1))
+          {
+            document.getElementById("valid1").src="greencheck.png";
+          }
+
+          if(names.includes(v2))
+          {
+            document.getElementById("valid2").src="greencheck.png";
+          }
+        }
+
+        v3 = document.getElementById("v3").value;
+        v4 = document.getElementById("v4").value
+        if(v3===variable3 && v4===variable4)
+        {
+          document.getElementById("valid3").src="greencheck.png";
+          document.getElementById("valid4").src="greencheck.png";
+          document.getElementById("correct34").src="greencheck.png";
+        }
+        else
+        {
+          allPass=false;
+          document.getElementById("valid3").src="redx.png";
+          document.getElementById("valid4").src="redx.png";
+          document.getElementById("correct34").src="redx.png";
+
+          if(names.includes(v3))
+          {
+            document.getElementById("valid3").src="greencheck.png";
+          }
+
+          if(names.includes(v4))
+          {
+            document.getElementById("valid4").src="greencheck.png";
+          }
+        }
+
+        v5 = document.getElementById("v5").value;
+        v6 = document.getElementById("v6").value
+        if(v5===variable5 && v6===variable6)
+        {
+          document.getElementById("valid5").src="greencheck.png";
+          document.getElementById("valid6").src="greencheck.png";
+          document.getElementById("correct56").src="greencheck.png";
+        }
+        else
+        {
+          allPass=false;
+          document.getElementById("valid5").src="redx.png";
+          document.getElementById("valid6").src="redx.png";
+          document.getElementById("correct56").src="redx.png";
+
+          if(names.includes(v5))
+          {
+            document.getElementById("valid5").src="greencheck.png";
+          }
+
+          if(names.includes(v6))
+          {
+            document.getElementById("valid6").src="greencheck.png";
+          }
+        }
+
+        var options = {"<":-1, ">":1}
+        tmp = document.getElementById("op1").value
+        b1 = tmp in options? options[tmp] : 0;
+        tmp = document.getElementById("op2").value
+        b2 = tmp in options? options[tmp] : 0;
+        tmp = document.getElementById("op3").value
+        b3 = tmp in options? options[tmp] : 0;
+        if(b1==0)
+        {
+          document.getElementById("valid7").src="redx.png";
+          allPass=false;
+        }
+        else
+        {
+          document.getElementById("valid7").src="greencheck.png";
+        }
+
+        if(b2==0)
+        {
+          document.getElementById("valid8").src="redx.png";
+          allPass=false;
+        }
+        else
+        {
+          document.getElementById("valid8").src="greencheck.png";
+        }
+
+        if(b3==0)
+        {
+          document.getElementById("valid9").src="redx.png";
+          allPass=false;
+        }
+        else
+        {
+          document.getElementById("valid9").src="greencheck.png";
+        }
+
+        if(b1*distHtoG>0 && b2*distMtoG>0 && b3*distMtoH>0)
+        {
+          document.getElementById("correct789").src="greencheck.png";
+          goldField.PlaySound("win");
+        }
+        else
+        {
+          allPass=false;
+          document.getElementById("correct789").src="redx.png";
+          if(b1*b2*b3!=0)
+          {
+            goldField.PlaySound("lose");
+          }
+        }
+
+        if(allPass)
+        {
+          document.getElementById("nextLink").style.visibility="visible";
+        }
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <table>
+      <tr>
+        <td class="top">
+          <canvas id="field"></canvas>
+        </td>
+        <td class="top">
+          <h1>Fill in the Code</h1>
+          <p class="content">
+            The code below describes the relative positions of the three figures at left. We want
+            to find the distance between them and then decide if those distances are positive or 
+            negative. Now we can use the sign of these values to decide if these values match the
+            positions shown here. To fill in this code correctly, you will need to pick the right
+            values on the y-axis, the right <span class="ttip" id="field" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">field</span>s, and the right comparisons.
+          </p>
+          <p class="content">
+            In this code we are trying to satisfy the <span class="ttip" id="Boolean" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">Boolean</span> expression to play the win sound. The
+            <span class="ttip" id="if" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">if</span> is one of several <span class="ttip" id="control structure" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">control structure</span>s that affect the <span class="ttip" id="flow" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">flow</span> the code. If you get the 
+            right expression, the sound will play. If you have a wrong expression, you will hear
+            something else. You will learn more control structures later.
+          </p>
+          <table><tr>
+          <td class="code">
+            <br>
+            &nbsp;&nbsp;1. var hero = goldField.AddHero();<br>
+            &nbsp;&nbsp;2. var gold = goldField.AddGold();<br>
+            &nbsp;&nbsp;3. var monster = goldField.AddMonster();<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//be careful about the order<br>
+            &nbsp;&nbsp;4. var <span id="label1a"></span>&nbsp;&nbsp;= <input type="text" id="v1" maxlength="7" size="7" onKeyUp="checkAll()"></input>.yPos &minus; <input type="text" id="v2" maxlength="7" size="7" onKeyUp="checkAll()"></input>.yPos;<br>
+            &nbsp;&nbsp;5. var <span id="label2a"></span> = <input type="text" id="v3" maxlength="7" size="7" onKeyUp="checkAll()"></input>.yPos &minus; <input type="text" id="v4" maxlength="7" size="7" onKeyUp="checkAll()"></input>.yPos;<br>
+            &nbsp;&nbsp;6. var <span id="label3a"></span> = <input type="text" id="v5" maxlength="7" size="7" onKeyUp="checkAll()"></input>.yPos &minus; <input type="text" id="v6" maxlength="7" size="7" onKeyUp="checkAll()"></input>.yPos;<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//is it &lt;= or &gt;= ?<br>
+            &nbsp;&nbsp;7. if (<span id="label1b"></span> <input type="text" id="op1" maxlength="1" size="1" onKeyUp="checkAll()"></input>= 0 && <span id="label2b"></span> <input type="text" id="op2" maxlength="1" size="1" onKeyUp="checkAll()"></input>= 0 && <span id="label3b"></span> <input type="text" id="op3" maxlength="1" size="1" onKeyUp="checkAll()"></input>= 0)<br>
+            &nbsp;&nbsp;8. {<br>
+            &nbsp;&nbsp;9.&nbsp;&nbsp;&nbsp;&nbsp;goldField.PlaySound("win");<br>
+            10. }<br>
+            11. else<br>
+            12. {<br>
+            13.&nbsp;&nbsp;&nbsp;&nbsp;goldField.PlaySound("lose");<br>
+            14. }<br><br>
+          </td><td class="top">
+          <h3>Check Your Code!</h3>
+          <ul>
+            <li><img src="" id="valid1" width="20"> Valid variable in box #1</li>
+            <li><img src="" id="valid2" width="20"> Valid variable in box #2</li>
+            <li><img src="" id="correct12" width="20"> Correct order and variables in line #4</li>
+            <li><img src="" id="valid3" width="20"> Valid variable in box #3</li>
+            <li><img src="" id="valid4" width="20"> Valid variable in box #4</li>
+            <li><img src="" id="correct34" width="20"> Correct order and variables in line #5</li>
+            <li><img src="" id="valid5" width="20"> Valid variable in box #5</li>
+            <li><img src="" id="valid6" width="20"> Valid variable in box #6</li>
+            <li><img src="" id="correct56" width="20"> Correct order and variables in line #6</li>
+            <li><img src="" id="valid7" width="20"> Valid inequality box #7</li>
+            <li><img src="" id="valid8" width="20"> Valid inequality box #8</li>
+            <li><img src="" id="valid9" width="20"> Valid inequality box #9</li>
+            <li><img src="" id="correct789" width="20"> Correct inequality</li>
+          </dl>
+          </td></tr></table>
+        </td>
+      </tr>
+    </table>
+    <a href="cartesian3.html" id="nextLink"><img src="nextbutton.png"></a>
+    <div id="tooltip">
+    </div>
+  </body>
+</html>
