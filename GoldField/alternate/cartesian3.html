@@ -33,8 +33,6 @@
         goldField.AddGenericLayer(grid);
         grid.SetLayerOn(true);
         
-        var origin = half;
-
         hero = goldField.AddHero();
         ResetBoard();
       }
@@ -46,6 +44,7 @@
         yCurr = Math.floor(Math.random()*(2*half+1));
         targetX = Math.floor(Math.random()*(2*half+1));
         targetY = Math.floor(Math.random()*(2*half+1));
+        distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
         while(xCurr==targetX && yCurr==targetY)
         {
           targetX = Math.floor(Math.random()*(2*half+1));
@@ -98,42 +97,44 @@
 
         if(hero != null && anyArrow)
         {
-           var dim = field.GetDimensions();
-           var loc = hero.GetPosition();
-           if(deltaX != 0 && !(loc[0] + deltaX < 0 || loc[0] + deltaX == dim[0]))
-           {
-             loc[0] = loc[0]+deltaX;
-           }
-
-           if(deltaY != 0 && !(loc[1] + deltaY < 0 || loc[1] + deltaY == dim[1]))
-           {
-             loc[1] = loc[1]+deltaY;
-           }
-           AttemptMove(loc[0],loc[1]);
+          var dim = field.GetDimensions();
+          var loc = hero.GetPosition();
+          if(deltaX != 0 && !(loc[0] + deltaX < 0 || loc[0] + deltaX == dim[0]))
+          {
+            loc[0] = loc[0]+deltaX;
+          }
+          
+          if(deltaY != 0 && !(loc[1] + deltaY < 0 || loc[1] + deltaY == dim[1]))
+          {
+            loc[1] = loc[1]+deltaY;
+          }
+          
+          var nextSpace = field.LookAt(loc[0],loc[1]);
+          if(nextSpace[0]!=Empty)
+          {
+            goldField.PlaySound("coin");
+          }
+          
+          if(nextSpace[0]==Empty)
+          {
+            hero.SetPosition(loc[0],loc[1]);
+            xCurr=loc[0];
+            yCurr=loc[1];
+            goldField.Redraw();
+            checkWin();
+          }
         }        
       }
-
-      function AttemptMove(x, y)
+      
+      function newLocation()
       {
-        var nextSpace = field.LookAt(x,y);
-        if(nextSpace[0]==hero)
-        {
-          return false;
-        }
-
-        if(nextSpace[0]!=Empty)
-        {
-          goldField.PlaySound("coin");
-        }
-          
-        if(nextSpace[0]==Empty)
-        {
-          hero.SetPosition(x,y);
-          xCurr=x;
-          yCurr=y;
-          goldField.Redraw();
-          checkWin();
-        }
+        tx = parseInt(document.getElementById("xPos").value);
+        xCurr=tx+half;
+        ty = parseInt(document.getElementById("yPos").value);
+        yCurr=ty+half;
+        hero.SetPosition(xCurr, yCurr);
+        goldField.Redraw();
+        checkWin();
       }
 
       function checkWin()
@@ -170,15 +171,6 @@
          }
          blockWin = false;
       }
-      
-      function newLocation()
-      {
-        xCurr=parseInt(document.getElementById("xPos").value)+half;
-        yCurr=parseInt(document.getElementById("yPos").value)+half;
-        AttemptMove(xCurr, yCurr)
-        hero.SetPosition(xCurr,yCurr);
-        checkWin();
-      }
     </script>
   </head>
   <body onload="init()">
@@ -187,8 +179,8 @@
       <td class="top">
         <p class="content">
           The Hero is an <span class="ttip" id="object" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">object</span> that has its own <span class="ttip" id="variable" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">variable</span>s for x and y position. Within the Hero object, the <span class="ttip" id="keyword" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">keyword</span> <em>this</em> just means
-          'this object'. So the Hero's location is always known as this.xPos and this.yPos. The Hero always knows where it is using these variables. We can write out the position as a pair of x and y values. In computers, this is called a <span class="ttip" id="tuple" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">tuple</span>. This is the Hero's
-          current position.
+          'this object'. So the Hero's location is always known as this.xPos and this.yPos. The Hero always knows where it is using these variables. We can write out the position as a pair of x and y values. For historical reasons, mathematicians call this an <span class="ttip" id="ordered pair" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">ordered pair</span>. In computers, this is called a <span class="ttip" id="tuple" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">tuple</span>. 
+          This is the Hero's current position.
         </p>
         <p class="code">
           <br>
@@ -201,7 +193,7 @@
           I'll let you know if you are further or nearer until you find it. 
         </p>
         <p id="output"></p>
-        <a href="cartesian3a.html" id="nextLink"><img src="nextbutton.png"></a><br>
+        <a href="cartesian3m.html" id="nextLink"><img src="nextbutton.png"></a><br>
         <button id="reset" onclick='ResetBoard()'>Try again</button><br>
       </td></tr>
     </table>

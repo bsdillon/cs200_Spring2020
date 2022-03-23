@@ -1,0 +1,226 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+      .red {color:red; font-weight:bold;}
+      .green {color:green; font-weight:bold;}
+      .transparent {pointer-events:none;}
+      .hidden {color:white;}
+    </style>
+    <script src="ttip.js"></script>
+    <script src="goldfield.js"></script>
+    <script src="cartesian.js"></script>
+    <script>
+      var goldField;
+      var half = 5;
+      var challengesLeft = 10;
+      var roman = ['I','II','III','IV'];
+
+      function init()
+      {
+        document.getElementById("nextLink").style.visibility="hidden"
+        goldField = new GoldField(document.getElementById("field"),30, 2*half+1, 2*half+1);
+        goldField.SetKeyListener(Key);
+        goldField.SetClickListener(Click);
+
+        quads = new Quadrants()
+        goldField.AddGenericLayer(quads);
+        quads.SetLayerOn(true);
+
+        yAxis = new YAxis()
+        goldField.AddGenericLayer(yAxis);
+        yAxis.SetLayerOn(true);
+
+        xAxis = new XAxis()
+        goldField.AddGenericLayer(xAxis);
+        xAxis.SetLayerOn(true);
+
+        grid = new Grid()
+        goldField.AddGenericLayer(grid);
+        grid.SetLayerOn(true);
+        
+        hero = goldField.AddHero();
+        ResetBoard();
+      }
+      
+      function ResetBoard()
+      {
+        xCurr = Math.floor(Math.random()*(2*half+1));
+        yCurr = Math.floor(Math.random()*(2*half+1));
+        targetX = Math.floor(Math.random()*(2*half+1));
+        targetY = Math.floor(Math.random()*(2*half+1));
+        distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
+        while(xCurr==targetX && yCurr==targetY)
+        {
+          targetX = Math.floor(Math.random()*(2*half+1));
+          targetY = Math.floor(Math.random()*(2*half+1));
+          distance = Math.sqrt(((targetX-xCurr)*(targetX-xCurr))+((targetY-yCurr)*(targetY-yCurr)));
+        }
+        
+        //used for debug only
+        //gold = goldField.AddGold();
+        //gold.SetPosition(targetX, targetY);
+        hero.SetPosition(xCurr,yCurr);
+        xCurr-=half;
+        yCurr=half-yCurr;
+
+        goldField.Redraw();
+        Challenge();
+      }
+      
+      function Click(event)
+      {
+        if(quadTarget!=="NONE")
+        {
+          i = roman.findIndex(x => x===quadTarget);
+          if(!((event[0]<half && i>0 && i<3) || (event[0]>half && (i==0 || i==3))))
+          {//x coordinate does not match target
+            goldField.PlaySound("hero");
+            return;
+          }
+          else if(!((event[1]<half && i<2) || (event[1]>half && i>1)))
+          {//y coordinate does not match target
+            goldField.PlaySound("hero");
+            return;
+          }
+          goldField.PlaySound("win");
+          challengesLeft--;
+          Challenge();
+        }
+      }
+
+      function Key(event)
+      {
+        //37 left arrow
+        //38 up arrow
+        //39 right arrow
+        //40 down arrow
+
+        var deltaX = 0;
+        var deltaY = 0;
+        var anyArrow = false;
+        if(event[0]==37)
+        {
+          deltaX = -1;
+          anyArrow = true;
+        }
+        else if(event[0]==38)
+        {
+          deltaY = -1;
+          anyArrow = true;
+        }
+        else if(event[0]==39)
+        {
+          deltaX = 1;
+          anyArrow = true;
+        }
+        else if(event[0]==40)
+        {
+          deltaY = 1;
+          anyArrow = true;
+        }
+
+        if(hero != null && anyArrow)
+        {
+          var dim = field.GetDimensions();
+          var loc = hero.GetPosition();
+          if(deltaX != 0 && !(loc[0] + deltaX < 0 || loc[0] + deltaX == dim[0]))
+          {
+            loc[0] = loc[0]+deltaX;
+          }
+          
+          if(deltaY != 0 && !(loc[1] + deltaY < 0 || loc[1] + deltaY == dim[1]))
+          {
+            loc[1] = loc[1]+deltaY;
+          }
+          
+          var nextSpace = field.LookAt(loc[0],loc[1]);
+          if(nextSpace[0]!=Empty)
+          {
+            return;
+          }
+          
+          if(nextSpace[0]==Empty)
+          {
+            hero.SetPosition(loc[0],loc[1]);
+            xCurr=loc[0];
+            yCurr=loc[1];
+            goldField.Redraw();
+            checkWin();
+          }
+        }        
+      }
+
+      function Challenge()
+      {
+        tag = document.getElementById("activity");
+        quadTarget="NONE";
+        if(challengesLeft==0)
+        {
+          tag.innerHTML="Great job. Move on!";
+          document.getElementById("nextLink").style.visibility="visible"
+          return;
+        }
+
+        var objs = ["Gold", "Monster", "Hero"];
+
+        var s = "";
+        var r = Math.random();
+        if(true)
+        {
+          i = Math.floor(Math.random()*4);
+          s += "Click anywhere on quadrant "+roman[i];
+          quadTarget = roman[i];
+        }
+        tag.innerHTML = s;
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <table>
+      <tr>
+        <td class="top">
+          <canvas id="field"></canvas>
+        </td>
+        <td class="top">
+          <h1>Using the Cartesian Plane</h1>
+          <p class="content">
+             This field, marked out in terms of the X and Y axis, is a <span class="ttip" id="cartesian plane" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">cartesian plane</span>.
+             We can use an <span class="ttip" id="ordered pair" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">ordered pair</span> to represent any point on the plane. At the center
+             of the plain is the <span class="ttip" id="origin" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">origin</span> or (0, 0). The plane is also divided into <span class="ttip" id="quadrant" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">quadrant</span>s.
+             All these terms help us to describe the map and work with common names just like parts of a car or of a body. In GoldField
+             there are <span class="ttip" id="function" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">function</span>s that use the (X,Y) ordered pairs in this way:<br>
+             <ul class="code">
+               <li>goldField.LookAt(x,y) - What is located at the location (x, y)? Is it gold or a monster?</li>
+               <li>[w,h] = goldField.GetDimensions() - How big is the field? Give me a tuple (w, h) that represents the width and height of the field.</li>
+               <li>hero.SetPosition(x,y) - Move the Hero to the (x,y) point on the field.</li>
+               <li>[x, y] = hero.GetPosition() - Where is the hero now? Give me a tuble (x,y) with his current position.</li>
+             </ul>
+          </p>
+          <p class="content">
+            Each of these functions has a <span class="ttip" id="parameter list" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">parameter list</span> with all the
+            data it requires to do its job. Some functions don't need any data. For example, we've already seen that the hero object can use its internal data to show its
+            position (see the code below). Some of the functions, like GetPosition, <span class="ttip" id="return" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">return</span> data
+            in a different kind of tuple called an <span class="ttip" id="array" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">array</span> that uses square brackets [ and ].
+            This looks a little different, but it means the same thing as any other tuple. You'll learn more about arrays later, but for now just know that you can use array[0] and array[1]
+            to get the x and y parts of the tuple.
+          </p>
+          <p class="code">
+            Hero.GetPosition = function()<br>
+            {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;return [this.xPos, this.yPos];<br>
+            }<br>
+          </p>
+          <h1>Challenges</h1>
+          <p class="content">
+             Let's use all this new vocabulary. Work through ten challenges before you move on.
+          </p>
+          <div id="activity">
+          </div>
+        </td>
+      </tr>
+    </table>
+    <a href="cartesian3p.html" id="nextLink"><img src="nextbutton.png"></a>
+    <div id="tooltip"></div>
+  </body>
+</html>

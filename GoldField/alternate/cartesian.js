@@ -1,3 +1,25 @@
+      var Quadrants = function()
+      {
+         this.name = "Quadrants";
+      }
+
+      Quadrants.prototype = Object.create(Layer.prototype);
+      Quadrants.prototype.constructor = Quadrants;
+
+      Quadrants.prototype.DrawLayer = function(block)
+      {
+        var w = this.ctx.canvas.clientWidth;
+        var h = this.ctx.canvas.clientHeight;
+        this.ctx.font = "60px Georgia";
+        this.ctx.fillStyle = "#FF0000AA";
+        this.ctx.fillText("I", 3*w/4-(block/2), h/4)
+        this.ctx.fillText("II", w/4-(block/2), h/4)
+        this.ctx.fillText("III", w/4 -(block), 3*h/4)
+        this.ctx.fillText("IV", 3*w/4-(block), 3*h/4)
+      }
+
+//////////////////////////
+
       var XAxis = function()
       {
          this.name = "X-Axis";
