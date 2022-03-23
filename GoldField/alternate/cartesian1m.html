@@ -110,12 +110,12 @@
           if(Math.random()>.5)
           {
             dx=x2-x1;
-            s += objs[i1] + " from the "+objs[i2]+"? <input type='text' id='input"+i+"' onKeyUp='checkMath(event,"+i+","+dx+")'></input>";
+            s += objs[i1] + " to the "+objs[i2]+"? <input type='text' id='input"+i+"' onKeyUp='checkMath(event,"+i+","+dx+")'></input>";
           }
           else
           {
             dx=x1-x2;
-            s += objs[i2] + " from the "+objs[i1]+"? <input type='text' id='input"+i+"' onKeyUp='checkMath(event,"+i+","+dx+")'></input>";
+            s += objs[i2] + " to the "+objs[i1]+"? <input type='text' id='input"+i+"' onKeyUp='checkMath(event,"+i+","+dx+")'></input>";
           }
           tag.innerHTML += s+"</p>";
         }
