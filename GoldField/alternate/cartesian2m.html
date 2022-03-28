@@ -284,27 +284,36 @@
 
           s = "<tr id='problem"+i+"'><td>The "+objs[i1]+" is at y="+x1+" and the "+objs[i2]+" is at y="+x2+".<br>";
 
+          //locations are theoretical so based on math only
           rightway = true;
           dx=x2-x1;
           tmp1 = objs[i1];
           tmp2 = objs[i2];
-          //tmp2 is LOWER than tmp1 if dx>0
+          higher = 2;
+          if(x1>x2)
+          {
+            higher = 1;
+          }
+          //tmp2 is HIGHER than tmp1 if dx>0
           if(Math.random()<.5)
           {
+            //tmp2 is LOWER than tmp1 if dx>0
             rightway = false;
             dx=x1-x2;
             tmp1 = objs[i2];
             tmp2 = objs[i1];
+            tmp=[0,2,1];
+            higher=tmp[higher];
           }
           r = Math.random();
           if(r<.25)
           {
-            s += "Which is <em>vertically higher on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx>0==rightway)+","+i+")'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx<0==rightway)+","+i+")'>"+tmp2+"</button></li></ol></td>";
+            s += "Which is <em>vertically higher on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(higher==1)+","+i+")'>"+tmp1 + "</button></li><li><button onclick='answer("+(higher==2)+","+i+")'>"+tmp2+"</button></li></ol></td>";
             s += "<td class='hidden' id='hint"+i+"'>Hint: The top of the screen is always a higher y value than the bottom</span></td></tr>";
           }
           else if(r<.5)
           {
-            s += "Which is <em>vertically lower on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(dx>0==rightway)+","+i+")'>"+tmp1 + "</button></li><li><button onclick='answer("+(dx<0==rightway)+","+i+")'>"+tmp2+"</button></li></ol></td>";
+            s += "Which is <em>vertically lower on the screen</em>?<br><ol type='A'><li><button onclick='answer("+(higher==2)+","+i+")'>"+tmp1 + "</button></li><li><button onclick='answer("+(higher==1)+","+i+")'>"+tmp2+"</button></li></ol></td>";
             s += "<td class='hidden' id='hint"+i+"'>Hint: The top of the screen is always a higher y value than the bottom</span></td></tr>";
           }
           else if(r<.75)

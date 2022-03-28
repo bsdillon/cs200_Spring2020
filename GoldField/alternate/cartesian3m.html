@@ -72,21 +72,44 @@
       {
         if(quadTarget!=="NONE")
         {
-          i = roman.findIndex(x => x===quadTarget);
-          if(!((event[0]<half && i>0 && i<3) || (event[0]>half && (i==0 || i==3))))
-          {//x coordinate does not match target
+          checkQuadrant(quadTarget,event[0],event[1],true);
+        }
+      }
+
+      function checkQuadrant(target,x,y,failSound)
+      {
+        i = roman.findIndex(x => x===target);
+        if(!((x<half && i>0 && i<3) || (x>half && (i==0 || i==3))))
+        {//x coordinate does not match target
+          if(failSound)
+          {
             goldField.PlaySound("hero");
-            return;
           }
-          else if(!((event[1]<half && i<2) || (event[1]>half && i>1)))
-          {//y coordinate does not match target
+          return;
+        }
+        else if(!((y<half && i<2) || (y>half && i>1)))
+        {//y coordinate does not match target
+          if(failSound)
+          {
             goldField.PlaySound("hero");
-            return;
           }
+          return;
+        }
+        goldField.PlaySound("win");
+        challengesLeft--;
+        Challenge();
+      }
+
+      function checkButton(correct)
+      {
+        if(correct)
+        {
           goldField.PlaySound("win");
           challengesLeft--;
           Challenge();
+          return;
         }
+        goldField.PlaySound("hero");
       }
 
       function Key(event)
@@ -146,15 +169,37 @@
             xCurr=loc[0];
             yCurr=loc[1];
             goldField.Redraw();
-            checkWin();
+            if(marchTarget!="None")
+            {
+              checkQuadrant(marchTarget,xCurr,yCurr,false);
+            }
           }
         }        
+      }
+
+      function randomPoint(quadrant)
+      {
+        let q = roman.findIndex(x => x===quadrant);
+        var x = Math.floor(Math.random()*10+1);
+        var y = Math.floor(Math.random()*10+1);
+        if(q==1 || q==2)
+        {
+          x = -x;
+        }
+
+        if(q==2||q==3)
+        {
+          y = -y;
+        }
+
+        return +x+", "+y;
       }
 
       function Challenge()
       {
         tag = document.getElementById("activity");
         quadTarget="NONE";
+        marchTarget="NONE";
         if(challengesLeft==0)
         {
           tag.innerHTML="Great job. Move on!";
@@ -166,7 +211,47 @@
 
         var s = "";
         var r = Math.random();
-        if(true)
+        if(r<.25)
+        {
+          i = Math.floor(Math.random()*4);
+          a = "("+randomPoint(roman[i])+")";
+          s += "You call goldField.LookAt"+a+". Which quadrant are you searching?<br>";
+          for(let j=0;j<4;j++)
+          {
+            s += "<button onclick='checkButton("+(j==i)+")'>Quadrant "+roman[j]+"</button><br>";
+          }
+        }
+        else if(r<.5)
+        {
+          i = Math.floor(Math.random()*4);
+          s += "You call gold.GetPosition() and the answer is in quadrant "+roman[i]+". Which one of these is it?<br>";
+          a = "["+randomPoint(roman[i])+"]";
+          answers = [a];
+          i2 = Math.floor(Math.random()*4);
+          while(answers.length<4)
+          {
+            if(i2!=i)
+            {
+              answers.push("["+randomPoint(roman[i2])+"]");
+            }
+            i2 = Math.floor(Math.random()*4);
+          }
+
+          while(answers.length>0)
+          {
+             i = Math.floor(Math.random()*answers.length);
+             buttonText = answers[i];
+             answers.splice(i,1);
+             s += "<button onclick='checkButton("+(buttonText===a)+")'>"+buttonText+"</button><br>";
+          }
+        }
+        else if(r<.75)
+        {
+          i = Math.floor(Math.random()*4);
+          s += "Move the Hero to quadrant "+roman[i];
+          marchTarget = roman[i];
+        }
+        else
         {
           i = Math.floor(Math.random()*4);
           s += "Click anywhere on quadrant "+roman[i];
