@@ -43,4 +43,6 @@ addToolTip("array","ARRAY - A zero-indexed section of memory that can be treated
 addToolTip("return","RETURN - At the end of the function it may give back an answer. This is known as returning a value. See also FUNCTION");
 addToolTip("origin","ORIGIN - The point at which all values in a Cartesian space are zero. See also TUPLE and CARTESIAN PLANE.");
 addToolTip("quadrant","QUADRANT - One forth of the Cartesian plane numbered I to IV starting from the upper right and moving counter clockwise.");
-
+addToolTip("vector","VECTOR - A distance with a specific direction.");
+addToolTip("components","COMPONENTS - Parts of a vector for the x and y distances.");
+addToolTip("slope","SLOPE - The rise (distance up) and run (distance across) the screen represented by any line.");

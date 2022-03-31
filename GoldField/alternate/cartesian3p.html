@@ -12,8 +12,7 @@
     <script src="cartesian.js"></script>
     <script>
       var goldField;
-      var half = 5
- 
+      var half = 5;
 
       function init()
       {
@@ -50,6 +49,91 @@
 
       function checkAll()
       {
+        goldsCopy = JSON.parse(JSON.stringify(golds));
+        var passAll = true;
+
+        for(let i=1;i<=6;i+=2)
+        {
+          vN1 = document.getElementById("n"+i).value;
+          v1 = vN1.length>0 && !isNaN(vN1);
+          document.getElementById("validN"+i).src = v1 ?  "greencheck.png" : "redx.png";
+          vN2 = document.getElementById("n"+(i+1)).value;
+          v2 = vN2.length>0 && !isNaN(vN2);
+          document.getElementById("validN"+(i+1)).src = v2 ?  "greencheck.png" : "redx.png";
+          passAll = passAll && v1 && v2;
+          if(v1 && v2)
+          {
+            var tmp = [parseInt(vN1)+half,-parseInt(vN2)+half];
+            var found = -1;
+            for(let j=0;j<goldsCopy.length && found==-1;j++)
+            {
+              found = goldsCopy[j][0]==tmp[0] && goldsCopy[j][1]==tmp[1] ? j : -1;
+            }
+            document.getElementById("validN"+i+(i+1)).src = found>-1 ? "greencheck.png" : "redx.png";
+            passAll = passAll && found>-1;
+            if(found>-1)
+            {
+              goldsCopy.splice(found,1);
+            }
+          }
+          else
+          {
+            passAll = passAll && false;
+            document.getElementById("validN"+i+(i+1)).src = "redx.png";
+          }
+        }
+
+        var funcs = ['SetLocation','LookAt'];
+        vF7 = document.getElementById("f7").value;
+        nF7 = funcs.indexOf(vF7);
+        document.getElementById("validF7").src = nF7>-1 ? "greencheck.png" : "redx.png";
+        document.getElementById("correctF7").src = nF7==0 ? "greencheck.png" : "redx.png";
+        vF8 = document.getElementById("f8").value;
+        nF8 = funcs.indexOf(vF8);
+        document.getElementById("validF8").src = nF8>-1 ? "greencheck.png" : "redx.png";
+        document.getElementById("correctF8").src = nF8==1 ? "greencheck.png" : "redx.png";
+        vF13 = document.getElementById("f13").value;
+        nF13 = funcs.indexOf(vF13);
+        document.getElementById("validF13").src = nF13>-1 ? "greencheck.png" : "redx.png";
+        document.getElementById("correctF13").src = nF13==0 ? "greencheck.png" : "redx.png";
+        passAll = passAll && nF7==0 && nF8==1 && nF13==0;
+
+        var variables = ['xPos','yPos','goldField','g3','hero'];
+        vV1 = document.getElementById("v1").value;
+        nV1 = variables.indexOf(vV1);
+        document.getElementById("validV1").src = nV1>-1 ? "greencheck.png" : "redx.png";
+        document.getElementById("correctV1").src = nV1==0 ? "greencheck.png" : "redx.png";
+        vV2 = document.getElementById("v2").value;
+        nV2 = variables.indexOf(vV2);
+        document.getElementById("validV2").src = nV2>-1 ? "greencheck.png" : "redx.png";
+        document.getElementById("correctV2").src = nV2==1 ? "greencheck.png" : "redx.png";
+        vV3 = document.getElementById("v3").value;
+        nV3 = variables.indexOf(vV3);
+        document.getElementById("validV3").src = nV3>-1 ? "greencheck.png" : "redx.png";
+        document.getElementById("correctV3").src = nV3==2 ? "greencheck.png" : "redx.png";
+        vV4 = document.getElementById("v4").value;
+        nV4 = variables.indexOf(vV4);
+        document.getElementById("validV4").src = nV4>-1 ? "greencheck.png" : "redx.png";
+        document.getElementById("correctV4").src = nV4==3 ? "greencheck.png" : "redx.png";
+        vV5 = document.getElementById("v5").value;
+        nV5 = variables.indexOf(vV5);
+        document.getElementById("validV5").src = nV5>-1 ? "greencheck.png" : "redx.png";
+        document.getElementById("correctV5").src = nV5==4 ? "greencheck.png" : "redx.png";
+        vV6 = document.getElementById("v6").value;
+        nV6 = variables.indexOf(vV6);
+        document.getElementById("validV6").src = nV6>-1 ? "greencheck.png" : "redx.png";
+        document.getElementById("correctV6").src = nV6==0 ? "greencheck.png" : "redx.png";
+        vV7 = document.getElementById("v7").value;
+        nV7 = variables.indexOf(vV7);
+        document.getElementById("validV7").src = nV7>-1 ? "greencheck.png" : "redx.png";
+        document.getElementById("correctV7").src = nV7==1 ? "greencheck.png" : "redx.png";
+        passAll = passAll && nV1==0 && nV2==1 && nV3==2 && nV4==3 && nV5==4 && nV6==0 && nV7==1;
+
+        if(passAll)
+        {
+          goldField.PlaySound("win");
+          document.getElementById("nextLink").style.visibility="visible";
+        }        
       }
     </script>
   </head>
@@ -77,42 +161,47 @@
             //Look at and go to each gold in turn<br>
             5. goldField.LookAt(<input type="text" id="n1" maxlength="3" size="3" onKeyUp="checkAll()"></input>, <input type="text" id="n2" maxlength="3" size="3" onKeyUp="checkAll()"></input>);//use numbers for the g1 location<br>
             6. g1.Destroy();//get rid of the gold AND play that ka-ching! sound<br>
-            7. hero.<input type="text" id="" maxlength="11" size="11" onKeyUp="checkAll()"></input>(g1.xPos, g1.yPos);//do you remember the variables with x and y position?<br><br>
+            7. hero.<input type="text" id="f7" maxlength="11" size="11" onKeyUp="checkAll()"></input>(g1.xPos, g1.yPos);//do you remember the variables with x and y position?<br><br>
             //This is a little different<br>
-            8. goldField.<input type="text" id="" maxlength="6" size="6" onKeyUp="checkAll()"></input>(<input type="text" id="" maxlength="7" size="7" onKeyUp="checkAll()"></input>, <input type="text" id="" maxlength="7" size="7" onKeyUp="checkAll()"></input>);//can you use the position variables for g2?<br>
+            8. goldField.<input type="text" id="f8" maxlength="6" size="6" onKeyUp="checkAll()"></input>(g2.<input type="text" id="v1" maxlength="4" size="4" onKeyUp="checkAll()"></input>, g2.<input type="text" id="v2" maxlength="4" size="4" onKeyUp="checkAll()"></input>);//use the position variables for g2<br>
             9. g2.Destroy();<br>
             10. hero.SetPosition(<input type="text" id="n3" maxlength="3" size="3" onKeyUp="checkAll()"></input>, <input type="text" id="n4" maxlength="3" size="3" onKeyUp="checkAll()"></input>);//use numbers for the g2 instead<br><br>
             //Now put it all together<br>
-            11. <input type="text" id="" maxlength="9" size="9" onKeyUp="checkAll()"></input>.LookAt(<input type="text" id="n5" maxlength="3" size="3" onKeyUp="checkAll()"></input>, <input type="text" id="n6" maxlength="3" size="3" onKeyUp="checkAll()"></input>);//use the numbers<br>
-            12. <input type="text" id="" maxlength="2" size="2" onKeyUp="checkAll()"></input>.Destroy();//which figure are we destroying?<br>
-            13. <input type="text" id="" maxlength="4" size="4" onKeyUp="checkAll()"></input>.<input type="text" id="" maxlength="11" size="11" onKeyUp="checkAll()"></input>(g3.<input type="text" id="" maxlength="4" size="4" onKeyUp="checkAll()"></input>, g3.<input type="text" id="" maxlength="4" size="4" onKeyUp="checkAll()"></input>);//What were those variables again?<br><br>
+            11. <input type="text" id="v3" maxlength="9" size="9" onKeyUp="checkAll()"></input>.LookAt(<input type="text" id="n5" maxlength="3" size="3" onKeyUp="checkAll()"></input>, <input type="text" id="n6" maxlength="3" size="3" onKeyUp="checkAll()"></input>);//use the numbers<br>
+            12. <input type="text" id="v4" maxlength="2" size="2" onKeyUp="checkAll()"></input>.Destroy();//which figure are we destroying?<br>
+            13. <input type="text" id="v5" maxlength="4" size="4" onKeyUp="checkAll()"></input>.<input type="text" id="f13" maxlength="11" size="11" onKeyUp="checkAll()"></input>(g3.<input type="text" id="v6" maxlength="4" size="4" onKeyUp="checkAll()"></input>, g3.<input type="text" id="v7" maxlength="4" size="4" onKeyUp="checkAll()"></input>);//What were those variables again?<br><br>
           </td><td class="top">
           <h3>Check Your Code!</h3>
           <ul>
             <li><img src="" id="validN1" width="20"> Valid number in box #1 on line 5</li>
             <li><img src="" id="validN2" width="20"> Valid number in box #2 on line 5</li>
             <li><img src="" id="validN12" width="20"> Valid gold location on line 5</li>
+            <li><img src="" id="validF7" width="20"> Valid function on line 7</li>
+            <li><img src="" id="correctF7" width="20"> Correct function on line 7</li>
+            <li><img src="" id="validF8" width="20"> Valid function on line 8</li>
+            <li><img src="" id="correctF8" width="20"> Correct function on line 8</li>
+            <li><img src="" id="validV1" width="20"> Valid variable in box #2 on line 8</li>
+            <li><img src="" id="correctV1" width="20"> Correct variable in box #2 on line 8</li>
+            <li><img src="" id="validV2" width="20"> Valid variable in box #3 on line 8</li>
+            <li><img src="" id="correctV2" width="20"> Correct variable in box #3 on line 8</li>
             <li><img src="" id="validN3" width="20"> Valid number in box #1 on line 10</li>
             <li><img src="" id="validN4" width="20"> Valid number in box #2 on line 10</li>
             <li><img src="" id="validN34" width="20"> Valid gold location on line 10</li>
+            <li><img src="" id="validV3" width="20"> Valid variable in box #1 on line 11</li>
+            <li><img src="" id="correctV3" width="20"> Correct variable in box #1 on line 11</li>
             <li><img src="" id="validN5" width="20"> Valid number in box #2 on line 11</li>
             <li><img src="" id="validN6" width="20"> Valid number in box #3 on line 11</li>
             <li><img src="" id="validN56" width="20"> Valid gold location on line 11</li>
-
-
-
-            <li><img src="" id="valid2" width="20"> Valid variable in box #2</li>
-            <li><img src="" id="correct12" width="20"> Correct order and variables in line #4</li>
-            <li><img src="" id="valid3" width="20"> Valid variable in box #3</li>
-            <li><img src="" id="valid4" width="20"> Valid variable in box #4</li>
-            <li><img src="" id="correct34" width="20"> Correct order and variables in line #5</li>
-            <li><img src="" id="valid5" width="20"> Valid variable in box #5</li>
-            <li><img src="" id="valid6" width="20"> Valid variable in box #6</li>
-            <li><img src="" id="correct56" width="20"> Correct order and variables in line #6</li>
-            <li><img src="" id="valid7" width="20"> Valid inequality box #7</li>
-            <li><img src="" id="valid8" width="20"> Valid inequality box #8</li>
-            <li><img src="" id="valid9" width="20"> Valid inequality box #9</li>
-            <li><img src="" id="correct789" width="20"> Correct inequality</li>
+            <li><img src="" id="validV4" width="20"> Valid variable on line 12</li>
+            <li><img src="" id="correctV4" width="20"> Correct variable on line 12</li>
+            <li><img src="" id="validV5" width="20"> Valid variable in box #1 on line 13</li>
+            <li><img src="" id="correctV5" width="20"> Correct variable in box #1 on line 13</li>
+            <li><img src="" id="validF13" width="20"> Valid function on line 13</li>
+            <li><img src="" id="correctF13" width="20"> Correct function on line 13</li>
+            <li><img src="" id="validV6" width="20"> Valid variable in box #3 on line 13</li>
+            <li><img src="" id="correctV6" width="20"> Correct variable in box #3 on line 13</li>
+            <li><img src="" id="validV7" width="20"> Valid variable in box #4 on line 13</li>
+            <li><img src="" id="correctV7" width="20"> Correct variable in box #4 on line 13</li>
           </dl>
           </td></tr></table>
         </td>
