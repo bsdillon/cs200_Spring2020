@@ -15,7 +15,8 @@
         goldField.AddSound("fart.wav","fart");
         AddCheckBox();
         AddCheckBox();
-        AddLittleGirl();
+        try{
+        AddLittleGirl();}catch(e){alert(e);}
       }
 
       function AddCheckBox()
