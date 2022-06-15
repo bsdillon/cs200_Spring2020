@@ -211,7 +211,8 @@
       s+="    &lt;/li&gt;<br>";
       s+="   &lt;/ul&gt;<br>";
       s+="  &lt;/form&gt;<br></pre><br>";
-      s+="<table><tr><th></th><th>&nbsp;&nbsp;&nbsp;tag&nbsp;&nbsp;&nbsp;</th><th>attribute</th><th>&nbsp;value&nbsp;</th></tr>";
+      //s+="<table><tr><th></th><th>&nbsp;&nbsp;&nbsp;tag&nbsp;&nbsp;&nbsp;</th><th>attribute</th><th>&nbsp;value&nbsp;</th></tr>";
+      s+="Identify each of these as a TAG, ATTRIBUTE, or VALUE:<br><ul>";
       for(let i=0;i<5;i++)
       {
         var x = Math.floor(Random()*tmp.length);
@@ -222,9 +223,10 @@
         var t = (showAnswers&&ans==1)? "<span class='red'>tag</span>":"";
         var a = (showAnswers&&ans==2)? "<span class='red'>attr</span>":"";
         var v = (showAnswers&&ans==3)? "<span class='red'>val</span>":"";
-        s+="<tr><th>"+name+"</th><td>"+t+"</td><td>"+a+"</td><td>"+v+"</td></tr>"        
+        s+="<li>"+name+" -"+t+" "+a+" "+v+"</li>"        
       }
-      s+="</table>";
+      s+="</ul>";
+      //s+="</table>";
       lines[index++]=s+"</pre><br>";
 
       s="The following HTML is wrong in several ways. Correct it, highlighting your changes <span class='blue'>(5 pt)</span>:<br>";
