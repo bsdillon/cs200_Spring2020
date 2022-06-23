@@ -71,7 +71,7 @@ function GoldField(tag, block_size, block_width, block_height, background)
       sounds[audioNames[i]]=audio;
    }
 
-   var audio = document.createElement("img");
+   var audio = document.createElement("audio");
    audio.setAttribute('id', name+"Audio");
    this.moverTag.appendChild(audio);
    this.noneAudio = audio;

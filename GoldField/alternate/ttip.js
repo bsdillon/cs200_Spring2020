@@ -46,3 +46,10 @@ addToolTip("quadrant","QUADRANT - One forth of the Cartesian plane numbered I to
 addToolTip("vector","VECTOR - A distance with a specific direction.");
 addToolTip("components","COMPONENTS - Parts of a vector for the x and y distances.");
 addToolTip("slope","SLOPE - The rise (distance up) and run (distance across) the screen represented by any line.");
+addToolTip("artificial intelligence","ARTIFICIAL INTELLIGENCE - A computer system that approximates human decision making skills. AIs vary in skill level from specialized AIs that can only do one thing, to AIs that can cover a broad range of related tasks.");
+addToolTip("identifier","IDENTIFIER - The text name given to each field, function, etc. in a program. These are defined by the programmer to be readable and must match EXACTLY when they are used.");
+addToolTip("","Empty");
+
+
+
+

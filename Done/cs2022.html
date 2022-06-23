@@ -1,0 +1,442 @@
+<html>
+  <head>
+    <style>
+      .blue,table,p {font-weight:bold; color:blue;}
+      table {border-collapse: collapse;}
+      th, td {border-left: solid 1pt black; padding:5pt;}
+      th, td {border-right: solid 1pt black; padding:5pt;}
+      tr {border-bottom: solid 1pt black;}
+      tr {border-top: solid 1pt black;}
+    </style>
+    <script>
+      alert("Before declarations");
+      alert("One: "+one);
+      alert("Two: "+two);
+      alert("Three: "+three);
+      //alert(four);//can't access before declaration
+      //alert(five);//can't access before declaration
+      var one;
+      var two;
+      var three;
+      let four;
+      five=5;//can't separate declaration and definition in this example
+      alert("Before definition");
+      alert("One: "+one);
+      alert("Two: "+two);
+      alert("Three: "+three);
+      alert("Four: "+four);
+      alert("Five: "+five);
+      one=1;
+      two=2;
+      three=3;
+      four=4;
+      alert("After definition");
+      alert("One: "+one);
+      alert("Two: "+two);
+      alert("Three: "+three);
+      alert("Four: "+four);
+      alert("Five: "+five);
+
+      var grades=0;
+      var courses=0;
+
+      function addGrade(val)
+      {
+        courses = courses + 1;
+        grades = grades + val;
+        alert("Adding grade: "+(val).toFixed(2));
+      }
+
+      function calcGPA()
+      {
+        var gpa = (grades/courses).toFixed(2);
+        alert("GPA: "+gpa);
+      }
+
+      alert("Intentional error");
+      calcGPA();
+      alert("Real GPA");
+      addGrade(4);
+      addGrade(3);
+      addGrade(2);
+      addGrade(1);
+      calcGPA();
+
+      var apples=1.43;
+      var oranges=2.33;
+      var pears=4.32;
+      var tax=0.04;
+      var shipping=2.75;
+
+      function calcTotal(a,o,p)
+      {
+        var subtotal = ((apples*a)+(oranges*o)+(pears*p)).toFixed(2);
+        var total = ((subtotal*(1+tax))+shipping).toFixed(2);
+        alert("For "+a+" apples, "+o+" oranges, and "+p+" pears the total is $"+subtotal+" and $"+total+" with shipping and tax");
+      }
+
+      calcTotal(1,1,1);
+      calcTotal(3,2,1);
+      calcTotal(1,3,2);
+
+      var v0 = 1 + 2;
+      alert("Predicted 3: "+v0);
+      var v1 = 4 + '7';
+      alert("Predicted '47': "+v1);
+      var v2 = 4 * '7';
+      alert("Predicted 28: "+v2);
+      var v3 = 2 + true;
+      alert("Predicted 2True: "+v3);
+      var v4 = false - 3;
+      alert("Predicted -3: "+v4);
+
+      var w;
+      alert("w is undefined: "+w);
+      var x = 5;
+      alert("x is 5: "+x);
+      let y = 10;
+      alert("y is 10: "+y);
+      alert("z is undefined: "+z);
+      var z = 2;
+      //alert("a is broken: "+a);//Throws an error
+      let a = 3;
+    </script>
+  </head>
+  <body>
+    <H1>Homework 1</h1>
+<ol>
+<li>Use web resources to find uses for octal and hexadecimal numbers.</li>
+<p><a href="https://stackoverflow.com/questions/58587146/what-are-octal-numbers-base-8-used-for">Link</a> Octal is used in older computers with a different architecture, aircraft transponders, and file permissions. There are others, but Hex does those better (i.e. number compression).<br>
+<a href="https://teachcomputerscience.com/uses-of-hexadecimal/">Link</a> Hex is used in memory addresses, MAC addresses, and colors.</p>
+<li>Give examples of circumstances where binary would be preferable? Decimal?</li>
+<p>Binary is unweildy, but in a computer it just makes sense. So if you want to use the number in a computer, that's the best choice. I'm thinking about 8-bit cables.<br>
+Decimal is the number system of humans, so i wouldn't want to confuse people using anything else. Showing a number '101' shouldn't be five. That would confuse people who are expecting one-hundred-and-one.</p>
+<li>Go to the Smithsonian site (https://www.si.edu/spotlight/cash-and-credit-registers/ncr-mechanical-cash-registers-cash-register-mechanisms (Links to an external site.)) on antique cash registers using decimal digits with places. You may choose to read about several in order to answer the following questions.
+<ul>
+<li>Why were their multiple rows of numbered keys?</li>
+<p>Each row had a place value and the various keys had to be used to give a value in that place.</p>
+<li>How did these machines work?</li>
+<p>They were mostly physical. Gears and wheels. No electronics. Some paper punches.</p>
+<li>Was this an efficient design?</li>
+<p>It takes up so much keyboard space but it does work. It only does one trick and couldn't be reprogrammed without changing the gears.</p>
+</ul></li>
+<li>Go to the Calculator Site (https://www.thecalculatorsite.com/articles/units/history-of-the-calculator.php (Links to an external site.)) on antique calculators. Answer these questions.
+<ul>
+<li>What was the major innovation between the ENIAC and the ANITA?</li>
+<p>They were moving away from mechanical machines and went to all electric. Fewer breaking parts.</p>
+<li>What was the major innovation between the ANITA and machines like the Olivetti Programma 101?</li>
+<p>They were moving away from bulbs and tubes and more toward electronics. Transistors were working.</p>
+<li>How are these innovations related to binary?</li>
+<p>The bulbs were either on/off and that worked for binary. The transistors did the same thing. Open or closed. On or off. That's how you get binary and these electronic circuits were moving toward an all electronic binary representation of data.</p>
+</ul></li>
+<li>Watch this video on the history of digital computing. (https://www.youtube.com/watch?v=OwS9aTE2Go4) Answer these questions.
+<ul>
+<li>What feature of the vacuum tube made binary computing possible?</li>
+<p>They could be turned on/off and they could be turned on/off by other signals. That gave us a near-transistor logic control.</p>
+<li>What were the disadvantages of the vacuum tube?</li>
+<p>They burn out so easily. Sometimes it was hard to keep the tubes up and running over a single computation.</p>
+<li>What feature of silicon made binary computing possible?</li>
+<p>It can be doped to give it different electronic properties. Different sections with different capabilities.</p>
+<li>The author argues that the growth experienced during the age of computers may plateau in the next few years. Why?</li>
+<p>They are quickly reaching the limit of doping in size. At a small enough size the electrons will bleed through incorrectly.</p>
+</ul></li>
+<li>Convert these mathematical operations to binary, octal, and hexadecimal.
+<ul>
+<li>126 + 39 = </li>
+<table><tr>
+<td>126%2=0<br>
+63%2=1<br>
+31%2=1<br>
+15%2=1<br>
+7%2=1<br>
+3%2=1<br>
+1%2=1<br>
+0111 1110<br>
+7E - hex<br>
+176 - octal</td>
+<td>
+<br>39%2=1<br>
+19%2=1<br>
+9%2=1<br>
+4%2=0<br>
+2%2=0<br>
+1%2=1<br>
+0010 0111<br>
+27 - hex<br>
+47 - octal<br>
+</td>
+</tr></table>
+<li>96 + 29 = </li>
+<table><tr>
+<td>
+96%2=0<br>
+48%2=0<br>
+24%2=0<br>
+12%2=0<br>
+6%2=0<br>
+3%2=1<br>
+1%2=1<br>
+0110 0000<br>
+60 - hex<br>
+140 - octal
+</td>
+<td><br><br>
+29%2=1<br>
+14%2=0<br>
+7%2=1<br>
+3%2=1<br>
+1%2=1<br>
+0001 1101<br>
+1D - Hex<br>
+035 - octal
+</td>
+</tr></table>
+<li>117 + 85 = </li>
+<table><tr>
+<td>
+117%2=1<br>
+58%2=0<br>
+29%2=1<br>
+14%2=0<br>
+7%2=1<br>
+3%2=1<br>
+1%2=1<br>
+0111 0101<br>
+75 - hex<br>
+165 - octal
+</td>
+<td>
+85%2=1<br>
+42%2=0<br>
+21%2=1<br>
+10%2=0<br>
+5%2=1<br>
+2%2=0<br>
+1%2=1<br>
+0101 0101<br>
+55 - hex<br>
+125 - octal
+</td>
+</tr></table>
+</ul></li>
+<li>Convert these mathematical operations to decimal
+<ul>
+<li>AF + 39 =</li>
+<table><tr>
+<td>
+AF<br>
+1010 1111<br>
+128 + 32 + 8 + 4 + 2 + 1 = 175
+</td>
+<td>
+39<br>
+0011 1001<br>
+32 + 16 + 8 + 1 = 57
+</td>
+</tr></table>
+<li>0110 1001 + 0011 1101 =</li>
+<table><tr>
+<td>
+0110 1001<br>
+64 + 32 + 8 + 1 = 105<br>
+</td>
+<td>
+&nbsp;&nbsp;&nbsp;0011 1101<br>
+&nbsp;&nbsp;&nbsp;32 + 16 + 8 + 4 + 1 = 61
+</td>
+</tr></table>
+<li>(octal) 35 + (octal) 113 =</li>
+<table><tr>
+<td>
+35<br>
+011 101<br>
+01 1101<br>
+16 + 8 + 4 + 1 = 29
+</td>
+<td>
+113<br>
+001 001 011<br>
+0100 1011<br>
+64 + 8 + 2 + 1 = 75
+</td>
+</tr></table>
+</ul></li>
+<li>Create a truth table for the following expressions
+<ul>
+<li>A && B && C</li>
+<table>
+  <tr><th>A</th><th>B</th><th>C</th><th>A&&B&&C</th></tr>
+  <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+  <tr><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+  <tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+  <tr><td>0</td><td>1</td><td>0</td><td>0</td></tr>
+  <tr><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+  <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+  <tr><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+  <tr><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+</table>
+<li>(A && !B) || C</li>
+<table>
+  <tr><th>A</th><th>B</th><th>C</th><th>!B</th><th>A&&!B</th><th>(A&&!B)||C</th></tr>
+  <tr><td>0</td><td>0</td><td>0</td><td>1 </td><td>0    </td><td>0        </td></tr>
+  <tr><td>0</td><td>0</td><td>1</td><td>1 </td><td>0    </td><td>1         </td></tr>
+  <tr><td>0</td><td>1</td><td>0</td><td>0 </td><td>0    </td><td>0        </td></tr>
+  <tr><td>0</td><td>1</td><td>1</td><td>0 </td><td>0    </td><td>1         </td></tr>
+  <tr><td>1</td><td>0</td><td>0</td><td>1 </td><td>1    </td><td>1         </td></tr>
+  <tr><td>1</td><td>0</td><td>1</td><td>1 </td><td>1    </td><td>1         </td></tr>
+  <tr><td>1</td><td>1</td><td>0</td><td>0 </td><td>0    </td><td>0        </td></tr>
+  <tr><td>1</td><td>1</td><td>1</td><td>0 </td><td>0    </td><td>1        </td></tr>
+</table>
+<li>A && !B && !A</li>
+<table>
+  <tr><th>A</th><th>B</th><th>!A</th><th>!B</th><th>A&&!B&&!A</th></tr>
+  <tr><td>0</td><td>0</td><td>1 </td><td>1 </td><td>0</td></tr>
+  <tr><td>0</td><td>1</td><td>1 </td><td>0 </td><td>0</td></tr>
+  <tr><td>1</td><td>0</td><td>0 </td><td>1 </td><td>0</td></tr>
+  <tr><td>1</td><td>1</td><td>0 </td><td>0 </td><td>0</td></tr>
+</table>
+<li>A || (C && B) || !A</li>
+<table>
+  <tr><th>A</th><th>B</th><th>C</th><th>!A</th><th>C&&B</th><th>A||(C&&B)||!A</th></tr>
+  <tr><td>0</td><td>0</td><td>0</td><td>0 </td><td>0   </td><td>1</td></tr>
+  <tr><td>0</td><td>0</td><td>1</td><td>0 </td><td>0   </td><td>1</td></tr>
+  <tr><td>0</td><td>1</td><td>0</td><td>0 </td><td>0   </td><td>1</td></tr>
+  <tr><td>0</td><td>1</td><td>1</td><td>0 </td><td>1   </td><td>1</td></tr>
+  <tr><td>1</td><td>0</td><td>0</td><td>1 </td><td>0   </td><td>1</td></tr>
+  <tr><td>1</td><td>0</td><td>1</td><td>1 </td><td>0   </td><td>1</td></tr>
+  <tr><td>1</td><td>1</td><td>0</td><td>1 </td><td>0   </td><td>1</td></tr>
+  <tr><td>1</td><td>1</td><td>1</td><td>1 </td><td>1   </td><td>1</td></tr>
+</table>
+</ul></li>
+</ol>
+    <H1>Homework 2</h1>
+<ol>
+<li>Read the description of all computer parts on this site. https://manishacinfotech1112.weebly.com/parts-of-a-computer-assignment.html In your own words, describe two computer parts that we did not cover is class. Why are these parts necessary on a desktop computer? Are they as important in a laptop or phone?</li>
+<li>Go searching for a "dream" computer you would buy if you had as much money as you need. Nothing crazy. It's for your use not for hacking into NORAD. Describe the details of the machine.
+<ul>
+<li>Weight - <span class="blue">Under 20lbs; this is a must</span></li>
+<li>Size - <span class="blue">Average backback; 12"x17"x2"</span></li>
+<li>CPU type - <span class="blue">Don't care</span></li>
+<li>CPU cores - <span class="blue">Minimum 10 cores so I can put off OS processes without losing performance</span></li>
+<li>CPU Gigahertz - <span class="blue">Total CPU is 5-7GHz</span></li>
+<li>RAM capacity - <span class="blue">Minimum 16 GB</span></li>
+<li>Hard drive type - <span class="blue">SSD</span></li>
+<li>Hard drive capacity - <span class="blue">1 TB - I don't need the space, but that's a common size and good price today</span></li>
+<li>Video card type - <span class="blue">Not too bothered</span></li>
+</ul></li>
+<li>Looking at your dream computer, what job do you think it is best able to perform and why?</li>
+<ul>
+<li>Office work</li>
+<li>Games</li>
+<li>Streaming video/audio</li>
+<li>Something else?</li>
+</ul></li>
+<p>
+I'm just looking for a workhorse, not a racehorse. Some games, but nothing important. Lots of memory space for work documents, images, etc. No high processing.
+</p>
+<li>Recently Google has started offering Chromebooks. Look up the CPU capabilities, RAM storage, and hard drive storage on a chrome book. Compare with a desktop computer of any brand. What explanation is there for the Chromebook? How was it meant to be used?</li>
+<p>
+Chromebook: 4GB RAM; 2 Cores, 2.5GHz; 16GB SSD; Bluetooth; Webcam<br>
+Old Desktop: 4GB RAM; 2 Cores, 3GHz; 930GB SSD; Ethernet; DVD Drive<br>
+Obviously this is an old computer, but you can see that speed and RAM are very similar. The auxiliaries are different with Chromebook favoring networking and distance communications. I use my desktop for work and rarely any socializing. The big difference is I have tons of memory, but the chromebook has hardly any. I can keep all kinds of files and they practically can't do anything.
+</p>
+<li>Go to this site https://www.makeuseof.com/tag/intel-core-i9-vs-i7-vs-i5-cpu/ and compare the i7 and i9 chips. 
+<ul>
+<li>Look at the number of cores and compare them to price. What can you say about the price of new cores.</li>
+<p>Cores and price are positively correlated. About $100/core.</p>
+<li>Compare cores to "threads". Each thread is a computer program that can be run at the same time on a core.  What relationship do you see between cores and threads.</li>
+<p>They are locked 2:1.</p>
+<li>What relationship do you see between cache size and price?</li>
+<p>Less closely correlated. About $100/MB</p>
+<li>What relationship do you see between clock speed and price?</li>
+<p>This one has no apparent relationship. Slight negative correlation, but poor R^2.</p>
+<li>What relationship do you see between cores and base clock speed?</li>
+<p>Again, slight negative correlation, but poor R^2. It's about flat.</p>
+</ul></li>
+<img src="trends.png">
+<li>From the data in question 5, calculate the total Ghz speed of each chip. That is (base clock speed)x(cores). Compare that number with price. What relationship do you see?</li>
+<p>This correlation makes much more sense. By combining the cores and base speed you get $40/GHz.</p>
+<li>Watch this video https://www.youtube.com/watch?v=EhvJRDJaofQ. Write a three paragraph response. Cover these two topics.
+<ul>
+<li>Are the computer component options clearer now? Less clear? Some of them?</li>
+<li>Given these options would you rather build your own computer  or buy one ready made?</li>
+</ul></li>
+<p>He points out that most people just look at the i-number and go with the newest, highest, or best. He is trying to compare very minor differences between virtually the same chips. I'm less worrried about that. I just want the CPU to have a good rate and more than one core so I don't have to interrupt my application to deal with the OS. I'd be happy to sacrifice some capability for a much cheaper chip.</p>
+<p>I agree with him that 4GB is very little. 8GB is a good number. 16GB is also readily available today and I'd rather have a slightly larger workspace inside the computer. I'm less concerned about frequency and latency. Those are differences that only matter when I need millisecond/nanosecond speed differences. Again, I'd happily save money in this area.</p>
+<p>This video is a little dated. Today, Windows 10 is just about the same for everyone. The main difference is the licenses paid for with Office 365. We don't need much of a difference in OS based on a $100/year subscription to the Office applications.</p>
+<li>Knowing about computer parts and architecture is essential to Computer Engineering. This is different from Computer Science which deals with programming the computer to do something and largely ignores the hardware. Which of these areas interests you more. Why?</li>
+<p>Ha! I hate the hardware. I'm all about the programming. Should be obvious by my career path. I killed three computers before I gave up.</p>
+
+    <H1>Lab 2</h1>
+<ol>
+<li>Create a new HTML page and do the following in the script tag.
+<ul>
+<li>Declare a set of five fields for your characteristics at right. You can name them whatever you want.</li>
+<li>Use let for at least one variable.</li>
+<li>Use var for at least one.</li>
+<li>Use neither for at least one.</li>
+<li>Define the value for each field.</li>
+<li>Use the alert function e.g. "alert(fieldname);" to check the values of all fields.</li>
+<li>Use alert before the fields are declared.</li>
+<li>Use alert between declaration and definition.</li>
+<li>Use alert after definition</li>
+<li>You will get errors. Put // double slash in front of the line that caused the error.</li>
+<li>After each set of alerts, use the // double slash on a blank line and write your own comments about why their were errors and what you see.</li>
+</ul></li>
+<p>See script on this page</p>
+<li>In the same file, add functions by doing the following:
+<ul>
+<li>Declare new fields for grades and the number of courses.</li>
+<li>Both should be defined with a value of 0.</li>
+<li>Write a function that:</li>
+<ul>
+<li>Takes in a four point grade as a parameter.</li>
+<li>Adds 1 to the number of courses.</li>
+<li>Adds the grade parameter to the grades field.</li>
+</ul>
+<li>Write another function that:</li>
+<ul>
+<li>Takes no parameters.</li>
+<li>Calculates the current GPA.</li>
+<li>Uses alert to publish the current GPA.</li>
+</ul>
+<li>Test the functions by adding several grades.</li>
+<li>(Extra credit) Can you break the program? Show how you would do so in a separate copy of the file.</li>
+</ul>
+<li>Implement Program #1.</li>
+<ul>
+<li>What is written by this document?</li>
+<li>Create a function that has parameters for the number of each fruit.</li>
+<li>Have the function do everything in bold based on those parameters.</li>
+<li>Call the function with the following parameters:</li>
+<ul>
+<li>1 apple, 1 orange, 1 pear</li>
+<li>3 apples, 2 oranges, 1 pear</li>
+<li>1 apple, 3 oranges, 2 pears</li>
+</ul>
+</ul>
+
+<img src="program1.png">
+
+ 
+
+4. Implement Program #2
+
+Recreate this page.
+
+After each variable:
+Write comments predicting the value.
+Use the alert function to check the contents.
+Use comments to write what you actually got.
+
+The first one is done for you.
+
+<img src="program2.png">
+
+5. Implement Program #3
+
+After each “document.write” call, use comments to predict the output.
+
+<img src="program3.png">
+  </body>
+</html>

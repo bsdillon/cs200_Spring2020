@@ -1,0 +1,191 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+      .red {color:red; font-weight:bold;}
+      .green {color:green; font-weight:bold;}
+      .transparent {pointer-events:none;}
+      .hidden {color:white;}
+    </style>
+    <script src="ttip.js"></script>
+    <script src="goldfield.js"></script>
+    <script src="cartesian.js"></script>
+    <script src="vectors.js"></script>
+    <script>
+      var goldField;
+      var half = 5;
+
+      function init()
+      {
+        document.getElementById("nextLink").style.visibility="hidden";
+        goldField = new GoldField(document.getElementById("field"),30, 2*half+1, 2*half+1);
+
+        yAxis = new YAxis()
+        goldField.AddGenericLayer(yAxis);
+        yAxis.SetLayerOn(true);
+
+        xAxis = new XAxis()
+        goldField.AddGenericLayer(xAxis);
+        xAxis.SetLayerOn(true);
+
+        grid = new Grid()
+        goldField.AddGenericLayer(grid);
+        grid.SetLayerOn(true);
+        goldField.Redraw();
+
+        colorNames = ["yellow","magenta","cyan","white","pink","gray","black","red","orange","blue","green"];
+        colors = ["#FFFF00","#FF00FF","#00FFFF","#FFFFFF","#FFAAAA","#AAAAAA","#000000","#FF0000","#FFAA00","#0000FF","#00FF00"];
+        origin = half;
+        selectedColors = [];
+
+        hero = goldField.AddHero();
+        index = Math.floor(Math.random()*colors.length);
+        hero.colorName = colorNames[index];
+        heroVector = new Vector(hero.xPos,hero.yPos,origin-hero.xPos,origin-hero.yPos,colors[index])
+        selectedColors.push(colorNames.splice(index,1));
+        colors.splice(index,1);
+        goldField.AddGenericLayer(heroVector);
+        heroVector.SetLayerOn(true);
+
+        gold = goldField.AddGold();
+        index = Math.floor(Math.random()*colors.length);
+        gold.colorName = colorNames[index];
+        goldVector = new Vector(gold.xPos,gold.yPos,origin-gold.xPos,origin-gold.yPos,colors[index])
+        selectedColors.push(colorNames.splice(index,1));
+        colors.splice(index,1);
+        goldField.AddGenericLayer(goldVector);
+        goldVector.SetLayerOn(true);
+
+        monster = goldField.AddMonster();
+        index = Math.floor(Math.random()*colors.length);
+        monster.colorName = colorNames[index];
+        monsterVector = new Vector(monster.xPos,monster.yPos,origin-monster.xPos,origin-monster.yPos,colors[index])
+        selectedColors.push(colorNames.splice(index,1));
+        colors.splice(index,1);
+        goldField.AddGenericLayer(monsterVector);
+        monsterVector.SetLayerOn(true);
+
+        goldField.SetMute(true);
+        tree = goldField.AddObstacle();
+        obstacleName = tree.Description;
+        while(obstacleName!=="Plant")//Rock Water
+        {
+          tree.Destroy();
+          tree = goldField.AddObstacle();
+          obstacleName = tree.Description;
+        }
+        index = Math.floor(Math.random()*colors.length);
+        tree.colorName = colorNames[index];
+        treeVector = new Vector(tree.xPos,tree.yPos,origin-tree.xPos,origin-tree.yPos,colors[index])
+        selectedColors.push(colorNames.splice(index,1));
+        colors.splice(index,1);
+        goldField.AddGenericLayer(treeVector);
+        treeVector.SetLayerOn(true);
+
+        water = goldField.AddObstacle();
+        obstacleName = water.Description;
+        while(obstacleName!=="Water")
+        {
+          water.Destroy();
+          water = goldField.AddObstacle();
+          obstacleName = water.Description;
+        }
+        index = Math.floor(Math.random()*colors.length);
+        water.colorName = colorNames[index];
+        waterVector = new Vector(water.xPos,water.yPos,origin-water.xPos,origin-water.yPos,colors[index])
+        selectedColors.push(colorNames.splice(index,1));
+        colors.splice(index,1);
+        goldField.AddGenericLayer(waterVector);
+        waterVector.SetLayerOn(true);
+
+        rock = goldField.AddObstacle();
+        obstacleName = rock.Description;
+        while(obstacleName!=="Rock")
+        {
+          rock.Destroy();
+          rock = goldField.AddObstacle();
+          obstacleName = rock.Description;
+        }
+        index = Math.floor(Math.random()*colors.length);
+        rock.colorName = colorNames[index];
+        rockVector = new Vector(rock.xPos,rock.yPos,origin-rock.xPos,origin-rock.yPos,colors[index])
+        selectedColors.push(colorNames.splice(index,1));
+        colors.splice(index,1);
+        goldField.AddGenericLayer(rockVector);
+        rockVector.SetLayerOn(true);
+        goldField.SetMute(false);
+
+        addAllColors(selectedColors);
+        goldField.Redraw();
+        checkAll();
+      }
+
+      function addAllColors(list)
+      {
+        var tags = document.getElementsByName("colors");
+        for(let i=0;i<tags.length;i++)
+        {
+          for(let c=0;c<list.length;c++)
+          {
+            var opt = document.createElement("option");        
+            opt.text = list[c];
+            opt.value = list[c];
+            tags[i].options.add(opt);
+          }
+        }
+      }
+
+      function checkAll()
+      {
+        //document.getElementById("validN"+i).src = v1 ?  "greencheck.png" : "redx.png";
+
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <table>
+      <tr>
+        <td class="top">
+          <canvas id="field"></canvas>
+        </td>
+        <td class="top">
+          <h1>Fill in the Code</h1>
+          <p class="content">
+            Let's use this code to do some things on GoldField. Here we have added several
+            figures and we each shows a colorful <span class="ttip" id="vector" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">vector</span>
+            to the <span class="ttip" id="origin" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">origin</span>.
+            This time we will practice creating good <span class="ttip" id="identifier" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">identifiers</span>.
+            Up to this point, the identifiers xPos, AddHero, SetLocation, etc. were written in GoldField and you have no control
+            over them. Now, you are going to create identifiers for your program. What kind will you create? Here are some rules.
+          </p>
+          <ul>
+            <li>beSimple - You don't want to typeAReallyLongNameForASingleFieldAllTheTime.</li>
+            <li>beSpecific - Don't give it a useless name like "thing" but something descriptive like "PurpleVector".</li>
+            <li>beReadable - You have to read these names, so it can't just be random or overly abbreviated. Ths is nt hw we wrte sntnces.</li>
+          </ul>
+          <table><tr>
+          <td class="code top">
+            <br>
+            // var <em>identifier</em> = new Vector(figure.xPos, figure.yPos, x-distance, y-distance, color);<br>
+            1. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
+            2. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
+            3. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
+            4. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
+            5. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
+            6. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
+            13. <input type="text" id="v5" maxlength="4" size="4" onKeyUp="checkAll()"></input>.<input type="text" id="f13" maxlength="11" size="11" onKeyUp="checkAll()"></input>(g3.<input type="text" id="v6" maxlength="4" size="4" onKeyUp="checkAll()"></input>, g3.<input type="text" id="v7" maxlength="4" size="4" onKeyUp="checkAll()"></input>);//What were those variables again?<br><br>
+          </td><td class="top">
+          <h3>Check Your Code!</h3>
+          <ul>
+            <li><img src="" id="validN1" width="20"> Valid number in box #1 on line 5</li>
+            <li><img src="" id="correctV7" width="20"> Correct variable in box #4 on line 13</li>
+          </ul>
+          </td></tr></table>
+        </td>
+      </tr>
+    </table>
+    <a href="cartesian4.html" id="nextLink"><img src="nextbutton.png"></a>
+    <div id="tooltip">
+    </div>
+  </body>
+</html>
