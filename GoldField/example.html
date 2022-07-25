@@ -15,9 +15,6 @@
         goldField.AddSound("fart.wav","fart");
         AddCheckBox();
         AddCheckBox();
-        try{
-        //AddLittleGirl();}catch(e){alert(e);
-        }
       }
 
       function AddCheckBox()
@@ -51,27 +48,7 @@
       CheckBox.prototype = Object.create(Mover.prototype);
       CheckBox.prototype.constructor = CheckBox;
 
-      GoldField.prototype.AddLittleGirl = function()
-      {
-         var id = this.CreateMoverTag();
-         var udt = new LittleGirl(id);
-         this.AddGenericMover(udt);
-         return udt;
-      }
-
-      var LittleGirl = function(id)
-      {
-         this.Description = "LittleGirl";
-         this.imageURL = "https://cdnb.artstation.com/p/assets/images/images/021/254/809/original/karin-tai-20191008-character-stand.gif?1570985381";
-         this.destroyURL = "redex.png";
-         this.destroyAudio = "None";
-         this.destroyTime = 1000;
-         this.InitTag(id);
-      }
-
-      LittleGirl.prototype = Object.create(Mover.prototype);
-      LittleGirl.prototype.constructor = LittleGirl;
-      
+    
       function Click(event)
       {
         var contents = goldField.LookAt(event[0],event[1]);
