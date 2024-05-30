@@ -152,8 +152,8 @@
           <h1>Fill in the Code</h1>
           <p class="content">
             Let's use this code to do some things on GoldField. Here we have added several
-            figures and we each shows a colorful <span class="ttip" id="vector" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">vector</span>
-            to the <span class="ttip" id="origin" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">origin</span>.
+            figures and each shows a colorful <span class="ttip" id="vector" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">vector</span>
+            from a character to the <span class="ttip" id="origin" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">origin</span>.
             This time we will practice creating good <span class="ttip" id="identifier" onmouseover="showTTip(this.id)" onmouseout="hideTTip()">identifiers</span>.
             Up to this point, the identifiers xPos, AddHero, SetLocation, etc. were written in GoldField and you have no control
             over them. Now, you are going to create identifiers for your program. What kind will you create? Here are some rules.
@@ -167,12 +167,12 @@
           <td class="code top">
             <br>
             // var <em>identifier</em> = new Vector(figure.xPos, figure.yPos, x-distance, y-distance, color);<br>
-            1. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
-            2. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
-            3. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
-            4. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
-            5. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
-            6. var <input type="text" id="" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, <input type="text" id="" onKeyUp="checkAll()"></input>, <input type="text" id="" onKeyUp="checkAll()"></input>, <select name="colors" id=""></select>);<br>
+            1. var <input type="text" id="heroIdentifier" onKeyUp="checkAll()"></input> = new Vector(hero.xPos, hero.yPos, 0, 0, Colors.<select name="colors" id="heroColor"></select>);<br>
+            2. var <input type="text" id="treeIdentifier" onKeyUp="checkAll()"></input> = new Vector(tree.xPos, tree.yPos, 0, 0, Colors.<select name="colors" id="treeColor"></select>);<br>
+            3. var <input type="text" id="goldIdentifier" onKeyUp="checkAll()"></input> = new Vector(gold.xPos, gold.yPos, 0, 0, Colors.<select name="colors" id="goldColor"></select>);<br>
+            4. var <input type="text" id="waterIdentifier" onKeyUp="checkAll()"></input> = new Vector(water.xPos, water.yPos, 0, 0, Colors.<select name="colors" id="waterColor"></select>);<br>
+            5. var <input type="text" id="rockIdentifier" onKeyUp="checkAll()"></input> = new Vector(rock.xPos, rock.yPos, 0, 0, Colors.<select name="colors" id="rockColor"></select>);<br>
+            6. var <input type="text" id="monsterIdentifier" onKeyUp="checkAll()"></input> = new Vector(monster.xPos, monster.yPos, 0, 0, Colors.<select name="colors" id="monsterColor"></select>);<br>
             13. <input type="text" id="v5" maxlength="4" size="4" onKeyUp="checkAll()"></input>.<input type="text" id="f13" maxlength="11" size="11" onKeyUp="checkAll()"></input>(g3.<input type="text" id="v6" maxlength="4" size="4" onKeyUp="checkAll()"></input>, g3.<input type="text" id="v7" maxlength="4" size="4" onKeyUp="checkAll()"></input>);//What were those variables again?<br><br>
           </td><td class="top">
           <h3>Check Your Code!</h3>
