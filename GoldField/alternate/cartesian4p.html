@@ -115,6 +115,10 @@
         rockVector.SetLayerOn(true);
         goldField.SetMute(false);
 
+        targets = ["tree", "gold", "water", "rock", "monster"];
+        target = targets[Math.random()*colors.length;
+        document.getElementById("targetObject").html=target
+        
         addAllColors(selectedColors);
         goldField.Redraw();
         checkAll();
@@ -139,6 +143,47 @@
       {
         //document.getElementById("validN"+i).src = v1 ?  "greencheck.png" : "redx.png";
 
+        const validIdentifier = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
+        var heroName = document.getElementById("heroIdentifier").value;
+        document.getElementById("id1").src = validIdentifier.test(heroName) ?  "greencheck.png" : "redx.png";
+        var heroName2 = document.getElementById("id1Again").value;
+        document.getElementById("heroIdAgain_valid").src = validIdentifier.test(heroName2) ?  "greencheck.png" : "redx.png";
+        document.getElementById("heroIdAgain").src = heroName==heroName2 ?  "greencheck.png" : "redx.png";
+        var heroColor = document.getElementById("heroColor").value;
+        document.getElementById("color1").src = heroColor==heroVector.color ?  "greencheck.png" : "redx.png";
+
+        var treeName = document.getElementById("treeIdentifier").value;
+        document.getElementById("id2").src = validIdentifier.test(treeName) ?  "greencheck.png" : "redx.png";
+        var treeColor = document.getElementById("treeColor").value;
+        document.getElementById("color2").src = heroColor==heroVector.color ?  "greencheck.png" : "redx.png";
+
+        var goldName = document.getElementById("goldIdentifier").value;
+        document.getElementById("id3").src = validIdentifier.test(goldName) ?  "greencheck.png" : "redx.png";
+        var goldColor = document.getElementById("goldColor").value;
+        document.getElementById("color3").src = heroColor==heroVector.color ?  "greencheck.png" : "redx.png";
+
+        var waterName = document.getElementById("waterIdentifier").value;
+        document.getElementById("id4").src = validIdentifier.test(waterName) ?  "greencheck.png" : "redx.png";
+        var waterColor = document.getElementById("waterColor").value;
+        document.getElementById("color4").src = heroColor==heroVector.color ?  "greencheck.png" : "redx.png";
+
+        var rockName = document.getElementById("rockIdentifier").value;
+        document.getElementById("id5").src = validIdentifier.test(rockName) ?  "greencheck.png" : "redx.png";
+        var rockColor = document.getElementById("rockColor").value;
+        document.getElementById("color5").src = heroColor==heroVector.color ?  "greencheck.png" : "redx.png";
+
+        var monsterName = document.getElementById("monsterIdentifier").value;
+        document.getElementById("id6").src = validIdentifier.test(monsterName) ?  "greencheck.png" : "redx.png";
+        var monsterColor = document.getElementById("monsterColor").value;
+        document.getElementById("color6").src = heroColor==heroVector.color ?  "greencheck.png" : "redx.png";
+
+        var targetID1 = document.getElementById("targetIdentifier1").value;
+        document.getElementById("id1_8").src = validIdentifier.test(targetID1) ?  "greencheck.png" : "redxtargetID1==targetID2 = document.getElementById("targetIdentifier2").value;
+        document.getElementById("id2_8").src = validIdentifier.test(targetID2) ?  "greencheck.png" : "redx.png";
+        document.getElementById("idsMatch").src = targetID1==targetID2 ?  "greencheck.png" : "redx.png";
+        document.getElementById("idsCorrect").src = (targetID1==targetID2) && (targetID1==target) ?  "greencheck.png" : "redx.png";
+
+        idsCorrect
       }
     </script>
   </head>
@@ -174,7 +219,7 @@
             5. var <input type="text" id="rockIdentifier" onKeyUp="checkAll()"></input> = new Vector(rock.xPos, rock.yPos, 0, 0, Colors.<select name="colors" id="rockColor"></select>);<br>
             6. var <input type="text" id="monsterIdentifier" onKeyUp="checkAll()"></input> = new Vector(monster.xPos, monster.yPos, 0, 0, Colors.<select name="colors" id="monsterColor"></select>);<br>
             7. // Move the hero to the <span id="targetObject"></span>.
-            8. hero.<input type="text" id="functionName" maxlength="11" size="11" onKeyUp="checkAll()"></input>(<input type="text" id="targetIdentifier1" maxlength="4" size="4" onKeyUp="checkAll()"></input>.xPos, <input type="text" id="targetIdentifier" maxlength="4" size="4" onKeyUp="checkAll()"></input>.yPos);
+            8. <input type="text" id="id1Again" maxlength="11" size="11" onKeyUp="checkAll()"></input>.SetPosition(<input type="text" id="targetIdentifier1" maxlength="4" size="4" onKeyUp="checkAll()"></input>.xPos, <input type="text" id="targetIdentifier" maxlength="4" size="4" onKeyUp="checkAll()"></input>.yPos);
           </td><td class="top">
           <h3>Check Your Code!</h3>
           <ul>
@@ -190,10 +235,12 @@
             <li><img src="" id="color5" width="20">correct color on line 5</li>
             <li><img src="" id="id6" width="20">valid identifier on line 6</li>
             <li><img src="" id="color6" width="20">correct color on line 6</li>
-            <li><img src="" id="func8" width="20">correct function on line 8</li>
+            <li><img src="" id="heroIdAgain_valid" width="20">valid hero identifier on line 8</li>
+            <li><img src="" id="heroIdAgain" width="20">correct hero identifier on line 8</li>
             <li><img src="" id="id1_8" width="20">valid identifier for xPos on line 8</li>
             <li><img src="" id="id2_8" width="20">valid identifier for xPos on line 8</li>
             <li><img src="" id="idsMatch" width="20">identifiers match on line 8</li>
+            <li><img src="" id="idsCorrect" width="20">correct identifier for target on line 8</li>
           </ul>
           </td></tr></table>
         </td>
